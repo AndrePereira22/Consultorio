@@ -13,6 +13,8 @@ import java.util.Date;
  */
 public class Paciente {
     
+    
+    
     private String nome;
     private Date data_nascimento;
     private Date data_cadastro;
