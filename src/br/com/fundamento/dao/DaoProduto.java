@@ -30,12 +30,27 @@ public class DaoProduto implements IDaoProduto {
 
     @Override
     public void salvar(Produto produto) {
-
+        
+       
+                
         try {
+            
+            int id_fornecedor = new DaoFornecedor().salvarfornecedor(produto.getFornecedor());
+            int id_estoquue =  new DaoEstoque().salvar(produto.getEstoque());
             this.conexao = SQLConections.getInstance();
-            this.statement = this.conexao.prepareStatement(SQLUtil.Produto.INSERT);
+            this.statement = conexao.prepareStatement(SQLUtil.Produto.INSERT);
             this.statement.setString(1, produto.getNome());
+            this.statement.setString(2, produto.getFabricante());
+            this.statement.setString(3, produto.getNomeFornecedor());
+            this.statement.setInt(4, produto.getQuantidade_estoque());
+            this.statement.setInt(5, produto.getQuantidade_minima());
+            this.statement.setDouble(6, produto.getPreco_compra());
+            this.statement.setInt(7, id_estoquue);
+            this.statement.setInt(8,id_fornecedor);
+
             statement.execute();
+            this.statement.close();
+                    
         } catch (SQLException ex) {
             Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -53,7 +68,7 @@ public class DaoProduto implements IDaoProduto {
             if (result.next()) {
                 produto = new Produto();
                 produto.setId(result.getInt(1));
-                produto.setNome(result.getString(SQLUtil.Produto.DESCRICAO));
+                produto.setNome(result.getString(SQLUtil.Produto.NOME));
             }
             this.conexao.close();
 
@@ -74,7 +89,7 @@ public class DaoProduto implements IDaoProduto {
             while (result.next()) {
                 produto = new Produto();
                 produto.setId(result.getInt(1));
-                produto.setNome(result.getString(SQLUtil.Produto.DESCRICAO));
+                produto.setNome(result.getString(SQLUtil.Produto.NOME));
                 produtos.add(produto);
             }
             this.conexao.close();
