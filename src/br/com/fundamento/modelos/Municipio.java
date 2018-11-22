@@ -12,6 +12,8 @@ import java.util.List;
  * @author Glenda Alves de Lima
  */
 public class Municipio {
+    
+    private String descricao;
      
     private Estado estado;
     
@@ -45,6 +47,20 @@ public class Municipio {
      */
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
     

@@ -46,7 +46,7 @@ public class DaoCliente implements IDaoCliente {
             this.statement.close();
             
             for (Contato c : cliente.getContatos()) {
-                CommumDao.salvarContato(c, id_cliente);
+               // CommumDao.salvarContato(c, id_cliente);
             }
 
         } catch (SQLException ex) {

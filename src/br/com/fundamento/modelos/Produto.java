@@ -13,10 +13,9 @@ import br.com.fundamento.enuns.TipoDocumento;
  */
 public class Produto {
 
-    private int id;
+   
     private String nome;
     private String fabricante;
-    private String nomeFornecedor;
     private int quantidade_estoque;
     private int quantidade_minima;
     private double preco_compra;
@@ -24,19 +23,8 @@ public class Produto {
     private Fornecedor fornecedor;
     private Estoque estoque;
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
+    
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * @return the nome
@@ -66,19 +54,6 @@ public class Produto {
         this.fabricante = fabricante;
     }
 
-    /**
-     * @return the nomeFornecedor
-     */
-    public String getNomeFornecedor() {
-        return nomeFornecedor;
-    }
-
-    /**
-     * @param nomeFornecedor the nomeFornecedor to set
-     */
-    public void setNomeFornecedor(String nomeFornecedor) {
-        this.nomeFornecedor = nomeFornecedor;
-    }
 
     /**
      * @return the quantidade_estoque

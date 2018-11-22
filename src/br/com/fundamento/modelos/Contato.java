@@ -12,7 +12,7 @@ import br.com.fundamento.enuns.TipoContato;
  * @author prof Heldon
  */
 public class Contato {
-    private int id;
+
     private TipoContato tipo;
     private String descricao;
 
@@ -37,7 +37,7 @@ public class Contato {
 
     @Override
     public String toString() {
-        return "Contato{" + "id=" + id + ", tipo=" + tipo + ", descricao=" + descricao + '}';
+        return "Contato{" +  " tipo=" + tipo + ", descricao=" + descricao + '}';
     }
     
     

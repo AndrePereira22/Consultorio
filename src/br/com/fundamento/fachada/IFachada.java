@@ -5,8 +5,27 @@
  */
 package br.com.fundamento.fachada;
 
+import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Cliente;
+import br.com.fundamento.modelos.Consulta;
+import br.com.fundamento.modelos.Consultorio;
+import br.com.fundamento.modelos.Convenio;
+import br.com.fundamento.modelos.Especializacao;
+import br.com.fundamento.modelos.Estado;
+import br.com.fundamento.modelos.Estoque;
+import br.com.fundamento.modelos.Fornecedor;
+import br.com.fundamento.modelos.Funcionario;
+import br.com.fundamento.modelos.Login;
+import br.com.fundamento.modelos.Medico;
+import br.com.fundamento.modelos.Municipio;
+import br.com.fundamento.modelos.Paciente;
+import br.com.fundamento.modelos.Pagamento;
+import br.com.fundamento.modelos.Parcela;
 import br.com.fundamento.modelos.Produto;
+import br.com.fundamento.modelos.Prontuario;
+import br.com.fundamento.modelos.Relatorio;
+import br.com.fundamento.modelos.SaidaEstoque;
+import br.com.fundamento.modelos.Tarefa;
 import java.util.List;
 
 /**
@@ -14,25 +33,130 @@ import java.util.List;
  * @author prof Heldon
  */
 public interface IFachada {
-
-    public void salvarCliente(Cliente cliente);
-
-    public Cliente buscarClientePorId(int id);
-
-    public List<Cliente> getAllClientes();
-
-    public void editarCliente(Cliente cliente);
-
-    public void ativarDesativarCliente(int id);
+    
+    public void salvarLogin(Login login);
+    public Login buscarLoginPorId(int id);
+    public List<Login> getAllLogin();
+    public void editarLogin(Login login);
+    public void ativarDesativarLogin(int id);
 
     public void salvarProduto(Produto produto);
-
     public Produto buscarProdutoPorId(int id);
-
     public List<Produto> getAllProdutos();
-
     public void editarProduto(Produto produto);
-
     public void ativarDesativarProduto(int id);
+    
+    public void salvarEstoque(Estoque estoque);
+    public Estoque buscarEstoquePorId(int id);
+    public List<Estoque> getAllEstoque();
+    public void editarEstoque(Estoque estoque);
+    public void ativarDesativarEstoqur(int id);
+    
+    public void salvarfornecedor(Fornecedor fornecedor);
+    public Fornecedor buscarPorfornecedorId(int id);
+    public List<Fornecedor> getAllfornecedor();
+    public void editarfornecedor(Fornecedor fornecedor);
+    public void ativarDesativarfornecedor(int id);
+    
+    
+    public void salvarCaixa(Caixa caixa);
+    public Caixa buscarCaixaPorId(int id);
+    public List<Caixa> getAllCaixa();
+    public void editarCaixa(Caixa caixa);
+    public void ativarDesativarCaixa(int id);
+    
+    public void salvarConsultorio(Consultorio consultorio);
+    public Consultorio buscarConsultorioPorId(int id);
+    public List<Consultorio> getAllConsultorio();
+    public void editarConsultorio(Consultorio consultorio);
+    public void ativarDesativarConsultorio(int id);
+    
+    public void salvarConvenio(Convenio convenio);
+    public Convenio buscarConvenioPorId(int id);
+    public List<Convenio> getAllConvenio();
+    public void editarConvenio(Convenio convenio);
+    public void ativarDesativarConvenio(int id);
+    
+    public void salvarConsulta(Consulta consulta);
+    public Consulta buscarConsultaPorId(int id);
+    public List<Consulta> getAllConsulta();
+    public void editarConsulta(Consulta consulta);
+    public void ativarDesativarConsulta(int id);
+    
+    public void salvarEspecializacao(Especializacao especializacao);
+    public Especializacao buscarEspecializacaoPorId(int id);
+    public List<Especializacao> getAllEspecializacao();
+    public void editarEspecializacao(Especializacao especializacao);
+    public void ativarDesativarEspecializacao(int id);
+    
+    public void salvarEstado(Estado Estado);
+    public Estado buscarEstadoPorId(int id);
+    public List<Estado> getAllEstado();
+    public void editarEstado(Estado estado);
+    public void ativarDesativarEstado(int id);
+    
+  
+    
+    
+    public void salvarFuncionario(Funcionario funcionario);
+    public Funcionario buscarFuncionarioPorId(int id);
+    public List<Funcionario> getAllFuncionario();
+    public void editarFuncionario(Funcionario funcionario);
+    public void ativarDesativarFuncionario(int id);
+    
+    public void salvarMedico(Medico medico);
+    public Medico buscarMedicoPorId(int id);
+    public List<Medico> getAllMedico();
+    public void editarMedico(Medico medico);
+    public void ativarDesativarMedico(int id);
+    
+    public void salvarMunicipio(Municipio municipio);
+    public Municipio buscarMunicipioPorId(int id);
+    public List<Municipio> getAllMunicipio();
+    public void editarMunicipio(Municipio municipio);
+    public void ativarDesativarMunicipio(int id);
+    
+    public void salvarPaciente(Paciente paciente);
+    public Paciente buscarPacientePorId(int id);
+    public List<Paciente> getAllPaciente();
+    public void editarPaciente(Paciente paciente);
+    public void ativarDesativarPaciente(int id);
+    
+    public void salvarPagamento(Pagamento pagamento);
+    public Pagamento buscarPagamentoPorId(int id);
+    public List<Pagamento> getAllPagamento();
+    public void editarPagamento(Pagamento pagamento);
+    public void ativarDesativarPagamento(int id);
+    
+    public void salvarParcela(Parcela parcela);
+    public Parcela buscarParcelaPorId(int id);
+    public List<Parcela> getAllParcela();
+    public void editarParcela(Parcela parcela);
+    public void ativarDesativarParcela(int id);
+    
+    public void salvarProntuario(Prontuario prontuario);
+    public Prontuario buscarProntuarioPorId(int id);
+    public List<Prontuario> getAllProntuario();
+    public void editarProntuario(Prontuario prontuario);
+    public void ativarDesativarProntuario(int id);
+    
+    public void salvarSaidaEstoque(SaidaEstoque saidaEstoque);
+    public SaidaEstoque buscarSaidaEstoquePorId(int id);
+    public List<SaidaEstoque> getAllSaidaEstoque();
+    public void editarSaidaEstoque(SaidaEstoque saidaEstoque);
+    public void ativarDesativarSaidaEstoque(int id);
+    
+    public void salvarTarefa(Tarefa tarefa);
+    public Tarefa buscarTarefaPorId(int id);
+    public List<Tarefa> getAllTarefa();
+    public void editarTarefa(Tarefa tarefa);
+    public void ativarDesativarTarefa(int id);
+    
+    public void salvarRelatorio(Relatorio relatorio);
+    public Relatorio  buscarRlatorioPorId(int id);
+    public List<Relatorio> getAllRelatorio();
+    public void editarRelatorio(Relatorio relatroio);
+    public void ativarDesativarRelatorio(int id);
+    
 
 }

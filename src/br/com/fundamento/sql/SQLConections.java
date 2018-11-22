@@ -13,9 +13,9 @@ import java.util.logging.Logger;
 
 public class SQLConections {
 
-    public static String URL_POSTGRES = "jdbc:postgresql://localhost:5432/Consultorio";
+    public static String URL_POSTGRES = "jdbc:postgresql://localhost:5432/postgres";
     public static String USUARIO_POSTGRES = "postgres";
-    public static String SENHA_POSTGRES = "glenda";
+    public static String SENHA_POSTGRES = "";
 
     private static Connection conexao = null;
 

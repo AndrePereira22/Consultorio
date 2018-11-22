@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,10 +14,9 @@ import java.util.List;
  * @author Glenda Alves de Lima
  */
 public class Pagamento {
-    
-    private int id;
+
     private double valor_total;
-    private Date data_vencimento;
+    private Calendar data_vencimento;
     private boolean status;
     private String forma_pagamento;
     private int quantidade_parcelas;
@@ -30,22 +30,10 @@ public class Pagamento {
     
     
     public Pagamento(){
+        this.data_vencimento = Calendar.getInstance();
         
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * @return the valor_total
@@ -61,19 +49,7 @@ public class Pagamento {
         this.valor_total = valor_total;
     }
 
-    /**
-     * @return the data_vencimento
-     */
-    public Date getData_vencimento() {
-        return data_vencimento;
-    }
-
-    /**
-     * @param data_vencimento the data_vencimento to set
-     */
-    public void setData_vencimento(Date data_vencimento) {
-        this.data_vencimento = data_vencimento;
-    }
+   
 
     /**
      * @return the status
@@ -157,6 +133,16 @@ public class Pagamento {
      */
     public void setParcelas(List<Parcela> parcelas) {
         this.parcelas = parcelas;
+    }
+
+  public String getDate_vencimentoString() {
+        String d =  this.data_vencimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_vencimento.get(Calendar.MONTH)+"/"+ this.data_vencimento.get(Calendar.YEAR);
+        return d;
+    }
+
+   
+    public void setDate_vencimentoInt(int dia,int mes, int ano) {
+        this.data_vencimento.set(ano, mes, dia);
     }
     
 }

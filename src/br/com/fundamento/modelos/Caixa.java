@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -14,31 +15,21 @@ import java.util.List;
  */
 public class Caixa {
     
-    private int id;
     private int numero;
-    private Date date_abertura;
-    private Date date_fechamento;
-    private float valor_receita;
+    private double  valor_abertura;
+    private double valor_fechamento;
+    private double valor_receita;
+    private boolean  status;
+    private Calendar  data;
+    private List<Funcionario>  funcionarios;       
     
-    private List<Funcionario> funcionarios;
     private List<Pagamento> pagamentos;
     
     
             
-    public Caixa(){}
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
+    public Caixa(){
+        
+        this.data = Calendar.getInstance();
     }
 
     /**
@@ -56,59 +47,74 @@ public class Caixa {
     }
 
     /**
-     * @return the date_abertura
+     * @return the valor_abertura
      */
-    public Date getDate_abertura() {
-        return date_abertura;
+    public double getValor_abertura() {
+        return valor_abertura;
     }
 
     /**
-     * @param date_abertura the date_abertura to set
+     * @param valor_abertura the valor_abertura to set
      */
-    public void setDate_abertura(Date date_abertura) {
-        this.date_abertura = date_abertura;
+    public void setValor_abertura(double valor_abertura) {
+        this.valor_abertura = valor_abertura;
     }
 
     /**
-     * @return the date_fechamento
+     * @return the valor_fechamento
      */
-    public Date getDate_fechamento() {
-        return date_fechamento;
+    public double getValor_fechamento() {
+        return valor_fechamento;
     }
 
     /**
-     * @param date_fechamento the date_fechamento to set
+     * @param valor_fechamento the valor_fechamento to set
      */
-    public void setDate_fechamento(Date date_fechamento) {
-        this.date_fechamento = date_fechamento;
+    public void setValor_fechamento(double valor_fechamento) {
+        this.valor_fechamento = valor_fechamento;
     }
 
     /**
      * @return the valor_receita
      */
-    public float getValor_receita() {
+    public double getValor_receita() {
         return valor_receita;
     }
 
     /**
      * @param valor_receita the valor_receita to set
      */
-    public void setValor_receita(float valor_receita) {
+    public void setValor_receita(double valor_receita) {
         this.valor_receita = valor_receita;
     }
 
     /**
-     * @return the funcionarios
+     * @return the status
      */
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
+    public boolean isStatus() {
+        return status;
     }
 
     /**
-     * @param funcionarios the funcionarios to set
+     * @param status the status to set
      */
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        String d =  this.data.get(Calendar.DAY_OF_MONTH) +"/"+ this.data.get(Calendar.MONTH)+"/"+ this.data.get(Calendar.YEAR);
+        return d;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(int dia,int mes, int ano) {
+         this.data.set(ano, mes, dia);
     }
 
     /**
@@ -124,6 +130,23 @@ public class Caixa {
     public void setPagamentos(List<Pagamento> pagamentos) {
         this.pagamentos = pagamentos;
     }
+
+    /**
+     * @return the funcionario
+     */
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    /**
+     * @param funcionario the funcionario to set
+     */
+    public void setFuncionarios(List<Funcionario> funcionario) {
+        this.funcionarios = funcionario;
+    }
+
+
+    
     
     
 }

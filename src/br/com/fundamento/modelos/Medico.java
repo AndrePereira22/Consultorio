@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +14,10 @@ import java.util.List;
  * @author Glenda Alves de Lima
  */
 public class Medico {
+    
     private String nome;
-    private Login usuario;
-    private String senha;
-    private Date data_nascimento;
-    private Date data_cadastro;
+    private Calendar data_nascimento;
+    private Calendar data_cadastro;
     private String cpf;
     private String sexo;
     private int rg;
@@ -25,11 +25,16 @@ public class Medico {
     private List<Consulta> consultas;
     private List<Contato> contatos;
     private List<Especializacao> especializacoes;
-    private List<Prontuario> prontuarios;
+    private Consultorio consultorio;
+    
+    private Login login;
+    private Endereco endereco;
     
     
     
     public Medico (){
+        this.data_nascimento = Calendar.getInstance();
+        this.data_cadastro = Calendar.getInstance();
         
     }
 
@@ -47,62 +52,7 @@ public class Medico {
         this.nome = nome;
     }
 
-    /**
-     * @return the usuario
-     */
-    public Login getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * @param usuario the usuario to set
-     */
-    public void setUsuario(Login usuario) {
-        this.usuario = usuario;
-    }
-
-    /**
-     * @return the senha
-     */
-    public String getSenha() {
-        return senha;
-    }
-
-    /**
-     * @param senha the senha to set
-     */
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    /**
-     * @return the data_nascimento
-     */
-    public Date getData_nascimento() {
-        return data_nascimento;
-    }
-
-    /**
-     * @param data_nascimento the data_nascimento to set
-     */
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
-    }
-
-    /**
-     * @return the data_cadastro
-     */
-    public Date getData_cadastro() {
-        return data_cadastro;
-    }
-
-    /**
-     * @param data_cadastro the data_cadastro to set
-     */
-    public void setData_cadastro(Date data_cadastro) {
-        this.data_cadastro = data_cadastro;
-    }
-
+    
     /**
      * @return the cpf
      */
@@ -187,18 +137,68 @@ public class Medico {
         this.especializacoes = especializacoes;
     }
 
-    /**
-     * @return the prontuarios
-     */
-    public List<Prontuario> getProntuarios() {
-        return prontuarios;
+ 
+
+     public String getDate_cadastroString() {
+        String d =  this.data_cadastro.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_cadastro.get(Calendar.MONTH)+"/"+ this.data_cadastro.get(Calendar.YEAR);
+        return d;
+    }
+
+   
+    public void setDate_cadastroInt(int dia,int mes, int ano) {
+        this.data_cadastro.set(ano, mes, dia);
+    }
+    
+     public String getDate_nascimentoString() {
+        String d =  this.data_nascimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_nascimento.get(Calendar.MONTH)+"/"+ this.data_nascimento.get(Calendar.YEAR);
+        return d;
+    }
+
+   
+    public void setDate_nascimentoInt(int dia,int mes, int ano) {
+        this.data_nascimento.set(ano, mes, dia);
     }
 
     /**
-     * @param prontuarios the prontuarios to set
+     * @return the consultorio
      */
-    public void setProntuarios(List<Prontuario> prontuarios) {
-        this.prontuarios = prontuarios;
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    /**
+     * @param consultorio the consultorio to set
+     */
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    /**
+     * @return the login
+     */
+    public Login getLogin() {
+        return login;
+    }
+
+    /**
+     * @param login the login to set
+     */
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
+    /**
+     * @return the endereco
+     */
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * @param endereco the endereco to set
+     */
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
             
     

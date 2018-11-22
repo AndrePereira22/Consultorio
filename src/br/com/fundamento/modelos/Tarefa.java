@@ -5,7 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -13,9 +13,9 @@ import java.util.Date;
  */
 public class Tarefa {
     
-    private int id;
-    private Date date_inicio;
-    private Date date_termino;
+   
+    private Calendar data_inicio;
+    private Calendar data_termino ;
     private String descricao;
     private int prioridade;
     private boolean status;
@@ -23,37 +23,12 @@ public class Tarefa {
     private Funcionario funcionario;
     
     public Tarefa(){
+    data_inicio= Calendar.getInstance();
+    data_termino =Calendar.getInstance();
         
     }
 
-    /**
-     * @return the date_inicio
-     */
-    public Date getDate_inicio() {
-        return date_inicio;
-    }
-
-    /**
-     * @param date_inicio the date_inicio to set
-     */
-    public void setDate_inicio(Date date_inicio) {
-        this.date_inicio = date_inicio;
-    }
-
-    /**
-     * @return the date_termino
-     */
-    public Date getDate_termino() {
-        return date_termino;
-    }
-
-    /**
-     * @param date_termino the date_termino to set
-     */
-    public void setDate_termino(Date date_termino) {
-        this.date_termino = date_termino;
-    }
-
+   
     /**
      * @return the descricao
      */
@@ -96,19 +71,7 @@ public class Tarefa {
         this.status = status;
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     /**
      * @return the funcionario
@@ -123,5 +86,32 @@ public class Tarefa {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
+   
+
+    /**
+     * @return the date_termino
+     */
+    public String getDate_terminoString() {
+        String d =  this.data_termino.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_termino.get(Calendar.MONTH)+"/"+ this.data_termino.get(Calendar.YEAR);
+        return d;
+    }
+
+   
+    public void setDate_terminoInt(int dia,int mes, int ano) {
+        this.data_termino.set(ano, mes, dia);
+    }
+    
+    public String getDate_inicioString(){
+        String d =  this.data_inicio.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_inicio.get(Calendar.MONTH)+"/"+ this.data_inicio.get(Calendar.YEAR);
+        return d;
+    }
+    
+     public void setDate_inicioInt(int dia,int mes, int ano) {
+         this.data_inicio.set(ano, mes, dia);
+    }
+
+   
+    
     
 }

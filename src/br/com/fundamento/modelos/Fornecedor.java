@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Fornecedor {
     
-    private int id;
+
     private String nome_fantasia;
     private String razao_social;
     private String cnpj;
@@ -28,19 +28,6 @@ public class Fornecedor {
         
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * @return the nome_fantasia

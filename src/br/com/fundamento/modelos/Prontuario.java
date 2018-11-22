@@ -13,10 +13,8 @@ public class Prontuario {
 
     private String exames;
     private String receitas;
-    private String relatorios;
     
-    private Medico medico;
-    private Paciente paciente;
+    
     
     
     public Prontuario(){
@@ -51,47 +49,9 @@ public class Prontuario {
         this.receitas = receitas;
     }
 
-    /**
-     * @return the relatorios
-     */
-    public String getRelatorios() {
-        return relatorios;
-    }
+   
 
-    /**
-     * @param relatorios the relatorios to set
-     */
-    public void setRelatorios(String relatorios) {
-        this.relatorios = relatorios;
-    }
 
-    /**
-     * @return the medico
-     */
-    public Medico getMedico() {
-        return medico;
-    }
-
-    /**
-     * @param medico the medico to set
-     */
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
-    /**
-     * @return the paciente
-     */
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    /**
-     * @param paciente the paciente to set
-     */
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
 
     
 }

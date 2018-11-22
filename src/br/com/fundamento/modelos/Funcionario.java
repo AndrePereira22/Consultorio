@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +6,7 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,26 +15,29 @@ import java.util.List;
  * @author Glenda Alves de Lima
  */
 public class Funcionario {
-    
-  
-    private String senha;
+
     private String nome;
     private int cpf;
-    private Date data_nascimento;
+    private Calendar data_nascimento;
     private float salario;
-    
+    private String funcao;
+
     private Endereco endereco;
     private Caixa caixa;
-    private Estoque estoque;
     private Login usuario;
-    
+
     private List<Tarefa> tarefas;
     private List<Contato> contatos;
     private List<Relatorio> relatorios;
     private List<Consulta> consultas;
-    private List<Funcao> funcoes;
-   
-   public Funcionario(){}
+    private Login login;
+    
+
+    public Funcionario() {
+         data_nascimento = Calendar.getInstance();
+        
+        
+    }
 
     /**
      * @return the usuario
@@ -46,20 +51,6 @@ public class Funcionario {
      */
     public void setUsuario(Login usuario) {
         this.usuario = usuario;
-    }
-
-    /**
-     * @return the senha
-     */
-    public String getSenha() {
-        return senha;
-    }
-
-    /**
-     * @param senha the senha to set
-     */
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     /**
@@ -90,18 +81,13 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
-    /**
-     * @return the data_nascimento
-     */
-    public Date getData_nascimento() {
-        return data_nascimento;
+     public String getDate_NascimentoString(){
+        String d =  this.data_nascimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_nascimento.get(Calendar.MONTH)+"/"+ this.data_nascimento.get(Calendar.YEAR);
+        return d;
     }
-
-    /**
-     * @param data_nascimento the data_nascimento to set
-     */
-    public void setData_nascimento(Date data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    
+     public void setDate_nascimentoInt(int dia,int mes, int ano) {
+         this.data_nascimento.set(ano, mes, dia);
     }
 
     /**
@@ -146,19 +132,7 @@ public class Funcionario {
         this.caixa = caixa;
     }
 
-    /**
-     * @return the estoque
-     */
-    public Estoque getEstoque() {
-        return estoque;
-    }
-
-    /**
-     * @param estoque the estoque to set
-     */
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
-    }
+    
 
     /**
      * @return the tarefas
@@ -217,20 +191,31 @@ public class Funcionario {
     }
 
     /**
-     * @return the funcoes
+     * @return the funcao
      */
-    public List<Funcao> getFuncoes() {
-        return funcoes;
+    public String getFuncao() {
+        return funcao;
     }
 
     /**
-     * @param funcoes the funcoes to set
+     * @param funcao the funcao to set
      */
-    public void setFuncoes(List<Funcao> funcoes) {
-        this.funcoes = funcoes;
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
     }
 
-   
-   
-     
+    /**
+     * @return the login
+     */
+    public Login getLogin() {
+        return login;
+    }
+
+    /**
+     * @param login the login to set
+     */
+    public void setLogin(Login login) {
+        this.login = login;
+    }
+
 }

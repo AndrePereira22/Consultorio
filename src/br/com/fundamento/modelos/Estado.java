@@ -13,6 +13,9 @@ import java.util.List;
  */
 public class Estado {
     
+    private String nome;
+    private String sigla;
+    
     private List<Municipio> municipios;
     
     
@@ -30,6 +33,34 @@ public class Estado {
      */
     public void setMunicipios(List<Municipio> municipios) {
         this.municipios = municipios;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the sigla
+     */
+    public String getSigla() {
+        return sigla;
+    }
+
+    /**
+     * @param sigla the sigla to set
+     */
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
     
 }

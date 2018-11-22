@@ -14,33 +14,38 @@ import java.util.List;
  *
  * @author Glenda Alves de Lima
  */
-public class BusinessFuncionario implements IBusinnesFuncionario{
+public class BusinessFuncionario implements IBusinessFuncionario{
 
     IDaoFuncionario daoFuncionario;
     
-    @Override
-    public void salvar(Funcionario funcionario) {
-       this.daoFuncionario = new DaoFuncionario();
+    public BusinessFuncionario(){
+        this.daoFuncionario = new DaoFuncionario();
     }
 
     @Override
-    public Funcionario buscarPorId(int id) {
+    public void salvarFuncionario(Funcionario funcionario) {
+       this.daoFuncionario.salvarFuncionario(funcionario); 
+    }
+
+    @Override
+    public Funcionario buscarFuncionarioPorId(int id) {
+        return this.daoFuncionario.buscarFuncionarioPorId(id);
+    }
+
+    @Override
+    public List<Funcionario> getAllFuncionario() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public List<Funcionario> getAll() {
+    public void editarFuncionario(Funcionario funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void editar(Funcionario funcionario) {
+    public void ativarDesativarFuncionario(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void ativarDesativar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
 }

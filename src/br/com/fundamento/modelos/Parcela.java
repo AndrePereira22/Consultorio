@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,11 +14,10 @@ import java.util.Date;
  */
 public class Parcela {
     
-    private int id;
+
     private double valor;
-    private Date data_vencimento;
+    private Calendar data_vencimento;
     private boolean  status;
-    private String tipo;
     private int numero;
     private boolean parcela_unica;
     
@@ -25,22 +25,9 @@ public class Parcela {
     
     
     public Parcela(){
-        
+        data_vencimento = Calendar.getInstance();
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * @return the valor
@@ -56,19 +43,7 @@ public class Parcela {
         this.valor = valor;
     }
 
-    /**
-     * @return the data_vencimento
-     */
-    public Date getData_vencimento() {
-        return data_vencimento;
-    }
-
-    /**
-     * @param data_vencimento the data_vencimento to set
-     */
-    public void setData_vencimento(Date data_vencimento) {
-        this.data_vencimento = data_vencimento;
-    }
+    
 
     /**
      * @return the status
@@ -82,20 +57,6 @@ public class Parcela {
      */
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
-        return tipo;
-    }
-
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     /**
@@ -138,5 +99,20 @@ public class Parcela {
      */
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
+    }
+
+    /**
+     * @return the data_vencimento
+     */
+    public String getData_vencimento() {
+         String d =  this.data_vencimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_vencimento.get(Calendar.MONTH)+"/"+ this.data_vencimento.get(Calendar.YEAR);
+        return d;
+    }
+
+    /**
+     * @param data_vencimento the data_vencimento to set
+     */
+    public void setData_vencimento(int dia,int mes, int ano) {
+         this.data_vencimento.set(ano, mes, dia);
     }
 }

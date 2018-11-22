@@ -11,45 +11,17 @@ package br.com.fundamento.modelos;
  */
 public class Relatorio {
     
-    private int id;
-    private int id_funcionario;
+   
     private String descricao;
     private String relatorio;
     
-    
+    private Funcionario funcionario;
     
     public Relatorio(){
         
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the id_funcionario
-     */
-    public int getId_funcionario() {
-        return id_funcionario;
-    }
-
-    /**
-     * @param id_funcionario the id_funcionario to set
-     */
-    public void setId_funcionario(int id_funcionario) {
-        this.id_funcionario = id_funcionario;
-    }
-
+  
     /**
      * @return the descricao
      */
@@ -76,6 +48,20 @@ public class Relatorio {
      */
     public void setRelatorio(String relatorio) {
         this.relatorio = relatorio;
+    }
+
+    /**
+     * @return the funcionario
+     */
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    /**
+     * @param funcionario the funcionario to set
+     */
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
 }

@@ -14,7 +14,11 @@ public class Estoque {
     
     private List<Produto> produtos;
     private List<SaidaEstoque> saidasEstoque;
+    private String descricao;
     
+    private Consultorio consultorio;
+    
+     
     public Estoque(){}
 
     /**
@@ -44,6 +48,39 @@ public class Estoque {
     public void setSaidasEstoque(List<SaidaEstoque> saidasEstoque) {
         this.saidasEstoque = saidasEstoque;
     }
+
+    /**
+     * @return the descricao
+     */
+    public String getDescricao() {
+        return descricao;
+    }
+
+    /**
+     * @param descricao the descricao to set
+     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    /**
+     * @return the consultorio
+     */
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    /**
+     * @param consultorio the consultorio to set
+     */
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    /**
+     * @return the id
+     */
+  
     
     
     

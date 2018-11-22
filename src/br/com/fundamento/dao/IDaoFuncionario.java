@@ -15,10 +15,10 @@ import java.util.List;
  */
 public interface IDaoFuncionario {
     
-     public void salvar(Funcionario funcionario);
-    public Funcionario buscarPorId(int id);
-    public List<Funcionario> getAll();
-    public void editar(Funcionario funcionario);
-    public void ativarDesativar(int id);
+    public int salvarFuncionario(Funcionario funcionario);
+    public Funcionario buscarFuncionarioPorId(int id);
+    public List<Funcionario> getAllFuncionario();
+    public void editarFuncionario(Funcionario funcionario);
+    public void ativarDesativarFuncionario(int id);
     
 }

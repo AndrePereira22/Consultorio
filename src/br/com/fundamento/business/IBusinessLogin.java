@@ -5,19 +5,19 @@
  */
 package br.com.fundamento.business;
 
-import br.com.fundamento.modelos.Funcionario;
+import br.com.fundamento.modelos.Login;
 import java.util.List;
 
 /**
  *
  * @author Glenda Alves de Lima
  */
-public interface IBusinnesFuncionario {
+public interface IBusinessLogin {
+      public void salvarLogin(Login login);
+    public Login buscarLoginPorId(int id);
+    public List<Login> getAllLogin();
+    public void editarLogin(Login login);
+    public void ativarDesativarLogin(int id);
     
-     public void salvar(Funcionario funcionario);
-    public Funcionario buscarPorId(int id);
-    public List<Funcionario> getAll();
-    public void editar(Funcionario funcionario);
-    public void ativarDesativar(int id);
     
 }

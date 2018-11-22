@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -12,53 +13,44 @@ import java.util.Date;
  * @author Glenda Alves de Lima
  */
 public class Consulta {
-    
-    private int id;
-    private Date data_hora;
-    private String nomeFuncionario;
-    private String nomePaciente;
+
+    private Calendar data_hora;
     private String tipo;
     private boolean agendamento;
+
+    private Medico medico;
+    private Paciente paciente;
+    private Pagamento pagamento;
+    private Consultorio consultorio;
     
-   private Medico medico;
-   private Paciente paciente;
-   private Funcionario funcionario;
-   private Pagamento pagamento;
-   
     
-    public Consulta(){
-        
+
+    public Consulta() {
+         data_hora = Calendar.getInstance();
+
     }
-
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
+    
+    public String getDate_horsString(){
+        String d =  this.data_hora.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_hora.get(Calendar.MONTH)+"/"+this.data_hora.get(Calendar.YEAR)+ "    "+ this.data_hora.get(Calendar.HOUR) + ":" + this.data_hora.get(Calendar.MINUTE);
+        return d;
     }
+    
+     public void setDate_horaInt(int dia,int mes, int ano,int hora, int minute) {
+         this.data_hora.set(ano, mes, dia,hora, minute);
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
     }
+ public void setDate_horaString(String date) {
+     
+     String dia = date.substring(0, 2); 
+     int d = Integer.parseInt(dia);
+     String mes = date.substring(3, 5); 
+     int m = Integer.parseInt(mes);
+     String ano = date.substring(6, 10); 
+     int a = Integer.parseInt(ano);
+     
+         this.data_hora.set(a, m, d,0, 0);
 
-    /**
-     * @return the data_hora
-     */
-    public Date getData_hora() {
-        return data_hora;
     }
-
-    /**
-     * @param data_hora the data_hora to set
-     */
-    public void setData_hora(Date data_hora) {
-        this.data_hora = data_hora;
-    }
-
-
 
     /**
      * @return the tipo
@@ -88,34 +80,7 @@ public class Consulta {
         this.agendamento = agendamento;
     }
 
-    /**
-     * @return the nomeFuncionario
-     */
-    public String getNomeFuncionario() {
-        return nomeFuncionario;
-    }
-
-    /**
-     * @param nomeFuncionario the nomeFuncionario to set
-     */
-    public void setNomeFuncionario(String nomeFuncionario) {
-        this.nomeFuncionario = nomeFuncionario;
-    }
-
-    /**
-     * @return the nomePaciente
-     */
-    public String getNomePaciente() {
-        return nomePaciente;
-    }
-
-    /**
-     * @param nomePaciente the nomePaciente to set
-     */
-    public void setNomePaciente(String nomePaciente) {
-        this.nomePaciente = nomePaciente;
-    }
-
+  
     /**
      * @return the medico
      */
@@ -143,21 +108,6 @@ public class Consulta {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-
-    /**
-     * @return the funcionario
-     */
-    public Funcionario getFuncionario() {
-        return funcionario;
-    }
-
-    /**
-     * @param funcionario the funcionario to set
-     */
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
-    }
-
     /**
      * @return the pagamento
      */
@@ -170,5 +120,19 @@ public class Consulta {
      */
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
+    }
+
+    /**
+     * @return the consultorio
+     */
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    /**
+     * @param consultorio the consultorio to set
+     */
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
     }
 }

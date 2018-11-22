@@ -5,6 +5,8 @@
  */
 package br.com.fundamento.modelos;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Glenda Alves de Lima
@@ -12,7 +14,7 @@ package br.com.fundamento.modelos;
 public class Especializacao {
     
     private String descricao;
-    private int horario_disponivel;
+    private Calendar horario_disponivel;
     private float  salario;
     
     private Medico medico;
@@ -20,7 +22,7 @@ public class Especializacao {
     
     
     public Especializacao(){
-        
+        this.horario_disponivel= Calendar.getInstance();
     }
 
     /**
@@ -37,19 +39,7 @@ public class Especializacao {
         this.descricao = descricao;
     }
 
-    /**
-     * @return the horario_disponivel
-     */
-    public int getHorario_disponivel() {
-        return horario_disponivel;
-    }
-
-    /**
-     * @param horario_disponivel the horario_disponivel to set
-     */
-    public void setHorario_disponivel(int horario_disponivel) {
-        this.horario_disponivel = horario_disponivel;
-    }
+   
 
     /**
      * @return the salario
@@ -77,6 +67,23 @@ public class Especializacao {
      */
     public void setMedico(Medico medico) {
         this.medico = medico;
+    }
+
+    /**
+     * @return the horario_disponivel
+     */
+    public String getHorario_disponivel() {
+         String d =  this.horario_disponivel.get(Calendar.HOUR_OF_DAY) + ":" + this.horario_disponivel.get(Calendar.MINUTE);
+        return d;
+    }
+
+    /**
+     * @param horario_disponivel the horario_disponivel to set
+     */
+    public void setHorario_disponivel(int hora,int minuto) {
+    this.horario_disponivel.set(Calendar.YEAR, Calendar.DAY_OF_MONTH,Calendar.DAY_OF_MONTH, hora, minuto, 0);
+       
+        
     }
     
 }

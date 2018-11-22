@@ -12,6 +12,7 @@ package br.com.fundamento.modelos;
 public class Login {
     private String usuario;
     private String senha;
+
     
     public Login(){}
 
@@ -42,7 +43,7 @@ public class Login {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     
     
     

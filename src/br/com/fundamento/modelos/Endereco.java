@@ -11,12 +11,12 @@ package br.com.fundamento.modelos;
  */
 public class Endereco {
 
-    private int id;
+
     private String cep;
     private String rua;
     private String numero;
     private String bairro;
-    private String estado;
+    
     private Municipio municipio;
 
     public Endereco() {
@@ -69,32 +69,6 @@ public class Endereco {
         this.municipio = municipio;
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the estado
-     */
-    public String getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
+  
 
 }

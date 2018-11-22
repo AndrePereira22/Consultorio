@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -31,22 +32,20 @@ public class DaoProduto implements IDaoProduto {
     @Override
     public void salvar(Produto produto) {
         
-       
-                
+            
         try {
             
             int id_fornecedor = new DaoFornecedor().salvarfornecedor(produto.getFornecedor());
-            int id_estoquue =  new DaoEstoque().salvar(produto.getEstoque());
+            int id_estoque = new DaoEstoque().salvarEstoque(produto.getEstoque());
             this.conexao = SQLConections.getInstance();
             this.statement = conexao.prepareStatement(SQLUtil.Produto.INSERT);
             this.statement.setString(1, produto.getNome());
             this.statement.setString(2, produto.getFabricante());
-            this.statement.setString(3, produto.getNomeFornecedor());
-            this.statement.setInt(4, produto.getQuantidade_estoque());
-            this.statement.setInt(5, produto.getQuantidade_minima());
-            this.statement.setDouble(6, produto.getPreco_compra());
-            this.statement.setInt(7, id_estoquue);
-            this.statement.setInt(8,id_fornecedor);
+            this.statement.setInt(3, produto.getQuantidade_estoque());
+            this.statement.setInt(4, produto.getQuantidade_minima());
+            this.statement.setDouble(5, produto.getPreco_compra());
+            this.statement.setInt(6, id_estoque);
+            this.statement.setInt(7,id_fornecedor);
 
             statement.execute();
             this.statement.close();
@@ -67,8 +66,12 @@ public class DaoProduto implements IDaoProduto {
 
             if (result.next()) {
                 produto = new Produto();
-                produto.setId(result.getInt(1));
-                produto.setNome(result.getString(SQLUtil.Produto.NOME));
+               
+                produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
+                produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
+                produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
+                produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
+                produto.setPreco_compra(result.getInt(SQLUtil.Produto.COL_PRECO_COMPRA));
             }
             this.conexao.close();
 
@@ -88,7 +91,7 @@ public class DaoProduto implements IDaoProduto {
             Produto produto;
             while (result.next()) {
                 produto = new Produto();
-                produto.setId(result.getInt(1));
+                
                 produto.setNome(result.getString(SQLUtil.Produto.NOME));
                 produtos.add(produto);
             }

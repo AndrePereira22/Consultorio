@@ -12,7 +12,7 @@ import java.util.List;
  * @author Glenda Alves de Lima
  */
 public class Convenio {
-    private int id;
+ 
     private String nome;
     private String telefone;
     private String email;
@@ -25,19 +25,7 @@ public class Convenio {
         
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+   
 
     /**
      * @return the nome

@@ -12,10 +12,8 @@ package br.com.fundamento.modelos;
 public class SaidaEstoque {
     
     
-    private int id;
-    private String nome;
+  private String nome;
     private String fabricante;
-    private String fornecedor;
     private int quantidade_saida;
     private Estoque estoque;
     
@@ -23,19 +21,7 @@ public class SaidaEstoque {
         
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
+   
 
     /**
      * @return the nome
@@ -65,19 +51,6 @@ public class SaidaEstoque {
         this.fabricante = fabricante;
     }
 
-    /**
-     * @return the fornecedor
-     */
-    public String getFornecedor() {
-        return fornecedor;
-    }
-
-    /**
-     * @param fornecedor the fornecedor to set
-     */
-    public void setFornecedor(String fornecedor) {
-        this.fornecedor = fornecedor;
-    }
 
     /**
      * @return the quantidade_saida
