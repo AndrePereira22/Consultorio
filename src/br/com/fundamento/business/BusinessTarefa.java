@@ -35,7 +35,7 @@ public class BusinessTarefa implements IBusinessTarefa{
 
     @Override
     public List<Tarefa> getAllTarefa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.daoTarefa.getAllTarefa();
     }
 
     @Override

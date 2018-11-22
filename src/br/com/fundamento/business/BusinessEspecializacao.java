@@ -34,7 +34,7 @@ public class BusinessEspecializacao implements IBusinessEspecializacao{
 
     @Override
     public List<Especializacao> getAllEspecializacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.daoEspecializacao.getAllEspecializacao();
     }
 
     @Override

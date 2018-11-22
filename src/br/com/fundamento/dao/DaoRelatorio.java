@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,8 +73,26 @@ public class DaoRelatorio implements IDaoRelatorio {
 
     @Override
     public List<Relatorio> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+      List<Relatorio> relatorios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Relatorio.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Relatorio relatorio;
+            while (result.next()) {
+                relatorio = new Relatorio();
+                
+               relatorio.setDescricao(result.getString(SQLUtil.Relatorio.COL_DESCRICAO));
+                relatorio.setRelatorio(result.getString(SQLUtil.Relatorio.COL_RELATORIO));
+                
+                relatorios.add(relatorio);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoRelatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return relatorios;}
 
     @Override
     public void editar(Relatorio relatroio) {

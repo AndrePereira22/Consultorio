@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,8 +93,30 @@ public class DaoCaixa implements IDaoCaixa {
 
     @Override
     public List<Caixa> getAllCaixa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         List<Caixa> caixas = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Caixa.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Caixa caixa;
+            while (result.next()) {
+                caixa = new Caixa();
+                
+                caixa.setStatus(result.getBoolean(SQLUtil.Caixa.COL_STATUS));
+                caixa.setNumero(result.getInt(SQLUtil.Caixa.COL_NUMERO));
+                caixa.setValor_abertura(result.getInt(SQLUtil.Caixa.COL_VALOR_ABERTURA));
+                caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
+                caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
+                // caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+                
+                caixas.add(caixa);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return caixas;   }
 
     @Override
     public void editarCaixa(Caixa caixa) {

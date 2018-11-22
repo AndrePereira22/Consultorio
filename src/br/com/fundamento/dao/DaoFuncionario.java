@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,6 +79,7 @@ public class DaoFuncionario implements IDaoFuncionario {
 
             if (result.next()) {
                 funcionario = new Funcionario();
+                
                 funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
                 funcionario.setCpf(result.getInt(SQLUtil.Funcionario.COL_CPF));
                 //  funcionario.setDate_nascimentoInt(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
@@ -94,8 +96,29 @@ public class DaoFuncionario implements IDaoFuncionario {
 
     @Override
     public List<Funcionario> getAllFuncionario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Funcionario> Funcionarios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Funcionario.NOME));
+            this.result = this.statement.executeQuery();
+            Funcionario funcionario;
+            while (result.next()) {
+                funcionario = new Funcionario();
+                
+               funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
+                funcionario.setCpf(result.getInt(SQLUtil.Funcionario.COL_CPF));
+                //  funcionario.setDate_nascimentoInt(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
+                funcionario.setSalario(result.getFloat(SQLUtil.Funcionario.COL_SALARIO));
+                funcionario.setFuncao(result.getString(SQLUtil.Funcionario.COL_FUNCAO));
+                
+                Funcionarios.add(funcionario);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Funcionarios; }
 
     @Override
     public void editarFuncionario(Funcionario funcionario) {

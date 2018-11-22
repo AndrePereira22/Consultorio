@@ -6,12 +6,14 @@
 package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Login;
+import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,8 +74,26 @@ public class DaoLogin implements  IDaoLogin{
     }
     @Override
     public List<Login> getAllLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Login> logins = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Login.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Login login;
+            while (result.next()) {
+                login = new Login();
+                
+                login.setUsuario(result.getString(SQLUtil.Login.COL_LOGIN));
+                login.setSenha(result.getString(SQLUtil.Login.COL_SENHA));
+                
+                logins.add(login);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return logins;  }
 
     @Override
     public void editarLogin(Login login) {

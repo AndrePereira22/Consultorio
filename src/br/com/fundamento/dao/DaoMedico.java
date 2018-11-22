@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,8 +97,30 @@ public class DaoMedico implements IDaoMedico {
 
     @Override
     public List<Medico> getAllMedico() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Medico> medicos = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Medico.NOME));
+            this.result = this.statement.executeQuery();
+            Medico medico;
+            while (result.next()) {
+                medico = new Medico();
+                
+                medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
+               // medico.setDate_nascimentoInt(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+               // medico.setDate_cadastroInt(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
+                medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
+                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                
+                medicos.add(medico);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medicos;}
 
     @Override
     public void editarMedico(Medico medico) {

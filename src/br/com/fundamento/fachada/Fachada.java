@@ -179,7 +179,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Login> getAllLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessLogin.getAllLogin();
     }
 
     
@@ -194,8 +194,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Estoque> getAllEstoque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+      return this.businessEstoque.getAllEstoque();}
 
     @Override
     public void editarEstoque(Estoque estoque) {
@@ -218,7 +217,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Fornecedor> getAllfornecedor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessFornecedor.getAllfornecedor();
     }
 
     @Override
@@ -243,7 +242,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Caixa> getAllCaixa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return  this.businessCaixa.getAllCaixa();
     }
 
     @Override
@@ -268,7 +267,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Convenio> getAllConvenio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessConvenio.getAllConvenio();
     }
 
     @Override
@@ -293,7 +292,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Consulta> getAllConsulta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessConsulta.getAllConsulta();
     }
 
     @Override
@@ -319,7 +318,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Especializacao> getAllEspecializacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessEspecializacao.getAllEspecializacao();
     }
 
     @Override
@@ -344,7 +343,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Estado> getAllEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessEstado.getAllEstado();
     }
 
     @Override
@@ -369,7 +368,8 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Funcionario> getAllFuncionario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessFuncionario.getAllFuncionario();
+    
     }
 
     @Override
@@ -394,7 +394,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Medico> getAllMedico() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.businessMedico.getAllMedico();
     }
 
     @Override
@@ -418,7 +418,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Municipio> getAllMunicipio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.businessMunicipio.getAllMunicipio();
     }
 
     @Override
@@ -443,8 +443,8 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Paciente> getAllPaciente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    return this.businessPaciente.getAllPaciente();
+            }
 
     @Override
     public void editarPaciente(Paciente paciente) {
@@ -468,7 +468,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Pagamento> getAllPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return this.businessPagamento.getAllPagamento();
     }
 
     @Override
@@ -493,7 +493,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Parcela> getAllParcela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.businessParcela.getAllParcela();
     }
 
     @Override
@@ -518,7 +518,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Prontuario> getAllProntuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return this.businessProntuario.getAllProntuario();
     }
 
     @Override
@@ -543,7 +543,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<SaidaEstoque> getAllSaidaEstoque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.businessSaidaEstoque.getAllSaidaEstoque();
     }
 
     @Override
@@ -567,8 +567,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Tarefa> getAllTarefa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+       return this.businessTarefa.getAllTarefa();  }
 
     @Override
     public void editarTarefa(Tarefa tarefa) {
@@ -592,7 +591,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Relatorio> getAllRelatorio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return  this.businessRelatorio.getAll();
     }
 
     @Override
@@ -617,7 +616,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Consultorio> getAllConsultorio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   return this.businessConsultorio.getAllConsultorio();
     }
 
     @Override

@@ -27,6 +27,8 @@ import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.modelos.Relatorio;
 import br.com.fundamento.modelos.SaidaEstoque;
 import br.com.fundamento.modelos.Tarefa;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -39,11 +41,15 @@ public class Main {
 
         IFachada fachada1 = Fachada.getInstance();
 
-        
-        
-        
-        
-        
+//        
+//        
+//        
+//         List<Tarefa> c = fachada1.getAllTarefa();
+//         
+//         for(Tarefa p  : c){
+//             System.out.println(p.getDescricao());
+//         }
+//        
         
     }
 }

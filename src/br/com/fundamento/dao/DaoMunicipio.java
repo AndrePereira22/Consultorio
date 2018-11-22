@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,8 +77,24 @@ public class DaoMunicipio implements  IDaoMunicipio{
 
     @Override
     public List<Municipio> getAllMunicipio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Municipio> municipios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Municipio.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Municipio municipio;
+            while (result.next()) {
+                municipio = new Municipio();
+              municipio.setDescricao(result.getString(SQLUtil.Municipio.COL_NOME));
+                
+                municipios.add(municipio);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMunicipio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return municipios; }
 
     @Override
     public void editarMunicipio(Municipio municipio) {

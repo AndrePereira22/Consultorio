@@ -33,7 +33,7 @@ public class BusinessPagamento implements IBusinessPagamento{
 
     @Override
     public List<Pagamento> getAllPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return this.daoPagamento.getAllPagamento();
     }
 
     @Override

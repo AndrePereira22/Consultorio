@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,8 +83,29 @@ public class DaoTarefa  implements IDaoTarefa{
 
     @Override
     public List<Tarefa> getAllTarefa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         List<Tarefa> tarefas = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Tarefa.NOME));
+            this.result = this.statement.executeQuery();
+            Tarefa tarefa;
+            while (result.next()) {
+                tarefa = new Tarefa();
+                
+              tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
+               tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+               tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
+             //  tarefa.setDate_inicioInt(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+             //  tarefa.setDate_terminoInt(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+                
+                tarefas.add(tarefa);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tarefas; }
 
     @Override
     public void editarTarefa(Tarefa tarefa) {

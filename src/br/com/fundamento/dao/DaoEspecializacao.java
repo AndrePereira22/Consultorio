@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,8 +72,27 @@ public class DaoEspecializacao implements IDaoEspecializacao {
 
     @Override
     public List<Especializacao> getAllEspecializacao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Especializacao> especializacoes = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Especializacao.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Especializacao especializacao;
+            while (result.next()) {
+                especializacao = new Especializacao();
+                
+                 especializacao.setDescricao(result.getString(SQLUtil.Especializacao.COL_DESCRICAO));
+                especializacao.setSalario(result.getFloat(SQLUtil.Especializacao.COL_SALARIO));
+                //especializacao.setHorario_disponivel(result.getString(SQLUtil.Especializacao.COL_HORARIO_DISPONIVEL));
+              
+                especializacoes.add(especializacao);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return especializacoes;}
 
     @Override
     public void editarEspecializacao(Especializacao especializacao) {

@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,9 +66,11 @@ public class DaoConvenio implements IDaoConvenio{
 
             if (result.next()) {
               convenio = new Convenio();
+              
                convenio.setNome(result.getString(SQLUtil.Convenio.COL_NOME));
                 convenio.setAtivo(result.getBoolean(SQLUtil.Convenio.COL_ATIVO));   
-                // convenio nao vai ter o id de contato para telefone e email nao????
+                convenio.setEmail(result.getString(SQLUtil.Convenio.COL_EMAIL));
+                convenio.setTelefone(result.getString(SQLUtil.Convenio.COL_TELEFONE));
             }
             this.conexao.close();
 
@@ -79,8 +82,28 @@ public class DaoConvenio implements IDaoConvenio{
 
     @Override
     public List<Convenio> getAllConvenio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         List<Convenio> convenios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Convenio.NOME));
+            this.result = this.statement.executeQuery();
+            Convenio convenio;
+            while (result.next()) {
+                convenio = new Convenio();
+                
+             convenio.setNome(result.getString(SQLUtil.Convenio.COL_NOME));
+                convenio.setAtivo(result.getBoolean(SQLUtil.Convenio.COL_ATIVO));   
+                convenio.setEmail(result.getString(SQLUtil.Convenio.COL_EMAIL));
+                convenio.setTelefone(result.getString(SQLUtil.Convenio.COL_TELEFONE));
+                
+                convenios.add(convenio);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConvenio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return convenios;  }
 
     @Override
     public void editarConvenio(Convenio convenio) {

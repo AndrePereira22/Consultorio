@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,8 +79,26 @@ public class DaoEstado implements IDaoEstado{
 
     @Override
     public List<Estado> getAllEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         List<Estado> estados = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Estado.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Estado estado;
+            while (result.next()) {
+                estado = new Estado();
+                
+               estado.setNome(result.getString(SQLUtil.Estado.COL_NOME));
+               estado.setSigla(result.getString(SQLUtil.Estado.COL_SIGLA));
+                
+                estados.add(estado);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEstado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return estados;}
 
     @Override
     public void editarEstado(Estado estado) {

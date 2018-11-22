@@ -34,7 +34,7 @@ public class BusinessProntuario implements IBusinessProntuario{
 
     @Override
     public List<Prontuario> getAllProntuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.daoProntuario.getAllProntuario();
     }
 
     @Override

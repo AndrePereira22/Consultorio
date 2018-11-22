@@ -31,7 +31,7 @@ public class BusinessConvenio implements IBusinessConvenio{
 
     @Override
     public List<Convenio> getAllConvenio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.daoConvenio.getAllConvenio();
     }
 
     @Override

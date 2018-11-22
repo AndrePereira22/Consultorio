@@ -34,7 +34,7 @@ public class BusinessMunicipio implements IBusinessMunicipio{
 
     @Override
     public List<Municipio> getAllMunicipio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.daoMunicipio.getAllMunicipio();
     }
 
     @Override

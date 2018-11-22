@@ -34,7 +34,7 @@ public class BusinessPaciente implements IBusinessPaciente{
 
     @Override
     public List<Paciente> getAllPaciente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     return this.daoPaciente.getAllPaciente();
     }
 
     @Override

@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,8 +90,24 @@ public class DaoEstoque implements  IDaoEstoque{
 
     @Override
     public List<Estoque> getAllEstoque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Estoque> estoques = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Estoque.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Estoque estoque;
+            while (result.next()) {
+                estoque = new Estoque();
+                estoque.setDescricao(result.getString(SQLUtil.Estoque.COL_DESCRICAO));
+                
+                estoques.add(estoque);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEstoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return estoques;  }
 
     @Override
     public void editarEstoque(Estoque estoque) {

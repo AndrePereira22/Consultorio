@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,8 +30,9 @@ public class DaoParcela implements IDaoParcela {
     @Override
     public void salvarParcela(Parcela parcela) {
         try {
-            //int id_funcionario = new DaoFornecedor().salvarfornecedor(produto.getFornecedor());
-            //
+           
+            int id_pagamento = new DaoPagamento().salvarPagamento(parcela.getPagamento());
+            
             this.conexao = SQLConections.getInstance();
 
             this.statement = conexao.prepareStatement(SQLUtil.Parcela.INSERT);
@@ -39,7 +41,7 @@ public class DaoParcela implements IDaoParcela {
             this.statement.setBoolean(2, parcela.isStatus());
             this.statement.setInt(3, parcela.getNumero());
             this.statement.setBoolean(4, parcela.isParcela_unica());
-            this.statement.setInt(5, 1); // fazer id pagamento
+            this.statement.setInt(5, id_pagamento); 
             this.statement.setString(6, parcela.getData_vencimento());
 
             statement.execute();
@@ -77,8 +79,29 @@ public class DaoParcela implements IDaoParcela {
 
     @Override
     public List<Parcela> getAllParcela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Parcela> parcelas = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Parcela.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Parcela parcela;
+            while (result.next()) {
+                parcela = new Parcela();
+                
+               parcela.setNumero(result.getInt(SQLUtil.Parcela.COL_NUMERO));
+                parcela.setValor(result.getDouble(SQLUtil.Parcela.COL_VALOR));
+                //parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
+                parcela.setStatus(result.getBoolean(SQLUtil.Parcela.COL_STATUS));
+                parcela.setParcela_unica(result.getBoolean(SQLUtil.Parcela.COL_PARCELA_UNICA));
+                
+                parcelas.add(parcela);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoParcela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return parcelas; }
 
     @Override
     public void editarParcela(Parcela parcela) {

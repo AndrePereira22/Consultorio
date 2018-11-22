@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,8 +86,27 @@ public class DaoConsultorio implements IDaoConsultorio {
 
     @Override
     public List<Consultorio> getAllConsultorio() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         List<Consultorio> consultorios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Consultorio.NOME));
+            this.result = this.statement.executeQuery();
+            Consultorio consultorio;
+            while (result.next()) {
+                consultorio = new Consultorio();
+                
+               consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
+               consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
+               consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
+                
+                consultorios.add(consultorio);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consultorios; }
 
     @Override
     public void editarConsultorio(Consultorio consultorio) {

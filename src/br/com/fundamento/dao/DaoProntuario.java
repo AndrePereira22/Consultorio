@@ -6,6 +6,7 @@
 package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Paciente;
+import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +44,7 @@ public class DaoProntuario implements IDaoProntuario{
             }
                     
         } catch (SQLException ex) {
-            Logger.getLogger(DaoConvenio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoProntuario.class.getName()).log(Level.SEVERE, null, ex);
         }
       return id;
      }
@@ -72,8 +74,26 @@ public class DaoProntuario implements IDaoProntuario{
 
     @Override
     public List<Prontuario> getAllProntuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+       List<Prontuario> prontuarios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Prontuario.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Prontuario prontuario;
+            while (result.next()) {
+                prontuario = new Prontuario();
+                
+              prontuario.setExames(result.getString(SQLUtil.Prontuario.COL_EXAMES));
+               prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
+                
+                prontuarios.add(prontuario);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProntuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return prontuarios;  }
 
     @Override
     public void editarProntuario(Prontuario prontuario) {

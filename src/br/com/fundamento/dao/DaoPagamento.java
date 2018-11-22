@@ -7,12 +7,14 @@ package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
+import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,7 +54,7 @@ public class DaoPagamento implements IDaoPagamento {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoEstado.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
 
@@ -85,7 +87,29 @@ public class DaoPagamento implements IDaoPagamento {
 
     @Override
     public List<Pagamento> getAllPagamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     List<Pagamento> pagamentos = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Pagamento.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Pagamento  pagamento;
+            while (result.next()) {
+                 pagamento = new Pagamento();
+                
+              pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
+                //   pagamento.setDate_vencimentoInt(result.getInt(SQLUtil.Pagamento.COL_DATA_VENCIMENTO));     
+                pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
+                pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
+                pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
+                
+                 pagamentos.add( pagamento);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return  pagamentos;
     }
 
     @Override

@@ -34,7 +34,7 @@ public class BusinessMedico implements IBusinessMedico{
 
     @Override
     public List<Medico> getAllMedico() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return this.daoMedico.getAllMedico();
     }
 
     @Override

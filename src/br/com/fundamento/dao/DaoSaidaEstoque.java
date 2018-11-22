@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,8 +75,28 @@ public class DaoSaidaEstoque implements IDaoSaidaEstoque {
 
     @Override
     public List<SaidaEstoque> getAllSaidaEstoque() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<SaidaEstoque> saidaEstoques = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.SaidaEstoque.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            SaidaEstoque saidaEstoque;
+            while (result.next()) {
+                saidaEstoque = new SaidaEstoque();
+                
+               saidaEstoque.setNome(result.getString(SQLUtil.SaidaEstoque.COL_NOME));
+                saidaEstoque.setFabricante(result.getString(SQLUtil.SaidaEstoque.COL_FABRICANTE));
+                saidaEstoque.setQuantidade_saida(result.getInt(SQLUtil.SaidaEstoque.COL_QUANTIDADE_SAIDA));
+                
+                
+                saidaEstoques.add(saidaEstoque);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSaidaEstoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return saidaEstoques;}
 
     @Override
     public void editarSaidaEstoque(SaidaEstoque saidaEstoque) {

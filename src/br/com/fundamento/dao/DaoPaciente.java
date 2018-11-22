@@ -9,12 +9,14 @@ import br.com.fundamento.modelos.Cliente;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Paciente;
+import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -94,7 +96,31 @@ public class DaoPaciente implements IDaoPaciente {
 
     @Override
     public List<Paciente> getAllPaciente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    List<Paciente> pacientes = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Paciente.NOME_TABELA));
+            this.result = this.statement.executeQuery();
+            Paciente paciente;
+            while (result.next()) {
+                paciente = new Paciente();
+                
+             paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
+                // paciente.setDate_nascimentoInt(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
+                // paciente.setDate_cadastroInt(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO,));
+                paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
+                paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
+                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                
+                pacientes.add(paciente);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pacientes;
+    
     }
 
     @Override

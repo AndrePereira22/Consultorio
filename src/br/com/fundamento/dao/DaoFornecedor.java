@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,8 +83,27 @@ public class DaoFornecedor implements IDaoFornecedor {
 
     @Override
     public List<Fornecedor> getAllfornecedor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Fornecedor> fornecedores = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Fornecedor.NOME));
+            this.result = this.statement.executeQuery();
+            Fornecedor fornecedor;
+            while (result.next()) {
+                fornecedor = new Fornecedor();
+                
+                fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
+                fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
+                fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
+                
+                fornecedores.add(fornecedor);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fornecedores;  }
 
     @Override
     public void editarfornecedor(Fornecedor fornecedor) {

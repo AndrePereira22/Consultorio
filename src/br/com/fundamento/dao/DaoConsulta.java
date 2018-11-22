@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,7 +77,7 @@ public class DaoConsulta implements IDaoConsulta{
               //consulta.setDate_horaInt(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
                consulta.setAgendamento(result.getBoolean(SQLUtil.Consulta.COL_AGENDAMENTO));
-              // consulta.se
+              
               
                
                        
@@ -92,8 +93,29 @@ public class DaoConsulta implements IDaoConsulta{
 
     @Override
     public List<Consulta> getAllConsulta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         List<Consulta> consultas = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Consulta.NOME));
+            this.result = this.statement.executeQuery();
+            Consulta consulta;
+            while (result.next()) {
+                consulta = new Consulta();
+                
+                
+              //consulta.setDate_horaInt(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
+               consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
+               consulta.setAgendamento(result.getBoolean(SQLUtil.Consulta.COL_AGENDAMENTO));
+              
+                
+                consultas.add(consulta);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consultas;  }
 
     @Override
     public void editarConsulta(Consulta consulta) {

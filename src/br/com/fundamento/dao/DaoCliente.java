@@ -26,6 +26,7 @@ public class DaoCliente implements IDaoCliente {
     private Connection conexao;
     private PreparedStatement statement;
     private ResultSet result;
+    
 
     @Override
     public void salvar(Cliente cliente) {

@@ -1,4 +1,5 @@
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -92,7 +93,12 @@ public class DaoProduto implements IDaoProduto {
             while (result.next()) {
                 produto = new Produto();
                 
-                produto.setNome(result.getString(SQLUtil.Produto.NOME));
+               produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
+                produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
+                produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
+                produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
+                produto.setPreco_compra(result.getInt(SQLUtil.Produto.COL_PRECO_COMPRA));
+                
                 produtos.add(produto);
             }
             this.conexao.close();
