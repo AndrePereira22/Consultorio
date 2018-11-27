@@ -28,8 +28,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jSpinner1 = new javax.swing.JSpinner();
-        Foto = new javax.swing.JLabel();
-        BotaoSelecionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblnome = new javax.swing.JLabel();
         txtrazao = new javax.swing.JTextField();
@@ -37,6 +35,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         lblcnpj = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtrazao1 = new javax.swing.JTextField();
+        BotaoAdicionarProduto = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtcidade = new javax.swing.JTextField();
         txtrua = new javax.swing.JTextField();
@@ -59,20 +58,22 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         lbltelefone1 = new javax.swing.JLabel();
         BotaoSalvarFornecedor = new javax.swing.JButton();
         BotaoCancelarrFornecedor = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
-
-        Foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
-
-        BotaoSelecionar.setText("Selecionar Foto");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         lblnome.setText("Razão Socia:l");
+
+        txtrazao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtrazaoActionPerformed(evt);
+            }
+        });
 
         try {
             txtcnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
@@ -94,13 +95,16 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         jLabel7.setText("Nome Fantasia:");
 
+        BotaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Produto.png"))); // NOI18N
+        BotaoAdicionarProduto.setText("Adicionar Produto");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblnome)
@@ -108,12 +112,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtrazao)))
+                            .addComponent(txtrazao, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtrazao1)))
-                .addGap(50, 50, 50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addComponent(BotaoAdicionarProduto)
+                .addGap(35, 35, 35))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,14 +129,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(lblcnpj)
                     .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblnome)
-                    .addComponent(txtrazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtrazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblnome)
+                            .addComponent(txtrazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtrazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(BotaoAdicionarProduto))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -180,7 +189,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtbairro))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtcidade, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                        .addComponent(txtcidade)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
@@ -289,6 +298,9 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel1.setText("CADASTRO FORNECEDOR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -299,13 +311,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BotaoSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -313,20 +320,19 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(BotaoCancelarrFornecedor)
                         .addGap(45, 45, 45))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(293, 293, 293)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(4, 4, 4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotaoSelecionar)))
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,6 +379,10 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoCancelarrFornecedorActionPerformed
 
+    private void txtrazaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrazaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtrazaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -410,10 +420,10 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoAdicionarProduto;
     private javax.swing.JButton BotaoCancelarrFornecedor;
     private javax.swing.JButton BotaoSalvarFornecedor;
-    private javax.swing.JButton BotaoSelecionar;
-    private javax.swing.JLabel Foto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -472,33 +482,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         this.BotaoSalvarFornecedor = BotaoSalvarFornecedor;
     }
 
-    /**
-     * @return the BotaoSelecionar
-     */
-    public javax.swing.JButton getBotaoSelecionar() {
-        return BotaoSelecionar;
-    }
-
-    /**
-     * @param BotaoSelecionar the BotaoSelecionar to set
-     */
-    public void setBotaoSelecionar(javax.swing.JButton BotaoSelecionar) {
-        this.BotaoSelecionar = BotaoSelecionar;
-    }
-
-    /**
-     * @return the Foto
-     */
-    public javax.swing.JLabel getFoto() {
-        return Foto;
-    }
-
-    /**
-     * @param Foto the Foto to set
-     */
-    public void setFoto(javax.swing.JLabel Foto) {
-        this.Foto = Foto;
-    }
 
     /**
      * @return the jLabel2
@@ -890,6 +873,20 @@ public class CadastroFornecedor extends javax.swing.JFrame {
      */
     public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
         this.txttelefone = txttelefone;
+    }
+
+    /**
+     * @return the BotaoAdicionarProduto
+     */
+    public javax.swing.JButton getBotaoAdicionarProduto() {
+        return BotaoAdicionarProduto;
+    }
+
+    /**
+     * @param BotaoAdicionarProduto the BotaoAdicionarProduto to set
+     */
+    public void setBotaoAdicionarProduto(javax.swing.JButton BotaoAdicionarProduto) {
+        this.BotaoAdicionarProduto = BotaoAdicionarProduto;
     }
 
 

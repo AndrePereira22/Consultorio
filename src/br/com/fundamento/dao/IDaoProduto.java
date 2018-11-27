@@ -5,7 +5,7 @@
  */
 package br.com.fundamento.dao;
 
-import br.com.fundamento.modelos.Cliente;
+
 import br.com.fundamento.modelos.Produto;
 import java.util.List;
 

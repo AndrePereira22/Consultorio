@@ -41,6 +41,11 @@ public class SQLUtil {
                 + COL_CNPJ + ","
                 + COL_ENDERECO +"," 
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?) returning id";
+        
+           public static String selectPorBusca(String busca) {
+ return "select *from "+ NOME +" where "+ COL_RAZAO_SOCIAl +" like '%"+busca+"%' or " + COL_NOME_FORNECEDOR+" like '%"+busca+"%' or " + 
+         COL_CNPJ +" like '%"+busca+"%'" ;
+    }
     }
 
     public static class Medico {
@@ -67,6 +72,11 @@ public class SQLUtil {
                  +COL_ID_LOGIN + ","
                 + COL_ENDERECO + ","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?,?,?,?,?,?) returning id";
+        
+         public static String selectPorBusca(String busca) {
+ return "select *from "+ NOME +" where "+COL_NOME +" like '%"+busca+"%' or " + COL_DATA_CPF+" like '%"+busca+"%' or " + 
+         COL_SEXO +" like '%"+busca+"%'" ;
+    }
     }
 
     public static class Consulta {
@@ -111,6 +121,11 @@ public class SQLUtil {
                 + COL_ID_LOGIN + ","
                 + COL_ID_ENDERECO +","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?,?,?,?,?) returning id";
+        
+                 public static String selectPorBusca(String busca) {
+ return "select *from "+ NOME +" where "+ COL_NOME +" like '%"+busca+"%' or " + COL_FUNCAO+" like '%"+busca+"%' or " + 
+         COL_CPF +" like '%"+busca+"%'" ;
+    }
     }
 
     public static class Tarefa {
@@ -176,10 +191,10 @@ public class SQLUtil {
 
         public static final String NOME_TABELA = "estoque";
         public static final String COL_DESCRICAO = "descricao";
-        public static final String COL_ID_CONSULTORIO = "id_consultorio";
+       
 
-        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_DESCRICAO +  ","
-                + COL_ID_CONSULTORIO + "" + " ) values (?,?) returning id";
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_DESCRICAO +  
+                "" + " ) values (?) returning id";
     }
 
 

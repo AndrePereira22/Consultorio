@@ -7,7 +7,6 @@
  */
 package br.com.fundamento.dao;
 
-import br.com.fundamento.modelos.Cliente;
 import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;

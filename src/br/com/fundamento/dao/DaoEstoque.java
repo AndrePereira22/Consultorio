@@ -35,12 +35,12 @@ public class DaoEstoque implements  IDaoEstoque{
          int id_estoque = 0;
          int id_fornecedor = 0;
          try {
-             int id_consultorio = new DaoConsultorio().salvarConsultorio(estoque.getConsultorio());
+             
             this.conexao = SQLConections.getInstance();
            
             this.statement = conexao.prepareStatement(SQLUtil.Estoque.INSERT);
              this.statement.setString(1, estoque.getDescricao());
-              this.statement.setInt(2, id_consultorio);
+              
              
               result = statement.executeQuery();
 

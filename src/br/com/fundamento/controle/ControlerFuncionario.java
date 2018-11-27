@@ -49,6 +49,7 @@ public class ControlerFuncionario implements ActionListener {
         cadastroFuncionario.getBotaosalvarFuncionario().addActionListener(this);
         buscarFuncionario.getBotaoAdicionarFuncionario().addActionListener(this);
         buscarFuncionario.getBotaoFecharFuncionario().addActionListener(this);
+        buscarFuncionario.getBotaoPesquisar().addActionListener(this);
 
     }
 
@@ -69,6 +70,30 @@ public class ControlerFuncionario implements ActionListener {
             buscarFuncionario.setVisible(true);
             cadastroFuncionario.setVisible(false);
 
+        }
+        
+        if(e.getSource()==buscarFuncionario.getBotaoPesquisar()){
+            
+            List<Funcionario> funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
+
+        try {
+            String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento"};
+            Object[][] dados = new Object[funcionarios.size()][5];
+            for (int i = 0; i < funcionarios.size(); i++) {
+                Funcionario funcionario = funcionarios.get(i);
+                dados[i][0] = funcionario.getNome();
+                dados[i][1] = funcionario.getCpf();
+                dados[i][2] = funcionario.getSalario();
+                dados[i][3] = funcionario.getFuncao();
+                dados[i][4] = funcionario.getData_nascimento();
+
+            }
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+            buscarFuncionario.getTabelaFunionario().setModel(dataModel);
+        } catch (Exception ex) {
+
+        }
+            
         }
         if (e.getSource() == buscarFuncionario.getBotaoFecharFuncionario()) {
             telaPrincipal.setEnabled(true);

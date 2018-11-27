@@ -134,4 +134,32 @@ public class DaoMedico implements IDaoMedico {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Medico> getPorBuscaMedico(String busca) {
+        List<Medico> medicos = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Medico.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Medico medico;
+            while (result.next()) {
+                medico = new Medico();
+                
+                medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
+               medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
+                medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
+                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                
+                medicos.add(medico);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medicos;   
+      }
+
 }

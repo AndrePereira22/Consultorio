@@ -5,7 +5,7 @@
  */
 package br.com.fundamento.modelos;
 
-import br.com.fundamento.enuns.TipoDocumento;
+
 
 /**
  *

@@ -256,23 +256,7 @@ public class DaoList {
         }
     }
 
-    public static void salvarEstoque(Estoque estoque, int id_consultorio) {
-
-        try {
-
-            conexao = SQLConections.getInstance();
-
-            statement = conexao.prepareStatement(SQLUtil.Estoque.INSERT);
-            statement.setString(1, estoque.getDescricao());
-            statement.setInt(2, id_consultorio);
-
-            statement.execute();
-            statement.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 
     public static void salvarMedico(Medico medico, int id_consultorio, int id_contato) {
 

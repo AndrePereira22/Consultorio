@@ -15,6 +15,8 @@ import br.com.fundamento.view.TelaPrincipal;
 import com.sun.javafx.font.Disposer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +56,8 @@ public class ControlePaciente implements ActionListener {
         buscarPaciente.getBotaoPesquisarPaciente().addActionListener(this);
         buscarPaciente.getTxtpesquisarPaciente().addActionListener(this);
 
+        
+
     }
 
     @Override
@@ -81,11 +85,7 @@ public class ControlePaciente implements ActionListener {
             buscarPaciente.setVisible(false);
 
         }
-        if (e.getSource() == buscarPaciente.getTxtpesquisarPaciente()) {
-            if (buscarPaciente.getTxtpesquisarPaciente().getText().isEmpty()) {
-                preenchertabela();
-            }
-        }
+
         if (e.getSource() == buscarPaciente.getBotaoPesquisarPaciente()) {
 
             List<Paciente> pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());

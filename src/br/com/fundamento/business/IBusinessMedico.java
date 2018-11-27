@@ -19,5 +19,6 @@ public interface IBusinessMedico {
     public List<Medico> getAllMedico();
     public void editarMedico(Medico medico);
     public void ativarDesativarMedico(int id);
+     public List<Medico> getPorBuscaMedico(String busca);
     
 }

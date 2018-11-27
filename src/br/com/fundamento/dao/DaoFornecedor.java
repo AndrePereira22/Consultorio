@@ -122,4 +122,28 @@ public class DaoFornecedor implements IDaoFornecedor {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Fornecedor> getPorBuscaFornecedor(String busca) {
+         List<Fornecedor> fornecedores = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Fornecedor fornecedor;
+            while (result.next()) {
+                fornecedor = new Fornecedor();
+                
+                fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
+                fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
+                fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
+                
+                fornecedores.add(fornecedor);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fornecedores;}
+
 }

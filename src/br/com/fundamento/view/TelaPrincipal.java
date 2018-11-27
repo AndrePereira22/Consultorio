@@ -109,7 +109,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(57, 167, 167));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 700));
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 102, 102));
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setForeground(new java.awt.Color(0, 102, 102));
         jTabbedPane1.setToolTipText("");
 

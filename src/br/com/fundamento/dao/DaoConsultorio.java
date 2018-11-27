@@ -49,9 +49,7 @@ public class DaoConsultorio implements IDaoConsultorio {
             if (result.next()) {
                 id = result.getInt(1);
             }
-            for (Estoque e : consultorio.getEstoques()) {
-                DaoList.salvarEstoque(e, id);
-            }
+            
             for (Medico m : consultorio.getMedicos()) {
                 
                 DaoList.salvarMedico(m, id,id_contato);

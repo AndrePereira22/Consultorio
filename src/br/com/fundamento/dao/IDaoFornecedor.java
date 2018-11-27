@@ -19,5 +19,6 @@ public interface IDaoFornecedor {
     public List<Fornecedor> getAllfornecedor();
     public void editarfornecedor(Fornecedor fornecedor);
     public void ativarDesativarfornecedor(int id);
+    public List<Fornecedor> getPorBuscaFornecedor(String busca);
     
 }

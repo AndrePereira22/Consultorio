@@ -35,11 +35,11 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         BotaoFecharFornecedor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaCoFornecedor = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         BotaoPesquisarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
         BotaoPesquisarFornecedor.setText("Pesquisar");
@@ -98,6 +98,9 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabelaCoFornecedor);
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setText("BUSCAR FORNECEDOR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,11 +128,17 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                         .addComponent(BotaoPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotaoPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,6 +207,7 @@ public class BuscarFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton BotaoFecharFornecedor;
     private javax.swing.JButton BotaoPesquisarFornecedor;
     private javax.swing.JTable TabelaCoFornecedor;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtPesquisarFornecedor;
     // End of variables declaration//GEN-END:variables

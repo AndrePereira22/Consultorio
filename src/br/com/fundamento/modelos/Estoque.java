@@ -16,8 +16,6 @@ public class Estoque {
     private List<SaidaEstoque> saidasEstoque;
     private String descricao;
     
-    private Consultorio consultorio;
-    
      
     public Estoque(){}
 
@@ -63,27 +61,5 @@ public class Estoque {
         this.descricao = descricao;
     }
 
-    /**
-     * @return the consultorio
-     */
-    public Consultorio getConsultorio() {
-        return consultorio;
-    }
-
-    /**
-     * @param consultorio the consultorio to set
-     */
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
-    }
-
-    /**
-     * @return the id
-     */
-  
-    
-    
-    
-    
 
 }

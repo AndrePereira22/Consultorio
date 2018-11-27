@@ -46,6 +46,11 @@ public class BusinessFuncionario implements IBusinessFuncionario{
     public void ativarDesativarFuncionario(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-   
+
+    @Override
+    public List<Funcionario> getPorBuscaFuncionario(String busca) {
+    return this.daoFuncionario.getPorBuscaFuncionario(busca);
+    
+    } 
     
 }

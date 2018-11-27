@@ -56,6 +56,7 @@ public interface IFachada {
     public List<Fornecedor> getAllfornecedor();
     public void editarfornecedor(Fornecedor fornecedor);
     public void ativarDesativarfornecedor(int id);
+    public List<Fornecedor> getPorBuscaFornecedor(String busca);
     
     
     public void salvarCaixa(Caixa caixa);
@@ -93,12 +94,14 @@ public interface IFachada {
     public List<Funcionario> getAllFuncionario();
     public void editarFuncionario(Funcionario funcionario);
     public void ativarDesativarFuncionario(int id);
+    public List<Funcionario> getPorBuscaFuncionario(String busca);
     
     public void salvarMedico(Medico medico);
     public Medico buscarMedicoPorId(int id);
     public List<Medico> getAllMedico();
     public void editarMedico(Medico medico);
     public void ativarDesativarMedico(int id);
+     public List<Medico> getPorBuscaMedico(String busca);
     
    
     public void salvarPaciente(Paciente paciente);

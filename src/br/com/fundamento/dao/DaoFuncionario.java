@@ -119,7 +119,8 @@ public class DaoFuncionario implements IDaoFuncionario {
         } catch (SQLException ex) {
             Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return Funcionarios; }
+        return Funcionarios; 
+    }
 
     @Override
     public void editarFuncionario(Funcionario funcionario) {
@@ -129,6 +130,33 @@ public class DaoFuncionario implements IDaoFuncionario {
     @Override
     public void ativarDesativarFuncionario(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Funcionario> getPorBuscaFuncionario(String busca) {
+    List<Funcionario> Funcionarios = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Funcionario funcionario;
+            while (result.next()) {
+                funcionario = new Funcionario();
+                
+               funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
+                funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
+                funcionario.setData_nascimento(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
+                funcionario.setSalario(result.getDouble(SQLUtil.Funcionario.COL_SALARIO));
+                funcionario.setFuncao(result.getString(SQLUtil.Funcionario.COL_FUNCAO));
+                
+                Funcionarios.add(funcionario);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Funcionarios; 
     }
 
 }

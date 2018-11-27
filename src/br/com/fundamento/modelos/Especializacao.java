@@ -14,15 +14,15 @@ import java.util.Calendar;
 public class Especializacao {
     
     private String descricao;
-    private Calendar horario_disponivel;
-    private float  salario;
+    private  String horario_disponivel;
+    private double  salario;
     
     private Medico medico;
     
     
     
     public Especializacao(){
-        this.horario_disponivel= Calendar.getInstance();
+        
     }
 
     /**
@@ -44,14 +44,14 @@ public class Especializacao {
     /**
      * @return the salario
      */
-    public float getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
     /**
      * @param salario the salario to set
      */
-    public void setSalario(float salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 
@@ -73,17 +73,16 @@ public class Especializacao {
      * @return the horario_disponivel
      */
     public String getHorario_disponivel() {
-         String d =  this.horario_disponivel.get(Calendar.HOUR_OF_DAY) + ":" + this.horario_disponivel.get(Calendar.MINUTE);
-        return d;
+        return horario_disponivel;
     }
 
     /**
      * @param horario_disponivel the horario_disponivel to set
      */
-    public void setHorario_disponivel(int hora,int minuto) {
-    this.horario_disponivel.set(Calendar.YEAR, Calendar.DAY_OF_MONTH,Calendar.DAY_OF_MONTH, hora, minuto, 0);
-       
-        
+    public void setHorario_disponivel(String horario_disponivel) {
+        this.horario_disponivel = horario_disponivel;
     }
+
+   
     
 }

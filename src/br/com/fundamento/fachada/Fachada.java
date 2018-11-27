@@ -219,6 +219,11 @@ public class Fachada implements IFachada {
     public void ativarDesativarfornecedor(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+       @Override
+    public List<Fornecedor> getPorBuscaFornecedor(String busca) {
+     return this.businessFornecedor.getPorBuscaFornecedor(busca);
+    }
+
 
     @Override
     public void salvarCaixa(Caixa caixa) {
@@ -325,7 +330,13 @@ public class Fachada implements IFachada {
     public void ativarDesativarFuncionario(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Override
+    public List<Funcionario> getPorBuscaFuncionario(String busca){
+    return this.businessFuncionario.getPorBuscaFuncionario(busca);
+    
+     }
+    
     @Override
     public void salvarMedico(Medico medico) {
         this.businessMedico.salvarMedico(medico);
@@ -350,7 +361,10 @@ public class Fachada implements IFachada {
     public void ativarDesativarMedico(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+ @Override
+    public List<Medico> getPorBuscaMedico(String busca) {
+      return this.businessMedico.getPorBuscaMedico(busca);
+    }
  
     @Override
     public void salvarPaciente(Paciente paciente) {
@@ -577,6 +591,9 @@ public class Fachada implements IFachada {
     public void ativarDesativarContato(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+ 
+   
 
     
 

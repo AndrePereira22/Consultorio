@@ -5,7 +5,6 @@
  */
 package br.com.fundamento.dao;
 
-import br.com.fundamento.modelos.Cliente;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Paciente;

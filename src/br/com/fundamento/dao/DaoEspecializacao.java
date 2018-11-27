@@ -59,8 +59,8 @@ public class DaoEspecializacao implements IDaoEspecializacao {
                 especializacao = new Especializacao();
                 
                 especializacao.setDescricao(result.getString(SQLUtil.Especializacao.COL_DESCRICAO));
-                especializacao.setSalario(result.getFloat(SQLUtil.Especializacao.COL_SALARIO));
-                //especializacao.setHorario_disponivel(result.getString(SQLUtil.Especializacao.COL_HORARIO_DISPONIVEL));
+                especializacao.setSalario(result.getDouble(SQLUtil.Especializacao.COL_SALARIO));
+                especializacao.setHorario_disponivel(result.getString(SQLUtil.Especializacao.COL_HORARIO_DISPONIVEL));
             }
             this.conexao.close();
 
@@ -82,8 +82,8 @@ public class DaoEspecializacao implements IDaoEspecializacao {
                 especializacao = new Especializacao();
                 
                  especializacao.setDescricao(result.getString(SQLUtil.Especializacao.COL_DESCRICAO));
-                especializacao.setSalario(result.getFloat(SQLUtil.Especializacao.COL_SALARIO));
-                //especializacao.setHorario_disponivel(result.getString(SQLUtil.Especializacao.COL_HORARIO_DISPONIVEL));
+                especializacao.setSalario(result.getDouble(SQLUtil.Especializacao.COL_SALARIO));
+                especializacao.setHorario_disponivel(result.getString(SQLUtil.Especializacao.COL_HORARIO_DISPONIVEL));
               
                 especializacoes.add(especializacao);
             }

@@ -48,5 +48,10 @@ public class BusinessFornecedor implements IBusinessFornecedor{
     public void ativarDesativarfornecedor(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Fornecedor> getPorBuscaFornecedor(String busca) {
+      return this.daoFornecedor.getPorBuscaFornecedor(busca);
+    }
     
 }

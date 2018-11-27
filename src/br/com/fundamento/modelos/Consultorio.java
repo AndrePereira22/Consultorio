@@ -16,7 +16,6 @@ public class Consultorio {
     private  String nome_fantasia;
     private  String cnpj;
     private String razao_social;
-    private List< Estoque> estoques;
     private List< Medico> medicos;
     
     private Endereco endereco;
@@ -64,20 +63,6 @@ public class Consultorio {
      */
     public void setRazao_social(String razao_social) {
         this.razao_social = razao_social;
-    }
-
-    /**
-     * @return the estoques
-     */
-    public List< Estoque> getEstoques() {
-        return estoques;
-    }
-
-    /**
-     * @param estoques the estoques to set
-     */
-    public void setEstoques(List< Estoque> estoques) {
-        this.estoques = estoques;
     }
 
     /**

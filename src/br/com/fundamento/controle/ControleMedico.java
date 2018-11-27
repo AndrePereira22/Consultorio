@@ -77,6 +77,29 @@ public class ControleMedico implements ActionListener {
             buscarMedico.setVisible(true);
             cadastroMedico.setVisible(false);
         }
+        if(e.getSource() == buscarMedico.getBotaoPesquisarMedico()){
+               List<Medico> medicos = fachada1.getPorBuscaMedico(buscarMedico.getTxtPesquisarMedico().getText());
+
+        try {
+            String[] colunas = new String[]{"Nome", "Sexo", "Rg", "CPF", "Data Nascimento", "Data Cadastro"};
+            Object[][] dados = new Object[medicos.size()][6];
+            for (int i = 0; i < medicos.size(); i++) {
+                Medico medico = medicos.get(i);
+                dados[i][0] = medico.getNome();
+                dados[i][1] = medico.getSexo();
+                dados[i][2] = medico.getRg();
+                dados[i][3] = medico.getCpf();
+                dados[i][4] = medico.getData_nascimento();
+                dados[i][5] = medico.getData_cadastro();
+            }
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+            buscarMedico.getTabelaMedico().setModel(dataModel);
+        } catch (Exception ex) {
+
+        }
+            
+            
+        }
         if (e.getSource() == cadastroMedico.getBotaoSalvarMedico()) {
 
             Endereco end = new Endereco();
@@ -93,7 +116,7 @@ public class ControleMedico implements ActionListener {
             con.setTelefone(cadastroMedico.getTxttelefone().getText());
 
             Consultorio c = new Consultorio();
-            c.setEstoques(new ArrayList<Estoque>());
+ 
             c.setMedicos(new ArrayList<Medico>());
             c.setEndereco(end);
             c.setContato(con);
@@ -103,9 +126,25 @@ public class ControleMedico implements ActionListener {
             l.setSenha(senha);
             l.setUsuario(cadastroMedico.getTxtlogin1().getText());
 
+            List<Especializacao> especializacoes= new ArrayList<Especializacao>();
+            
+            Especializacao es= new Especializacao();
+            es.setDescricao(cadastroMedico.getTxtEspecializacao().getText());
+             String  sa= cadastroMedico.getTxtsalario1().getText();
+            sa = sa.replaceAll("[^0-9]", "");
+            double salario = 0;
+            try {
+                salario = Double.parseDouble(sa);
+ 
+            } catch (NumberFormatException erro) {
+            }
+            es.setSalario(salario);
+            es.setHorario_disponivel(cadastroMedico.getTxtHorarioDisponivel().getText());
+            especializacoes.add(es);
+            
             Medico medico = new Medico();
             medico.setConsultas(new ArrayList<Consulta>());
-            medico.setEspecializacoes(new ArrayList<Especializacao>());
+            medico.setEspecializacoes(especializacoes);
             medico.setContato(con);
             medico.setEndereco(end);
             medico.setConsultorio(c);

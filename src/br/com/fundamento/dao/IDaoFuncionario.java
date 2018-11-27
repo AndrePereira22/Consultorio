@@ -20,5 +20,6 @@ public interface IDaoFuncionario {
     public List<Funcionario> getAllFuncionario();
     public void editarFuncionario(Funcionario funcionario);
     public void ativarDesativarFuncionario(int id);
+    public List<Funcionario> getPorBuscaFuncionario(String busca);
     
 }

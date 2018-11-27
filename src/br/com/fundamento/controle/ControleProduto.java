@@ -81,8 +81,8 @@ public class ControleProduto implements ActionListener{
             buscarProduto.setVisible(false);
         }
         if (e.getSource() == cadastroProduto.getBotaoCancelarProduto()) {
-            telaPrincipal.setEnabled(false);
-            buscarProduto.setVisible(true);
+          //  telaPrincipal.setEnabled(false);
+           // buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
         }
         if (e.getSource() == cadastroProduto.getBotaoSalvarProduto()) {
@@ -91,9 +91,9 @@ public class ControleProduto implements ActionListener{
             
             
 
-            buscarProduto.setVisible(true);
+           // buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
-            telaPrincipal.setEnabled(true);
+           // telaPrincipal.setEnabled(true);
         }
 
     } 
