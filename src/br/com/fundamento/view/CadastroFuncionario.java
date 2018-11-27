@@ -12,6 +12,20 @@ package br.com.fundamento.view;
 public class CadastroFuncionario extends javax.swing.JFrame {
 
     /**
+     * @return the foto
+     */
+    public javax.swing.JLabel getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(javax.swing.JLabel foto) {
+        this.foto = foto;
+    }
+
+    /**
      * Creates new form CadastroFuncionario
      */
     public CadastroFuncionario() {
@@ -37,12 +51,10 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtnome = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtcpf = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtrg = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        txtcargo = new javax.swing.JTextField();
+        txtfuncao = new javax.swing.JTextField();
         txtsalario = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
@@ -52,19 +64,23 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtsenha = new javax.swing.JPasswordField();
         txtconfirmasenha = new javax.swing.JPasswordField();
         jLabel35 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        txtcpf = new javax.swing.JFormattedTextField();
+        txtdata = new javax.swing.JFormattedTextField();
+        foto = new javax.swing.JLabel();
+        BotaoselecionarFuncionario = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtcidade = new javax.swing.JTextField();
-        txtlogradouro = new javax.swing.JTextField();
+        txtrua = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtnumero = new javax.swing.JTextField();
         txtbairro = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        cbuf = new javax.swing.JComboBox();
+        txtUF = new javax.swing.JComboBox();
         lblendereco = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtcep = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         txtemail = new javax.swing.JTextField();
         lblemail = new javax.swing.JLabel();
@@ -72,8 +88,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         lbltelefone = new javax.swing.JLabel();
         txtcelular = new javax.swing.JFormattedTextField();
         lbltelefone1 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        BotaosalvarFuncionario = new javax.swing.JButton();
+        BotaocancelarFuncionario = new javax.swing.JButton();
 
         jButton3.setText("Novo");
 
@@ -88,6 +104,9 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         jButton6.setText("Cancelar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel6.setToolTipText("");
@@ -102,17 +121,11 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         jLabel9.setText("CPF:");
 
-        txtcpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcpfActionPerformed(evt);
-            }
-        });
-
-        jLabel17.setText("RG:");
+        jLabel17.setText("Data Nascimento:");
 
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados Salarial", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jLabel31.setText("Cargo:");
+        jLabel31.setText("Funcao:");
 
         jLabel32.setText("Salário:");
 
@@ -127,7 +140,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtsalario)
-                    .addComponent(txtcargo))
+                    .addComponent(txtfuncao))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -136,7 +149,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(txtcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtfuncao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
@@ -194,6 +207,18 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        try {
+            txtcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txtdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -203,16 +228,16 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel17))
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(txtrg)
-                        .addGap(18, 18, 18)
+                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtcpf))
-                    .addComponent(txtnome))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(115, Short.MAX_VALUE))
+                    .addComponent(txtnome)))
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(31, 31, 31)
@@ -227,10 +252,10 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
                     .addComponent(jLabel9)
-                    .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,12 +263,12 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
 
-        jButton8.setText("Selecionar Foto");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        BotaoselecionarFuncionario.setText("Selecionar Foto");
+        BotaoselecionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                BotaoselecionarFuncionarioActionPerformed(evt);
             }
         });
 
@@ -258,9 +283,22 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         jLabel7.setText("UF:");
 
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        txtUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         lblendereco.setText("Cidade:");
+
+        jLabel2.setText("Cep:");
+
+        try {
+            txtcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtcep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcepActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,19 +312,23 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(lblendereco))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtlogradouro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtrua, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcep)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(txtbairro, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE))
+                        .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtcidade)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -294,13 +336,15 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtlogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtrua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -309,7 +353,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(lblendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -379,14 +423,14 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        jButton7.setText("Salvar");
+        BotaosalvarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+        BotaosalvarFuncionario.setText("Salvar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Cancelar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        BotaocancelarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaocancelarFuncionario.setText("Cancelar");
+        BotaocancelarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                BotaocancelarFuncionarioActionPerformed(evt);
             }
         });
 
@@ -401,16 +445,16 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton7)
+                        .addComponent(BotaosalvarFuncionario)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9)
+                        .addComponent(BotaocancelarFuncionario)
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BotaoselecionarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
@@ -418,21 +462,21 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(28, 28, 28)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8)))
+                        .addComponent(BotaoselecionarFuncionario)))
                 .addGap(6, 6, 6)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton9))
+                    .addComponent(BotaosalvarFuncionario)
+                    .addComponent(BotaocancelarFuncionario))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -443,10 +487,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnomeActionPerformed
 
-    private void txtcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcpfActionPerformed
-
     private void txtloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtloginActionPerformed
@@ -455,13 +495,17 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void BotaocancelarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaocancelarFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_BotaocancelarFuncionarioActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void BotaoselecionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoselecionarFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_BotaoselecionarFuncionarioActionPerformed
+
+    private void txtcepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -500,18 +544,18 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cbuf;
+    private javax.swing.JButton BotaocancelarFuncionario;
+    private javax.swing.JButton BotaosalvarFuncionario;
+    private javax.swing.JButton BotaoselecionarFuncionario;
+    private javax.swing.JLabel foto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -532,20 +576,709 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel lblendereco;
     private javax.swing.JLabel lbltelefone;
     private javax.swing.JLabel lbltelefone1;
+    private javax.swing.JComboBox txtUF;
     private javax.swing.JTextField txtbairro;
-    private javax.swing.JTextField txtcargo;
     private javax.swing.JFormattedTextField txtcelular;
+    private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;
     private javax.swing.JPasswordField txtconfirmasenha;
-    private javax.swing.JTextField txtcpf;
+    private javax.swing.JFormattedTextField txtcpf;
+    private javax.swing.JFormattedTextField txtdata;
     private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtfuncao;
     private javax.swing.JTextField txtlogin;
-    private javax.swing.JTextField txtlogradouro;
     private javax.swing.JTextField txtnome;
     private javax.swing.JTextField txtnumero;
-    private javax.swing.JTextField txtrg;
+    private javax.swing.JTextField txtrua;
     private javax.swing.JTextField txtsalario;
     private javax.swing.JPasswordField txtsenha;
     private javax.swing.JFormattedTextField txttelefone;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaocancelarFuncionario
+     */
+    public javax.swing.JButton getBotaocancelarFuncionario() {
+        return BotaocancelarFuncionario;
+    }
+
+    /**
+     * @param BotaocancelarFuncionario the BotaocancelarFuncionario to set
+     */
+    public void setBotaocancelarFuncionario(javax.swing.JButton BotaocancelarFuncionario) {
+        this.BotaocancelarFuncionario = BotaocancelarFuncionario;
+    }
+
+    /**
+     * @return the BotaosalvarFuncionario
+     */
+    public javax.swing.JButton getBotaosalvarFuncionario() {
+        return BotaosalvarFuncionario;
+    }
+
+    /**
+     * @param BotaosalvarFuncionario the BotaosalvarFuncionario to set
+     */
+    public void setBotaosalvarFuncionario(javax.swing.JButton BotaosalvarFuncionario) {
+        this.BotaosalvarFuncionario = BotaosalvarFuncionario;
+    }
+
+    /**
+     * @return the BotaoselecionarFuncionario
+     */
+    public javax.swing.JButton getBotaoselecionarFuncionario() {
+        return BotaoselecionarFuncionario;
+    }
+
+    /**
+     * @param BotaoselecionarFuncionario the BotaoselecionarFuncionario to set
+     */
+    public void setBotaoselecionarFuncionario(javax.swing.JButton BotaoselecionarFuncionario) {
+        this.BotaoselecionarFuncionario = BotaoselecionarFuncionario;
+    }
+
+    /**
+     * @return the jButton1
+     */
+    public javax.swing.JButton getjButton1() {
+        return jButton1;
+    }
+
+    /**
+     * @param jButton1 the jButton1 to set
+     */
+    public void setjButton1(javax.swing.JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    /**
+     * @return the jButton2
+     */
+    public javax.swing.JButton getjButton2() {
+        return jButton2;
+    }
+
+    /**
+     * @param jButton2 the jButton2 to set
+     */
+    public void setjButton2(javax.swing.JButton jButton2) {
+        this.jButton2 = jButton2;
+    }
+
+    /**
+     * @return the jButton3
+     */
+    public javax.swing.JButton getjButton3() {
+        return jButton3;
+    }
+
+    /**
+     * @param jButton3 the jButton3 to set
+     */
+    public void setjButton3(javax.swing.JButton jButton3) {
+        this.jButton3 = jButton3;
+    }
+
+    /**
+     * @return the jButton4
+     */
+    public javax.swing.JButton getjButton4() {
+        return jButton4;
+    }
+
+    /**
+     * @param jButton4 the jButton4 to set
+     */
+    public void setjButton4(javax.swing.JButton jButton4) {
+        this.jButton4 = jButton4;
+    }
+
+    /**
+     * @return the jButton5
+     */
+    public javax.swing.JButton getjButton5() {
+        return jButton5;
+    }
+
+    /**
+     * @param jButton5 the jButton5 to set
+     */
+    public void setjButton5(javax.swing.JButton jButton5) {
+        this.jButton5 = jButton5;
+    }
+
+    /**
+     * @return the jButton6
+     */
+    public javax.swing.JButton getjButton6() {
+        return jButton6;
+    }
+
+    /**
+     * @param jButton6 the jButton6 to set
+     */
+    public void setjButton6(javax.swing.JButton jButton6) {
+        this.jButton6 = jButton6;
+    }
+
+    /**
+     * @return the jLabel1
+     */
+    public javax.swing.JLabel getjLabel1() {
+        return getFoto();
+    }
+
+    /**
+     * @param jLabel1 the jLabel1 to set
+     */
+    public void setjLabel1(javax.swing.JLabel jLabel1) {
+        this.setFoto(jLabel1);
+    }
+
+    /**
+     * @return the jLabel17
+     */
+    public javax.swing.JLabel getjLabel17() {
+        return jLabel17;
+    }
+
+    /**
+     * @param jLabel17 the jLabel17 to set
+     */
+    public void setjLabel17(javax.swing.JLabel jLabel17) {
+        this.jLabel17 = jLabel17;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    /**
+     * @return the jLabel3
+     */
+    public javax.swing.JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    /**
+     * @param jLabel3 the jLabel3 to set
+     */
+    public void setjLabel3(javax.swing.JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    /**
+     * @return the jLabel31
+     */
+    public javax.swing.JLabel getjLabel31() {
+        return jLabel31;
+    }
+
+    /**
+     * @param jLabel31 the jLabel31 to set
+     */
+    public void setjLabel31(javax.swing.JLabel jLabel31) {
+        this.jLabel31 = jLabel31;
+    }
+
+    /**
+     * @return the jLabel32
+     */
+    public javax.swing.JLabel getjLabel32() {
+        return jLabel32;
+    }
+
+    /**
+     * @param jLabel32 the jLabel32 to set
+     */
+    public void setjLabel32(javax.swing.JLabel jLabel32) {
+        this.jLabel32 = jLabel32;
+    }
+
+    /**
+     * @return the jLabel33
+     */
+    public javax.swing.JLabel getjLabel33() {
+        return jLabel33;
+    }
+
+    /**
+     * @param jLabel33 the jLabel33 to set
+     */
+    public void setjLabel33(javax.swing.JLabel jLabel33) {
+        this.jLabel33 = jLabel33;
+    }
+
+    /**
+     * @return the jLabel34
+     */
+    public javax.swing.JLabel getjLabel34() {
+        return jLabel34;
+    }
+
+    /**
+     * @param jLabel34 the jLabel34 to set
+     */
+    public void setjLabel34(javax.swing.JLabel jLabel34) {
+        this.jLabel34 = jLabel34;
+    }
+
+    /**
+     * @return the jLabel35
+     */
+    public javax.swing.JLabel getjLabel35() {
+        return jLabel35;
+    }
+
+    /**
+     * @param jLabel35 the jLabel35 to set
+     */
+    public void setjLabel35(javax.swing.JLabel jLabel35) {
+        this.jLabel35 = jLabel35;
+    }
+
+    /**
+     * @return the jLabel4
+     */
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    /**
+     * @param jLabel4 the jLabel4 to set
+     */
+    public void setjLabel4(javax.swing.JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    /**
+     * @return the jLabel5
+     */
+    public javax.swing.JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    /**
+     * @param jLabel5 the jLabel5 to set
+     */
+    public void setjLabel5(javax.swing.JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    /**
+     * @return the jLabel6
+     */
+    public javax.swing.JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    /**
+     * @param jLabel6 the jLabel6 to set
+     */
+    public void setjLabel6(javax.swing.JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    /**
+     * @return the jLabel7
+     */
+    public javax.swing.JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    /**
+     * @param jLabel7 the jLabel7 to set
+     */
+    public void setjLabel7(javax.swing.JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    /**
+     * @return the jLabel9
+     */
+    public javax.swing.JLabel getjLabel9() {
+        return jLabel9;
+    }
+
+    /**
+     * @param jLabel9 the jLabel9 to set
+     */
+    public void setjLabel9(javax.swing.JLabel jLabel9) {
+        this.jLabel9 = jLabel9;
+    }
+
+    /**
+     * @return the jPanel1
+     */
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    /**
+     * @param jPanel1 the jPanel1 to set
+     */
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    /**
+     * @return the jPanel10
+     */
+    public javax.swing.JPanel getjPanel10() {
+        return jPanel10;
+    }
+
+    /**
+     * @param jPanel10 the jPanel10 to set
+     */
+    public void setjPanel10(javax.swing.JPanel jPanel10) {
+        this.jPanel10 = jPanel10;
+    }
+
+    /**
+     * @return the jPanel2
+     */
+    public javax.swing.JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    /**
+     * @param jPanel2 the jPanel2 to set
+     */
+    public void setjPanel2(javax.swing.JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    /**
+     * @return the jPanel6
+     */
+    public javax.swing.JPanel getjPanel6() {
+        return jPanel6;
+    }
+
+    /**
+     * @param jPanel6 the jPanel6 to set
+     */
+    public void setjPanel6(javax.swing.JPanel jPanel6) {
+        this.jPanel6 = jPanel6;
+    }
+
+    /**
+     * @return the jPanel9
+     */
+    public javax.swing.JPanel getjPanel9() {
+        return jPanel9;
+    }
+
+    /**
+     * @param jPanel9 the jPanel9 to set
+     */
+    public void setjPanel9(javax.swing.JPanel jPanel9) {
+        this.jPanel9 = jPanel9;
+    }
+
+    /**
+     * @return the lblemail
+     */
+    public javax.swing.JLabel getLblemail() {
+        return lblemail;
+    }
+
+    /**
+     * @param lblemail the lblemail to set
+     */
+    public void setLblemail(javax.swing.JLabel lblemail) {
+        this.lblemail = lblemail;
+    }
+
+    /**
+     * @return the lblendereco
+     */
+    public javax.swing.JLabel getLblendereco() {
+        return lblendereco;
+    }
+
+    /**
+     * @param lblendereco the lblendereco to set
+     */
+    public void setLblendereco(javax.swing.JLabel lblendereco) {
+        this.lblendereco = lblendereco;
+    }
+
+    /**
+     * @return the lbltelefone
+     */
+    public javax.swing.JLabel getLbltelefone() {
+        return lbltelefone;
+    }
+
+    /**
+     * @param lbltelefone the lbltelefone to set
+     */
+    public void setLbltelefone(javax.swing.JLabel lbltelefone) {
+        this.lbltelefone = lbltelefone;
+    }
+
+    /**
+     * @return the lbltelefone1
+     */
+    public javax.swing.JLabel getLbltelefone1() {
+        return lbltelefone1;
+    }
+
+    /**
+     * @param lbltelefone1 the lbltelefone1 to set
+     */
+    public void setLbltelefone1(javax.swing.JLabel lbltelefone1) {
+        this.lbltelefone1 = lbltelefone1;
+    }
+
+    /**
+     * @return the txtUF
+     */
+    public javax.swing.JComboBox getTxtUF() {
+        return txtUF;
+    }
+
+    /**
+     * @param txtUF the txtUF to set
+     */
+    public void setTxtUF(javax.swing.JComboBox txtUF) {
+        this.txtUF = txtUF;
+    }
+
+    /**
+     * @return the txtbairro
+     */
+    public javax.swing.JTextField getTxtbairro() {
+        return txtbairro;
+    }
+
+    /**
+     * @param txtbairro the txtbairro to set
+     */
+    public void setTxtbairro(javax.swing.JTextField txtbairro) {
+        this.txtbairro = txtbairro;
+    }
+
+    /**
+     * @return the txtcelular
+     */
+    public javax.swing.JFormattedTextField getTxtcelular() {
+        return txtcelular;
+    }
+
+    /**
+     * @param txtcelular the txtcelular to set
+     */
+    public void setTxtcelular(javax.swing.JFormattedTextField txtcelular) {
+        this.txtcelular = txtcelular;
+    }
+
+    /**
+     * @return the txtcep
+     */
+    public javax.swing.JFormattedTextField getTxtcep() {
+        return txtcep;
+    }
+
+    /**
+     * @param txtcep the txtcep to set
+     */
+    public void setTxtcep(javax.swing.JFormattedTextField txtcep) {
+        this.txtcep = txtcep;
+    }
+
+    /**
+     * @return the txtcidade
+     */
+    public javax.swing.JTextField getTxtcidade() {
+        return txtcidade;
+    }
+
+    /**
+     * @param txtcidade the txtcidade to set
+     */
+    public void setTxtcidade(javax.swing.JTextField txtcidade) {
+        this.txtcidade = txtcidade;
+    }
+
+    /**
+     * @return the txtconfirmasenha
+     */
+    public javax.swing.JPasswordField getTxtconfirmasenha() {
+        return txtconfirmasenha;
+    }
+
+    /**
+     * @param txtconfirmasenha the txtconfirmasenha to set
+     */
+    public void setTxtconfirmasenha(javax.swing.JPasswordField txtconfirmasenha) {
+        this.txtconfirmasenha = txtconfirmasenha;
+    }
+
+    /**
+     * @return the txtcpf
+     */
+    public javax.swing.JFormattedTextField getTxtcpf() {
+        return txtcpf;
+    }
+
+    /**
+     * @param txtcpf the txtcpf to set
+     */
+    public void setTxtcpf(javax.swing.JFormattedTextField txtcpf) {
+        this.txtcpf = txtcpf;
+    }
+
+    /**
+     * @return the txtdata
+     */
+    public javax.swing.JFormattedTextField getTxtdata() {
+        return txtdata;
+    }
+
+    /**
+     * @param txtdata the txtdata to set
+     */
+    public void setTxtdata(javax.swing.JFormattedTextField txtdata) {
+        this.txtdata = txtdata;
+    }
+
+    /**
+     * @return the txtemail
+     */
+    public javax.swing.JTextField getTxtemail() {
+        return txtemail;
+    }
+
+    /**
+     * @param txtemail the txtemail to set
+     */
+    public void setTxtemail(javax.swing.JTextField txtemail) {
+        this.txtemail = txtemail;
+    }
+
+    /**
+     * @return the txtfuncao
+     */
+    public javax.swing.JTextField getTxtfuncao() {
+        return txtfuncao;
+    }
+
+    /**
+     * @param txtfuncao the txtfuncao to set
+     */
+    public void setTxtfuncao(javax.swing.JTextField txtfuncao) {
+        this.txtfuncao = txtfuncao;
+    }
+
+    /**
+     * @return the txtlogin
+     */
+    public javax.swing.JTextField getTxtlogin() {
+        return txtlogin;
+    }
+
+    /**
+     * @param txtlogin the txtlogin to set
+     */
+    public void setTxtlogin(javax.swing.JTextField txtlogin) {
+        this.txtlogin = txtlogin;
+    }
+
+    /**
+     * @return the txtnome
+     */
+    public javax.swing.JTextField getTxtnome() {
+        return txtnome;
+    }
+
+    /**
+     * @param txtnome the txtnome to set
+     */
+    public void setTxtnome(javax.swing.JTextField txtnome) {
+        this.txtnome = txtnome;
+    }
+
+    /**
+     * @return the txtnumero
+     */
+    public javax.swing.JTextField getTxtnumero() {
+        return txtnumero;
+    }
+
+    /**
+     * @param txtnumero the txtnumero to set
+     */
+    public void setTxtnumero(javax.swing.JTextField txtnumero) {
+        this.txtnumero = txtnumero;
+    }
+
+    /**
+     * @return the txtrua
+     */
+    public javax.swing.JTextField getTxtrua() {
+        return txtrua;
+    }
+
+    /**
+     * @param txtrua the txtrua to set
+     */
+    public void setTxtrua(javax.swing.JTextField txtrua) {
+        this.txtrua = txtrua;
+    }
+
+    /**
+     * @return the txtsalario
+     */
+    public javax.swing.JTextField getTxtsalario() {
+        return txtsalario;
+    }
+
+    /**
+     * @param txtsalario the txtsalario to set
+     */
+    public void setTxtsalario(javax.swing.JTextField txtsalario) {
+        this.txtsalario = txtsalario;
+    }
+
+    /**
+     * @return the txtsenha
+     */
+    public javax.swing.JPasswordField getTxtsenha() {
+        return txtsenha;
+    }
+
+    /**
+     * @param txtsenha the txtsenha to set
+     */
+    public void setTxtsenha(javax.swing.JPasswordField txtsenha) {
+        this.txtsenha = txtsenha;
+    }
+
+    /**
+     * @return the txttelefone
+     */
+    public javax.swing.JFormattedTextField getTxttelefone() {
+        return txttelefone;
+    }
+
+    /**
+     * @param txttelefone the txttelefone to set
+     */
+    public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
+        this.txttelefone = txttelefone;
+    }
+
 }

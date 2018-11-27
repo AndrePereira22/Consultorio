@@ -33,11 +33,9 @@ public class CadastroMedico extends javax.swing.JFrame {
 
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtnome1 = new javax.swing.JTextField();
+        txtnome = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtcpf1 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        txtrg1 = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         txtcargo1 = new javax.swing.JTextField();
@@ -51,52 +49,56 @@ public class CadastroMedico extends javax.swing.JFrame {
         txtconfirmasenha1 = new javax.swing.JPasswordField();
         jLabel39 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        txtConselho = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtnumeroC = new javax.swing.JTextField();
+        txtrg = new javax.swing.JFormattedTextField();
+        txtcpf = new javax.swing.JFormattedTextField();
+        jLabelnome = new javax.swing.JLabel();
+        Txtdata = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         txtcidade = new javax.swing.JTextField();
-        txtlogradouro = new javax.swing.JTextField();
+        txtrua = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtnumero = new javax.swing.JTextField();
         txtbairro = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbuf = new javax.swing.JComboBox();
+        txtUf = new javax.swing.JComboBox();
         lblendereco = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtcep = new javax.swing.JFormattedTextField();
+        foto = new javax.swing.JLabel();
+        BotaoSelecionar = new javax.swing.JButton();
+        BotaoSalvarMedico = new javax.swing.JButton();
+        BotaoCancelarMedico = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtemail = new javax.swing.JTextField();
         lblemail = new javax.swing.JLabel();
         lbltelefone = new javax.swing.JLabel();
         lbltelefone1 = new javax.swing.JLabel();
-        txttelefone2 = new javax.swing.JFormattedTextField();
-        txttelefone3 = new javax.swing.JFormattedTextField();
+        txttelefone = new javax.swing.JFormattedTextField();
+        txtcelular = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel8.setToolTipText("");
 
         jLabel6.setText("Nome:");
 
-        txtnome1.addActionListener(new java.awt.event.ActionListener() {
+        txtnome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnome1ActionPerformed(evt);
+                txtnomeActionPerformed(evt);
             }
         });
 
         jLabel10.setText("CPF:");
-
-        txtcpf1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcpf1ActionPerformed(evt);
-            }
-        });
 
         jLabel18.setText("RG:");
 
@@ -116,7 +118,7 @@ public class CadastroMedico extends javax.swing.JFrame {
                     .addComponent(jLabel36))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtsalario1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(txtsalario1)
                     .addComponent(txtcargo1))
                 .addContainerGap())
         );
@@ -161,7 +163,7 @@ public class CadastroMedico extends javax.swing.JFrame {
                             .addComponent(jLabel37))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtsenha1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                    .addComponent(txtsenha1)
                     .addComponent(txtconfirmasenha1)
                     .addComponent(txtlogin1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -185,9 +187,38 @@ public class CadastroMedico extends javax.swing.JFrame {
 
         jLabel3.setText("Conselho:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CRAS", "COREN", "CRF", "CREFITO", "CRM", "CRV", "CRO", "CRP", "OUT", "CRFA", " " }));
+        txtConselho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CRAS", "COREN", "CRF", "CREFITO", "CRM", "CRV", "CRO", "CRP", "OUT", "CRFA", " " }));
 
         jLabel4.setText("Numero:");
+
+        try {
+            txtrg.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#.###.###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txtcpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabelnome.setText("Data Nascimento:");
+
+        try {
+            Txtdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel1.setText("Sexo:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -198,57 +229,63 @@ public class CadastroMedico extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnome1)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(txtrg1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)))
+                        .addComponent(txtnome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(txtrg, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcpf, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcpf1)
-                            .addComponent(jTextField1))))
-                .addContainerGap())
+                        .addComponent(txtConselho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabelnome)
+                        .addGap(26, 26, 26)
+                        .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtnumeroC, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(55, 55, 55))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtnome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(txtrg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtcpf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
-                .addGap(30, 30, 30)
+                    .addComponent(txtnome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabelnome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtConselho, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtnumeroC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -265,9 +302,17 @@ public class CadastroMedico extends javax.swing.JFrame {
 
         jLabel12.setText("UF:");
 
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        txtUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         lblendereco.setText("Cidade:");
+
+        jLabel2.setText("Cep:");
+
+        try {
+            txtcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -281,62 +326,69 @@ public class CadastroMedico extends javax.swing.JFrame {
                     .addComponent(lblendereco))
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtlogradouro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtrua, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtnumero)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
+                        .addComponent(txtcep)
+                        .addGap(36, 36, 36)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtbairro))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtcidade)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtlogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtrua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtbairro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
 
-        jButton8.setText("Selecionar Foto");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        BotaoSelecionar.setText("Selecionar Foto");
+        BotaoSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                BotaoSelecionarActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        jButton7.setText("Salvar");
+        BotaoSalvarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+        BotaoSalvarMedico.setText("Salvar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Cancelar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCancelarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoCancelarMedico.setText("Cancelar");
+        BotaoCancelarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                BotaoCancelarMedicoActionPerformed(evt);
             }
         });
 
@@ -356,13 +408,13 @@ public class CadastroMedico extends javax.swing.JFrame {
         lbltelefone1.setText("Celular:");
 
         try {
-            txttelefone2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            txttelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            txttelefone3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            txtcelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -376,11 +428,11 @@ public class CadastroMedico extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lbltelefone)
                         .addGap(18, 18, 18)
-                        .addComponent(txttelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbltelefone1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txttelefone3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
@@ -400,10 +452,10 @@ public class CadastroMedico extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbltelefone1)
-                        .addComponent(txttelefone3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lbltelefone)
-                        .addComponent(txttelefone2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -413,9 +465,9 @@ public class CadastroMedico extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(BotaoSalvarMedico)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9)
+                .addComponent(BotaoCancelarMedico)
                 .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -427,8 +479,8 @@ public class CadastroMedico extends javax.swing.JFrame {
                                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(BotaoSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
@@ -437,51 +489,50 @@ public class CadastroMedico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton8)
+                        .addComponent(BotaoSelecionar)
                         .addGap(20, 20, 20)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton9))
+                    .addComponent(BotaoSalvarMedico)
+                    .addComponent(BotaoCancelarMedico))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnome1ActionPerformed
+    private void txtnomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnome1ActionPerformed
-
-    private void txtcpf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcpf1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcpf1ActionPerformed
+    }//GEN-LAST:event_txtnomeActionPerformed
 
     private void txtlogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlogin1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtlogin1ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void BotaoSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSelecionarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_BotaoSelecionarActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void BotaoCancelarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarMedicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_BotaoCancelarMedicoActionPerformed
 
     private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,16 +571,18 @@ public class CadastroMedico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cbuf;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton BotaoCancelarMedico;
+    private javax.swing.JButton BotaoSalvarMedico;
+    private javax.swing.JButton BotaoSelecionar;
+    private javax.swing.JFormattedTextField Txtdata;
+    private javax.swing.JLabel foto;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel36;
@@ -540,30 +593,722 @@ public class CadastroMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelnome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblendereco;
     private javax.swing.JLabel lbltelefone;
     private javax.swing.JLabel lbltelefone1;
+    private javax.swing.JComboBox<String> txtConselho;
+    private javax.swing.JComboBox txtUf;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JTextField txtcargo1;
+    private javax.swing.JFormattedTextField txtcelular;
+    private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;
     private javax.swing.JPasswordField txtconfirmasenha1;
-    private javax.swing.JTextField txtcpf1;
+    private javax.swing.JFormattedTextField txtcpf;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtlogin1;
-    private javax.swing.JTextField txtlogradouro;
-    private javax.swing.JTextField txtnome1;
+    private javax.swing.JTextField txtnome;
     private javax.swing.JTextField txtnumero;
-    private javax.swing.JTextField txtrg1;
+    private javax.swing.JTextField txtnumeroC;
+    private javax.swing.JFormattedTextField txtrg;
+    private javax.swing.JTextField txtrua;
     private javax.swing.JTextField txtsalario1;
     private javax.swing.JPasswordField txtsenha1;
-    private javax.swing.JFormattedTextField txttelefone2;
-    private javax.swing.JFormattedTextField txttelefone3;
+    private javax.swing.JFormattedTextField txttelefone;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    /**
+     * @return the BotaoCancelarMedico
+     */
+    public javax.swing.JButton getBotaoCancelarMedico() {
+        return BotaoCancelarMedico;
+    }
+
+    /**
+     * @return the BotaoSalvarMedico
+     */
+    public javax.swing.JButton getBotaoSalvarMedico() {
+        return BotaoSalvarMedico;
+    }
+
+    /**
+     * @param BotaoCancelarMedico the BotaoCancelarMedico to set
+     */
+    public void setBotaoCancelarMedico(javax.swing.JButton BotaoCancelarMedico) {
+        this.BotaoCancelarMedico = BotaoCancelarMedico;
+    }
+
+    /**
+     * @param BotaoSalvarMedico the BotaoSalvarMedico to set
+     */
+    public void setBotaoSalvarMedico(javax.swing.JButton BotaoSalvarMedico) {
+        this.BotaoSalvarMedico = BotaoSalvarMedico;
+    }
+
+    /**
+     * @return the BotaoSelecionar
+     */
+    public javax.swing.JButton getBotaoSelecionar() {
+        return BotaoSelecionar;
+    }
+
+    /**
+     * @param BotaoSelecionar the BotaoSelecionar to set
+     */
+    public void setBotaoSelecionar(javax.swing.JButton BotaoSelecionar) {
+        this.BotaoSelecionar = BotaoSelecionar;
+    }
+
+    /**
+     * @return the foto
+     */
+    public javax.swing.JLabel getFoto() {
+        return foto;
+    }
+
+    /**
+     * @param foto the foto to set
+     */
+    public void setFoto(javax.swing.JLabel foto) {
+        this.foto = foto;
+    }
+
+    /**
+     * @return the jLabel10
+     */
+    public javax.swing.JLabel getjLabel10() {
+        return jLabel10;
+    }
+
+    /**
+     * @param jLabel10 the jLabel10 to set
+     */
+    public void setjLabel10(javax.swing.JLabel jLabel10) {
+        this.jLabel10 = jLabel10;
+    }
+
+    /**
+     * @return the jLabel11
+     */
+    public javax.swing.JLabel getjLabel11() {
+        return jLabel11;
+    }
+
+    /**
+     * @param jLabel11 the jLabel11 to set
+     */
+    public void setjLabel11(javax.swing.JLabel jLabel11) {
+        this.jLabel11 = jLabel11;
+    }
+
+    /**
+     * @return the jLabel12
+     */
+    public javax.swing.JLabel getjLabel12() {
+        return jLabel12;
+    }
+
+    /**
+     * @param jLabel12 the jLabel12 to set
+     */
+    public void setjLabel12(javax.swing.JLabel jLabel12) {
+        this.jLabel12 = jLabel12;
+    }
+
+    /**
+     * @return the jLabel18
+     */
+    public javax.swing.JLabel getjLabel18() {
+        return jLabel18;
+    }
+
+    /**
+     * @param jLabel18 the jLabel18 to set
+     */
+    public void setjLabel18(javax.swing.JLabel jLabel18) {
+        this.jLabel18 = jLabel18;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    /**
+     * @return the jLabel3
+     */
+    public javax.swing.JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    /**
+     * @param jLabel3 the jLabel3 to set
+     */
+    public void setjLabel3(javax.swing.JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    /**
+     * @return the jLabel31
+     */
+    public javax.swing.JLabel getjLabel31() {
+        return jLabel31;
+    }
+
+    /**
+     * @param jLabel31 the jLabel31 to set
+     */
+    public void setjLabel31(javax.swing.JLabel jLabel31) {
+        this.jLabel31 = jLabel31;
+    }
+
+    /**
+     * @return the jLabel36
+     */
+    public javax.swing.JLabel getjLabel36() {
+        return jLabel36;
+    }
+
+    /**
+     * @param jLabel36 the jLabel36 to set
+     */
+    public void setjLabel36(javax.swing.JLabel jLabel36) {
+        this.jLabel36 = jLabel36;
+    }
+
+    /**
+     * @return the jLabel37
+     */
+    public javax.swing.JLabel getjLabel37() {
+        return jLabel37;
+    }
+
+    /**
+     * @param jLabel37 the jLabel37 to set
+     */
+    public void setjLabel37(javax.swing.JLabel jLabel37) {
+        this.jLabel37 = jLabel37;
+    }
+
+    /**
+     * @return the jLabel38
+     */
+    public javax.swing.JLabel getjLabel38() {
+        return jLabel38;
+    }
+
+    /**
+     * @param jLabel38 the jLabel38 to set
+     */
+    public void setjLabel38(javax.swing.JLabel jLabel38) {
+        this.jLabel38 = jLabel38;
+    }
+
+    /**
+     * @return the jLabel39
+     */
+    public javax.swing.JLabel getjLabel39() {
+        return jLabel39;
+    }
+
+    /**
+     * @param jLabel39 the jLabel39 to set
+     */
+    public void setjLabel39(javax.swing.JLabel jLabel39) {
+        this.jLabel39 = jLabel39;
+    }
+
+    /**
+     * @return the jLabel4
+     */
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    /**
+     * @param jLabel4 the jLabel4 to set
+     */
+    public void setjLabel4(javax.swing.JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    /**
+     * @return the jLabel6
+     */
+    public javax.swing.JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    /**
+     * @param jLabel6 the jLabel6 to set
+     */
+    public void setjLabel6(javax.swing.JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    /**
+     * @return the jLabel7
+     */
+    public javax.swing.JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    /**
+     * @param jLabel7 the jLabel7 to set
+     */
+    public void setjLabel7(javax.swing.JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    /**
+     * @return the jLabel8
+     */
+    public javax.swing.JLabel getjLabel8() {
+        return jLabel8;
+    }
+
+    /**
+     * @param jLabel8 the jLabel8 to set
+     */
+    public void setjLabel8(javax.swing.JLabel jLabel8) {
+        this.jLabel8 = jLabel8;
+    }
+
+    /**
+     * @return the jPanel1
+     */
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    /**
+     * @param jPanel1 the jPanel1 to set
+     */
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    /**
+     * @return the jPanel12
+     */
+    public javax.swing.JPanel getjPanel12() {
+        return jPanel12;
+    }
+
+    /**
+     * @param jPanel12 the jPanel12 to set
+     */
+    public void setjPanel12(javax.swing.JPanel jPanel12) {
+        this.jPanel12 = jPanel12;
+    }
+
+    /**
+     * @return the jPanel13
+     */
+    public javax.swing.JPanel getjPanel13() {
+        return jPanel13;
+    }
+
+    /**
+     * @param jPanel13 the jPanel13 to set
+     */
+    public void setjPanel13(javax.swing.JPanel jPanel13) {
+        this.jPanel13 = jPanel13;
+    }
+
+    /**
+     * @return the jPanel2
+     */
+    public javax.swing.JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    /**
+     * @param jPanel2 the jPanel2 to set
+     */
+    public void setjPanel2(javax.swing.JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    /**
+     * @return the jPanel8
+     */
+    public javax.swing.JPanel getjPanel8() {
+        return jPanel8;
+    }
+
+    /**
+     * @param jPanel8 the jPanel8 to set
+     */
+    public void setjPanel8(javax.swing.JPanel jPanel8) {
+        this.jPanel8 = jPanel8;
+    }
+
+    /**
+     * @return the lblemail
+     */
+    public javax.swing.JLabel getLblemail() {
+        return lblemail;
+    }
+
+    /**
+     * @param lblemail the lblemail to set
+     */
+    public void setLblemail(javax.swing.JLabel lblemail) {
+        this.lblemail = lblemail;
+    }
+
+    /**
+     * @return the lblendereco
+     */
+    public javax.swing.JLabel getLblendereco() {
+        return lblendereco;
+    }
+
+    /**
+     * @param lblendereco the lblendereco to set
+     */
+    public void setLblendereco(javax.swing.JLabel lblendereco) {
+        this.lblendereco = lblendereco;
+    }
+
+    /**
+     * @return the lbltelefone
+     */
+    public javax.swing.JLabel getLbltelefone() {
+        return lbltelefone;
+    }
+
+    /**
+     * @param lbltelefone the lbltelefone to set
+     */
+    public void setLbltelefone(javax.swing.JLabel lbltelefone) {
+        this.lbltelefone = lbltelefone;
+    }
+
+    /**
+     * @return the lbltelefone1
+     */
+    public javax.swing.JLabel getLbltelefone1() {
+        return lbltelefone1;
+    }
+
+    /**
+     * @param lbltelefone1 the lbltelefone1 to set
+     */
+    public void setLbltelefone1(javax.swing.JLabel lbltelefone1) {
+        this.lbltelefone1 = lbltelefone1;
+    }
+
+    /**
+     * @return the txtConselho
+     */
+    public javax.swing.JComboBox<String> getTxtConselho() {
+        return txtConselho;
+    }
+
+    /**
+     * @param txtConselho the txtConselho to set
+     */
+    public void setTxtConselho(javax.swing.JComboBox<String> txtConselho) {
+        this.txtConselho = txtConselho;
+    }
+
+    /**
+     * @return the txtUf
+     */
+    public javax.swing.JComboBox getTxtUf() {
+        return txtUf;
+    }
+
+    /**
+     * @param txtUf the txtUf to set
+     */
+    public void setTxtUf(javax.swing.JComboBox txtUf) {
+        this.txtUf = txtUf;
+    }
+
+    /**
+     * @return the txtbairro
+     */
+    public javax.swing.JTextField getTxtbairro() {
+        return txtbairro;
+    }
+
+    /**
+     * @param txtbairro the txtbairro to set
+     */
+    public void setTxtbairro(javax.swing.JTextField txtbairro) {
+        this.txtbairro = txtbairro;
+    }
+
+    /**
+     * @return the txtcargo1
+     */
+    public javax.swing.JTextField getTxtcargo1() {
+        return txtcargo1;
+    }
+
+    /**
+     * @param txtcargo1 the txtcargo1 to set
+     */
+    public void setTxtcargo1(javax.swing.JTextField txtcargo1) {
+        this.txtcargo1 = txtcargo1;
+    }
+
+    /**
+     * @return the txtcelular
+     */
+    public javax.swing.JFormattedTextField getTxtcelular() {
+        return txtcelular;
+    }
+
+    /**
+     * @param txtcelular the txtcelular to set
+     */
+    public void setTxtcelular(javax.swing.JFormattedTextField txtcelular) {
+        this.txtcelular = txtcelular;
+    }
+
+    /**
+     * @return the txtcep
+     */
+    public javax.swing.JFormattedTextField getTxtcep() {
+        return txtcep;
+    }
+
+    /**
+     * @param txtcep the txtcep to set
+     */
+    public void setTxtcep(javax.swing.JFormattedTextField txtcep) {
+        this.txtcep = txtcep;
+    }
+
+    /**
+     * @return the txtcidade
+     */
+    public javax.swing.JTextField getTxtcidade() {
+        return txtcidade;
+    }
+
+    /**
+     * @param txtcidade the txtcidade to set
+     */
+    public void setTxtcidade(javax.swing.JTextField txtcidade) {
+        this.txtcidade = txtcidade;
+    }
+
+    /**
+     * @return the txtconfirmasenha1
+     */
+    public javax.swing.JPasswordField getTxtconfirmasenha1() {
+        return txtconfirmasenha1;
+    }
+
+    /**
+     * @param txtconfirmasenha1 the txtconfirmasenha1 to set
+     */
+    public void setTxtconfirmasenha1(javax.swing.JPasswordField txtconfirmasenha1) {
+        this.txtconfirmasenha1 = txtconfirmasenha1;
+    }
+
+    /**
+     * @return the txtcpf
+     */
+    public javax.swing.JFormattedTextField getTxtcpf() {
+        return txtcpf;
+    }
+
+    /**
+     * @param txtcpf the txtcpf to set
+     */
+    public void setTxtcpf(javax.swing.JFormattedTextField txtcpf) {
+        this.txtcpf = txtcpf;
+    }
+
+    /**
+     * @return the txtemail
+     */
+    public javax.swing.JTextField getTxtemail() {
+        return txtemail;
+    }
+
+    /**
+     * @param txtemail the txtemail to set
+     */
+    public void setTxtemail(javax.swing.JTextField txtemail) {
+        this.txtemail = txtemail;
+    }
+
+    /**
+     * @return the txtlogin1
+     */
+    public javax.swing.JTextField getTxtlogin1() {
+        return txtlogin1;
+    }
+
+    /**
+     * @param txtlogin1 the txtlogin1 to set
+     */
+    public void setTxtlogin1(javax.swing.JTextField txtlogin1) {
+        this.txtlogin1 = txtlogin1;
+    }
+
+    /**
+     * @return the txtnome
+     */
+    public javax.swing.JTextField getTxtnome() {
+        return txtnome;
+    }
+
+    /**
+     * @param txtnome the txtnome to set
+     */
+    public void setTxtnome(javax.swing.JTextField txtnome) {
+        this.txtnome = txtnome;
+    }
+
+    /**
+     * @return the txtnumero
+     */
+    public javax.swing.JTextField getTxtnumero() {
+        return txtnumero;
+    }
+
+    /**
+     * @param txtnumero the txtnumero to set
+     */
+    public void setTxtnumero(javax.swing.JTextField txtnumero) {
+        this.txtnumero = txtnumero;
+    }
+
+    /**
+     * @return the txtnumeroC
+     */
+    public javax.swing.JTextField getTxtnumeroC() {
+        return txtnumeroC;
+    }
+
+    /**
+     * @param txtnumeroC the txtnumeroC to set
+     */
+    public void setTxtnumeroC(javax.swing.JTextField txtnumeroC) {
+        this.txtnumeroC = txtnumeroC;
+    }
+
+    /**
+     * @return the txtrg
+     */
+    public javax.swing.JFormattedTextField getTxtrg() {
+        return txtrg;
+    }
+
+    /**
+     * @param txtrg the txtrg to set
+     */
+    public void setTxtrg(javax.swing.JFormattedTextField txtrg) {
+        this.txtrg = txtrg;
+    }
+
+    /**
+     * @return the txtrua
+     */
+    public javax.swing.JTextField getTxtrua() {
+        return txtrua;
+    }
+
+    /**
+     * @param txtrua the txtrua to set
+     */
+    public void setTxtrua(javax.swing.JTextField txtrua) {
+        this.txtrua = txtrua;
+    }
+
+    /**
+     * @return the txtsalario1
+     */
+    public javax.swing.JTextField getTxtsalario1() {
+        return txtsalario1;
+    }
+
+    /**
+     * @param txtsalario1 the txtsalario1 to set
+     */
+    public void setTxtsalario1(javax.swing.JTextField txtsalario1) {
+        this.txtsalario1 = txtsalario1;
+    }
+
+    /**
+     * @return the txtsenha1
+     */
+    public javax.swing.JPasswordField getTxtsenha1() {
+        return txtsenha1;
+    }
+
+    /**
+     * @param txtsenha1 the txtsenha1 to set
+     */
+    public void setTxtsenha1(javax.swing.JPasswordField txtsenha1) {
+        this.txtsenha1 = txtsenha1;
+    }
+
+    /**
+     * @return the txttelefone
+     */
+    public javax.swing.JFormattedTextField getTxttelefone() {
+        return txttelefone;
+    }
+
+    /**
+     * @param txttelefone the txttelefone to set
+     */
+    public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
+        this.txttelefone = txttelefone;
+    }
+
+    /**
+     * @return the Txtdata
+     */
+    public javax.swing.JFormattedTextField getTxtdata() {
+        return Txtdata;
+    }
+
+    /**
+     * @param Txtdata the Txtdata to set
+     */
+    public void setTxtdata(javax.swing.JFormattedTextField Txtdata) {
+        this.Txtdata = Txtdata;
+    }
+
+    /**
+     * @return the jComboBox1
+     */
+    public javax.swing.JComboBox<String> getjComboBox1() {
+        return jComboBox1;
+    }
+
+    /**
+     * @param jComboBox1 the jComboBox1 to set
+     */
+    public void setjComboBox1(javax.swing.JComboBox<String> jComboBox1) {
+        this.jComboBox1 = jComboBox1;
+    }
 }

@@ -7,7 +7,6 @@ package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Funcionario;
-import br.com.fundamento.modelos.Municipio;
 import br.com.fundamento.modelos.Relatorio;
 import br.com.fundamento.modelos.Tarefa;
 import br.com.fundamento.sql.SQLConections;
@@ -39,17 +38,19 @@ public class DaoFuncionario implements IDaoFuncionario {
             int id_caixa = new DaoCaixa().salvarCaixa(funcionario.getCaixa());
             int id_login = new DaoLogin().salvarLogin(funcionario.getLogin());
             int id_endereco = CommumDao.salvarEndereco(funcionario.getEndereco());
+            int id_contato = new DaoContato().salvarContato(funcionario.getContato());
 
             this.conexao = SQLConections.getInstance();
             this.statement = conexao.prepareStatement(SQLUtil.Funcionario.INSERT);
             this.statement.setString(1, funcionario.getNome());
             this.statement.setInt(2, id_caixa);
-            this.statement.setInt(3, funcionario.getCpf());
+            this.statement.setString(3, funcionario.getCpf());
             this.statement.setDouble(4, funcionario.getSalario());
             this.statement.setString(5, funcionario.getFuncao());
-            this.statement.setString(6, funcionario.getDate_NascimentoString());
+            this.statement.setString(6, funcionario.getData_nascimento());
             this.statement.setInt(7, id_login);
             this.statement.setInt(8, id_endereco);
+           this.statement.setInt(9, id_contato);
 
             result = statement.executeQuery();
 
@@ -81,9 +82,9 @@ public class DaoFuncionario implements IDaoFuncionario {
                 funcionario = new Funcionario();
                 
                 funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
-                funcionario.setCpf(result.getInt(SQLUtil.Funcionario.COL_CPF));
-                //  funcionario.setDate_nascimentoInt(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
-                funcionario.setSalario(result.getFloat(SQLUtil.Funcionario.COL_SALARIO));
+                funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
+                funcionario.setData_nascimento(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
+                funcionario.setSalario(result.getDouble(SQLUtil.Funcionario.COL_SALARIO));
                 funcionario.setFuncao(result.getString(SQLUtil.Funcionario.COL_FUNCAO));
             }
             this.conexao.close();
@@ -106,9 +107,9 @@ public class DaoFuncionario implements IDaoFuncionario {
                 funcionario = new Funcionario();
                 
                funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
-                funcionario.setCpf(result.getInt(SQLUtil.Funcionario.COL_CPF));
-                //  funcionario.setDate_nascimentoInt(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
-                funcionario.setSalario(result.getFloat(SQLUtil.Funcionario.COL_SALARIO));
+                funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
+                funcionario.setData_nascimento(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
+                funcionario.setSalario(result.getDouble(SQLUtil.Funcionario.COL_SALARIO));
                 funcionario.setFuncao(result.getString(SQLUtil.Funcionario.COL_FUNCAO));
                 
                 Funcionarios.add(funcionario);

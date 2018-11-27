@@ -5,18 +5,32 @@
  */
 package br.com.fundamento.view;
 
+import br.com.fundamento.dao.DaoPaciente;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Glenda Alves de Lima
  */
 public class BuscarPaciente extends javax.swing.JFrame {
+    
+  
 
+    DaoPaciente daoPaciente = new DaoPaciente();
     /**
      * Creates new form BuscarPaciente
      */
     public BuscarPaciente() {
         initComponents();
+
+        
     }
+ 
+   
+    
+
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,73 +41,77 @@ public class BuscarPaciente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtpesquisarPaciente = new javax.swing.JTextField();
+        BotaoPesquisarPaciente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        TabelaPaciente = new javax.swing.JTable();
+        BotaoAdicionarPaciente = new javax.swing.JButton();
+        BotaoEditarPaciente = new javax.swing.JButton();
+        BotaoExcluirPaciente = new javax.swing.JButton();
+        BotaoFecharPaciente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotaoPesquisarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisarPaciente.setText("Pesquisar");
+        BotaoPesquisarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotaoPesquisarPacienteActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaPaciente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Rg", "Prontuario"
+                "Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        TabelaPaciente.setFocusable(false);
+        jScrollPane1.setViewportView(TabelaPaciente);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAdicionarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        BotaoAdicionarPaciente.setText("Adicionar");
+        BotaoAdicionarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BotaoAdicionarPacienteActionPerformed(evt);
             }
         });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        jButton3.setText("Editar");
+        BotaoEditarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        BotaoEditarPaciente.setText("Editar");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton4.setText("Excluir");
+        BotaoExcluirPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoExcluirPaciente.setText("Excluir");
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton5.setText("Fechar");
+        BotaoFecharPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoFecharPaciente.setText("Fechar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,13 +119,13 @@ public class BuscarPaciente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(BotaoAdicionarPaciente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(BotaoEditarPaciente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(BotaoExcluirPaciente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(BotaoFecharPaciente)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,10 +134,10 @@ public class BuscarPaciente extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jTextField1)
+                        .addComponent(txtpesquisarPaciente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)))
+                        .addComponent(BotaoPesquisarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,14 +145,14 @@ public class BuscarPaciente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpesquisarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisarPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(BotaoAdicionarPaciente)
+                    .addComponent(BotaoEditarPaciente)
+                    .addComponent(BotaoExcluirPaciente)
+                    .addComponent(BotaoFecharPaciente))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -143,13 +161,13 @@ public class BuscarPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotaoPesquisarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotaoPesquisarPacienteActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void BotaoAdicionarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_BotaoAdicionarPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,13 +205,127 @@ public class BuscarPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton BotaoAdicionarPaciente;
+    private javax.swing.JButton BotaoEditarPaciente;
+    private javax.swing.JButton BotaoExcluirPaciente;
+    private javax.swing.JButton BotaoFecharPaciente;
+    private javax.swing.JButton BotaoPesquisarPaciente;
+    private javax.swing.JTable TabelaPaciente;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtpesquisarPaciente;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoAdicionarPaciente
+     */
+    public javax.swing.JButton getBotaoAdicionarPaciente() {
+        return BotaoAdicionarPaciente;
+    }
+
+    /**
+     * @param BotaoAdicionarPaciente the BotaoAdicionarPaciente to set
+     */
+    public void setBotaoAdicionarPaciente(javax.swing.JButton BotaoAdicionarPaciente) {
+        this.BotaoAdicionarPaciente = BotaoAdicionarPaciente;
+    }
+
+    /**
+     * @return the BotaoEditarPaciente
+     */
+    public javax.swing.JButton getBotaoEditarPaciente() {
+        return BotaoEditarPaciente;
+    }
+
+    /**
+     * @param BotaoEditarPaciente the BotaoEditarPaciente to set
+     */
+    public void setBotaoEditarPaciente(javax.swing.JButton BotaoEditarPaciente) {
+        this.BotaoEditarPaciente = BotaoEditarPaciente;
+    }
+
+    /**
+     * @return the BotaoExcluirPaciente
+     */
+    public javax.swing.JButton getBotaoExcluirPaciente() {
+        return BotaoExcluirPaciente;
+    }
+
+    /**
+     * @param BotaoExcluirPaciente the BotaoExcluirPaciente to set
+     */
+    public void setBotaoExcluirPaciente(javax.swing.JButton BotaoExcluirPaciente) {
+        this.BotaoExcluirPaciente = BotaoExcluirPaciente;
+    }
+
+    /**
+     * @return the BotaoFecharPaciente
+     */
+    public javax.swing.JButton getBotaoFecharPaciente() {
+        return BotaoFecharPaciente;
+    }
+
+    /**
+     * @param BotaoFecharPaciente the BotaoFecharPaciente to set
+     */
+    public void setBotaoFecharPaciente(javax.swing.JButton BotaoFecharPaciente) {
+        this.BotaoFecharPaciente = BotaoFecharPaciente;
+    }
+
+    /**
+     * @return the BotaoPesquisarPaciente
+     */
+    public javax.swing.JButton getBotaoPesquisarPaciente() {
+        return BotaoPesquisarPaciente;
+    }
+
+    /**
+     * @param BotaoPesquisarPaciente the BotaoPesquisarPaciente to set
+     */
+    public void setBotaoPesquisarPaciente(javax.swing.JButton BotaoPesquisarPaciente) {
+        this.BotaoPesquisarPaciente = BotaoPesquisarPaciente;
+    }
+
+    /**
+     * @return the TabelaPaciente
+     */
+    public javax.swing.JTable getTabelaPaciente() {
+        return TabelaPaciente;
+    }
+
+    /**
+     * @param TabelaPaciente the TabelaPaciente to set
+     */
+    public void setTabelaPaciente(javax.swing.JTable TabelaPaciente) {
+        this.TabelaPaciente = TabelaPaciente;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the txtpesquisarPaciente
+     */
+    public javax.swing.JTextField getTxtpesquisarPaciente() {
+        return txtpesquisarPaciente;
+    }
+
+    /**
+     * @param txtpesquisarPaciente the txtpesquisarPaciente to set
+     */
+    public void setTxtpesquisarPaciente(javax.swing.JTextField txtpesquisarPaciente) {
+        this.txtpesquisarPaciente = txtpesquisarPaciente;
+    }
+
+    
 }

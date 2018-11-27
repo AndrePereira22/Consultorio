@@ -12,7 +12,7 @@ package br.com.fundamento.view;
 public class BuscarFornecedor extends javax.swing.JFrame {
 
     /**
-     * Creates new form BuscarFornecedor
+     * Creates new form BuscarConvenio
      */
     public BuscarFornecedor() {
         initComponents();
@@ -27,73 +27,76 @@ public class BuscarFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        txtPesquisarFornecedor = new javax.swing.JTextField();
+        BotaoPesquisarFornecedor = new javax.swing.JButton();
+        BotaoAdicionarFornecedor = new javax.swing.JButton();
+        BotaoEditarFornecedor = new javax.swing.JButton();
+        BotaoExcluirFornecedor = new javax.swing.JButton();
+        BotaoFecharFornecedor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaCoFornecedor = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        jButton6.setText("Pesquisar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BotaoPesquisarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisarFornecedor.setText("Pesquisar");
+        BotaoPesquisarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BotaoPesquisarFornecedorActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        jButton7.setText("Adicionar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAdicionarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        BotaoAdicionarFornecedor.setText("Adicionar");
+        BotaoAdicionarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoAdicionarFornecedorActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        jButton8.setText("Editar");
+        BotaoEditarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        BotaoEditarFornecedor.setText("Editar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Excluir");
+        BotaoExcluirFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoExcluirFornecedor.setText("Excluir");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton10.setText("Fechar");
+        BotaoFecharFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoFecharFornecedor.setText("Fechar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaCoFornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Rg", "Prontuario"
+                "Nome Fantasia", "Razao Social", "Cnpj"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TabelaCoFornecedor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,26 +104,26 @@ public class BuscarFornecedor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(BotaoAdicionarFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(BotaoEditarFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(BotaoExcluirFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
+                .addComponent(BotaoFecharFornecedor)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                        .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)))
+                        .addComponent(BotaoPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,29 +131,29 @@ public class BuscarFornecedor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(BotaoAdicionarFornecedor)
+                    .addComponent(BotaoEditarFornecedor)
+                    .addComponent(BotaoExcluirFornecedor)
+                    .addComponent(BotaoFecharFornecedor))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void BotaoPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_BotaoPesquisarFornecedorActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoAdicionarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoAdicionarFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +181,7 @@ public class BuscarFornecedor extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(BuscarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -188,13 +192,128 @@ public class BuscarFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton BotaoAdicionarFornecedor;
+    private javax.swing.JButton BotaoEditarFornecedor;
+    private javax.swing.JButton BotaoExcluirFornecedor;
+    private javax.swing.JButton BotaoFecharFornecedor;
+    private javax.swing.JButton BotaoPesquisarFornecedor;
+    private javax.swing.JTable TabelaCoFornecedor;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtPesquisarFornecedor;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoAdicionarFornecedor
+     */
+    public javax.swing.JButton getBotaoAdicionarFornecedor() {
+        return BotaoAdicionarFornecedor;
+    }
+
+    /**
+     * @param BotaoAdicionarFornecedor the BotaoAdicionarFornecedor to set
+     */
+    public void setBotaoAdicionarFornecedor(javax.swing.JButton BotaoAdicionarFornecedor) {
+        this.BotaoAdicionarFornecedor = BotaoAdicionarFornecedor;
+    }
+
+    /**
+     * @return the BotaoEditarFornecedor
+     */
+    public javax.swing.JButton getBotaoEditarFornecedor() {
+        return BotaoEditarFornecedor;
+    }
+
+    /**
+     * @param BotaoEditarFornecedor the BotaoEditarFornecedor to set
+     */
+    public void setBotaoEditarFornecedor(javax.swing.JButton BotaoEditarFornecedor) {
+        this.BotaoEditarFornecedor = BotaoEditarFornecedor;
+    }
+
+    /**
+     * @return the BotaoExcluirFornecedor
+     */
+    public javax.swing.JButton getBotaoExcluirFornecedor() {
+        return BotaoExcluirFornecedor;
+    }
+
+    /**
+     * @param BotaoExcluirFornecedor the BotaoExcluirFornecedor to set
+     */
+    public void setBotaoExcluirFornecedor(javax.swing.JButton BotaoExcluirFornecedor) {
+        this.BotaoExcluirFornecedor = BotaoExcluirFornecedor;
+    }
+
+    /**
+     * @return the BotaoFecharFornecedor
+     */
+    public javax.swing.JButton getBotaoFecharFornecedor() {
+        return BotaoFecharFornecedor;
+    }
+
+    /**
+     * @param BotaoFecharFornecedor the BotaoFecharFornecedor to set
+     */
+    public void setBotaoFecharFornecedor(javax.swing.JButton BotaoFecharFornecedor) {
+        this.BotaoFecharFornecedor = BotaoFecharFornecedor;
+    }
+
+    /**
+     * @return the BotaoPesquisarFornecedor
+     */
+    public javax.swing.JButton getBotaoPesquisarFornecedor() {
+        return BotaoPesquisarFornecedor;
+    }
+
+    /**
+     * @param BotaoPesquisarFornecedor the BotaoPesquisarFornecedor to set
+     */
+    public void setBotaoPesquisarFornecedor(javax.swing.JButton BotaoPesquisarFornecedor) {
+        this.BotaoPesquisarFornecedor = BotaoPesquisarFornecedor;
+    }
+
+    /**
+     * @return the TabelaCoFornecedor
+     */
+    public javax.swing.JTable getTabelaCoFornecedor() {
+        return TabelaCoFornecedor;
+    }
+
+    /**
+     * @param TabelaCoFornecedor the TabelaCoFornecedor to set
+     */
+    public void setTabelaCoFornecedor(javax.swing.JTable TabelaCoFornecedor) {
+        this.TabelaCoFornecedor = TabelaCoFornecedor;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the txtPesquisarFornecedor
+     */
+    public javax.swing.JTextField getTxtPesquisarFornecedor() {
+        return txtPesquisarFornecedor;
+    }
+
+    /**
+     * @param txtPesquisarFornecedor the txtPesquisarFornecedor to set
+     */
+    public void setTxtPesquisarFornecedor(javax.swing.JTextField txtPesquisarFornecedor) {
+        this.txtPesquisarFornecedor = txtPesquisarFornecedor;
+    }
+
+    
+
 }

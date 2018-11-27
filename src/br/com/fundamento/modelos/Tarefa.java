@@ -14,8 +14,8 @@ import java.util.Calendar;
 public class Tarefa {
     
    
-    private Calendar data_inicio;
-    private Calendar data_termino ;
+    private String data_inicio;
+    private String data_termino ;
     private String descricao;
     private int prioridade;
     private boolean status;
@@ -23,8 +23,7 @@ public class Tarefa {
     private Funcionario funcionario;
     
     public Tarefa(){
-    data_inicio= Calendar.getInstance();
-    data_termino =Calendar.getInstance();
+
         
     }
 
@@ -87,29 +86,35 @@ public class Tarefa {
         this.funcionario = funcionario;
     }
 
-   
+    /**
+     * @return the data_inicio
+     */
+    public String getData_inicio() {
+        return data_inicio;
+    }
 
     /**
-     * @return the date_termino
+     * @param data_inicio the data_inicio to set
      */
-    public String getDate_terminoString() {
-        String d =  this.data_termino.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_termino.get(Calendar.MONTH)+"/"+ this.data_termino.get(Calendar.YEAR);
-        return d;
+    public void setData_inicio(String data_inicio) {
+        this.data_inicio = data_inicio;
+    }
+
+    /**
+     * @return the data_termino
+     */
+    public String getData_termino() {
+        return data_termino;
+    }
+
+    /**
+     * @param data_termino the data_termino to set
+     */
+    public void setData_termino(String data_termino) {
+        this.data_termino = data_termino;
     }
 
    
-    public void setDate_terminoInt(int dia,int mes, int ano) {
-        this.data_termino.set(ano, mes, dia);
-    }
-    
-    public String getDate_inicioString(){
-        String d =  this.data_inicio.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_inicio.get(Calendar.MONTH)+"/"+ this.data_inicio.get(Calendar.YEAR);
-        return d;
-    }
-    
-     public void setDate_inicioInt(int dia,int mes, int ano) {
-         this.data_inicio.set(ano, mes, dia);
-    }
 
    
     

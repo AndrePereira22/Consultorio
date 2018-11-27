@@ -34,6 +34,7 @@ public class DaoConsultorio implements IDaoConsultorio {
     public int salvarConsultorio(Consultorio consultorio) {
         int id = 0;
         try {
+            int id_contato = new DaoContato().salvarContato(consultorio.getContato());
             this.conexao = SQLConections.getInstance();
             this.statement = conexao.prepareStatement(SQLUtil.Consultorio.INSERT);
             int id_endereco = CommumDao.salvarEndereco(consultorio.getEndereco());
@@ -41,6 +42,7 @@ public class DaoConsultorio implements IDaoConsultorio {
             this.statement.setString(2, consultorio.getRazao_social());
             this.statement.setString(3, consultorio.getCnpj());
             this.statement.setInt(4, id_endereco);
+            this.statement.setInt(5, id_contato);
 
             result = statement.executeQuery();
 
@@ -51,7 +53,8 @@ public class DaoConsultorio implements IDaoConsultorio {
                 DaoList.salvarEstoque(e, id);
             }
             for (Medico m : consultorio.getMedicos()) {
-                DaoList.salvarMedico(m, id);
+                
+                DaoList.salvarMedico(m, id,id_contato);
             }
 
         } catch (SQLException ex) {

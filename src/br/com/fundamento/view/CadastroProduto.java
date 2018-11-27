@@ -37,11 +37,14 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtquantidade = new javax.swing.JFormattedTextField();
         lblquantidade = new javax.swing.JLabel();
         txtvalorunitario = new javax.swing.JFormattedTextField();
-        jTextField1 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        txtobsercacaao = new javax.swing.JTextField();
+        BotaoSalvarProduto = new javax.swing.JButton();
+        BotaoCancelarProduto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -124,21 +127,21 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        txtobsercacaao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observação", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        jButton7.setText("Salvar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoSalvarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+        BotaoSalvarProduto.setText("Salvar");
+        BotaoSalvarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoSalvarProdutoActionPerformed(evt);
             }
         });
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Cancelar");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCancelarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoCancelarProduto.setText("Cancelar");
+        BotaoCancelarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                BotaoCancelarProdutoActionPerformed(evt);
             }
         });
 
@@ -149,13 +152,13 @@ public class CadastroProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(txtobsercacaao)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(BotaoSalvarProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(BotaoCancelarProduto)
                 .addGap(37, 37, 37))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -169,11 +172,11 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtobsercacaao, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton9)))
+                    .addComponent(BotaoSalvarProduto)
+                    .addComponent(BotaoCancelarProduto)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(68, 68, 68)
@@ -200,13 +203,13 @@ public class CadastroProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtvalorunitarioActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void BotaoCancelarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_BotaoCancelarProdutoActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoSalvarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,18 +248,202 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton BotaoCancelarProduto;
+    private javax.swing.JButton BotaoSalvarProduto;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblfornecedor;
     private javax.swing.JLabel lblnomeproduto;
     private javax.swing.JLabel lblquantidade;
     private javax.swing.JLabel lblvalor;
     private javax.swing.JFormattedTextField txtcnpj;
     private javax.swing.JTextField txtnomeproduto;
+    private javax.swing.JTextField txtobsercacaao;
     private javax.swing.JFormattedTextField txtquantidade;
     private javax.swing.JFormattedTextField txtvalorunitario;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoCancelarProduto
+     */
+    public javax.swing.JButton getBotaoCancelarProduto() {
+        return BotaoCancelarProduto;
+    }
+
+    /**
+     * @param BotaoCancelarProduto the BotaoCancelarProduto to set
+     */
+    public void setBotaoCancelarProduto(javax.swing.JButton BotaoCancelarProduto) {
+        this.BotaoCancelarProduto = BotaoCancelarProduto;
+    }
+
+    /**
+     * @return the BotaoSalvarProduto
+     */
+    public javax.swing.JButton getBotaoSalvarProduto() {
+        return BotaoSalvarProduto;
+    }
+
+    /**
+     * @param BotaoSalvarProduto the BotaoSalvarProduto to set
+     */
+    public void setBotaoSalvarProduto(javax.swing.JButton BotaoSalvarProduto) {
+        this.BotaoSalvarProduto = BotaoSalvarProduto;
+    }
+
+    /**
+     * @return the jLabel28
+     */
+    public javax.swing.JLabel getjLabel28() {
+        return jLabel28;
+    }
+
+    /**
+     * @param jLabel28 the jLabel28 to set
+     */
+    public void setjLabel28(javax.swing.JLabel jLabel28) {
+        this.jLabel28 = jLabel28;
+    }
+
+    /**
+     * @return the jPanel1
+     */
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    /**
+     * @param jPanel1 the jPanel1 to set
+     */
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    /**
+     * @return the lblfornecedor
+     */
+    public javax.swing.JLabel getLblfornecedor() {
+        return lblfornecedor;
+    }
+
+    /**
+     * @param lblfornecedor the lblfornecedor to set
+     */
+    public void setLblfornecedor(javax.swing.JLabel lblfornecedor) {
+        this.lblfornecedor = lblfornecedor;
+    }
+
+    /**
+     * @return the lblnomeproduto
+     */
+    public javax.swing.JLabel getLblnomeproduto() {
+        return lblnomeproduto;
+    }
+
+    /**
+     * @param lblnomeproduto the lblnomeproduto to set
+     */
+    public void setLblnomeproduto(javax.swing.JLabel lblnomeproduto) {
+        this.lblnomeproduto = lblnomeproduto;
+    }
+
+    /**
+     * @return the lblquantidade
+     */
+    public javax.swing.JLabel getLblquantidade() {
+        return lblquantidade;
+    }
+
+    /**
+     * @param lblquantidade the lblquantidade to set
+     */
+    public void setLblquantidade(javax.swing.JLabel lblquantidade) {
+        this.lblquantidade = lblquantidade;
+    }
+
+    /**
+     * @return the lblvalor
+     */
+    public javax.swing.JLabel getLblvalor() {
+        return lblvalor;
+    }
+
+    /**
+     * @param lblvalor the lblvalor to set
+     */
+    public void setLblvalor(javax.swing.JLabel lblvalor) {
+        this.lblvalor = lblvalor;
+    }
+
+    /**
+     * @return the txtcnpj
+     */
+    public javax.swing.JFormattedTextField getTxtcnpj() {
+        return txtcnpj;
+    }
+
+    /**
+     * @param txtcnpj the txtcnpj to set
+     */
+    public void setTxtcnpj(javax.swing.JFormattedTextField txtcnpj) {
+        this.txtcnpj = txtcnpj;
+    }
+
+    /**
+     * @return the txtnomeproduto
+     */
+    public javax.swing.JTextField getTxtnomeproduto() {
+        return txtnomeproduto;
+    }
+
+    /**
+     * @param txtnomeproduto the txtnomeproduto to set
+     */
+    public void setTxtnomeproduto(javax.swing.JTextField txtnomeproduto) {
+        this.txtnomeproduto = txtnomeproduto;
+    }
+
+    /**
+     * @return the txtobsercacaao
+     */
+    public javax.swing.JTextField getTxtobsercacaao() {
+        return txtobsercacaao;
+    }
+
+    /**
+     * @param txtobsercacaao the txtobsercacaao to set
+     */
+    public void setTxtobsercacaao(javax.swing.JTextField txtobsercacaao) {
+        this.txtobsercacaao = txtobsercacaao;
+    }
+
+    /**
+     * @return the txtquantidade
+     */
+    public javax.swing.JFormattedTextField getTxtquantidade() {
+        return txtquantidade;
+    }
+
+    /**
+     * @param txtquantidade the txtquantidade to set
+     */
+    public void setTxtquantidade(javax.swing.JFormattedTextField txtquantidade) {
+        this.txtquantidade = txtquantidade;
+    }
+
+    /**
+     * @return the txtvalorunitario
+     */
+    public javax.swing.JFormattedTextField getTxtvalorunitario() {
+        return txtvalorunitario;
+    }
+
+    /**
+     * @param txtvalorunitario the txtvalorunitario to set
+     */
+    public void setTxtvalorunitario(javax.swing.JFormattedTextField txtvalorunitario) {
+        this.txtvalorunitario = txtvalorunitario;
+    }
+
+
 }

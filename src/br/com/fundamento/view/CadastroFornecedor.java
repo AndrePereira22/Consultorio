@@ -28,8 +28,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jSpinner1 = new javax.swing.JSpinner();
-        jLabel1 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
+        Foto = new javax.swing.JLabel();
+        BotaoSelecionar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         lblnome = new javax.swing.JLabel();
         txtrazao = new javax.swing.JTextField();
@@ -39,15 +39,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         txtrazao1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         txtcidade = new javax.swing.JTextField();
-        txtlogradouro = new javax.swing.JTextField();
+        txtrua = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtnumero = new javax.swing.JTextField();
         txtbairro = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cbuf = new javax.swing.JComboBox();
+        txtUf = new javax.swing.JComboBox();
         lblendereco = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtcep = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         txtemail = new javax.swing.JTextField();
         lblemail = new javax.swing.JLabel();
@@ -55,14 +57,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         lbltelefone = new javax.swing.JLabel();
         txtcelular = new javax.swing.JFormattedTextField();
         lbltelefone1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BotaoSalvarFornecedor = new javax.swing.JButton();
+        BotaoCancelarrFornecedor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
+        Foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
 
-        jButton8.setText("Selecionar Foto");
+        BotaoSelecionar.setText("Selecionar Foto");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -139,9 +144,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         jLabel6.setText("UF:");
 
-        cbuf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        txtUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         lblendereco.setText("Cidade:");
+
+        jLabel2.setText("Cep:");
+
+        try {
+            txtcep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,10 +168,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(lblendereco))
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtlogradouro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtrua, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtnumero)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addComponent(txtbairro))
@@ -167,7 +184,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -175,13 +192,15 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtlogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtrua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtnumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(txtcep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(txtbairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -190,7 +209,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(lblendereco, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(cbuf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -259,14 +278,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        jButton4.setText("Salvar");
+        BotaoSalvarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+        BotaoSalvarFornecedor.setText("Salvar");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCancelarrFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoCancelarrFornecedor.setText("Cancelar");
+        BotaoCancelarrFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotaoCancelarrFornecedorActionPerformed(evt);
             }
         });
 
@@ -284,15 +303,15 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BotaoSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(BotaoSalvarFornecedor)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(BotaoCancelarrFornecedor)
                         .addGap(45, 45, 45))))
         );
         layout.setVerticalGroup(
@@ -304,17 +323,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Foto, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)))
+                        .addComponent(BotaoSelecionar)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton1))
+                    .addComponent(BotaoSalvarFornecedor)
+                    .addComponent(BotaoCancelarrFornecedor))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -350,9 +369,9 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotaoCancelarrFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarrFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotaoCancelarrFornecedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -391,11 +410,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox cbuf;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton BotaoCancelarrFornecedor;
+    private javax.swing.JButton BotaoSalvarFornecedor;
+    private javax.swing.JButton BotaoSelecionar;
+    private javax.swing.JLabel Foto;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -411,15 +430,468 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel lblnome;
     private javax.swing.JLabel lbltelefone;
     private javax.swing.JLabel lbltelefone1;
+    private javax.swing.JComboBox txtUf;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcelular;
+    private javax.swing.JFormattedTextField txtcep;
     private javax.swing.JTextField txtcidade;
     private javax.swing.JFormattedTextField txtcnpj;
     private javax.swing.JTextField txtemail;
-    private javax.swing.JTextField txtlogradouro;
     private javax.swing.JTextField txtnumero;
     private javax.swing.JTextField txtrazao;
     private javax.swing.JTextField txtrazao1;
+    private javax.swing.JTextField txtrua;
     private javax.swing.JFormattedTextField txttelefone;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoCancelarrFornecedor
+     */
+    public javax.swing.JButton getBotaoCancelarrFornecedor() {
+        return BotaoCancelarrFornecedor;
+    }
+
+    /**
+     * @param BotaoCancelarrFornecedor the BotaoCancelarrFornecedor to set
+     */
+    public void setBotaoCancelarrFornecedor(javax.swing.JButton BotaoCancelarrFornecedor) {
+        this.BotaoCancelarrFornecedor = BotaoCancelarrFornecedor;
+    }
+
+    /**
+     * @return the BotaoSalvarFornecedor
+     */
+    public javax.swing.JButton getBotaoSalvarFornecedor() {
+        return BotaoSalvarFornecedor;
+    }
+
+    /**
+     * @param BotaoSalvarFornecedor the BotaoSalvarFornecedor to set
+     */
+    public void setBotaoSalvarFornecedor(javax.swing.JButton BotaoSalvarFornecedor) {
+        this.BotaoSalvarFornecedor = BotaoSalvarFornecedor;
+    }
+
+    /**
+     * @return the BotaoSelecionar
+     */
+    public javax.swing.JButton getBotaoSelecionar() {
+        return BotaoSelecionar;
+    }
+
+    /**
+     * @param BotaoSelecionar the BotaoSelecionar to set
+     */
+    public void setBotaoSelecionar(javax.swing.JButton BotaoSelecionar) {
+        this.BotaoSelecionar = BotaoSelecionar;
+    }
+
+    /**
+     * @return the Foto
+     */
+    public javax.swing.JLabel getFoto() {
+        return Foto;
+    }
+
+    /**
+     * @param Foto the Foto to set
+     */
+    public void setFoto(javax.swing.JLabel Foto) {
+        this.Foto = Foto;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    /**
+     * @return the jLabel3
+     */
+    public javax.swing.JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    /**
+     * @param jLabel3 the jLabel3 to set
+     */
+    public void setjLabel3(javax.swing.JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    /**
+     * @return the jLabel4
+     */
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    /**
+     * @param jLabel4 the jLabel4 to set
+     */
+    public void setjLabel4(javax.swing.JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    /**
+     * @return the jLabel5
+     */
+    public javax.swing.JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    /**
+     * @param jLabel5 the jLabel5 to set
+     */
+    public void setjLabel5(javax.swing.JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    /**
+     * @return the jLabel6
+     */
+    public javax.swing.JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    /**
+     * @param jLabel6 the jLabel6 to set
+     */
+    public void setjLabel6(javax.swing.JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    /**
+     * @return the jLabel7
+     */
+    public javax.swing.JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    /**
+     * @param jLabel7 the jLabel7 to set
+     */
+    public void setjLabel7(javax.swing.JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+    /**
+     * @return the jPanel1
+     */
+    public javax.swing.JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    /**
+     * @param jPanel1 the jPanel1 to set
+     */
+    public void setjPanel1(javax.swing.JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    /**
+     * @return the jPanel2
+     */
+    public javax.swing.JPanel getjPanel2() {
+        return jPanel2;
+    }
+
+    /**
+     * @param jPanel2 the jPanel2 to set
+     */
+    public void setjPanel2(javax.swing.JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
+    }
+
+    /**
+     * @return the jPanel3
+     */
+    public javax.swing.JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    /**
+     * @param jPanel3 the jPanel3 to set
+     */
+    public void setjPanel3(javax.swing.JPanel jPanel3) {
+        this.jPanel3 = jPanel3;
+    }
+
+    /**
+     * @return the jSpinner1
+     */
+    public javax.swing.JSpinner getjSpinner1() {
+        return jSpinner1;
+    }
+
+    /**
+     * @param jSpinner1 the jSpinner1 to set
+     */
+    public void setjSpinner1(javax.swing.JSpinner jSpinner1) {
+        this.jSpinner1 = jSpinner1;
+    }
+
+    /**
+     * @return the lblcnpj
+     */
+    public javax.swing.JLabel getLblcnpj() {
+        return lblcnpj;
+    }
+
+    /**
+     * @param lblcnpj the lblcnpj to set
+     */
+    public void setLblcnpj(javax.swing.JLabel lblcnpj) {
+        this.lblcnpj = lblcnpj;
+    }
+
+    /**
+     * @return the lblemail
+     */
+    public javax.swing.JLabel getLblemail() {
+        return lblemail;
+    }
+
+    /**
+     * @param lblemail the lblemail to set
+     */
+    public void setLblemail(javax.swing.JLabel lblemail) {
+        this.lblemail = lblemail;
+    }
+
+    /**
+     * @return the lblendereco
+     */
+    public javax.swing.JLabel getLblendereco() {
+        return lblendereco;
+    }
+
+    /**
+     * @param lblendereco the lblendereco to set
+     */
+    public void setLblendereco(javax.swing.JLabel lblendereco) {
+        this.lblendereco = lblendereco;
+    }
+
+    /**
+     * @return the lblnome
+     */
+    public javax.swing.JLabel getLblnome() {
+        return lblnome;
+    }
+
+    /**
+     * @param lblnome the lblnome to set
+     */
+    public void setLblnome(javax.swing.JLabel lblnome) {
+        this.lblnome = lblnome;
+    }
+
+    /**
+     * @return the lbltelefone
+     */
+    public javax.swing.JLabel getLbltelefone() {
+        return lbltelefone;
+    }
+
+    /**
+     * @param lbltelefone the lbltelefone to set
+     */
+    public void setLbltelefone(javax.swing.JLabel lbltelefone) {
+        this.lbltelefone = lbltelefone;
+    }
+
+    /**
+     * @return the lbltelefone1
+     */
+    public javax.swing.JLabel getLbltelefone1() {
+        return lbltelefone1;
+    }
+
+    /**
+     * @param lbltelefone1 the lbltelefone1 to set
+     */
+    public void setLbltelefone1(javax.swing.JLabel lbltelefone1) {
+        this.lbltelefone1 = lbltelefone1;
+    }
+
+    /**
+     * @return the txtUf
+     */
+    public javax.swing.JComboBox getTxtUf() {
+        return txtUf;
+    }
+
+    /**
+     * @param txtUf the txtUf to set
+     */
+    public void setTxtUf(javax.swing.JComboBox txtUf) {
+        this.txtUf = txtUf;
+    }
+
+    /**
+     * @return the txtbairro
+     */
+    public javax.swing.JTextField getTxtbairro() {
+        return txtbairro;
+    }
+
+    /**
+     * @param txtbairro the txtbairro to set
+     */
+    public void setTxtbairro(javax.swing.JTextField txtbairro) {
+        this.txtbairro = txtbairro;
+    }
+
+    /**
+     * @return the txtcelular
+     */
+    public javax.swing.JFormattedTextField getTxtcelular() {
+        return txtcelular;
+    }
+
+    /**
+     * @param txtcelular the txtcelular to set
+     */
+    public void setTxtcelular(javax.swing.JFormattedTextField txtcelular) {
+        this.txtcelular = txtcelular;
+    }
+
+    /**
+     * @return the txtcep
+     */
+    public javax.swing.JFormattedTextField getTxtcep() {
+        return txtcep;
+    }
+
+    /**
+     * @param txtcep the txtcep to set
+     */
+    public void setTxtcep(javax.swing.JFormattedTextField txtcep) {
+        this.txtcep = txtcep;
+    }
+
+    /**
+     * @return the txtcidade
+     */
+    public javax.swing.JTextField getTxtcidade() {
+        return txtcidade;
+    }
+
+    /**
+     * @param txtcidade the txtcidade to set
+     */
+    public void setTxtcidade(javax.swing.JTextField txtcidade) {
+        this.txtcidade = txtcidade;
+    }
+
+    /**
+     * @return the txtcnpj
+     */
+    public javax.swing.JFormattedTextField getTxtcnpj() {
+        return txtcnpj;
+    }
+
+    /**
+     * @param txtcnpj the txtcnpj to set
+     */
+    public void setTxtcnpj(javax.swing.JFormattedTextField txtcnpj) {
+        this.txtcnpj = txtcnpj;
+    }
+
+    /**
+     * @return the txtemail
+     */
+    public javax.swing.JTextField getTxtemail() {
+        return txtemail;
+    }
+
+    /**
+     * @param txtemail the txtemail to set
+     */
+    public void setTxtemail(javax.swing.JTextField txtemail) {
+        this.txtemail = txtemail;
+    }
+
+    /**
+     * @return the txtnumero
+     */
+    public javax.swing.JTextField getTxtnumero() {
+        return txtnumero;
+    }
+
+    /**
+     * @param txtnumero the txtnumero to set
+     */
+    public void setTxtnumero(javax.swing.JTextField txtnumero) {
+        this.txtnumero = txtnumero;
+    }
+
+    /**
+     * @return the txtrazao
+     */
+    public javax.swing.JTextField getTxtrazao() {
+        return txtrazao;
+    }
+
+    /**
+     * @param txtrazao the txtrazao to set
+     */
+    public void setTxtrazao(javax.swing.JTextField txtrazao) {
+        this.txtrazao = txtrazao;
+    }
+
+    /**
+     * @return the txtrazao1
+     */
+    public javax.swing.JTextField getTxtrazao1() {
+        return txtrazao1;
+    }
+
+    /**
+     * @param txtrazao1 the txtrazao1 to set
+     */
+    public void setTxtrazao1(javax.swing.JTextField txtrazao1) {
+        this.txtrazao1 = txtrazao1;
+    }
+
+    /**
+     * @return the txtrua
+     */
+    public javax.swing.JTextField getTxtrua() {
+        return txtrua;
+    }
+
+    /**
+     * @param txtrua the txtrua to set
+     */
+    public void setTxtrua(javax.swing.JTextField txtrua) {
+        this.txtrua = txtrua;
+    }
+
+    /**
+     * @return the txttelefone
+     */
+    public javax.swing.JFormattedTextField getTxttelefone() {
+        return txttelefone;
+    }
+
+    /**
+     * @param txttelefone the txttelefone to set
+     */
+    public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
+        this.txttelefone = txttelefone;
+    }
+
+
+
 }

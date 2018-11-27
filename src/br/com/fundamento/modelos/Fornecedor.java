@@ -20,7 +20,7 @@ public class Fornecedor {
     
     private Endereco endereco;
     
-    private  List<Contato> contatos;
+    private Contato contato;
     private List<Produto>  produtos;
     
    
@@ -86,20 +86,6 @@ public class Fornecedor {
     }
 
     /**
-     * @return the contatos
-     */
-    public List<Contato> getContatos() {
-        return contatos;
-    }
-
-    /**
-     * @param contatos the contatos to set
-     */
-    public void setContatos(List<Contato> contatos) {
-        this.contatos = contatos;
-    }
-
-    /**
      * @return the produtos
      */
     public List<Produto> getProdutos() {
@@ -111,6 +97,20 @@ public class Fornecedor {
      */
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    /**
+     * @return the contato
+     */
+    public Contato getContato() {
+        return contato;
+    }
+
+    /**
+     * @param contato the contato to set
+     */
+    public void setContato(Contato contato) {
+        this.contato = contato;
     }
     
 }

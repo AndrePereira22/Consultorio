@@ -11,7 +11,6 @@ import br.com.fundamento.modelos.Especializacao;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Medico;
-import br.com.fundamento.modelos.Municipio;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
@@ -82,23 +81,6 @@ public class DaoList {
         }
     }
 
-    public static void salvarMunicipio(Municipio municipio, int estado_id) {
-
-        try {
-
-            conexao = SQLConections.getInstance();
-
-            statement = conexao.prepareStatement(SQLUtil.Municipio.INSERT);
-            statement.setString(1, municipio.getDescricao());
-            statement.setInt(2, estado_id);
-
-            statement.execute();
-            statement.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
 
     public static void salvarParcelas(Parcela parcela, int id_pagamento) {
 
@@ -133,7 +115,7 @@ public class DaoList {
             statement.setString(3, pagamento.getForma_pagamento());
             statement.setDouble(4, pagamento.getQuantidade_parcelas());
             statement.setInt(5, id_caixa);
-            statement.setString(6, pagamento.getDate_vencimentoString());
+            statement.setString(6, pagamento.getData_vencimento());
 
             statement.execute();
             statement.close();
@@ -162,21 +144,23 @@ public class DaoList {
         }
     }
 
-    public static void salvarPaciente(Paciente paciente, int id_convenio, int id_prontuario, int id_endereco) {
+    public static void salvarPaciente(Paciente paciente, int id_convenio, int id_prontuario, int id_endereco , int id_contato) {
 
         try {
 
+            
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Paciente.INSERT);
             statement.setString(1, paciente.getNome());
             statement.setString(2, paciente.getCpf());
             statement.setString(3, paciente.getSexo());
-            statement.setString(4, paciente.getData_nascimentoString());
-            statement.setString(5, paciente.getDate_cadastroString());
+            statement.setString(4, paciente.getData_nascimento());
+            statement.setString(5, paciente.getData_cadastro());
             statement.setInt(6, paciente.getRg());
             statement.setInt(7, id_convenio);
             statement.setInt(8, id_prontuario);
             statement.setInt(9, id_endereco);
+            statement.setInt(10, id_contato);
             statement.execute();
             statement.close();
 
@@ -185,7 +169,7 @@ public class DaoList {
         }
     }
 
-    public static void salvarFuncionario(Funcionario funcionario, int id_caixa, int id_login) {
+    public static void salvarFuncionario(Funcionario funcionario, int id_caixa, int id_login, int id_contato) {
 
         try {
 
@@ -193,11 +177,12 @@ public class DaoList {
             statement = conexao.prepareStatement(SQLUtil.Funcionario.INSERT);
             statement.setString(1, funcionario.getNome());
             statement.setInt(2, id_caixa);
-            statement.setInt(3, funcionario.getCpf());
+            statement.setString(3, funcionario.getCpf());
             statement.setDouble(4, funcionario.getSalario());
             statement.setString(5, funcionario.getFuncao());
-            statement.setString(6, funcionario.getDate_NascimentoString());
+            statement.setString(6, funcionario.getData_nascimento());
             statement.setInt(7, id_login);
+            statement.setInt(8, id_contato);
 
             statement.execute();
             statement.close();
@@ -218,8 +203,8 @@ public class DaoList {
             statement.setInt(2, tarefa.getPrioridade());
             statement.setBoolean(3, tarefa.isStatus());
             statement.setInt(4, id_funcionario);
-            statement.setString(5, tarefa.getDate_inicioString());
-            statement.setString(6, tarefa.getDate_terminoString());
+            statement.setString(5, tarefa.getData_inicio());
+            statement.setString(6, tarefa.getData_termino());
 
             statement.execute();
             statement.close();
@@ -261,7 +246,7 @@ public class DaoList {
             statement.setInt(4, id_medico);
             statement.setInt(5, id_consultorio);
             statement.setInt(6, id_pagamento);
-            statement.setString(7, consulta.getDate_horsString());
+            statement.setString(7, consulta.getData_hora());
 
             statement.execute();
             statement.close();
@@ -289,7 +274,7 @@ public class DaoList {
         }
     }
 
-    public static void salvarMedico(Medico medico, int id_consultorio) {
+    public static void salvarMedico(Medico medico, int id_consultorio, int id_contato) {
 
         try {
 
@@ -301,9 +286,10 @@ public class DaoList {
             statement.setInt(3, medico.getRg());
             statement.setInt(4, id_consultorio);
             statement.setString(5, medico.getCpf());
-            statement.setString(6, medico.getDate_nascimentoString());
-            statement.setString(7, medico.getDate_cadastroString());
+            statement.setString(6, medico.getData_nascimento());
+            statement.setString(7, medico.getData_cadastro());
             statement.setInt(8, id_login);
+            statement.setInt(9, id_contato);
 
             statement.execute();
             statement.close();
@@ -328,7 +314,7 @@ public class DaoList {
             statement.setInt(4, id_medico);
             statement.setInt(5, id_consultorio);
             statement.setInt(6, id_pagamento);
-            statement.setString(7, consulta.getDate_horsString());
+            statement.setString(7, consulta.getData_hora());
 
             statement.execute();
             statement.close();

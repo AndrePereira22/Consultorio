@@ -5,7 +5,7 @@
  */
 package br.com.fundamento.business;
 
-import br.com.fundamento.dao.DaoCliente;
+
 import br.com.fundamento.dao.DaoTarefa;
 import br.com.fundamento.dao.IDaoTarefa;
 import br.com.fundamento.modelos.Tarefa;

@@ -20,7 +20,7 @@ public class Caixa {
     private double valor_fechamento;
     private double valor_receita;
     private boolean  status;
-    private Calendar  data;
+    private String  data;
     private List<Funcionario>  funcionarios;       
     
     private List<Pagamento> pagamentos;
@@ -29,7 +29,7 @@ public class Caixa {
             
     public Caixa(){
         
-        this.data = Calendar.getInstance();
+      
     }
 
     /**
@@ -102,20 +102,7 @@ public class Caixa {
         this.status = status;
     }
 
-    /**
-     * @return the data
-     */
-    public String getData() {
-        String d =  this.data.get(Calendar.DAY_OF_MONTH) +"/"+ this.data.get(Calendar.MONTH)+"/"+ this.data.get(Calendar.YEAR);
-        return d;
-    }
-
-    /**
-     * @param data the data to set
-     */
-    public void setData(int dia,int mes, int ano) {
-         this.data.set(ano, mes, dia);
-    }
+    
 
     /**
      * @return the pagamentos
@@ -143,6 +130,20 @@ public class Caixa {
      */
     public void setFuncionarios(List<Funcionario> funcionario) {
         this.funcionarios = funcionario;
+    }
+
+    /**
+     * @return the data
+     */
+    public String getData() {
+        return data;
+    }
+
+    /**
+     * @param data the data to set
+     */
+    public void setData(String data) {
+        this.data = data;
     }
 
 

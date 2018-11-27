@@ -27,73 +27,76 @@ public class BuscarFuncionario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        txtPesquisar = new javax.swing.JTextField();
+        BotaoPesquisar = new javax.swing.JButton();
+        BotaoAdicionarFuncionario = new javax.swing.JButton();
+        BotaoEditarFuncionario = new javax.swing.JButton();
+        BotaoExcluirFuncionario = new javax.swing.JButton();
+        BotaoFecharFuncionario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaFunionario = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        jButton6.setText("Pesquisar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BotaoPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisar.setText("Pesquisar");
+        BotaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BotaoPesquisarActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        jButton7.setText("Adicionar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAdicionarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        BotaoAdicionarFuncionario.setText("Adicionar");
+        BotaoAdicionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoAdicionarFuncionarioActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        jButton8.setText("Editar");
+        BotaoEditarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        BotaoEditarFuncionario.setText("Editar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Excluir");
+        BotaoExcluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoExcluirFuncionario.setText("Excluir");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton10.setText("Fechar");
+        BotaoFecharFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoFecharFuncionario.setText("Fechar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaFunionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Rg", "Prontuario"
+                "Nome", "CPF", "Salario", "Função", "Data Nascimento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TabelaFunionario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,13 +104,13 @@ public class BuscarFuncionario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(BotaoAdicionarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(BotaoEditarFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(BotaoExcluirFuncionario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
+                .addComponent(BotaoFecharFuncionario)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,10 +120,10 @@ public class BuscarFuncionario extends javax.swing.JFrame {
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                        .addComponent(txtPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)))
+                        .addComponent(BotaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,14 +131,14 @@ public class BuscarFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(BotaoAdicionarFuncionario)
+                    .addComponent(BotaoEditarFuncionario)
+                    .addComponent(BotaoExcluirFuncionario)
+                    .addComponent(BotaoFecharFuncionario))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -144,13 +147,13 @@ public class BuscarFuncionario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void BotaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_BotaoPesquisarActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoAdicionarFuncionarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,13 +191,125 @@ public class BuscarFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton BotaoAdicionarFuncionario;
+    private javax.swing.JButton BotaoEditarFuncionario;
+    private javax.swing.JButton BotaoExcluirFuncionario;
+    private javax.swing.JButton BotaoFecharFuncionario;
+    private javax.swing.JButton BotaoPesquisar;
+    private javax.swing.JTable TabelaFunionario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoAdicionarFuncionario
+     */
+    public javax.swing.JButton getBotaoAdicionarFuncionario() {
+        return BotaoAdicionarFuncionario;
+    }
+
+    /**
+     * @param BotaoAdicionarFuncionario the BotaoAdicionarFuncionario to set
+     */
+    public void setBotaoAdicionarFuncionario(javax.swing.JButton BotaoAdicionarFuncionario) {
+        this.BotaoAdicionarFuncionario = BotaoAdicionarFuncionario;
+    }
+
+    /**
+     * @return the BotaoEditarFuncionario
+     */
+    public javax.swing.JButton getBotaoEditarFuncionario() {
+        return BotaoEditarFuncionario;
+    }
+
+    /**
+     * @param BotaoEditarFuncionario the BotaoEditarFuncionario to set
+     */
+    public void setBotaoEditarFuncionario(javax.swing.JButton BotaoEditarFuncionario) {
+        this.BotaoEditarFuncionario = BotaoEditarFuncionario;
+    }
+
+    /**
+     * @return the BotaoExcluirFuncionario
+     */
+    public javax.swing.JButton getBotaoExcluirFuncionario() {
+        return BotaoExcluirFuncionario;
+    }
+
+    /**
+     * @param BotaoExcluirFuncionario the BotaoExcluirFuncionario to set
+     */
+    public void setBotaoExcluirFuncionario(javax.swing.JButton BotaoExcluirFuncionario) {
+        this.BotaoExcluirFuncionario = BotaoExcluirFuncionario;
+    }
+
+    /**
+     * @return the BotaoFecharFuncionario
+     */
+    public javax.swing.JButton getBotaoFecharFuncionario() {
+        return BotaoFecharFuncionario;
+    }
+
+    /**
+     * @param BotaoFecharFuncionario the BotaoFecharFuncionario to set
+     */
+    public void setBotaoFecharFuncionario(javax.swing.JButton BotaoFecharFuncionario) {
+        this.BotaoFecharFuncionario = BotaoFecharFuncionario;
+    }
+
+    /**
+     * @return the BotaoPesquisar
+     */
+    public javax.swing.JButton getBotaoPesquisar() {
+        return BotaoPesquisar;
+    }
+
+    /**
+     * @param BotaoPesquisar the BotaoPesquisar to set
+     */
+    public void setBotaoPesquisar(javax.swing.JButton BotaoPesquisar) {
+        this.BotaoPesquisar = BotaoPesquisar;
+    }
+
+    /**
+     * @return the TabelaFunionario
+     */
+    public javax.swing.JTable getTabelaFunionario() {
+        return TabelaFunionario;
+    }
+
+    /**
+     * @param TabelaFunionario the TabelaFunionario to set
+     */
+    public void setTabelaFunionario(javax.swing.JTable TabelaFunionario) {
+        this.TabelaFunionario = TabelaFunionario;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the txtPesquisar
+     */
+    public javax.swing.JTextField getTxtPesquisar() {
+        return txtPesquisar;
+    }
+
+    /**
+     * @param txtPesquisar the txtPesquisar to set
+     */
+    public void setTxtPesquisar(javax.swing.JTextField txtPesquisar) {
+        this.txtPesquisar = txtPesquisar;
+    }
 }

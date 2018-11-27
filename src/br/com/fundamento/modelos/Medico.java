@@ -16,25 +16,24 @@ import java.util.List;
 public class Medico {
     
     private String nome;
-    private Calendar data_nascimento;
-    private Calendar data_cadastro;
+    private String data_nascimento;
+    private String data_cadastro;
     private String cpf;
     private String sexo;
     private int rg;
     
     private List<Consulta> consultas;
-    private List<Contato> contatos;
     private List<Especializacao> especializacoes;
     private Consultorio consultorio;
     
     private Login login;
     private Endereco endereco;
+    private Contato contato;
     
     
     
     public Medico (){
-        this.data_nascimento = Calendar.getInstance();
-        this.data_cadastro = Calendar.getInstance();
+        
         
     }
 
@@ -109,19 +108,7 @@ public class Medico {
         this.consultas = consultas;
     }
 
-    /**
-     * @return the contatos
-     */
-    public List<Contato> getContatos() {
-        return contatos;
-    }
-
-    /**
-     * @param contatos the contatos to set
-     */
-    public void setContatos(List<Contato> contatos) {
-        this.contatos = contatos;
-    }
+   
 
     /**
      * @return the especializacoes
@@ -138,26 +125,6 @@ public class Medico {
     }
 
  
-
-     public String getDate_cadastroString() {
-        String d =  this.data_cadastro.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_cadastro.get(Calendar.MONTH)+"/"+ this.data_cadastro.get(Calendar.YEAR);
-        return d;
-    }
-
-   
-    public void setDate_cadastroInt(int dia,int mes, int ano) {
-        this.data_cadastro.set(ano, mes, dia);
-    }
-    
-     public String getDate_nascimentoString() {
-        String d =  this.data_nascimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_nascimento.get(Calendar.MONTH)+"/"+ this.data_nascimento.get(Calendar.YEAR);
-        return d;
-    }
-
-   
-    public void setDate_nascimentoInt(int dia,int mes, int ano) {
-        this.data_nascimento.set(ano, mes, dia);
-    }
 
     /**
      * @return the consultorio
@@ -199,6 +166,48 @@ public class Medico {
      */
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    /**
+     * @return the contato
+     */
+    public Contato getContato() {
+        return contato;
+    }
+
+    /**
+     * @param contato the contato to set
+     */
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+    /**
+     * @return the data_nascimento
+     */
+    public String getData_nascimento() {
+        return data_nascimento;
+    }
+
+    /**
+     * @param data_nascimento the data_nascimento to set
+     */
+    public void setData_nascimento(String data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    /**
+     * @return the data_cadastro
+     */
+    public String getData_cadastro() {
+        return data_cadastro;
+    }
+
+    /**
+     * @param data_cadastro the data_cadastro to set
+     */
+    public void setData_cadastro(String data_cadastro) {
+        this.data_cadastro = data_cadastro;
     }
             
     

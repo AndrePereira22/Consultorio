@@ -36,7 +36,7 @@ public class DaoPaciente implements IDaoPaciente {
         int id = 0;
         try {
 
-            int id_convenio = new DaoConvenio().salvarConvenio(paciente.getConvenio());
+            int id_contato = new DaoContato().salvarContato(paciente.getContato());
             int id_prontuario = new DaoProntuario().salvarProntuario(paciente.getProntuario());
             int id_endereco = CommumDao.salvarEndereco(paciente.getEndereco());
 
@@ -45,12 +45,13 @@ public class DaoPaciente implements IDaoPaciente {
             this.statement.setString(1, paciente.getNome());
             this.statement.setString(2, paciente.getCpf());
             this.statement.setString(3, paciente.getSexo());
-            this.statement.setString(4, paciente.getData_nascimentoString());
-            this.statement.setString(5, paciente.getDate_cadastroString());
+            this.statement.setString(4, paciente.getData_nascimento());
+            this.statement.setString(5, paciente.getData_cadastro());
             this.statement.setInt(6, paciente.getRg());
-            this.statement.setInt(7, id_convenio);
-            this.statement.setInt(8, id_prontuario);
-            this.statement.setInt(9, id_endereco);
+            this.statement.setInt(7, id_prontuario);
+            this.statement.setInt(8, id_endereco);
+            this.statement.setInt(9, id_contato);  
+            this.statement.setString(10, paciente.getConvenio());
 
             result = statement.executeQuery();
 
@@ -79,11 +80,13 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente = new Paciente();
                 
                 paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
-                // paciente.setDate_nascimentoInt(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
-                // paciente.setDate_cadastroInt(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO,));
+                paciente.setData_nascimento(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
+                paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
                 paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
                 paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
+                
 
             }
             this.conexao.close();
@@ -106,11 +109,12 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente = new Paciente();
                 
              paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
-                // paciente.setDate_nascimentoInt(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
-                // paciente.setDate_cadastroInt(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO,));
+                paciente.setData_nascimento(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
+                paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
                 paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
                 paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                  paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
                 pacientes.add(paciente);
             }
@@ -122,7 +126,34 @@ public class DaoPaciente implements IDaoPaciente {
         return pacientes;
     
     }
+ public List<Paciente> getPorBusca(String busca) {
+    List<Paciente> pacientes = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Paciente.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Paciente paciente;
+            while (result.next()) {
+                paciente = new Paciente();
+                
+             paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
+                paciente.setData_nascimento(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
+                paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
+                paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
+                paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
+                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
+                
+                pacientes.add(paciente);
+            }
+            this.conexao.close();
 
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pacientes;
+    
+    }
     @Override
     public void editarPaciente(Paciente paciente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

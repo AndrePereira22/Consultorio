@@ -27,21 +27,24 @@ public class agendamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCalendar1 = new com.toedter.calendar.JCalendar();
+        calendario = new com.toedter.calendar.JCalendar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        TabelaAgendamento = new javax.swing.JTable();
+        BotaoAdicionarAgendamento = new javax.swing.JButton();
+        BotaoEditarAgendamento = new javax.swing.JButton();
+        BotaoExcluirAgendamento = new javax.swing.JButton();
+        BotaoFecharAgendamento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jCalendar1.setBackground(new java.awt.Color(51, 51, 255));
+        calendario.setBackground(new java.awt.Color(51, 51, 255));
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaAgendamento.setAutoCreateRowSorter(true);
+        TabelaAgendamento.setBackground(new java.awt.Color(240, 240, 240));
+        TabelaAgendamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -83,71 +86,70 @@ public class agendamento extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setShowHorizontalLines(false);
-        jTable1.setShowVerticalLines(false);
-        jTable1.setSurrendersFocusOnKeystroke(true);
-        jScrollPane1.setViewportView(jTable1);
+        TabelaAgendamento.setSelectionBackground(new java.awt.Color(51, 51, 255));
+        TabelaAgendamento.setShowVerticalLines(false);
+        TabelaAgendamento.setSurrendersFocusOnKeystroke(true);
+        jScrollPane1.setViewportView(TabelaAgendamento);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        jButton7.setText("Adicionar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAdicionarAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        BotaoAdicionarAgendamento.setText("Adicionar");
+        BotaoAdicionarAgendamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoAdicionarAgendamentoActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        jButton8.setText("Editar");
+        BotaoEditarAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        BotaoEditarAgendamento.setText("Editar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Excluir");
+        BotaoExcluirAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoExcluirAgendamento.setText("Excluir");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton10.setText("Fechar");
+        BotaoFecharAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoFecharAgendamento.setText("Fechar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7)
-                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BotaoAdicionarAgendamento)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotaoEditarAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoExcluirAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotaoFecharAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BotaoExcluirAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoFecharAgendamento)
+                    .addComponent(BotaoEditarAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoAdicionarAgendamento))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton7)
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton10)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoAdicionarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarAgendamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoAdicionarAgendamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,12 +188,113 @@ public class agendamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JButton BotaoAdicionarAgendamento;
+    private javax.swing.JButton BotaoEditarAgendamento;
+    private javax.swing.JButton BotaoExcluirAgendamento;
+    private javax.swing.JButton BotaoFecharAgendamento;
+    private javax.swing.JTable TabelaAgendamento;
+    private com.toedter.calendar.JCalendar calendario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoAdicionarAgendamento
+     */
+    public javax.swing.JButton getBotaoAdicionarAgendamento() {
+        return BotaoAdicionarAgendamento;
+    }
+
+    /**
+     * @param BotaoAdicionarAgendamento the BotaoAdicionarAgendamento to set
+     */
+    public void setBotaoAdicionarAgendamento(javax.swing.JButton BotaoAdicionarAgendamento) {
+        this.BotaoAdicionarAgendamento = BotaoAdicionarAgendamento;
+    }
+
+    /**
+     * @return the BotaoEditarAgendamento
+     */
+    public javax.swing.JButton getBotaoEditarAgendamento() {
+        return BotaoEditarAgendamento;
+    }
+
+    /**
+     * @param BotaoEditarAgendamento the BotaoEditarAgendamento to set
+     */
+    public void setBotaoEditarAgendamento(javax.swing.JButton BotaoEditarAgendamento) {
+        this.BotaoEditarAgendamento = BotaoEditarAgendamento;
+    }
+
+    /**
+     * @return the BotaoExcluirAgendamento
+     */
+    public javax.swing.JButton getBotaoExcluirAgendamento() {
+        return BotaoExcluirAgendamento;
+    }
+
+    /**
+     * @param BotaoExcluirAgendamento the BotaoExcluirAgendamento to set
+     */
+    public void setBotaoExcluirAgendamento(javax.swing.JButton BotaoExcluirAgendamento) {
+        this.BotaoExcluirAgendamento = BotaoExcluirAgendamento;
+    }
+
+    /**
+     * @return the BotaoFecharAgendamento
+     */
+    public javax.swing.JButton getBotaoFecharAgendamento() {
+        return BotaoFecharAgendamento;
+    }
+
+    /**
+     * @param BotaoFecharAgendamento the BotaoFecharAgendamento to set
+     */
+    public void setBotaoFecharAgendamento(javax.swing.JButton BotaoFecharAgendamento) {
+        this.BotaoFecharAgendamento = BotaoFecharAgendamento;
+    }
+
+    /**
+     * @return the TabelaAgendamento
+     */
+    public javax.swing.JTable getTabelaAgendamento() {
+        return TabelaAgendamento;
+    }
+
+    /**
+     * @param TabelaAgendamento the TabelaAgendamento to set
+     */
+    public void setTabelaAgendamento(javax.swing.JTable TabelaAgendamento) {
+        this.TabelaAgendamento = TabelaAgendamento;
+    }
+
+    /**
+     * @return the calendario
+     */
+    public com.toedter.calendar.JCalendar getCalendario() {
+        return calendario;
+    }
+
+    /**
+     * @param calendario the calendario to set
+     */
+    public void setCalendario(com.toedter.calendar.JCalendar calendario) {
+        this.calendario = calendario;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+
+
 }

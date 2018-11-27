@@ -16,7 +16,7 @@ import java.util.List;
 public class Pagamento {
 
     private double valor_total;
-    private Calendar data_vencimento;
+    private String data_vencimento;
     private boolean status;
     private String forma_pagamento;
     private int quantidade_parcelas;
@@ -30,7 +30,7 @@ public class Pagamento {
     
     
     public Pagamento(){
-        this.data_vencimento = Calendar.getInstance();
+        
         
     }
 
@@ -135,14 +135,19 @@ public class Pagamento {
         this.parcelas = parcelas;
     }
 
-  public String getDate_vencimentoString() {
-        String d =  this.data_vencimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_vencimento.get(Calendar.MONTH)+"/"+ this.data_vencimento.get(Calendar.YEAR);
-        return d;
+    /**
+     * @return the data_vencimento
+     */
+    public String getData_vencimento() {
+        return data_vencimento;
     }
 
-   
-    public void setDate_vencimentoInt(int dia,int mes, int ano) {
-        this.data_vencimento.set(ano, mes, dia);
+    /**
+     * @param data_vencimento the data_vencimento to set
+     */
+    public void setData_vencimento(String data_vencimento) {
+        this.data_vencimento = data_vencimento;
     }
-    
+
+  
 }

@@ -18,5 +18,7 @@ public interface IBusinessPaciente {
     public List<Paciente> getAllPaciente();
     public void editarPaciente(Paciente paciente);
     public void ativarDesativarPaciente(int id);
+    public List<Paciente> getPorBusca(String busca);
+    
     
 }

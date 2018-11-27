@@ -13,32 +13,55 @@ import br.com.fundamento.enuns.TipoContato;
  */
 public class Contato {
 
-    private TipoContato tipo;
-    private String descricao;
+    private String email;
+    private String telefone;
+    private String celular;
 
     public Contato() {
     }
 
-    public TipoContato getTipo() {
-        return tipo;
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 
-    public void setTipo(TipoContato tipo) {
-        this.tipo = tipo;
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getDescricao() {
-        return descricao;
+    /**
+     * @return the telefone
+     */
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    /**
+     * @param telefone the telefone to set
+     */
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
-    @Override
-    public String toString() {
-        return "Contato{" +  " tipo=" + tipo + ", descricao=" + descricao + '}';
+    /**
+     * @return the celular
+     */
+    public String getCelular() {
+        return celular;
     }
+
+    /**
+     * @param celular the celular to set
+     */
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
     
     
 

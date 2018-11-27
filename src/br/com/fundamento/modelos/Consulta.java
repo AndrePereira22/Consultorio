@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Consulta {
 
-    private Calendar data_hora;
+    private String data_hora;
     private String tipo;
     private boolean agendamento;
 
@@ -26,31 +26,11 @@ public class Consulta {
     
 
     public Consulta() {
-         data_hora = Calendar.getInstance();
+        
 
     }
     
-    public String getDate_horsString(){
-        String d =  this.data_hora.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_hora.get(Calendar.MONTH)+"/"+this.data_hora.get(Calendar.YEAR)+ "    "+ this.data_hora.get(Calendar.HOUR) + ":" + this.data_hora.get(Calendar.MINUTE);
-        return d;
-    }
-    
-     public void setDate_horaInt(int dia,int mes, int ano,int hora, int minute) {
-         this.data_hora.set(ano, mes, dia,hora, minute);
-
-    }
- public void setDate_horaString(String date) {
-     
-     String dia = date.substring(0, 2); 
-     int d = Integer.parseInt(dia);
-     String mes = date.substring(3, 5); 
-     int m = Integer.parseInt(mes);
-     String ano = date.substring(6, 10); 
-     int a = Integer.parseInt(ano);
-     
-         this.data_hora.set(a, m, d,0, 0);
-
-    }
+  
 
     /**
      * @return the tipo
@@ -134,5 +114,19 @@ public class Consulta {
      */
     public void setConsultorio(Consultorio consultorio) {
         this.consultorio = consultorio;
+    }
+
+    /**
+     * @return the data_hora
+     */
+    public String getData_hora() {
+        return data_hora;
+    }
+
+    /**
+     * @param data_hora the data_hora to set
+     */
+    public void setData_hora(String data_hora) {
+        this.data_hora = data_hora;
     }
 }

@@ -6,18 +6,17 @@
 package br.com.fundamento.fachada;
 
 import br.com.fundamento.modelos.Caixa;
-import br.com.fundamento.modelos.Cliente;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
-import br.com.fundamento.modelos.Convenio;
+import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Especializacao;
-import br.com.fundamento.modelos.Estado;
+
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Fornecedor;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Medico;
-import br.com.fundamento.modelos.Municipio;
+
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
@@ -71,11 +70,7 @@ public interface IFachada {
     public void editarConsultorio(Consultorio consultorio);
     public void ativarDesativarConsultorio(int id);
     
-    public void salvarConvenio(Convenio convenio);
-    public Convenio buscarConvenioPorId(int id);
-    public List<Convenio> getAllConvenio();
-    public void editarConvenio(Convenio convenio);
-    public void ativarDesativarConvenio(int id);
+ 
     
     public void salvarConsulta(Consulta consulta);
     public Consulta buscarConsultaPorId(int id);
@@ -89,12 +84,7 @@ public interface IFachada {
     public void editarEspecializacao(Especializacao especializacao);
     public void ativarDesativarEspecializacao(int id);
     
-    public void salvarEstado(Estado Estado);
-    public Estado buscarEstadoPorId(int id);
-    public List<Estado> getAllEstado();
-    public void editarEstado(Estado estado);
-    public void ativarDesativarEstado(int id);
-    
+
   
     
     
@@ -110,17 +100,13 @@ public interface IFachada {
     public void editarMedico(Medico medico);
     public void ativarDesativarMedico(int id);
     
-    public void salvarMunicipio(Municipio municipio);
-    public Municipio buscarMunicipioPorId(int id);
-    public List<Municipio> getAllMunicipio();
-    public void editarMunicipio(Municipio municipio);
-    public void ativarDesativarMunicipio(int id);
-    
+   
     public void salvarPaciente(Paciente paciente);
     public Paciente buscarPacientePorId(int id);
     public List<Paciente> getAllPaciente();
     public void editarPaciente(Paciente paciente);
     public void ativarDesativarPaciente(int id);
+    public List<Paciente> getPorBusca(String busca);
     
     public void salvarPagamento(Pagamento pagamento);
     public Pagamento buscarPagamentoPorId(int id);
@@ -157,6 +143,12 @@ public interface IFachada {
     public List<Relatorio> getAllRelatorio();
     public void editarRelatorio(Relatorio relatroio);
     public void ativarDesativarRelatorio(int id);
+    
+    public void salvarContato(Contato contato);
+    public Contato  buscarContatoPorId(int id);
+    public List<Contato> getAllContato();
+    public void editarContato(Contato contato);
+    public void ativarDesativarContato(int id);
     
 
 }

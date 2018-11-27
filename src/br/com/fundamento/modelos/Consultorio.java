@@ -20,6 +20,7 @@ public class Consultorio {
     private List< Medico> medicos;
     
     private Endereco endereco;
+    private Contato contato;
 
    
 
@@ -105,6 +106,20 @@ public class Consultorio {
      */
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    /**
+     * @return the contato
+     */
+    public Contato getContato() {
+        return contato;
+    }
+
+    /**
+     * @param contato the contato to set
+     */
+    public void setContato(Contato contato) {
+        this.contato = contato;
     }
     
     

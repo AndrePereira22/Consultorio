@@ -27,73 +27,76 @@ public class BuscarProduto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        txtPesquisarProduto = new javax.swing.JTextField();
+        BotaoPesquisarProduto = new javax.swing.JButton();
+        BotaoAdicionarProduto = new javax.swing.JButton();
+        BotaoEditarProduto = new javax.swing.JButton();
+        BotaoExcluirProduto = new javax.swing.JButton();
+        BotaoFecharProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabela = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        jButton6.setText("Pesquisar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BotaoPesquisarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisarProduto.setText("Pesquisar");
+        BotaoPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BotaoPesquisarProdutoActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        jButton7.setText("Adicionar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        BotaoAdicionarProduto.setText("Adicionar");
+        BotaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoAdicionarProdutoActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        jButton8.setText("Editar");
+        BotaoEditarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        BotaoEditarProduto.setText("Editar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Excluir");
+        BotaoExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoExcluirProduto.setText("Excluir");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton10.setText("Fechar");
+        BotaoFecharProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoFecharProduto.setText("Fechar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Rg", "Prontuario"
+                "Nome", "Fabricante", "Quantidade Estoque", "Quantidade Minina", "Preço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabela);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,13 +104,13 @@ public class BuscarProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(BotaoAdicionarProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(BotaoEditarProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(BotaoExcluirProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
+                .addComponent(BotaoFecharProduto)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,10 +120,10 @@ public class BuscarProduto extends javax.swing.JFrame {
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                        .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)))
+                        .addComponent(BotaoPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -128,14 +131,14 @@ public class BuscarProduto extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(BotaoAdicionarProduto)
+                    .addComponent(BotaoEditarProduto)
+                    .addComponent(BotaoExcluirProduto)
+                    .addComponent(BotaoFecharProduto))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -144,13 +147,13 @@ public class BuscarProduto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void BotaoPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_BotaoPesquisarProdutoActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoAdicionarProdutoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,13 +191,127 @@ public class BuscarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton BotaoAdicionarProduto;
+    private javax.swing.JButton BotaoEditarProduto;
+    private javax.swing.JButton BotaoExcluirProduto;
+    private javax.swing.JButton BotaoFecharProduto;
+    private javax.swing.JButton BotaoPesquisarProduto;
+    private javax.swing.JTable Tabela;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtPesquisarProduto;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoAdicionarProduto
+     */
+    public javax.swing.JButton getBotaoAdicionarProduto() {
+        return BotaoAdicionarProduto;
+    }
+
+    /**
+     * @param BotaoAdicionarProduto the BotaoAdicionarProduto to set
+     */
+    public void setBotaoAdicionarProduto(javax.swing.JButton BotaoAdicionarProduto) {
+        this.BotaoAdicionarProduto = BotaoAdicionarProduto;
+    }
+
+    /**
+     * @return the BotaoEditarProduto
+     */
+    public javax.swing.JButton getBotaoEditarProduto() {
+        return BotaoEditarProduto;
+    }
+
+    /**
+     * @param BotaoEditarProduto the BotaoEditarProduto to set
+     */
+    public void setBotaoEditarProduto(javax.swing.JButton BotaoEditarProduto) {
+        this.BotaoEditarProduto = BotaoEditarProduto;
+    }
+
+    /**
+     * @return the BotaoExcluircionarProduto
+     */
+    public javax.swing.JButton getBotaoExcluirProduto() {
+        return BotaoExcluirProduto;
+    }
+
+    /**
+     * @param BotaoExcluircionarProduto the BotaoExcluircionarProduto to set
+     */
+    public void setBotaoExcluirProduto(javax.swing.JButton BotaoExcluircionarProduto) {
+        this.BotaoExcluirProduto = BotaoExcluircionarProduto;
+    }
+
+    /**
+     * @return the BotaoFecharProduto
+     */
+    public javax.swing.JButton getBotaoFecharProduto() {
+        return BotaoFecharProduto;
+    }
+
+    /**
+     * @param BotaoFecharProduto the BotaoFecharProduto to set
+     */
+    public void setBotaoFecharProduto(javax.swing.JButton BotaoFecharProduto) {
+        this.BotaoFecharProduto = BotaoFecharProduto;
+    }
+
+    /**
+     * @return the BotaoPesquisarProduto
+     */
+    public javax.swing.JButton getBotaoPesquisarProduto() {
+        return BotaoPesquisarProduto;
+    }
+
+    /**
+     * @param BotaoPesquisarProduto the BotaoPesquisarProduto to set
+     */
+    public void setBotaoPesquisarProduto(javax.swing.JButton BotaoPesquisarProduto) {
+        this.BotaoPesquisarProduto = BotaoPesquisarProduto;
+    }
+
+    /**
+     * @return the Tabela
+     */
+    public javax.swing.JTable getTabela() {
+        return Tabela;
+    }
+
+    /**
+     * @param Tabela the Tabela to set
+     */
+    public void setTabela(javax.swing.JTable Tabela) {
+        this.Tabela = Tabela;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the txtPesquisarProduto
+     */
+    public javax.swing.JTextField getTxtPesquisarProduto() {
+        return txtPesquisarProduto;
+    }
+
+    /**
+     * @param txtPesquisarProduto the txtPesquisarProduto to set
+     */
+    public void setTxtPesquisarProduto(javax.swing.JTextField txtPesquisarProduto) {
+        this.txtPesquisarProduto = txtPesquisarProduto;
+    }
+
+
 }

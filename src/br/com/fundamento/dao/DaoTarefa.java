@@ -42,8 +42,8 @@ public class DaoTarefa  implements IDaoTarefa{
             this.statement.setInt(2,  tarefa.getPrioridade());
             this.statement.setBoolean(3, tarefa.isStatus());
             this.statement.setInt(4, id_funcionario);
-            this.statement.setString(5, tarefa.getDate_inicioString());
-             this.statement.setString(6, tarefa.getDate_terminoString());
+            this.statement.setString(5, tarefa.getData_inicio());
+             this.statement.setString(6, tarefa.getData_termino());
              
             statement.execute();
             this.statement.close();  
@@ -68,8 +68,8 @@ public class DaoTarefa  implements IDaoTarefa{
                tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
                tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
-             //  tarefa.setDate_inicioInt(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
-             //  tarefa.setDate_terminoInt(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+             tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+             tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
                
                        
             }
@@ -95,8 +95,8 @@ public class DaoTarefa  implements IDaoTarefa{
               tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
                tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
-             //  tarefa.setDate_inicioInt(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
-             //  tarefa.setDate_terminoInt(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+             tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+             tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
                 
                 tarefas.add(tarefa);
             }

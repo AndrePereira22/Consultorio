@@ -42,7 +42,7 @@ public class DaoPagamento implements IDaoPagamento {
             this.statement.setString(3, pagamento.getForma_pagamento());
             this.statement.setDouble(4, pagamento.getQuantidade_parcelas());
             this.statement.setInt(5, id_caixa);
-            this.statement.setString(6, pagamento.getDate_vencimentoString());
+            this.statement.setString(6, pagamento.getData_vencimento());
 
             result = statement.executeQuery();
 
@@ -70,9 +70,9 @@ public class DaoPagamento implements IDaoPagamento {
 
             if (result.next()) {
                 pagamento = new Pagamento();
-                
+
                 pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
-                //   pagamento.setDate_vencimentoInt(result.getInt(SQLUtil.Pagamento.COL_DATA_VENCIMENTO));     
+                pagamento.setData_vencimento(result.getString(SQLUtil.Pagamento.COL_DATA_VENCIMENTO));
                 pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
                 pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
                 pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
@@ -87,29 +87,29 @@ public class DaoPagamento implements IDaoPagamento {
 
     @Override
     public List<Pagamento> getAllPagamento() {
-     List<Pagamento> pagamentos = new ArrayList<>();
+        List<Pagamento> pagamentos = new ArrayList<>();
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Pagamento.NOME_TABELA));
             this.result = this.statement.executeQuery();
-            Pagamento  pagamento;
+            Pagamento pagamento;
             while (result.next()) {
-                 pagamento = new Pagamento();
-                
-              pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
-                //   pagamento.setDate_vencimentoInt(result.getInt(SQLUtil.Pagamento.COL_DATA_VENCIMENTO));     
+                pagamento = new Pagamento();
+
+                pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
+                pagamento.setData_vencimento(result.getString(SQLUtil.Pagamento.COL_DATA_VENCIMENTO));
                 pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
                 pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
                 pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
-                
-                 pagamentos.add( pagamento);
+
+                pagamentos.add(pagamento);
             }
             this.conexao.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return  pagamentos;
+        return pagamentos;
     }
 
     @Override

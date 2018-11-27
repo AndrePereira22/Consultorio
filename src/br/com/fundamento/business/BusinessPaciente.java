@@ -46,6 +46,11 @@ public class BusinessPaciente implements IBusinessPaciente{
     public void ativarDesativarPaciente(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Paciente> getPorBusca(String busca) {
+     return this.daoPaciente.getPorBusca(busca);
+    }
     
 
 }

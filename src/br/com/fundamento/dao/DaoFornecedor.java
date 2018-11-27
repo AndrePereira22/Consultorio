@@ -7,6 +7,7 @@ package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Fornecedor;
+import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -31,7 +32,9 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public int salvarfornecedor(Fornecedor fornecedor) {
         int id = 0;
+         int id_estoque=0;
         try {
+            int id_contato = new DaoContato().salvarContato(fornecedor.getContato());
             int id_endereco = CommumDao.salvarEndereco(fornecedor.getEndereco());
             this.conexao = SQLConections.getInstance();
 
@@ -41,16 +44,20 @@ public class DaoFornecedor implements IDaoFornecedor {
             this.statement.setString(2, fornecedor.getRazao_social());
             this.statement.setString(3, fornecedor.getCnpj());
             this.statement.setInt(4, id_endereco);
+            this.statement.setInt(5, id_contato);
 
             result = statement.executeQuery();
 
             if (result.next()) {
                 id = result.getInt(1);
-            }
-            for (Contato c : fornecedor.getContatos()) {
-                CommumDao.salvarContato(c, id);
-            }
+            }  
 
+            for(Produto p : fornecedor.getProdutos()){
+                  
+                id_estoque = new DaoEstoque().salvarEstoque(p.getEstoque());
+                DaoList.salvarProduto(p, id_estoque, id);
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }

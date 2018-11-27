@@ -12,10 +12,20 @@ package br.com.fundamento.view;
 public class TelaPrincipal extends javax.swing.JFrame {
 
     /**
+     * @return the BotaoCadastroPaciente
+     */
+   
+
+    
+    
+    
+    /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -34,33 +44,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
+        BotaoCadastroPaciente = new javax.swing.JButton();
+        BotaoCadastroFornecedor = new javax.swing.JButton();
+        BotaoCadastroFuncionario = new javax.swing.JButton();
+        BotaoCadastarProduto = new javax.swing.JButton();
+        BotaoMedico = new javax.swing.JButton();
+        BotaoAgendamento = new javax.swing.JButton();
+        BotaoCadastrarTarefa = new javax.swing.JButton();
+        BotaoSair = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
-        jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
-        jButton26 = new javax.swing.JButton();
+        BotaoCadastroCaixa = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
-        jButton16 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
-        jButton22 = new javax.swing.JButton();
-        jButton23 = new javax.swing.JButton();
-        jButton27 = new javax.swing.JButton();
-        jPanel10 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        BotaoAtualizardados = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -107,9 +104,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(57, 167, 167));
-        jPanel1.setPreferredSize(new java.awt.Dimension(700, 365));
+        jPanel1.setPreferredSize(new java.awt.Dimension(700, 700));
 
         jTabbedPane1.setBackground(new java.awt.Color(0, 102, 102));
         jTabbedPane1.setForeground(new java.awt.Color(0, 102, 102));
@@ -117,109 +115,123 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(0, 57, 69));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(204, 204, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Paciente.png"))); // NOI18N
-        jButton5.setText("Paciente");
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastroPaciente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroPaciente.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Paciente.png"))); // NOI18N
+        BotaoCadastroPaciente.setText("Paciente");
+        BotaoCadastroPaciente.setBorderPainted(false);
+        BotaoCadastroPaciente.setContentAreaFilled(false);
+        BotaoCadastroPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroPaciente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroPaciente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BotaoCadastroPacienteActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(204, 204, 204));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Estoque.png"))); // NOI18N
-        jButton6.setText("Convenio");
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastroFornecedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFornecedor.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
+        BotaoCadastroFornecedor.setText("Fornecedor");
+        BotaoCadastroFornecedor.setBorderPainted(false);
+        BotaoCadastroFornecedor.setContentAreaFilled(false);
+        BotaoCadastroFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFornecedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFornecedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BotaoCadastroFornecedorActionPerformed(evt);
             }
         });
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(204, 204, 204));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Fornecedor.png"))); // NOI18N
-        jButton7.setText("Fornecedor");
-        jButton7.setBorderPainted(false);
-        jButton7.setContentAreaFilled(false);
-        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastroFuncionario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFuncionario.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Cadastro.png"))); // NOI18N
+        BotaoCadastroFuncionario.setText("Fucionario");
+        BotaoCadastroFuncionario.setBorderPainted(false);
+        BotaoCadastroFuncionario.setContentAreaFilled(false);
+        BotaoCadastroFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFuncionario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFuncionario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoCadastroFuncionarioActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(204, 204, 204));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Cadastro.png"))); // NOI18N
-        jButton8.setText("Fucionario");
-        jButton8.setBorderPainted(false);
-        jButton8.setContentAreaFilled(false);
-        jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastarProduto.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Produto.png"))); // NOI18N
+        BotaoCadastarProduto.setText("Produto");
+        BotaoCadastarProduto.setBorderPainted(false);
+        BotaoCadastarProduto.setContentAreaFilled(false);
+        BotaoCadastarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastarProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                BotaoCadastarProdutoActionPerformed(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton10.setForeground(new java.awt.Color(204, 204, 204));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Produto.png"))); // NOI18N
-        jButton10.setText("Produto");
-        jButton10.setBorderPainted(false);
-        jButton10.setContentAreaFilled(false);
-        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton10.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        BotaoMedico.setBackground(new java.awt.Color(204, 204, 204));
+        BotaoMedico.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoMedico.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Profissional.png"))); // NOI18N
+        BotaoMedico.setText("Profissionais");
+        BotaoMedico.setBorderPainted(false);
+        BotaoMedico.setContentAreaFilled(false);
+        BotaoMedico.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoMedico.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoMedico.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                BotaoMedicoActionPerformed(evt);
             }
         });
 
-        jButton11.setBackground(new java.awt.Color(204, 204, 204));
-        jButton11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton11.setForeground(new java.awt.Color(204, 204, 204));
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Profissional.png"))); // NOI18N
-        jButton11.setText("Profissionais");
-        jButton11.setBorderPainted(false);
-        jButton11.setContentAreaFilled(false);
-        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAgendamento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoAgendamento.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Agendamento.png"))); // NOI18N
+        BotaoAgendamento.setText("Agenda de Consulta");
+        BotaoAgendamento.setBorderPainted(false);
+        BotaoAgendamento.setContentAreaFilled(false);
+        BotaoAgendamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoAgendamento.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoAgendamento.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoAgendamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                BotaoAgendamentoActionPerformed(evt);
             }
         });
 
-        jButton12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(204, 204, 204));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Procedimentos.png"))); // NOI18N
-        jButton12.setText("Procedimentos");
-        jButton12.setBorderPainted(false);
-        jButton12.setContentAreaFilled(false);
-        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastrarTarefa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastrarTarefa.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastrarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Ferramentas.png"))); // NOI18N
+        BotaoCadastrarTarefa.setText("Tarefa");
+        BotaoCadastrarTarefa.setBorderPainted(false);
+        BotaoCadastrarTarefa.setContentAreaFilled(false);
+        BotaoCadastrarTarefa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastrarTarefa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastrarTarefa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastrarTarefa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                BotaoCadastrarTarefaActionPerformed(evt);
+            }
+        });
+
+        BotaoSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoSair.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Sair.png"))); // NOI18N
+        BotaoSair.setBorderPainted(false);
+        BotaoSair.setContentAreaFilled(false);
+        BotaoSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoSair.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoSairActionPerformed(evt);
             }
         });
 
@@ -228,136 +240,58 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BotaoCadastroPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton11)
+                .addComponent(BotaoMedico)
+                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BotaoCadastroFornecedor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(BotaoCadastroFuncionario)
+                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastrarTarefa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
-                .addGap(2, 2, 2)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton12)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addComponent(BotaoAgendamento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
+                .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-
-        jTabbedPane1.addTab("CADASTROS   ", jPanel7);
-
-        jPanel3.setBackground(new java.awt.Color(0, 57, 69));
-
-        jButton18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton18.setForeground(new java.awt.Color(204, 204, 204));
-        jButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Agendamento.png"))); // NOI18N
-        jButton18.setText("Agenda de Consulta");
-        jButton18.setBorderPainted(false);
-        jButton18.setContentAreaFilled(false);
-        jButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton18.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton18.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
-
-        jButton19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton19.setForeground(new java.awt.Color(204, 204, 204));
-        jButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Ferramentas.png"))); // NOI18N
-        jButton19.setText("Tarefa");
-        jButton19.setBorderPainted(false);
-        jButton19.setContentAreaFilled(false);
-        jButton19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton19.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(848, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(BotaoAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotaoCadastroFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotaoCadastroFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotaoMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BotaoCadastroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(BotaoCadastrarTarefa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("COMPROMISSOS   ", jPanel3);
+        jTabbedPane1.addTab("PRINCIPAL", jPanel7);
 
         jPanel8.setBackground(new java.awt.Color(0, 57, 69));
 
-        jButton24.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton24.setForeground(new java.awt.Color(204, 204, 204));
-        jButton24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Financeiro.png"))); // NOI18N
-        jButton24.setText("Entrada ");
-        jButton24.setBorderPainted(false);
-        jButton24.setContentAreaFilled(false);
-        jButton24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton24.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton24.addActionListener(new java.awt.event.ActionListener() {
+        BotaoCadastroCaixa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroCaixa.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Financeiro.png"))); // NOI18N
+        BotaoCadastroCaixa.setText("Caixa");
+        BotaoCadastroCaixa.setBorderPainted(false);
+        BotaoCadastroCaixa.setContentAreaFilled(false);
+        BotaoCadastroCaixa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroCaixa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroCaixa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton24ActionPerformed(evt);
-            }
-        });
-
-        jButton25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton25.setForeground(new java.awt.Color(204, 204, 204));
-        jButton25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Financeiro.png"))); // NOI18N
-        jButton25.setText("Quitaçao");
-        jButton25.setBorderPainted(false);
-        jButton25.setContentAreaFilled(false);
-        jButton25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton25.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton25.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton25ActionPerformed(evt);
-            }
-        });
-
-        jButton26.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton26.setForeground(new java.awt.Color(204, 204, 204));
-        jButton26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Financeiro.png"))); // NOI18N
-        jButton26.setText("Saida ");
-        jButton26.setBorderPainted(false);
-        jButton26.setContentAreaFilled(false);
-        jButton26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton26.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton26ActionPerformed(evt);
+                BotaoCadastroCaixaActionPerformed(evt);
             }
         });
 
@@ -366,22 +300,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton25)
-                .addContainerGap(817, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1014, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -389,233 +316,69 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(0, 57, 69));
 
-        jButton13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(204, 204, 204));
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/EntradadeProduto.png"))); // NOI18N
-        jButton13.setText("Entrada de Produtos");
-        jButton13.setBorderPainted(false);
-        jButton13.setContentAreaFilled(false);
-        jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton13.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton13.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-
-        jButton14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(204, 204, 204));
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/EstoqueAcabado.png"))); // NOI18N
-        jButton14.setText("Item em Falta");
-        jButton14.setBorderPainted(false);
-        jButton14.setContentAreaFilled(false);
-        jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton14.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton14.setInheritsPopupMenu(true);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-
-        jButton15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(204, 204, 204));
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/EstoqueAcabando.png"))); // NOI18N
-        jButton15.setText("Item Acabando");
-        jButton15.setBorderPainted(false);
-        jButton15.setContentAreaFilled(false);
-        jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton15.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-
-        jButton17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(204, 204, 204));
-        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/SaidadeProduto.png"))); // NOI18N
-        jButton17.setText("Saida de Produtos");
-        jButton17.setBorderPainted(false);
-        jButton17.setContentAreaFilled(false);
-        jButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton17.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton17.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-
-        jButton20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton20.setForeground(new java.awt.Color(204, 204, 204));
-        jButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Produto.png"))); // NOI18N
-        jButton20.setText("Produto");
-        jButton20.setBorderPainted(false);
-        jButton20.setContentAreaFilled(false);
-        jButton20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton20.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton20.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton15)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton13)
-                .addGap(4, 4, 4)
-                .addComponent(jButton17)
-                .addContainerGap(493, Short.MAX_VALUE))
+            .addGap(0, 1125, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGap(0, 82, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("ESTOQUE   ", jPanel9);
 
         jPanel11.setBackground(new java.awt.Color(0, 57, 69));
 
-        jButton16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton16.setForeground(new java.awt.Color(204, 204, 204));
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Relatorio.png"))); // NOI18N
-        jButton16.setText("Relatorio Produtos");
-        jButton16.setBorderPainted(false);
-        jButton16.setContentAreaFilled(false);
-        jButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton16.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton16.setIconTextGap(6);
-        jButton16.setName(""); // NOI18N
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-
-        jButton21.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(204, 204, 204));
-        jButton21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Relatorio.png"))); // NOI18N
-        jButton21.setText("Relatorio Pacientes");
-        jButton21.setBorderPainted(false);
-        jButton21.setContentAreaFilled(false);
-        jButton21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton21.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton21.setIconTextGap(6);
-        jButton21.setName(""); // NOI18N
-
-        jButton22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton22.setForeground(new java.awt.Color(204, 204, 204));
-        jButton22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Relatorio.png"))); // NOI18N
-        jButton22.setText("Relatorio Medico");
-        jButton22.setBorderPainted(false);
-        jButton22.setContentAreaFilled(false);
-        jButton22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton22.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton22.setIconTextGap(6);
-        jButton22.setName(""); // NOI18N
-
-        jButton23.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton23.setForeground(new java.awt.Color(204, 204, 204));
-        jButton23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Relatorio.png"))); // NOI18N
-        jButton23.setText("Relatorio Faturamento");
-        jButton23.setBorderPainted(false);
-        jButton23.setContentAreaFilled(false);
-        jButton23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton23.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton23.setIconTextGap(6);
-        jButton23.setName(""); // NOI18N
-
-        jButton27.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton27.setForeground(new java.awt.Color(204, 204, 204));
-        jButton27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resurc/Relatorio.png"))); // NOI18N
-        jButton27.setText("Relatorio Exames/Procedimentos");
-        jButton27.setBorderPainted(false);
-        jButton27.setContentAreaFilled(false);
-        jButton27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton27.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton27.setIconTextGap(6);
-        jButton27.setName(""); // NOI18N
-        jButton27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton27ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton23)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton27, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 1125, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton16)
-                    .addComponent(jButton21)
-                    .addComponent(jButton22)
-                    .addComponent(jButton23)
-                    .addComponent(jButton27))
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addGap(0, 82, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("RELATORIO   ", jPanel11);
 
-        jPanel10.setBackground(new java.awt.Color(0, 57, 69));
+        jPanel12.setBackground(new java.awt.Color(0, 57, 69));
 
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1125, Short.MAX_VALUE)
+        BotaoAtualizardados.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoAtualizardados.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoAtualizardados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Procedimentos.png"))); // NOI18N
+        BotaoAtualizardados.setText("Atualizar Dados");
+        BotaoAtualizardados.setBorderPainted(false);
+        BotaoAtualizardados.setContentAreaFilled(false);
+        BotaoAtualizardados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoAtualizardados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoAtualizardados.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoAtualizardados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoAtualizardadosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotaoAtualizardados)
+                .addContainerGap(986, Short.MAX_VALUE))
         );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotaoAtualizardados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(4, 4, 4))
         );
 
-        jTabbedPane1.addTab("FERRAMENTAS   ", jPanel10);
+        jTabbedPane1.addTab("DADOS CONSULTORIO", jPanel12);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -627,7 +390,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 255, Short.MAX_VALUE))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -636,81 +399,45 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void BotaoCadastroPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroPacienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_BotaoCadastroPacienteActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void BotaoCadastroFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_BotaoCadastroFornecedorActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoCadastroFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroFuncionarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoCadastroFuncionarioActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void BotaoCadastarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastarProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_BotaoCadastarProdutoActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void BotaoMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoMedicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_BotaoMedicoActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void BotaoAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAgendamentoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_BotaoAgendamentoActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void BotaoCadastrarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastrarTarefaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_BotaoCadastrarTarefaActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void BotaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSairActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_BotaoSairActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void BotaoCadastroCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroCaixaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_BotaoCadastroCaixaActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+    private void BotaoAtualizardadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAtualizardadosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton24ActionPerformed
-
-    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton25ActionPerformed
-
-    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton26ActionPerformed
-
-    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton27ActionPerformed
+    }//GEN-LAST:event_BotaoAtualizardadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -744,38 +471,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaPrincipal().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
-    private javax.swing.JButton jButton22;
-    private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
-    private javax.swing.JButton jButton26;
-    private javax.swing.JButton jButton27;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton BotaoAgendamento;
+    private javax.swing.JButton BotaoAtualizardados;
+    private javax.swing.JButton BotaoCadastarProduto;
+    private javax.swing.JButton BotaoCadastrarTarefa;
+    private javax.swing.JButton BotaoCadastroCaixa;
+    private javax.swing.JButton BotaoCadastroFornecedor;
+    private javax.swing.JButton BotaoCadastroFuncionario;
+    private javax.swing.JButton BotaoCadastroPaciente;
+    private javax.swing.JButton BotaoMedico;
+    private javax.swing.JButton BotaoSair;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -784,4 +499,111 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoCadastroFornecedor
+     */
+    public javax.swing.JButton getBotaoCadastroFornecedor() {
+        return BotaoCadastroFornecedor;
+    }
+
+     public javax.swing.JButton getBotaoCadastroPaciente() {
+        return BotaoCadastroPaciente;
+    }
+     
+    public javax.swing.JButton getBotaoCadastroFuncionario() {
+        return BotaoCadastroFuncionario;
+    }
+
+    /**
+     * @return the BotaoMedico
+     */
+    public javax.swing.JButton getBotaoMedico() {
+        return BotaoMedico;
+    }
+
+    /**
+     * @return the BotaoCadastarProduto
+     */
+    public javax.swing.JButton getBotaoCadastarProduto() {
+        return BotaoCadastarProduto;
+    }
+
+    /**
+     * @param BotaoCadastarProduto the BotaoCadastarProduto to set
+     */
+    public void setBotaoCadastarProduto(javax.swing.JButton BotaoCadastarProduto) {
+        this.BotaoCadastarProduto = BotaoCadastarProduto;
+    }
+
+    /**
+     * @return the BotaoCadastrarTarefa
+     */
+    public javax.swing.JButton getBotaoCadastrarTarefa() {
+        return BotaoCadastrarTarefa;
+    }
+
+    /**
+     * @param BotaoCadastrarTarefa the BotaoCadastrarTarefa to set
+     */
+    public void setBotaoCadastrarTarefa(javax.swing.JButton BotaoCadastrarTarefa) {
+        this.BotaoCadastrarTarefa = BotaoCadastrarTarefa;
+    }
+
+    /**
+     * @return the BotaoAgendamento
+     */
+    public javax.swing.JButton getBotaoAgendamento() {
+        return BotaoAgendamento;
+    }
+
+    /**
+     * @param BotaoAgendamento the BotaoAgendamento to set
+     */
+    public void setBotaoAgendamento(javax.swing.JButton BotaoAgendamento) {
+        this.BotaoAgendamento = BotaoAgendamento;
+    }
+
+    /**
+     * @return the BotaoSair
+     */
+    public javax.swing.JButton getBotaoSair() {
+        return BotaoSair;
+    }
+
+    /**
+     * @param BotaoSair the BotaoSair to set
+     */
+    public void setBotaoSair(javax.swing.JButton BotaoSair) {
+        this.BotaoSair = BotaoSair;
+    }
+
+    /**
+     * @return the BotaoCadastroCaixa
+     */
+    public javax.swing.JButton getBotaoCadastroCaixa() {
+        return BotaoCadastroCaixa;
+    }
+
+    /**
+     * @param BotaoCadastroCaixa the BotaoCadastroCaixa to set
+     */
+    public void setBotaoCadastroCaixa(javax.swing.JButton BotaoCadastroCaixa) {
+        this.BotaoCadastroCaixa = BotaoCadastroCaixa;
+    }
+
+    /**
+     * @return the BotaoAtualizardados
+     */
+    public javax.swing.JButton getBotaoAtualizardados() {
+        return BotaoAtualizardados;
+    }
+
+    /**
+     * @param BotaoAtualizardados the BotaoAtualizardados to set
+     */
+    public void setBotaoAtualizardados(javax.swing.JButton BotaoAtualizardados) {
+        this.BotaoAtualizardados = BotaoAtualizardados;
+    }
+    
 }

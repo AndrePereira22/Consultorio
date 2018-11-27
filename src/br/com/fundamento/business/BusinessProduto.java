@@ -5,9 +5,8 @@
  */
 package br.com.fundamento.business;
 
-import br.com.fundamento.dao.DaoCliente;
+
 import br.com.fundamento.dao.DaoProduto;
-import br.com.fundamento.dao.IDaoCliente;
 import br.com.fundamento.dao.IDaoProduto;
 import br.com.fundamento.modelos.Cliente;
 import br.com.fundamento.modelos.Produto;

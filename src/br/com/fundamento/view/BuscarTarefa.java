@@ -33,14 +33,14 @@ public class BuscarTarefa extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        txtPesquisarTarefa = new javax.swing.JTextField();
+        BotaoPesquisarTarefa = new javax.swing.JButton();
+        BotaoAdicionarTarefa = new javax.swing.JButton();
+        BotaoEditarTarefa = new javax.swing.JButton();
+        BotaoExcluirTarefa = new javax.swing.JButton();
+        BotaoFecharTarefa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TabelaTarefa = new javax.swing.JTable();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
         jButton1.setText("Pesquisar");
@@ -68,64 +68,66 @@ public class BuscarTarefa extends javax.swing.JFrame {
         jButton5.setText("Fechar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(792, 495));
+        setLocation(new java.awt.Point(3, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        jButton6.setText("Pesquisar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BotaoPesquisarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisarTarefa.setText("Pesquisar");
+        BotaoPesquisarTarefa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BotaoPesquisarTarefaActionPerformed(evt);
             }
         });
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        jButton7.setText("Adicionar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BotaoAdicionarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        BotaoAdicionarTarefa.setText("Adicionar");
+        BotaoAdicionarTarefa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BotaoAdicionarTarefaActionPerformed(evt);
             }
         });
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        jButton8.setText("Editar");
+        BotaoEditarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        BotaoEditarTarefa.setText("Editar");
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton9.setText("Excluir");
+        BotaoExcluirTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoExcluirTarefa.setText("Excluir");
 
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        jButton10.setText("Fechar");
+        BotaoFecharTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        BotaoFecharTarefa.setText("Fechar");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TabelaTarefa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CPF", "Rg", "Prontuario"
+                "Descricao", "Prioridade", "Status", "Data Inicio", "Data Termino"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TabelaTarefa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,13 +135,13 @@ public class BuscarTarefa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton7)
+                .addComponent(BotaoAdicionarTarefa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8)
+                .addComponent(BotaoEditarTarefa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9)
+                .addComponent(BotaoExcluirTarefa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
+                .addComponent(BotaoFecharTarefa)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,10 +151,10 @@ public class BuscarTarefa extends javax.swing.JFrame {
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+                        .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)))
+                        .addComponent(BotaoPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,14 +162,14 @@ public class BuscarTarefa extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10))
+                    .addComponent(BotaoAdicionarTarefa)
+                    .addComponent(BotaoEditarTarefa)
+                    .addComponent(BotaoExcluirTarefa)
+                    .addComponent(BotaoFecharTarefa))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -184,13 +186,13 @@ public class BuscarTarefa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void BotaoPesquisarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarTarefaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_BotaoPesquisarTarefaActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void BotaoAdicionarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarTarefaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_BotaoAdicionarTarefaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,19 +230,218 @@ public class BuscarTarefa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotaoAdicionarTarefa;
+    private javax.swing.JButton BotaoEditarTarefa;
+    private javax.swing.JButton BotaoExcluirTarefa;
+    private javax.swing.JButton BotaoFecharTarefa;
+    private javax.swing.JButton BotaoPesquisarTarefa;
+    private javax.swing.JTable TabelaTarefa;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtPesquisarTarefa;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the BotaoAdicionarTarefa
+     */
+    public javax.swing.JButton getBotaoAdicionarTarefa() {
+        return BotaoAdicionarTarefa;
+    }
+
+    /**
+     * @param BotaoAdicionarTarefa the BotaoAdicionarTarefa to set
+     */
+    public void setBotaoAdicionarTarefa(javax.swing.JButton BotaoAdicionarTarefa) {
+        this.BotaoAdicionarTarefa = BotaoAdicionarTarefa;
+    }
+
+    /**
+     * @return the BotaoEditarTarefa
+     */
+    public javax.swing.JButton getBotaoEditarTarefa() {
+        return BotaoEditarTarefa;
+    }
+
+    /**
+     * @param BotaoEditarTarefa the BotaoEditarTarefa to set
+     */
+    public void setBotaoEditarTarefa(javax.swing.JButton BotaoEditarTarefa) {
+        this.BotaoEditarTarefa = BotaoEditarTarefa;
+    }
+
+    /**
+     * @return the BotaoExcluirTarefa
+     */
+    public javax.swing.JButton getBotaoExcluirTarefa() {
+        return BotaoExcluirTarefa;
+    }
+
+    /**
+     * @param BotaoExcluirTarefa the BotaoExcluirTarefa to set
+     */
+    public void setBotaoExcluirTarefa(javax.swing.JButton BotaoExcluirTarefa) {
+        this.BotaoExcluirTarefa = BotaoExcluirTarefa;
+    }
+
+    /**
+     * @return the BotaoFecharTarefa
+     */
+    public javax.swing.JButton getBotaoFecharTarefa() {
+        return BotaoFecharTarefa;
+    }
+
+    /**
+     * @param BotaoFecharTarefa the BotaoFecharTarefa to set
+     */
+    public void setBotaoFecharTarefa(javax.swing.JButton BotaoFecharTarefa) {
+        this.BotaoFecharTarefa = BotaoFecharTarefa;
+    }
+
+    /**
+     * @return the BotaoPesquisarTarefa
+     */
+    public javax.swing.JButton getBotaoPesquisarTarefa() {
+        return BotaoPesquisarTarefa;
+    }
+
+    /**
+     * @param BotaoPesquisarTarefa the BotaoPesquisarTarefa to set
+     */
+    public void setBotaoPesquisarTarefa(javax.swing.JButton BotaoPesquisarTarefa) {
+        this.BotaoPesquisarTarefa = BotaoPesquisarTarefa;
+    }
+
+    /**
+     * @return the TabelaTarefa
+     */
+    public javax.swing.JTable getTabelaTarefa() {
+        return TabelaTarefa;
+    }
+
+    /**
+     * @param TabelaTarefa the TabelaTarefa to set
+     */
+    public void setTabelaTarefa(javax.swing.JTable TabelaTarefa) {
+        this.TabelaTarefa = TabelaTarefa;
+    }
+
+    /**
+     * @return the jButton1
+     */
+    public javax.swing.JButton getjButton1() {
+        return jButton1;
+    }
+
+    /**
+     * @param jButton1 the jButton1 to set
+     */
+    public void setjButton1(javax.swing.JButton jButton1) {
+        this.jButton1 = jButton1;
+    }
+
+    /**
+     * @return the jButton2
+     */
+    public javax.swing.JButton getjButton2() {
+        return jButton2;
+    }
+
+    /**
+     * @param jButton2 the jButton2 to set
+     */
+    public void setjButton2(javax.swing.JButton jButton2) {
+        this.jButton2 = jButton2;
+    }
+
+    /**
+     * @return the jButton3
+     */
+    public javax.swing.JButton getjButton3() {
+        return jButton3;
+    }
+
+    /**
+     * @param jButton3 the jButton3 to set
+     */
+    public void setjButton3(javax.swing.JButton jButton3) {
+        this.jButton3 = jButton3;
+    }
+
+    /**
+     * @return the jButton4
+     */
+    public javax.swing.JButton getjButton4() {
+        return jButton4;
+    }
+
+    /**
+     * @param jButton4 the jButton4 to set
+     */
+    public void setjButton4(javax.swing.JButton jButton4) {
+        this.jButton4 = jButton4;
+    }
+
+    /**
+     * @return the jButton5
+     */
+    public javax.swing.JButton getjButton5() {
+        return jButton5;
+    }
+
+    /**
+     * @param jButton5 the jButton5 to set
+     */
+    public void setjButton5(javax.swing.JButton jButton5) {
+        this.jButton5 = jButton5;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the jTextField1
+     */
+    public javax.swing.JTextField getjTextField1() {
+        return jTextField1;
+    }
+
+    /**
+     * @param jTextField1 the jTextField1 to set
+     */
+    public void setjTextField1(javax.swing.JTextField jTextField1) {
+        this.jTextField1 = jTextField1;
+    }
+
+    /**
+     * @return the txtPesquisarTarefa
+     */
+    public javax.swing.JTextField getTxtPesquisarTarefa() {
+        return txtPesquisarTarefa;
+    }
+
+    /**
+     * @param txtPesquisarTarefa the txtPesquisarTarefa to set
+     */
+    public void setTxtPesquisarTarefa(javax.swing.JTextField txtPesquisarTarefa) {
+        this.txtPesquisarTarefa = txtPesquisarTarefa;
+    }
+
+
+
 }

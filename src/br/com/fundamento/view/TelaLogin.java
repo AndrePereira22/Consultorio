@@ -31,11 +31,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Textlogin = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        Textsenha = new javax.swing.JPasswordField();
+        Entrar = new javax.swing.JButton();
+        CancelarLogin = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,10 +53,12 @@ public class TelaLogin extends javax.swing.JFrame {
         setTitle("Tela Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setForeground(new java.awt.Color(240, 240, 240));
+        setLocation(new java.awt.Point(350, 240));
+        setUndecorated(true);
 
         jPanel6.setBackground(new java.awt.Color(57, 167, 167));
         jPanel6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.N_RESIZE_CURSOR));
+        jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel7.setBackground(new java.awt.Color(0, 57, 69));
         jPanel7.setForeground(new java.awt.Color(204, 204, 204));
@@ -82,11 +85,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 2, true));
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.E_RESIZE_CURSOR));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Textlogin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 2, true));
+        Textlogin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        Textlogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                TextloginActionPerformed(evt);
             }
         });
 
@@ -94,16 +97,27 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/senha.png"))); // NOI18N
 
-        jPasswordField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 2, true));
+        Textsenha.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 2, true));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 51, 204));
-        jButton1.setText("Entrar");
-        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 204), 2, true));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Entrar.setBackground(new java.awt.Color(255, 255, 255));
+        Entrar.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        Entrar.setForeground(new java.awt.Color(102, 102, 102));
+        Entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+        Entrar.setText("Entrar");
+        Entrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 255)));
+        Entrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EntrarActionPerformed(evt);
+            }
+        });
+
+        CancelarLogin.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        CancelarLogin.setForeground(new java.awt.Color(102, 102, 102));
+        CancelarLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        CancelarLogin.setText("Cancelar");
+        CancelarLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarLoginActionPerformed(evt);
             }
         });
 
@@ -118,16 +132,18 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Textlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Textsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(Entrar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(CancelarLogin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,14 +152,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Textlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(Textsenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1))
-                .addGap(39, 39, 39)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(Entrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CancelarLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,19 +172,23 @@ public class TelaLogin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void TextloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextloginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_TextloginActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EntrarActionPerformed
+
+    private void CancelarLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CancelarLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,14 +227,72 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton CancelarLogin;
+    private javax.swing.JButton Entrar;
+    private javax.swing.JTextField Textlogin;
+    private javax.swing.JPasswordField Textsenha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the Entrar
+     */
+    public javax.swing.JButton getEntrar() {
+        return Entrar;
+    }
+
+    /**
+     * @param Entrar the Entrar to set
+     */
+    public void setEntrar(javax.swing.JButton Entrar) {
+        this.Entrar = Entrar;
+    }
+
+    /**
+     * @return the Textlogin
+     */
+    public javax.swing.JTextField getTextlogin() {
+        return Textlogin;
+    }
+
+    /**
+     * @param Textlogin the Textlogin to set
+     */
+    public void setTextlogin(javax.swing.JTextField Textlogin) {
+        this.Textlogin = Textlogin;
+    }
+
+    /**
+     * @return the Textsenha
+     */
+    public javax.swing.JPasswordField getTextsenha() {
+        return Textsenha;
+    }
+
+    /**
+     * @param Textsenha the Textsenha to set
+     */
+    public void setTextsenha(javax.swing.JPasswordField Textsenha) {
+        this.Textsenha = Textsenha;
+    }
+
+    /**
+     * @return the CancelarLogin
+     */
+    public javax.swing.JButton getCancelarLogin() {
+        return CancelarLogin;
+    }
+
+    /**
+     * @param CancelarLogin the CancelarLogin to set
+     */
+    public void setCancelarLogin(javax.swing.JButton CancelarLogin) {
+        this.CancelarLogin = CancelarLogin;
+    }
+    
 }

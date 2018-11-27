@@ -55,8 +55,9 @@ public class DaoCaixa implements IDaoCaixa {
             }
             for (Funcionario f : caixa.getFuncionarios()) {
                 int id_login = new DaoLogin().salvarLogin(f.getLogin());
+                 int id_contato = new DaoContato().salvarContato(f.getContato());
 
-                DaoList.salvarFuncionario(f, id, id_login);
+                DaoList.salvarFuncionario(f, id, id_login,id_contato);
             }
 
         } catch (SQLException ex) {
@@ -81,7 +82,7 @@ public class DaoCaixa implements IDaoCaixa {
                 caixa.setValor_abertura(result.getInt(SQLUtil.Caixa.COL_VALOR_ABERTURA));
                 caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
                 caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
-                // caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+               caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
             }
             this.conexao.close();
 
@@ -107,7 +108,7 @@ public class DaoCaixa implements IDaoCaixa {
                 caixa.setValor_abertura(result.getInt(SQLUtil.Caixa.COL_VALOR_ABERTURA));
                 caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
                 caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
-                // caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+                caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
                 
                 caixas.add(caixa);
             }

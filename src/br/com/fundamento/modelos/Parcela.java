@@ -16,7 +16,7 @@ public class Parcela {
     
 
     private double valor;
-    private Calendar data_vencimento;
+    private String data_vencimento;
     private boolean  status;
     private int numero;
     private boolean parcela_unica;
@@ -25,7 +25,7 @@ public class Parcela {
     
     
     public Parcela(){
-        data_vencimento = Calendar.getInstance();
+        
     }
 
 
@@ -105,14 +105,15 @@ public class Parcela {
      * @return the data_vencimento
      */
     public String getData_vencimento() {
-         String d =  this.data_vencimento.get(Calendar.DAY_OF_MONTH) +"/"+ this.data_vencimento.get(Calendar.MONTH)+"/"+ this.data_vencimento.get(Calendar.YEAR);
-        return d;
+        return data_vencimento;
     }
 
     /**
      * @param data_vencimento the data_vencimento to set
      */
-    public void setData_vencimento(int dia,int mes, int ano) {
-         this.data_vencimento.set(ano, mes, dia);
+    public void setData_vencimento(String data_vencimento) {
+        this.data_vencimento = data_vencimento;
     }
+
+   
 }

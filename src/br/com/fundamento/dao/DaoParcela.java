@@ -64,7 +64,7 @@ public class DaoParcela implements IDaoParcela {
                 parcela = new Parcela();
                 parcela.setNumero(result.getInt(SQLUtil.Parcela.COL_NUMERO));
                 parcela.setValor(result.getDouble(SQLUtil.Parcela.COL_VALOR));
-                //parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
+                parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
                 parcela.setStatus(result.getBoolean(SQLUtil.Parcela.COL_STATUS));
                 parcela.setParcela_unica(result.getBoolean(SQLUtil.Parcela.COL_PARCELA_UNICA));
 
@@ -90,7 +90,7 @@ public class DaoParcela implements IDaoParcela {
                 
                parcela.setNumero(result.getInt(SQLUtil.Parcela.COL_NUMERO));
                 parcela.setValor(result.getDouble(SQLUtil.Parcela.COL_VALOR));
-                //parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
+                parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
                 parcela.setStatus(result.getBoolean(SQLUtil.Parcela.COL_STATUS));
                 parcela.setParcela_unica(result.getBoolean(SQLUtil.Parcela.COL_PARCELA_UNICA));
                 

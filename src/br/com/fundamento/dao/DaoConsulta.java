@@ -46,7 +46,7 @@ public class DaoConsulta implements IDaoConsulta{
             this.statement.setInt(4, id_medico);
             this.statement.setInt(5, id_consultorio);
             this.statement.setInt(6, id_pagamento);
-            this.statement.setString(7, consulta.getDate_horsString());
+            this.statement.setString(7, consulta.getData_hora());
             
          
              
@@ -74,7 +74,7 @@ public class DaoConsulta implements IDaoConsulta{
             if (result.next()) {
               consulta = new Consulta();
               
-              //consulta.setDate_horaInt(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
+              consulta.setData_hora(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
                consulta.setAgendamento(result.getBoolean(SQLUtil.Consulta.COL_AGENDAMENTO));
               
@@ -103,7 +103,7 @@ public class DaoConsulta implements IDaoConsulta{
                 consulta = new Consulta();
                 
                 
-              //consulta.setDate_horaInt(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
+              consulta.setData_hora(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
                consulta.setAgendamento(result.getBoolean(SQLUtil.Consulta.COL_AGENDAMENTO));
               

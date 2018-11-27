@@ -16,8 +16,9 @@ public class Endereco {
     private String rua;
     private String numero;
     private String bairro;
-    
-    private Municipio municipio;
+    private String municipio;
+    private String estado;
+
 
     public Endereco() {
     }
@@ -54,20 +55,35 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-   
     /**
      * @return the municipio
      */
-    public Municipio getMunicipio() {
+    public String getMunicipio() {
         return municipio;
     }
 
     /**
      * @param municipio the municipio to set
      */
-    public void setMunicipio(Municipio municipio) {
+    public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+   
 
   
 

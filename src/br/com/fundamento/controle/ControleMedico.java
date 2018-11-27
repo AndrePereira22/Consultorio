@@ -1,0 +1,159 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.fundamento.controle;
+
+import br.com.fundamento.fachada.Fachada;
+import br.com.fundamento.fachada.IFachada;
+import br.com.fundamento.modelos.Consulta;
+import br.com.fundamento.modelos.Consultorio;
+import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.Endereco;
+import br.com.fundamento.modelos.Especializacao;
+import br.com.fundamento.modelos.Estoque;
+import br.com.fundamento.modelos.Login;
+import br.com.fundamento.modelos.Medico;
+import br.com.fundamento.view.BuscarMedico;
+import br.com.fundamento.view.CadastroMedico;
+import br.com.fundamento.view.TelaPrincipal;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author Glenda Alves de Lima
+ */
+public class ControleMedico implements ActionListener {
+
+    private TelaPrincipal telaPrincipal;
+    CadastroMedico cadastroMedico;
+    BuscarMedico buscarMedico;
+    IFachada fachada1 = Fachada.getInstance();
+
+    public ControleMedico(TelaPrincipal telaPrincipal, CadastroMedico cadastroMedico, BuscarMedico buscarMedico) {
+        this.telaPrincipal = telaPrincipal;
+        this.cadastroMedico = cadastroMedico;
+        this.buscarMedico = buscarMedico;
+
+        telaPrincipal.getBotaoMedico().addActionListener(this);
+        buscarMedico.getBotaoFecharMedico().addActionListener(this);
+        buscarMedico.getBotaoAdicionarMedico().addActionListener(this);
+        buscarMedico.getBotaoEditarMedico().addActionListener(this);
+        buscarMedico.getBotaoExckuirMedico().addActionListener(this);
+        buscarMedico.getBotaoPesquisarMedico().addActionListener(this);
+        cadastroMedico.getBotaoCancelarMedico().addActionListener(this);
+        cadastroMedico.getBotaoSalvarMedico().addActionListener(this);
+        cadastroMedico.getBotaoSelecionar().addActionListener(this);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == telaPrincipal.getBotaoMedico()) {
+            preenchertabela();
+
+            telaPrincipal.setEnabled(false);
+            buscarMedico.setVisible(true);
+        }
+        if (e.getSource() == buscarMedico.getBotaoFecharMedico()) {
+            telaPrincipal.setEnabled(true);
+            buscarMedico.setVisible(false);
+        }
+        if (e.getSource() == buscarMedico.getBotaoAdicionarMedico()) {
+
+            cadastroMedico.setVisible(true);
+            buscarMedico.setVisible(false);
+        }
+        if (e.getSource() == cadastroMedico.getBotaoCancelarMedico()) {
+            telaPrincipal.setEnabled(false);
+            buscarMedico.setVisible(true);
+            cadastroMedico.setVisible(false);
+        }
+        if (e.getSource() == cadastroMedico.getBotaoSalvarMedico()) {
+
+            Endereco end = new Endereco();
+            end.setBairro(cadastroMedico.getTxtbairro().getText());
+            end.setRua(cadastroMedico.getTxtrua().getText());
+            end.setCep(cadastroMedico.getTxtcep().getText());
+            end.setNumero(cadastroMedico.getTxtnumero().getText());
+            end.setMunicipio(cadastroMedico.getTxtcidade().getText());
+            end.setEstado(cadastroMedico.getTxtUf().getSelectedItem().toString());
+
+            Contato con = new Contato();
+            con.setEmail(cadastroMedico.getTxtemail().getText());
+            con.setCelular(cadastroMedico.getTxtcelular().getText());
+            con.setTelefone(cadastroMedico.getTxttelefone().getText());
+
+            Consultorio c = new Consultorio();
+            c.setEstoques(new ArrayList<Estoque>());
+            c.setMedicos(new ArrayList<Medico>());
+            c.setEndereco(end);
+            c.setContato(con);
+
+            Login l = new Login();
+            String senha = new String(cadastroMedico.getTxtsenha1().getPassword());
+            l.setSenha(senha);
+            l.setUsuario(cadastroMedico.getTxtlogin1().getText());
+
+            Medico medico = new Medico();
+            medico.setConsultas(new ArrayList<Consulta>());
+            medico.setEspecializacoes(new ArrayList<Especializacao>());
+            medico.setContato(con);
+            medico.setEndereco(end);
+            medico.setConsultorio(c);
+            medico.setLogin(l);
+            medico.setCpf(cadastroMedico.getTxtcpf().getText());
+            java.util.Date d = new Date();
+
+            String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+
+            medico.setData_cadastro(dStr);
+            medico.setData_nascimento(cadastroMedico.getTxtdata().getText());
+            medico.setNome(cadastroMedico.getTxtnome().getText());
+            String rg = cadastroMedico.getTxtrg().getText();
+            rg = rg.replaceAll("[^0-9]", "");
+            int RG = Integer.parseInt(rg);
+            medico.setRg(RG);
+            medico.setSexo(cadastroMedico.getjComboBox1().getSelectedItem().toString());
+
+            fachada1.salvarMedico(medico);
+            preenchertabela();
+            buscarMedico.setVisible(true);
+            cadastroMedico.setVisible(false);
+            telaPrincipal.setEnabled(true);
+        }
+
+    }
+
+    public void preenchertabela() {
+        List<Medico> medicos = fachada1.getAllMedico();
+
+        try {
+            String[] colunas = new String[]{"Nome", "Sexo", "Rg", "CPF", "Data Nascimento", "Data Cadastro"};
+            Object[][] dados = new Object[medicos.size()][6];
+            for (int i = 0; i < medicos.size(); i++) {
+                Medico medico = medicos.get(i);
+                dados[i][0] = medico.getNome();
+                dados[i][1] = medico.getSexo();
+                dados[i][2] = medico.getRg();
+                dados[i][3] = medico.getCpf();
+                dados[i][4] = medico.getData_nascimento();
+                dados[i][5] = medico.getData_cadastro();
+            }
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+            buscarMedico.getTabelaMedico().setModel(dataModel);
+        } catch (Exception ex) {
+
+        }
+
+    }
+
+}

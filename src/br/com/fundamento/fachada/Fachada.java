@@ -8,15 +8,13 @@ package br.com.fundamento.fachada;
 import br.com.fundamento.business.BusinessCaixa;
 import br.com.fundamento.business.BusinessConsulta;
 import br.com.fundamento.business.BusinessConsultorio;
-import br.com.fundamento.business.BusinessConvenio;
+import br.com.fundamento.business.BusinessContato;
 import br.com.fundamento.business.BusinessEspecializacao;
-import br.com.fundamento.business.BusinessEstado;
 import br.com.fundamento.business.BusinessEstoque;
 import br.com.fundamento.business.BusinessFornecedor;
 import br.com.fundamento.business.BusinessFuncionario;
 import br.com.fundamento.business.BusinessLogin;
 import br.com.fundamento.business.BusinessMedico;
-import br.com.fundamento.business.BusinessMunicipio;
 import br.com.fundamento.business.BusinessPaciente;
 import br.com.fundamento.business.BusinessPagamento;
 import br.com.fundamento.business.BusinessParcela;
@@ -28,15 +26,13 @@ import br.com.fundamento.business.BusinessTarefa;
 import br.com.fundamento.business.IBusinessCaixa;
 import br.com.fundamento.business.IBusinessConsulta;
 import br.com.fundamento.business.IBusinessConsultorio;
-import br.com.fundamento.business.IBusinessConvenio;
+import br.com.fundamento.business.IBusinessContato;
 import br.com.fundamento.business.IBusinessEspecializacao;
-import br.com.fundamento.business.IBusinessEstado;
 import br.com.fundamento.business.IBusinessEstoque;
 import br.com.fundamento.business.IBusinessFornecedor;
 import br.com.fundamento.business.IBusinessFuncionario;
 import br.com.fundamento.business.IBusinessLogin;
 import br.com.fundamento.business.IBusinessMedico;
-import br.com.fundamento.business.IBusinessMunicipio;
 import br.com.fundamento.business.IBusinessPaciente;
 import br.com.fundamento.business.IBusinessPagamento;
 import br.com.fundamento.business.IBusinessParcela;
@@ -48,15 +44,13 @@ import br.com.fundamento.business.IBusinessTarefa;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
-import br.com.fundamento.modelos.Convenio;
+import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Especializacao;
-import br.com.fundamento.modelos.Estado;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Fornecedor;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Medico;
-import br.com.fundamento.modelos.Municipio;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
@@ -81,19 +75,17 @@ public class Fachada implements IFachada {
     private IBusinessTarefa businessTarefa;
     private IBusinessRelatorio businessRelatorio;
     private IBusinessSaidaEstoque businessSaidaEstoque;
-    private IBusinessEstado businessEstado;
     private IBusinessParcela businessParcela;
     private IBusinessEspecializacao businessEspecializacao; 
     private IBusinessConsultorio businessConsultorio;
-    private IBusinessConvenio businessConvenio;
     private IBusinessCaixa businessCaixa;
-    private IBusinessMunicipio businessMunicipio;
     private IBusinessConsulta businessConsulta;
     private IBusinessFuncionario businessFuncionario;
     private IBusinessMedico businessMedico;
     private IBusinessPaciente businessPaciente;
     private IBusinessPagamento businessPagamento;
     private IBusinessProntuario businessProntuario;
+    private IBusinessContato businessContato;
 
     
     public static Fachada getInstance() {
@@ -112,19 +104,17 @@ public class Fachada implements IFachada {
         this.businessTarefa = new BusinessTarefa();
         this.businessRelatorio = new BusinessRelatorio();
         this.businessSaidaEstoque = new BusinessSaidaEstoque();
-        this.businessEstado = new BusinessEstado();
         this.businessParcela = new BusinessParcela();
         this.businessEspecializacao = new BusinessEspecializacao();
         this.businessConsultorio = new BusinessConsultorio();
-        this.businessConvenio = new BusinessConvenio();
         this.businessCaixa = new BusinessCaixa();
-        this.businessMunicipio = new BusinessMunicipio();
         this.businessConsulta = new BusinessConsulta();
         this.businessFuncionario = new BusinessFuncionario();
         this.businessMedico = new BusinessMedico();
         this.businessPaciente = new BusinessPaciente();
         this.businessPagamento = new BusinessPagamento();
         this.businessProntuario = new BusinessProntuario();
+        this.businessContato = new BusinessContato();
                 
     }
     
@@ -255,30 +245,7 @@ public class Fachada implements IFachada {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void salvarConvenio(Convenio convenio) {
-       this.businessConvenio.salvarConvenio(convenio);
-    }
-
-    @Override
-    public Convenio buscarConvenioPorId(int id) {
-        return this.businessConvenio.buscarConvenioPorId(id);
-    }
-
-    @Override
-    public List<Convenio> getAllConvenio() {
-        return this.businessConvenio.getAllConvenio();
-    }
-
-    @Override
-    public void editarConvenio(Convenio convenio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ativarDesativarConvenio(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public void salvarConsulta(Consulta consulta) {
@@ -331,30 +298,7 @@ public class Fachada implements IFachada {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void salvarEstado(Estado Estado) {
-       this.businessEstado.salvarEstado(Estado);
-    }
-
-    @Override
-    public Estado buscarEstadoPorId(int id) {
-        return this.businessEstado.buscarEstadoPorId(id);
-    }
-
-    @Override
-    public List<Estado> getAllEstado() {
-        return this.businessEstado.getAllEstado();
-    }
-
-    @Override
-    public void editarEstado(Estado estado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ativarDesativarEstado(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public void salvarFuncionario(Funcionario funcionario) {
@@ -407,30 +351,7 @@ public class Fachada implements IFachada {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void salvarMunicipio(Municipio municipio) {
-       this.businessMunicipio.salvarMunicipio(municipio);}
-
-    @Override
-    public Municipio buscarMunicipioPorId(int id) {
-        return this.businessMunicipio.buscarMunicipioPorId(id);
-    }
-
-    @Override
-    public List<Municipio> getAllMunicipio() {
-       return this.businessMunicipio.getAllMunicipio();
-    }
-
-    @Override
-    public void editarMunicipio(Municipio municipio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ativarDesativarMunicipio(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+ 
     @Override
     public void salvarPaciente(Paciente paciente) {
         this.businessPaciente.salvarPaciente(paciente);
@@ -455,7 +376,10 @@ public class Fachada implements IFachada {
     public void ativarDesativarPaciente(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+@Override
+    public List<Paciente> getPorBusca(String busca) {
+        return this.businessPaciente.getPorBusca(busca);
+    }
     @Override
     public void salvarPagamento(Pagamento pagamento) {
         this.businessPagamento.salvarPagamento(pagamento);
@@ -628,6 +552,33 @@ public class Fachada implements IFachada {
     public void ativarDesativarConsultorio(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void salvarContato(Contato contato) {
+       this.businessContato.salvarContato(contato);
+    }
+
+    @Override
+    public Contato buscarContatoPorId(int id) {
+        return this.businessContato.buscarContatoPorId(id);
+    }
+
+    @Override
+    public List<Contato> getAllContato() {
+       return this.businessContato.getAllContato();
+    }
+
+    @Override
+    public void editarContato(Contato contato) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ativarDesativarContato(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
 
     
  

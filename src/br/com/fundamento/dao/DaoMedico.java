@@ -34,6 +34,7 @@ public class DaoMedico implements IDaoMedico {
         int id = 0;
         try {
             this.conexao = SQLConections.getInstance();
+            int id_contato = new DaoContato().salvarContato(medico.getContato());
             int id_consultorio = new DaoConsultorio().salvarConsultorio(medico.getConsultorio());
             int id_login = new DaoLogin().salvarLogin(medico.getLogin());
             int id_endereco = CommumDao.salvarEndereco(medico.getEndereco());
@@ -44,10 +45,11 @@ public class DaoMedico implements IDaoMedico {
             this.statement.setInt(3, medico.getRg());
             this.statement.setInt(4, id_consultorio);
             this.statement.setString(5, medico.getCpf());
-            this.statement.setString(6, medico.getDate_nascimentoString());
-            this.statement.setString(7, medico.getDate_cadastroString());
+            this.statement.setString(6, medico.getData_nascimento());
+            this.statement.setString(7, medico.getData_cadastro());
             this.statement.setInt(8, id_login);
             this.statement.setInt(9, id_endereco);
+            this.statement.setInt(10, id_contato);
 
             result = statement.executeQuery();
 
@@ -81,8 +83,8 @@ public class DaoMedico implements IDaoMedico {
                 medico = new Medico();
                 
                 medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
-               // medico.setDate_nascimentoInt(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
-               // medico.setDate_cadastroInt(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
@@ -107,8 +109,8 @@ public class DaoMedico implements IDaoMedico {
                 medico = new Medico();
                 
                 medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
-               // medico.setDate_nascimentoInt(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
-               // medico.setDate_cadastroInt(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+               medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
