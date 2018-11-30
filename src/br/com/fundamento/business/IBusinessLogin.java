@@ -18,6 +18,7 @@ public interface IBusinessLogin {
     public List<Login> getAllLogin();
     public void editarLogin(Login login);
     public void ativarDesativarLogin(int id);
+        public Login buscarLogin(String nome);
     
     
 }

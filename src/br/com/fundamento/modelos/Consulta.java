@@ -14,14 +14,12 @@ import java.util.Date;
  */
 public class Consulta {
 
-    private String data_hora;
+    private String data;
+    private String hora;
     private String tipo;
-    private boolean agendamento;
-
     private Medico medico;
     private Paciente paciente;
     private Pagamento pagamento;
-    private Consultorio consultorio;
     
     
 
@@ -44,20 +42,6 @@ public class Consulta {
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    /**
-     * @return the agendamento
-     */
-    public boolean isAgendamento() {
-        return agendamento;
-    }
-
-    /**
-     * @param agendamento the agendamento to set
-     */
-    public void setAgendamento(boolean agendamento) {
-        this.agendamento = agendamento;
     }
 
   
@@ -103,30 +87,30 @@ public class Consulta {
     }
 
     /**
-     * @return the consultorio
-     */
-    public Consultorio getConsultorio() {
-        return consultorio;
-    }
-
-    /**
-     * @param consultorio the consultorio to set
-     */
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
-    }
-
-    /**
      * @return the data_hora
      */
-    public String getData_hora() {
-        return data_hora;
+    public String getData() {
+        return data;
     }
 
     /**
      * @param data_hora the data_hora to set
      */
-    public void setData_hora(String data_hora) {
-        this.data_hora = data_hora;
+    public void setData(String data_hora) {
+        this.data = data_hora;
+    }
+
+    /**
+     * @return the hora
+     */
+    public String getHora() {
+        return hora;
+    }
+
+    /**
+     * @param hora the hora to set
+     */
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 }

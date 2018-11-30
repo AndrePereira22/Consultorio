@@ -19,5 +19,6 @@ public interface IBusinessConsulta {
     public List<Consulta> getAllConsulta();
     public void editarConsulta(Consulta consulta);
     public void ativarDesativarConsulta(int id);
+      public List<Consulta> getPorBuscaConsulta(String busca);
     
 }

@@ -54,6 +54,7 @@ public class BuscarPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         BotaoPesquisarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
         BotaoPesquisarPaciente.setText("Pesquisar");

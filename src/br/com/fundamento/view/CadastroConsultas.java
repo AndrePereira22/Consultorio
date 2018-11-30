@@ -12,6 +12,34 @@ package br.com.fundamento.view;
 public class CadastroConsultas extends javax.swing.JFrame {
 
     /**
+     * @return the txtHora
+     */
+    public javax.swing.JFormattedTextField getTxtHora() {
+        return txtHora;
+    }
+
+    /**
+     * @param txtHora the txtHora to set
+     */
+    public void setTxtHora(javax.swing.JFormattedTextField txtHora) {
+        this.txtHora = txtHora;
+    }
+
+    /**
+     * @return the txtdata
+     */
+    public javax.swing.JFormattedTextField getTxtdata() {
+        return txtdata;
+    }
+
+    /**
+     * @param txtdata the txtdata to set
+     */
+    public void setTxtdata(javax.swing.JFormattedTextField txtdata) {
+        this.txtdata = txtdata;
+    }
+
+    /**
      * Creates new form Consultas
      */
     public CadastroConsultas() {
@@ -29,58 +57,52 @@ public class CadastroConsultas extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtmedico = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        txttelefone = new javax.swing.JFormattedTextField();
+        txtespecializacao = new javax.swing.JTextField();
+        BotaoPesquisarmedico = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        RadioConsulta = new javax.swing.JRadioButton();
-        RadioReserva = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtdatahora = new javax.swing.JFormattedTextField();
+        txtdata = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtHora = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        TipoExameOuConsulta = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         BotaoConsultaSalvar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtPaciente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtconvenio = new javax.swing.JTextField();
+        BotaoPesquisarPaciente = new javax.swing.JButton();
+        botaopagamento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(1, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1360, 575));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Medico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        jLabel1.setText("Paciente:");
+        jLabel1.setText("Medico :");
 
-        jLabel2.setText("Telefone:");
+        jLabel5.setText("Especialização :");
 
-        jLabel3.setText("celular:");
-
-        jLabel4.setText("Email:");
-
-        jLabel5.setText("Convenio:");
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        txtespecializacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                txtespecializacaoActionPerformed(evt);
             }
         });
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        BotaoPesquisarmedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisarmedico.setText("Pesquisar");
+        BotaoPesquisarmedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                BotaoPesquisarmedicoActionPerformed(evt);
             }
         });
-
-        try {
-            txttelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -88,28 +110,17 @@ public class CadastroConsultas extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtmedico, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)))
-                .addGap(256, 256, 256))
+                        .addComponent(BotaoPesquisarmedico))
+                    .addComponent(txtespecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,79 +128,77 @@ public class CadastroConsultas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtmedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisarmedico))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txttelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(txtespecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Agendamento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
-        RadioConsulta.setText("Consulta");
-        RadioConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioConsultaActionPerformed(evt);
-            }
-        });
-
-        RadioReserva.setText("Reserva");
-        RadioReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RadioReservaActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("Data Hora:");
-
-        jLabel8.setText("Tipo de Agendamento:");
+        jLabel6.setText("Data :");
 
         try {
-            txtdatahora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####    ##:##")));
+            txtdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jLabel3.setText("Hora :");
+
+        try {
+            txtHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel4.setText("Tipo :");
+
+        TipoExameOuConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoExameOuConsultaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TipoExameOuConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(42, 42, 42)
-                        .addComponent(RadioConsulta))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(txtdatahora, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52)
-                .addComponent(RadioReserva)
-                .addContainerGap(470, Short.MAX_VALUE))
+                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RadioConsulta)
-                    .addComponent(RadioReserva)
-                    .addComponent(jLabel8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
-                    .addComponent(txtdatahora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(TipoExameOuConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
@@ -208,48 +217,104 @@ public class CadastroConsultas extends javax.swing.JFrame {
             }
         });
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paciente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
+        jLabel2.setText("Paciente:");
+
+        jLabel7.setText("Convenio:");
+
+        txtconvenio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtconvenioActionPerformed(evt);
+            }
+        });
+
+        BotaoPesquisarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
+        BotaoPesquisarPaciente.setText("Pesquisar");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtconvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoPesquisarPaciente)))
+                .addContainerGap(115, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotaoPesquisarPaciente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtconvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        botaopagamento.setText("Pagamento");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botaopagamento)
+                .addGap(31, 31, 31)
                 .addComponent(BotaoConsultaSalvar)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jButton9)
-                .addGap(87, 87, 87))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(67, 67, 67))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 839, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(20, 20, 20)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(157, 157, 157)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoConsultaSalvar)
-                    .addComponent(jButton9))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(jButton9)
+                    .addComponent(botaopagamento))
+                .addGap(27, 27, 27))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(181, 181, 181)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(204, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void RadioReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioReservaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RadioReservaActionPerformed
-
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -259,13 +324,21 @@ public class CadastroConsultas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoConsultaSalvarActionPerformed
 
-    private void RadioConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioConsultaActionPerformed
+    private void txtespecializacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtespecializacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RadioConsultaActionPerformed
+    }//GEN-LAST:event_txtespecializacaoActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void txtconvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconvenioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_txtconvenioActionPerformed
+
+    private void BotaoPesquisarmedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarmedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoPesquisarmedicoActionPerformed
+
+    private void TipoExameOuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoExameOuConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoExameOuConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,8 +380,10 @@ public class CadastroConsultas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoConsultaSalvar;
-    private javax.swing.JRadioButton RadioConsulta;
-    private javax.swing.JRadioButton RadioReserva;
+    private javax.swing.JButton BotaoPesquisarPaciente;
+    private javax.swing.JButton BotaoPesquisarmedico;
+    private javax.swing.JTextField TipoExameOuConsulta;
+    private javax.swing.JButton botaopagamento;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -316,29 +391,30 @@ public class CadastroConsultas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JFormattedTextField txtdatahora;
-    private javax.swing.JFormattedTextField txttelefone;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JFormattedTextField txtHora;
+    private javax.swing.JTextField txtPaciente;
+    private javax.swing.JTextField txtconvenio;
+    private javax.swing.JFormattedTextField txtdata;
+    private javax.swing.JTextField txtespecializacao;
+    private javax.swing.JTextField txtmedico;
     // End of variables declaration//GEN-END:variables
 
     /**
      * @return the BotaoConsultaCancelar
      */
     public javax.swing.JButton getBotaoConsultaCancelar() {
-        return jButton9;
+        return getjButton9();
     }
 
     /**
      * @param BotaoConsultaCancelar the BotaoConsultaCancelar to set
      */
     public void setBotaoConsultaCancelar(javax.swing.JButton BotaoConsultaCancelar) {
-        this.jButton9 = BotaoConsultaCancelar;
+        this.setjButton9(BotaoConsultaCancelar);
     }
 
     /**
@@ -353,6 +429,302 @@ public class CadastroConsultas extends javax.swing.JFrame {
      */
     public void setBotaoConsultaSalvar(javax.swing.JButton BotaoConsultaSalvar) {
         this.BotaoConsultaSalvar = BotaoConsultaSalvar;
+    }
+
+    /**
+     * @return the BotaoPesquisarPaciente
+     */
+    public javax.swing.JButton getBotaoPesquisarPaciente() {
+        return BotaoPesquisarPaciente;
+    }
+
+    /**
+     * @param BotaoPesquisarPaciente the BotaoPesquisarPaciente to set
+     */
+    public void setBotaoPesquisarPaciente(javax.swing.JButton BotaoPesquisarPaciente) {
+        this.BotaoPesquisarPaciente = BotaoPesquisarPaciente;
+    }
+
+    /**
+     * @return the BotaoPesquisarmedico
+     */
+    public javax.swing.JButton getBotaoPesquisarmedico() {
+        return BotaoPesquisarmedico;
+    }
+
+    /**
+     * @param BotaoPesquisarmedico the BotaoPesquisarmedico to set
+     */
+    public void setBotaoPesquisarmedico(javax.swing.JButton BotaoPesquisarmedico) {
+        this.BotaoPesquisarmedico = BotaoPesquisarmedico;
+    }
+
+ 
+    /**
+     * @return the TipoExameOuConsulta
+     */
+    public javax.swing.JTextField getTipoExameOuConsulta() {
+        return TipoExameOuConsulta;
+    }
+
+    /**
+     * @param TipoExameOuConsulta the TipoExameOuConsulta to set
+     */
+    public void setTipoExameOuConsulta(javax.swing.JTextField TipoExameOuConsulta) {
+        this.TipoExameOuConsulta = TipoExameOuConsulta;
+    }
+
+    /**
+     * @return the botaopagamento
+     */
+    public javax.swing.JButton getBotaopagamento() {
+        return botaopagamento;
+    }
+
+    /**
+     * @param botaopagamento the botaopagamento to set
+     */
+    public void setBotaopagamento(javax.swing.JButton botaopagamento) {
+        this.botaopagamento = botaopagamento;
+    }
+
+    /**
+     * @return the jButton9
+     */
+    public javax.swing.JButton getjButton9() {
+        return jButton9;
+    }
+
+    /**
+     * @param jButton9 the jButton9 to set
+     */
+    public void setjButton9(javax.swing.JButton jButton9) {
+        this.jButton9 = jButton9;
+    }
+
+    /**
+     * @return the jFormattedTextField1
+     */
+    public javax.swing.JFormattedTextField getjFormattedTextField1() {
+        return getTxtHora();
+    }
+
+    /**
+     * @param jFormattedTextField1 the jFormattedTextField1 to set
+     */
+    public void setjFormattedTextField1(javax.swing.JFormattedTextField jFormattedTextField1) {
+        this.setTxtHora(jFormattedTextField1);
+    }
+
+    /**
+     * @return the jLabel1
+     */
+    public javax.swing.JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    /**
+     * @param jLabel1 the jLabel1 to set
+     */
+    public void setjLabel1(javax.swing.JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    /**
+     * @return the jLabel3
+     */
+    public javax.swing.JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    /**
+     * @param jLabel3 the jLabel3 to set
+     */
+    public void setjLabel3(javax.swing.JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    /**
+     * @return the jLabel4
+     */
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    /**
+     * @param jLabel4 the jLabel4 to set
+     */
+    public void setjLabel4(javax.swing.JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    /**
+     * @return the jLabel5
+     */
+    public javax.swing.JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    /**
+     * @param jLabel5 the jLabel5 to set
+     */
+    public void setjLabel5(javax.swing.JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    /**
+     * @return the jLabel6
+     */
+    public javax.swing.JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    /**
+     * @param jLabel6 the jLabel6 to set
+     */
+    public void setjLabel6(javax.swing.JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
+    }
+
+    /**
+     * @return the jLabel7
+     */
+    public javax.swing.JLabel getjLabel7() {
+        return jLabel7;
+    }
+
+    /**
+     * @param jLabel7 the jLabel7 to set
+     */
+    public void setjLabel7(javax.swing.JLabel jLabel7) {
+        this.jLabel7 = jLabel7;
+    }
+
+
+    /**
+     * @return the jPanel3
+     */
+    public javax.swing.JPanel getjPanel3() {
+        return jPanel3;
+    }
+
+    /**
+     * @param jPanel3 the jPanel3 to set
+     */
+    public void setjPanel3(javax.swing.JPanel jPanel3) {
+        this.jPanel3 = jPanel3;
+    }
+
+    /**
+     * @return the jPanel4
+     */
+    public javax.swing.JPanel getjPanel4() {
+        return jPanel4;
+    }
+
+    /**
+     * @param jPanel4 the jPanel4 to set
+     */
+    public void setjPanel4(javax.swing.JPanel jPanel4) {
+        this.jPanel4 = jPanel4;
+    }
+
+    /**
+     * @return the jPanel5
+     */
+    public javax.swing.JPanel getjPanel5() {
+        return jPanel5;
+    }
+
+    /**
+     * @param jPanel5 the jPanel5 to set
+     */
+    public void setjPanel5(javax.swing.JPanel jPanel5) {
+        this.jPanel5 = jPanel5;
+    }
+
+    /**
+     * @return the txtPaciente
+     */
+    public javax.swing.JTextField getTxtPaciente() {
+        return txtPaciente;
+    }
+
+    /**
+     * @param txtPaciente the txtPaciente to set
+     */
+    public void setTxtPaciente(javax.swing.JTextField txtPaciente) {
+        this.txtPaciente = txtPaciente;
+    }
+
+    /**
+     * @return the txtconvenio
+     */
+    public javax.swing.JTextField getTxtconvenio() {
+        return txtconvenio;
+    }
+
+    /**
+     * @param txtconvenio the txtconvenio to set
+     */
+    public void setTxtconvenio(javax.swing.JTextField txtconvenio) {
+        this.txtconvenio = txtconvenio;
+    }
+
+    /**
+     * @return the txtdatahora
+     */
+    public javax.swing.JFormattedTextField getTxtdatahora() {
+        return getTxtdata();
+    }
+
+    /**
+     * @param txtdatahora the txtdatahora to set
+     */
+    public void setTxtdatahora(javax.swing.JFormattedTextField txtdatahora) {
+        this.setTxtdata(txtdatahora);
+    }
+
+    /**
+     * @return the txtespecializacao
+     */
+    public javax.swing.JTextField getTxtespecializacao() {
+        return txtespecializacao;
+    }
+
+    /**
+     * @param txtespecializacao the txtespecializacao to set
+     */
+    public void setTxtespecializacao(javax.swing.JTextField txtespecializacao) {
+        this.txtespecializacao = txtespecializacao;
+    }
+
+    /**
+     * @return the txtmedico
+     */
+    public javax.swing.JTextField getTxtmedico() {
+        return txtmedico;
+    }
+
+    /**
+     * @param txtmedico the txtmedico to set
+     */
+    public void setTxtmedico(javax.swing.JTextField txtmedico) {
+        this.txtmedico = txtmedico;
     }
     
     

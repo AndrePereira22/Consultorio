@@ -27,8 +27,7 @@ public class Funcionario {
     private Login usuario;
     private Contato contato;
 
-    private List<Tarefa> tarefas;
-    private List<Relatorio> relatorios;
+   
     private Login login;
     
 
@@ -95,39 +94,6 @@ public class Funcionario {
         this.caixa = caixa;
     }
 
-    
-
-    /**
-     * @return the tarefas
-     */
-    public List<Tarefa> getTarefas() {
-        return tarefas;
-    }
-
-    /**
-     * @param tarefas the tarefas to set
-     */
-    public void setTarefas(List<Tarefa> tarefas) {
-        this.tarefas = tarefas;
-    }
-
-    
-
-    /**
-     * @return the relatorios
-     */
-    public List<Relatorio> getRelatorios() {
-        return relatorios;
-    }
-
-    /**
-     * @param relatorios the relatorios to set
-     */
-    public void setRelatorios(List<Relatorio> relatorios) {
-        this.relatorios = relatorios;
-    }
-
- 
 
     /**
      * @return the funcao

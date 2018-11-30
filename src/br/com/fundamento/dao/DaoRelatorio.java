@@ -30,7 +30,6 @@ public class DaoRelatorio implements IDaoRelatorio {
     @Override
     public void salvar(Relatorio relatorio) {
         try {
-            int id_funcionario = new DaoFuncionario().salvarFuncionario(relatorio.getFuncionario());
 
             this.conexao = SQLConections.getInstance();
 
@@ -38,7 +37,7 @@ public class DaoRelatorio implements IDaoRelatorio {
 
             this.statement.setString(1, relatorio.getDescricao());
             this.statement.setString(2, relatorio.getRelatorio());
-            this.statement.setInt(3, id_funcionario);
+
 
             statement.execute();
             this.statement.close();

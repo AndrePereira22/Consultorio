@@ -16,6 +16,7 @@ public interface IDaoProduto {
     public List<Produto> getAll();
     public void editar(Produto produto);
     public void ativarDesativar(int id);
+    public List<Produto> getPorBuscaProduto(String busca);
     
     
     

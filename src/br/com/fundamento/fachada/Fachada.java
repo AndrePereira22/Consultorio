@@ -592,6 +592,31 @@ public class Fachada implements IFachada {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public List<Produto> getPorBuscaProduto(String busca) {
+        return this.businessProduto.getPorBuscaProduto(busca);
+    }
+
+    @Override
+    public List<Tarefa> getPorBuscaTarefa(String busca) {
+       return this.businessTarefa.getPorBuscaTarefa(busca);
+    }
+
+    @Override
+    public List<Consulta> getPorBuscaConsulta(String busca) {
+        return  this.businessConsulta.getPorBuscaConsulta(busca);
+    }
+
+    @Override
+    public Medico BuscarMedico(String busca) {
+       return this.businessMedico.getBuscarMedico(busca);
+    }
+
+    @Override
+    public Login buscarLogin(String nome) {
+        return this.businessLogin.buscarLogin(nome);
+    }
+
  
    
 

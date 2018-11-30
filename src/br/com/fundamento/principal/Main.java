@@ -18,6 +18,7 @@ import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
+import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.BuscarCaixa;
@@ -58,6 +59,7 @@ public class Main {
         CadastroFuncionario cadastroFuncionario = new CadastroFuncionario();
         CadastroMedico cadastroMedico = new CadastroMedico();
         CadastroProduto cadastroProduto = new CadastroProduto();
+         CadastroProduto cp = new CadastroProduto();
         CadastroTarefas cadastroTarefas = new CadastroTarefas();
         CadastroConsultas cadastroConsultas = new CadastroConsultas();
         CadastroCaixa cadastroCaixa = new CadastroCaixa();
@@ -69,7 +71,7 @@ public class Main {
         BuscarFuncionario buscarFuncionario = new BuscarFuncionario();
          BuscarPaciente buscarPaciente = new BuscarPaciente();
          BuscarFornecedor buscarFornecedor = new  BuscarFornecedor();
-        // BuscarProduto buscarProduto = new BuscarProduto();
+       BuscarProduto buscarProduto = new BuscarProduto();
          BuscarTarefa buscarTarefa = new BuscarTarefa();
          agendamento agendamento = new agendamento();
          BuscarCaixa buscarCaixa = new BuscarCaixa();
@@ -79,15 +81,13 @@ public class Main {
         ControleLogin controleLogin = new  ControleLogin(telaLogin, telaPrincipal);
         ControleMedico controleMedico = new ControleMedico(telaPrincipal, cadastroMedico, buscarMedico);
         ControleFornecedor controleFornecedor = new ControleFornecedor(telaPrincipal, cadastroFornecedor, buscarFornecedor,cadastroProduto);
-       // ControleProduto controleProduto = new ControleProduto(telaPrincipal, cadastroProduto, buscarProduto);
+       ControleProduto controleProduto = new ControleProduto(telaPrincipal, cp, buscarProduto);
         ControleTarefa controleTarefa = new ControleTarefa(telaPrincipal, cadastroTarefas, buscarTarefa);
         ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento);
         ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, cadastroCaixa, buscarCaixa);
         ControleConsultorio controleConsultorio = new ControleConsultorio(telaPrincipal, atualizarConsultorio);
         
-        
-        Paciente p  = fachada1.buscarPacientePorId(21);
-        System.out.println(p.getNome());
+    
  
     }
 }

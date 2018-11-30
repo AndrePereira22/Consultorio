@@ -25,6 +25,10 @@ public class SQLUtil {
                 + COL_PRECO_COMPRA + ","
                 + COL_ID_ESTOQUE + ","
                 + COL_FORNECEDOR_ID + "" + ") values (?,?,?,?,?,?,?) ";
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME + " where " + COL_NOME_PRODUTO + " like '%" + busca + "%' or " + COL_FABRICANTE + " like '%" + busca + "%'";
+        }
     }
 
     public static class Fornecedor {
@@ -34,18 +38,18 @@ public class SQLUtil {
         public static final String COL_RAZAO_SOCIAl = "razao_social";
         public static final String COL_CNPJ = "cnpj";
         public static final String COL_ENDERECO = "id_endereco";
-         public static final String COL_ID_CONTATO = "id_contato";
+        public static final String COL_ID_CONTATO = "id_contato";
 
         public static final String INSERT = "insert into " + NOME + "(" + COL_NOME_FORNECEDOR + ","
                 + COL_RAZAO_SOCIAl + ","
                 + COL_CNPJ + ","
-                + COL_ENDERECO +"," 
+                + COL_ENDERECO + ","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?) returning id";
-        
-           public static String selectPorBusca(String busca) {
- return "select *from "+ NOME +" where "+ COL_RAZAO_SOCIAl +" like '%"+busca+"%' or " + COL_NOME_FORNECEDOR+" like '%"+busca+"%' or " + 
-         COL_CNPJ +" like '%"+busca+"%'" ;
-    }
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME + " where " + COL_RAZAO_SOCIAl + " like '%" + busca + "%' or " + COL_NOME_FORNECEDOR + " like '%" + busca + "%' or "
+                    + COL_CNPJ + " like '%" + busca + "%'";
+        }
     }
 
     public static class Medico {
@@ -58,9 +62,9 @@ public class SQLUtil {
         public static final String COL_DATA_CPF = "cpf";
         public static final String COL_DATA_NASCIMENTO = "data_nascimento";
         public static final String COL_DATA_CADASTRO = "data_cadastro";
-          public static final String COL_ID_LOGIN = "id_login";
-            public static final String COL_ENDERECO = "id_endereco";
-             public static final String COL_ID_CONTATO = "id_contato";
+        public static final String COL_ID_LOGIN = "id_login";
+        public static final String COL_ENDERECO = "id_endereco";
+        public static final String COL_ID_CONTATO = "id_contato";
 
         public static final String INSERT = "insert into " + NOME + "(" + COL_NOME + ","
                 + COL_SEXO + ","
@@ -69,34 +73,40 @@ public class SQLUtil {
                 + COL_DATA_CPF + ","
                 + COL_DATA_NASCIMENTO + ","
                 + COL_DATA_CADASTRO + ","
-                 +COL_ID_LOGIN + ","
+                + COL_ID_LOGIN + ","
                 + COL_ENDERECO + ","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?,?,?,?,?,?) returning id";
-        
-         public static String selectPorBusca(String busca) {
- return "select *from "+ NOME +" where "+COL_NOME +" like '%"+busca+"%' or " + COL_DATA_CPF+" like '%"+busca+"%' or " + 
-         COL_SEXO +" like '%"+busca+"%'" ;
-    }
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME + " where " + COL_NOME + " like '%" + busca + "%' or " + COL_DATA_CPF + " like '%" + busca + "%' or "
+                    + COL_SEXO + " like '%" + busca + "%'";
+        }
+
+        public static String buscarMedico(String busca) {
+            return "select *from " + NOME + " where " + COL_NOME + " like '%" + busca + "%'";
+        }
     }
 
     public static class Consulta {
 
         public static final String NOME = "consulta";
-        public static final String COL_DATA_HORA = "data_hora";
+        public static final String COL_DATA = "data";
+        public static final String COL_HORA = "hora";
         public static final String COL_TIPO = "tipo";
-        public static final String COL_AGENDAMENTO = "agendamento";
         public static final String COL_ID_PACIENTE = "id_paciente";
         public static final String COL_ID_MEDICO = "id_medico";
-        public static final String COL_ID_CONSULTORIO = "id_consultorio";
         public static final String COL_ID_PAGAMENTO = "id_pagamento";
 
         public static final String INSERT = "insert into " + NOME + "(" + COL_TIPO + ","
-                + COL_AGENDAMENTO + ","
                 + COL_ID_PACIENTE + ","
                 + COL_ID_MEDICO + ","
-                + COL_ID_CONSULTORIO + ","
                 + COL_ID_PAGAMENTO + ","
-                + COL_DATA_HORA + "" + ") values (?,?,?,?,?,?,?) returning id";
+                + COL_DATA + ","
+                + COL_HORA + "" + ") values (?,?,?,?,?,?) returning id";
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME + " where " + COL_DATA + " like '%" + busca + "%'";
+        }
     }
 
     public static class Funcionario {
@@ -106,11 +116,11 @@ public class SQLUtil {
         public static final String COL_ID_CAIXA = "id_caixa";
         public static final String COL_CPF = "cpf";
         public static final String COL_SALARIO = "salario";
-       public static final String COL_FUNCAO = "funcao";
-       public static final String COL_DATA_NASCIMENTO = "data_nascimento";
+        public static final String COL_FUNCAO = "funcao";
+        public static final String COL_DATA_NASCIMENTO = "data_nascimento";
         public static final String COL_ID_LOGIN = "id_login";
         public static final String COL_ID_ENDERECO = "id_endereco";
-         public static final String COL_ID_CONTATO = "id_contato";
+        public static final String COL_ID_CONTATO = "id_contato";
 
         public static final String INSERT = "insert into " + NOME + "(" + COL_NOME + ","
                 + COL_ID_CAIXA + ","
@@ -119,13 +129,13 @@ public class SQLUtil {
                 + COL_FUNCAO + ","
                 + COL_DATA_NASCIMENTO + ","
                 + COL_ID_LOGIN + ","
-                + COL_ID_ENDERECO +","
+                + COL_ID_ENDERECO + ","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?,?,?,?,?) returning id";
-        
-                 public static String selectPorBusca(String busca) {
- return "select *from "+ NOME +" where "+ COL_NOME +" like '%"+busca+"%' or " + COL_FUNCAO+" like '%"+busca+"%' or " + 
-         COL_CPF +" like '%"+busca+"%'" ;
-    }
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME + " where " + COL_NOME + " like '%" + busca + "%' or " + COL_FUNCAO + " like '%" + busca + "%' or "
+                    + COL_CPF + " like '%" + busca + "%'";
+        }
     }
 
     public static class Tarefa {
@@ -136,14 +146,16 @@ public class SQLUtil {
         public static final String COL_DESCRICAO = "descricao";
         public static final String COL_PRIORIDADE = "prioridade";
         public static final String COL_STATUS = "status";
-        public static final String COL_ID_FUNCIONARIO = "id_funcionario";
 
         public static final String INSERT = "insert into " + NOME + "(" + COL_DESCRICAO + ","
                 + COL_PRIORIDADE + ","
                 + COL_STATUS + ","
-                + COL_ID_FUNCIONARIO + ","
                 + COL_DATA_INICIO + ","
-                + COL_DATA_TERMINO + "" + ") values (?,?,?,?,?,?) returning id";
+                + COL_DATA_TERMINO + "" + ") values (?,?,?,?,?) returning id";
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME + " where " + COL_DESCRICAO + " like '%" + busca + "%' or " + COL_DATA_TERMINO + " like '%" + busca + "%'";
+        }
     }
 
     public static class Endereco {
@@ -155,12 +167,11 @@ public class SQLUtil {
         public static final String COL_BAIRRO = "bairro";
         public static final String COL_MUNICIPIO = "municipio";
         public static final String COL_ESTADO = "estado";
-        
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_CEP + ","
                 + COL_RUA + ","
                 + COL_BAIRRO + ","
-                + COL_NUMERO +","
+                + COL_NUMERO + ","
                 + COL_MUNICIPIO + ","
                 + COL_ESTADO + "" + " ) values (?,?,?,?,?,?) returning id";
     }
@@ -170,7 +181,7 @@ public class SQLUtil {
         public static final String NOME_TABELA = "contato";
         public static final String COL_EMAIL = "email";
         public static final String COL_TELEFONE = "telefone";
-         public static final String COL_CELULAR = "celular";
+        public static final String COL_CELULAR = "celular";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_EMAIL + ","
                 + COL_TELEFONE + ","
@@ -185,18 +196,22 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_LOGIN + ","
                 + COL_SENHA + "" + " ) values (?,?) returning id ";
+        
+        
+         public static String Buscalogin(String busca) {
+             
+           return "select  l.usuario,l.senha from funcionario f, login l " + " where  f.id_login=l.id and l.usuario='"+ busca+"'" ; 
+  }
     }
 
     public static class Estoque {
 
         public static final String NOME_TABELA = "estoque";
         public static final String COL_DESCRICAO = "descricao";
-       
 
-        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_DESCRICAO +  
-                "" + " ) values (?) returning id";
+        public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_DESCRICAO
+                + "" + " ) values (?) returning id";
     }
-
 
     public static class Paciente {
 
@@ -219,24 +234,16 @@ public class SQLUtil {
                 + COL_DATA_CADASTRO + ","
                 + COL_RG + ","
                 + COL_PRONTUARIO_ID + ","
-                + COL_ENDERECO_ID + "," 
+                + COL_ENDERECO_ID + ","
                 + COL_ID_CONTATO + ","
                 + COL_CONVENIO + "" + " ) values (?,?,?,?,?,?,?,?,?,?) returning id";
-    
-    
-    
-    
-    
-    public static String selectPorBusca(String busca) {
- return "select *from "+ NOME_TABELA +" where "+COL_NOME +" like '%"+busca+"%' or " + COL_CPF+" like '%"+busca+"%' or " + 
-         COL_SEXO +" like '%"+busca+"%'" ;
+
+        public static String selectPorBusca(String busca) {
+            return "select *from " + NOME_TABELA + " where " + COL_NOME + " like '%" + busca + "%' or " + COL_CPF + " like '%" + busca + "%' or "
+                    + COL_SEXO + " like '%" + busca + "%'";
+        }
+
     }
-    
-    }
-    
-    
-    
-    
 
     public static class Pagamento {
 
@@ -289,11 +296,9 @@ public class SQLUtil {
         public static final String NOME_TABELA = "relatorio";
         public static final String COL_DESCRICAO = "descricao";
         public static final String COL_RELATORIO = "relatorio";
-        public static final String COL_FUNCIONARIO_ID = "id_funcionario";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_DESCRICAO + ","
-                + COL_RELATORIO + ","
-                + COL_FUNCIONARIO_ID + "" + " ) values (?,?,?) returning id";
+                + COL_RELATORIO + "" + " ) values (?,?) returning id";
     }
 
     public static class SaidaEstoque {
@@ -353,17 +358,15 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME + "(" + COL_NOME_fANTASIA + ","
                 + COL_RAZAO_SOCIAl + ","
-                + COL_CNPJ +","
+                + COL_CNPJ + ","
                 + COL_ID_ENDERECO + ","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?) returning id";
     }
-
 
     public static String selectAll(String nomeTabela) {
         return "select * from " + nomeTabela;
     }
 
-    
     public static String selectById(String nomeTabela, int id) {
         return "select * from " + nomeTabela + " where id = " + id;
     }

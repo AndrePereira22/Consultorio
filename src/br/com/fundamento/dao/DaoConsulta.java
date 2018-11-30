@@ -6,6 +6,7 @@
 package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Consulta;
+import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -33,7 +34,6 @@ public class DaoConsulta implements IDaoConsulta{
       try {
     
           int id_pagamento = new DaoPagamento().salvarPagamento(consulta.getPagamento());
-          int id_consultorio = new DaoConsultorio().salvarConsultorio(consulta.getConsultorio());
           int id_medico = new DaoMedico().salvarMedico(consulta.getMedico());
           int id_paciente = new DaoPaciente().salvarPaciente(consulta.getPaciente());
              
@@ -41,12 +41,12 @@ public class DaoConsulta implements IDaoConsulta{
              this.statement = conexao.prepareStatement(SQLUtil.Consulta.INSERT);
             
             this.statement.setString(1, consulta.getTipo());
-            this.statement.setBoolean(2, consulta.isAgendamento());
-            this.statement.setInt(3, id_paciente);
-            this.statement.setInt(4, id_medico);
-            this.statement.setInt(5, id_consultorio);
-            this.statement.setInt(6, id_pagamento);
-            this.statement.setString(7, consulta.getData_hora());
+            this.statement.setInt(2, id_paciente);
+            this.statement.setInt(3, id_medico);
+            this.statement.setInt(4, id_pagamento);
+            this.statement.setString(5, consulta.getData());
+            this.statement.setString(6, consulta.getHora());
+
             
          
              
@@ -74,9 +74,10 @@ public class DaoConsulta implements IDaoConsulta{
             if (result.next()) {
               consulta = new Consulta();
               
-              consulta.setData_hora(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
+              consulta.setData(result.getString(SQLUtil.Consulta.COL_DATA));
+               consulta.setHora(result.getString(SQLUtil.Consulta.COL_HORA));
                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
-               consulta.setAgendamento(result.getBoolean(SQLUtil.Consulta.COL_AGENDAMENTO));
+
               
               
                
@@ -103,10 +104,10 @@ public class DaoConsulta implements IDaoConsulta{
                 consulta = new Consulta();
                 
                 
-              consulta.setData_hora(result.getString(SQLUtil.Consulta.COL_DATA_HORA));
+              consulta.setData(result.getString(SQLUtil.Consulta.COL_DATA));
+               consulta.setHora(result.getString(SQLUtil.Consulta.COL_HORA));
                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
-               consulta.setAgendamento(result.getBoolean(SQLUtil.Consulta.COL_AGENDAMENTO));
-              
+
                 
                 consultas.add(consulta);
             }
@@ -126,5 +127,33 @@ public class DaoConsulta implements IDaoConsulta{
     public void ativarDesativarConsulta(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Consulta> getPorBuscaConsulta(String busca) {
+      List<Consulta> consultas = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Consulta.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Consulta consulta;
+            while (result.next()) {
+                consulta = new Consulta();
+                
+                
+              consulta.setData(result.getString(SQLUtil.Consulta.COL_DATA));
+               consulta.setHora(result.getString(SQLUtil.Consulta.COL_HORA));
+               consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
+                
+                consultas.add(consulta);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consultas; 
+    }
+     
+   
     
 }

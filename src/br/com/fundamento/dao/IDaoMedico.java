@@ -25,5 +25,7 @@ public interface IDaoMedico {
     public void ativarDesativarMedico(int id);
     
      public List<Medico> getPorBuscaMedico(String busca);
+     
+      public Medico BuscarMedico(String busca);
 
 }

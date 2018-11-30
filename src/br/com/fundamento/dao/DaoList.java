@@ -5,10 +5,9 @@
  */
 package br.com.fundamento.dao;
 
+
 import br.com.fundamento.modelos.Consulta;
-import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Especializacao;
-import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.modelos.Paciente;
@@ -233,7 +232,7 @@ public class DaoList {
         }
     }
 
-    public static void salvarConsulta(Consulta consulta, int id_medico, int id_pagamento, int id_consultorio, int id_paciente) {
+    public static void salvarConsulta(Consulta consulta, int id_medico, int id_pagamento, int id_paciente) {
 
         try {
 
@@ -241,12 +240,11 @@ public class DaoList {
             statement = conexao.prepareStatement(SQLUtil.Consulta.INSERT);
 
             statement.setString(1, consulta.getTipo());
-            statement.setBoolean(2, consulta.isAgendamento());
-            statement.setInt(3, id_paciente);
-            statement.setInt(4, id_medico);
-            statement.setInt(5, id_consultorio);
-            statement.setInt(6, id_pagamento);
-            statement.setString(7, consulta.getData_hora());
+            statement.setInt(2, id_paciente);
+            statement.setInt(3, id_medico);
+            statement.setInt(4, id_pagamento);
+            statement.setString(5, consulta.getData());
+            statement.setString(6, consulta.getHora());
 
             statement.execute();
             statement.close();
@@ -288,17 +286,15 @@ public class DaoList {
         try {
             
             int id_pagamento = new DaoPagamento().salvarPagamento(consulta.getPagamento());
-            int id_consultorio = new DaoConsultorio().salvarConsultorio(consulta.getConsultorio());
             int id_medico = new DaoMedico().salvarMedico(consulta.getMedico());
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Consulta.INSERT);
             statement.setString(1, consulta.getTipo());
-            statement.setBoolean(2, consulta.isAgendamento());
-            statement.setInt(3, id_paciente);
-            statement.setInt(4, id_medico);
-            statement.setInt(5, id_consultorio);
-            statement.setInt(6, id_pagamento);
-            statement.setString(7, consulta.getData_hora());
+            statement.setInt(2, id_paciente);
+            statement.setInt(3, id_medico);
+            statement.setInt(4, id_pagamento);
+            statement.setString(5, consulta.getData());
+            statement.setString(6, consulta.getHora());
 
             statement.execute();
             statement.close();

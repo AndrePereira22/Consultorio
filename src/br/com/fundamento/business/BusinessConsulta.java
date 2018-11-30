@@ -46,6 +46,11 @@ public class BusinessConsulta implements IBusinessConsulta{
     public void ativarDesativarConsulta(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Consulta> getPorBuscaConsulta(String busca) {
+       return this.daoConsulta.getPorBuscaConsulta(busca);
+    }
     
     
 }

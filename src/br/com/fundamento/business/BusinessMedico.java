@@ -51,5 +51,10 @@ public class BusinessMedico implements IBusinessMedico{
     public List<Medico> getPorBuscaMedico(String busca) {
        return this.daoMedico.getPorBuscaMedico(busca);
     }
+
+    @Override
+    public Medico getBuscarMedico(String busca) {
+        return  this.daoMedico.BuscarMedico(busca);
+    }
     
 }

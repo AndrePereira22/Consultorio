@@ -53,7 +53,7 @@ public class TelaLogin extends javax.swing.JFrame {
         setTitle("Tela Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         setForeground(new java.awt.Color(240, 240, 240));
-        setLocation(new java.awt.Point(350, 240));
+        setLocation(new java.awt.Point(450, 180));
         setUndecorated(true);
 
         jPanel6.setBackground(new java.awt.Color(57, 167, 167));

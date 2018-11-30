@@ -46,5 +46,10 @@ public class BusinessLogin implements  IBusinessLogin{
     public void ativarDesativarLogin(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Login buscarLogin(String nome) {
+      return this.daoLogin.buscarLogin(nome);
+    }
     
 }

@@ -36,13 +36,13 @@ public class CadastroTarefas extends javax.swing.JFrame {
         lblnome1 = new javax.swing.JLabel();
         txtdescricao = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        txttdatainicial = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtdatavencimento = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Txtstatus = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtprioridade = new javax.swing.JTextField();
+        txtDatainicio = new javax.swing.JFormattedTextField();
+        txtdatafinal = new javax.swing.JFormattedTextField();
         BotaoSalvarTarefa = new javax.swing.JButton();
         BotaoCancelarTarefa = new javax.swing.JButton();
 
@@ -126,6 +126,23 @@ public class CadastroTarefas extends javax.swing.JFrame {
 
         jLabel4.setText("Prioridade:");
 
+        try {
+            txtDatainicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtDatainicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDatainicioActionPerformed(evt);
+            }
+        });
+
+        try {
+            txtdatafinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -142,20 +159,20 @@ public class CadastroTarefas extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txttdatainicial, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel2))
+                                .addComponent(txtDatainicio))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtprioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtdatavencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(100, Short.MAX_VALUE))))
+                                .addComponent(txtprioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Txtstatus, 0, 107, Short.MAX_VALUE)
+                            .addComponent(txtdatafinal))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,16 +184,16 @@ public class CadastroTarefas extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txttdatainicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(txtdatavencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDatainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdatafinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txtprioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         BotaoSalvarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
@@ -200,21 +217,21 @@ public class CadastroTarefas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BotaoSalvarTarefa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotaoCancelarTarefa))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(486, Short.MAX_VALUE)
+                .addComponent(BotaoSalvarTarefa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BotaoCancelarTarefa)
                 .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoSalvarTarefa)
                     .addComponent(BotaoCancelarTarefa))
@@ -243,6 +260,10 @@ public class CadastroTarefas extends javax.swing.JFrame {
     private void BotaoCancelarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarTarefaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoCancelarTarefaActionPerformed
+
+    private void txtDatainicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDatainicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDatainicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,12 +314,12 @@ public class CadastroTarefas extends javax.swing.JFrame {
     private javax.swing.JLabel lblcnpj;
     private javax.swing.JLabel lblnome;
     private javax.swing.JLabel lblnome1;
+    private javax.swing.JFormattedTextField txtDatainicio;
     private javax.swing.JFormattedTextField txtcnpj;
-    private javax.swing.JTextField txtdatavencimento;
+    private javax.swing.JFormattedTextField txtdatafinal;
     private javax.swing.JTextField txtdescricao;
     private javax.swing.JTextField txtprioridade;
     private javax.swing.JTextField txtrazao;
-    private javax.swing.JTextField txttdatainicial;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -483,20 +504,7 @@ public class CadastroTarefas extends javax.swing.JFrame {
         this.txtcnpj = txtcnpj;
     }
 
-    /**
-     * @return the txtdatavencimento
-     */
-    public javax.swing.JTextField getTxtdatavencimento() {
-        return txtdatavencimento;
-    }
-
-    /**
-     * @param txtdatavencimento the txtdatavencimento to set
-     */
-    public void setTxtdatavencimento(javax.swing.JTextField txtdatavencimento) {
-        this.txtdatavencimento = txtdatavencimento;
-    }
-
+    
     /**
      * @return the txtdescricao
      */
@@ -539,18 +547,34 @@ public class CadastroTarefas extends javax.swing.JFrame {
         this.txtrazao = txtrazao;
     }
 
+    
+
     /**
-     * @return the txttdatainicial
+     * @return the txtDatainicio
      */
-    public javax.swing.JTextField getTxttdatainicial() {
-        return txttdatainicial;
+    public javax.swing.JFormattedTextField getTxtDatainicio() {
+        return txtDatainicio;
     }
 
     /**
-     * @param txttdatainicial the txttdatainicial to set
+     * @param txtDatainicio the txtDatainicio to set
      */
-    public void setTxttdatainicial(javax.swing.JTextField txttdatainicial) {
-        this.txttdatainicial = txttdatainicial;
+    public void setTxtDatainicio(javax.swing.JFormattedTextField txtDatainicio) {
+        this.txtDatainicio = txtDatainicio;
+    }
+
+    /**
+     * @return the txtdatafinal
+     */
+    public javax.swing.JFormattedTextField getTxtdatafinal() {
+        return txtdatafinal;
+    }
+
+    /**
+     * @param txtdatafinal the txtdatafinal to set
+     */
+    public void setTxtdatafinal(javax.swing.JFormattedTextField txtdatafinal) {
+        this.txtdatafinal = txtdatafinal;
     }
 
 

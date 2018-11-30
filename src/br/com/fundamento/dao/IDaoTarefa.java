@@ -18,5 +18,6 @@ public interface IDaoTarefa {
     public List<Tarefa> getAllTarefa();
     public void editarTarefa(Tarefa tarefa);
     public void ativarDesativarTarefa(int id);
+     public List<Tarefa> getPorBuscaTarefa(String busca);
     
 }

@@ -104,5 +104,28 @@ public class DaoLogin implements  IDaoLogin{
     public void ativarDesativarLogin(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Login buscarLogin(String nome) {
+          Login login = null;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Login.Buscalogin(nome));
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+              login = new Login();
+               login.setUsuario(result.getString(SQLUtil.Login.COL_LOGIN));
+                login.setSenha(result.getString(SQLUtil.Login.COL_SENHA));
+                       
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return login;
+      
+    }
     
 }

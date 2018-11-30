@@ -52,6 +52,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoAgendamento = new javax.swing.JButton();
         BotaoCadastrarTarefa = new javax.swing.JButton();
         BotaoSair = new javax.swing.JButton();
+        BotaoLogoff = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         BotaoCadastroCaixa = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
@@ -224,6 +225,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoSair.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotaoSair.setForeground(new java.awt.Color(204, 204, 204));
         BotaoSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Sair.png"))); // NOI18N
+        BotaoSair.setText("Sair");
         BotaoSair.setBorderPainted(false);
         BotaoSair.setContentAreaFilled(false);
         BotaoSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -232,6 +234,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoSairActionPerformed(evt);
+            }
+        });
+
+        BotaoLogoff.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoLogoff.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoLogoff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Logoff.png"))); // NOI18N
+        BotaoLogoff.setText("Logoff");
+        BotaoLogoff.setBorderPainted(false);
+        BotaoLogoff.setContentAreaFilled(false);
+        BotaoLogoff.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoLogoff.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoLogoff.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoLogoff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoLogoffActionPerformed(evt);
             }
         });
 
@@ -253,8 +270,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(BotaoCadastrarTarefa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoAgendamento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 301, Short.MAX_VALUE)
-                .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotaoLogoff)
+                .addGap(22, 22, 22)
+                .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,15 +282,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(BotaoAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotaoCadastroFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotaoCadastroFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotaoMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotaoCadastroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BotaoAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoCadastroFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoCadastroFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoCadastroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoLogoff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BotaoSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(BotaoCadastrarTarefa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -439,6 +459,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoAtualizardadosActionPerformed
 
+    private void BotaoLogoffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoLogoffActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoLogoffActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -485,6 +509,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotaoCadastroFornecedor;
     private javax.swing.JButton BotaoCadastroFuncionario;
     private javax.swing.JButton BotaoCadastroPaciente;
+    private javax.swing.JButton BotaoLogoff;
     private javax.swing.JButton BotaoMedico;
     private javax.swing.JButton BotaoSair;
     private javax.swing.JPanel jPanel1;
@@ -604,6 +629,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public void setBotaoAtualizardados(javax.swing.JButton BotaoAtualizardados) {
         this.BotaoAtualizardados = BotaoAtualizardados;
+    }
+
+    /**
+     * @return the BotaoLogoff
+     */
+    public javax.swing.JButton getBotaoLogoff() {
+        return BotaoLogoff;
+    }
+
+    /**
+     * @param BotaoLogoff the BotaoLogoff to set
+     */
+    public void setBotaoLogoff(javax.swing.JButton BotaoLogoff) {
+        this.BotaoLogoff = BotaoLogoff;
     }
     
 }

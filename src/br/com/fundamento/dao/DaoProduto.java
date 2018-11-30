@@ -71,7 +71,7 @@ public class DaoProduto implements IDaoProduto {
                 produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
                 produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
                 produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
-                produto.setPreco_compra(result.getInt(SQLUtil.Produto.COL_PRECO_COMPRA));
+                produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
             }
             this.conexao.close();
 
@@ -96,7 +96,7 @@ public class DaoProduto implements IDaoProduto {
                 produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
                 produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
                 produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
-                produto.setPreco_compra(result.getInt(SQLUtil.Produto.COL_PRECO_COMPRA));
+                produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
                 
                 produtos.add(produto);
             }
@@ -117,5 +117,31 @@ public class DaoProduto implements IDaoProduto {
     public void ativarDesativar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Produto> getPorBuscaProduto(String busca) {
+       List<Produto> produtos = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Produto.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Produto produto;
+            while (result.next()) {
+                produto = new Produto();
+                
+               produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
+                produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
+                produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
+                produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
+                produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
+                
+                produtos.add(produto);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produtos;  }
 
 }

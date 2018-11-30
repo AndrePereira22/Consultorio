@@ -57,12 +57,6 @@ public class DaoFuncionario implements IDaoFuncionario {
             if (result.next()) {
                 id = result.getInt(1);
             }
-            for (Tarefa t : funcionario.getTarefas()) {
-                DaoList.salvarTarefa(t, id);
-            }
-            for (Relatorio r : funcionario.getRelatorios()) {
-                DaoList.salvarRelatorio(r, id);
-            }
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);

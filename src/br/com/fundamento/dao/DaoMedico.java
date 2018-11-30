@@ -62,7 +62,7 @@ public class DaoMedico implements IDaoMedico {
             for (Consulta c : medico.getConsultas()) {
                 int id_pagamento = new DaoPagamento().salvarPagamento(c.getPagamento());
                 int id_paciente = new DaoPaciente().salvarPaciente(c.getPaciente());
-                DaoList.salvarConsulta(c, id, id_pagamento, id_consultorio, id_paciente);
+                DaoList.salvarConsulta(c, id, id_pagamento, id_paciente);
             }
 
         } catch (SQLException ex) {
@@ -161,5 +161,32 @@ public class DaoMedico implements IDaoMedico {
         }
         return medicos;   
       }
+     public Medico BuscarMedico(String busca) {
+     Medico medico = new Medico();
+        
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Medico.buscarMedico(busca));
+            this.result = this.statement.executeQuery();
+           
+            while (result.next()) {
+                
+                
+             medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
+               medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
+                medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
+                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                
+             
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medico; 
+     }
 
 }

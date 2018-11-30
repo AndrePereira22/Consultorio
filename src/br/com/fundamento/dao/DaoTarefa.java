@@ -32,7 +32,7 @@ public class DaoTarefa  implements IDaoTarefa{
     @Override
     public void salvarTarefa(Tarefa tarefa) {
        try {
-            int id_funcionario = new DaoFuncionario().salvarFuncionario(tarefa.getFuncionario());
+            
             
             this.conexao = SQLConections.getInstance();
          
@@ -41,9 +41,8 @@ public class DaoTarefa  implements IDaoTarefa{
             this.statement.setString(1,tarefa.getDescricao());
             this.statement.setInt(2,  tarefa.getPrioridade());
             this.statement.setBoolean(3, tarefa.isStatus());
-            this.statement.setInt(4, id_funcionario);
-            this.statement.setString(5, tarefa.getData_inicio());
-             this.statement.setString(6, tarefa.getData_termino());
+            this.statement.setString(4, tarefa.getData_inicio());
+             this.statement.setString(5, tarefa.getData_termino());
              
             statement.execute();
             this.statement.close();  
@@ -116,5 +115,31 @@ public class DaoTarefa  implements IDaoTarefa{
     public void ativarDesativarTarefa(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Tarefa> getPorBuscaTarefa(String busca) {
+         List<Tarefa> tarefas = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Tarefa.selectPorBusca(busca));
+            this.result = this.statement.executeQuery();
+            Tarefa tarefa;
+            while (result.next()) {
+                tarefa = new Tarefa();
+                
+              tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
+               tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+               tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
+             tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+             tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+                
+                tarefas.add(tarefa);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tarefas;}
     
 }

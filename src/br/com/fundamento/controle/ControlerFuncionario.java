@@ -133,8 +133,6 @@ public class ControlerFuncionario implements ActionListener {
             Funcionario funcionario = new Funcionario();
             funcionario.setContato(con);
             funcionario.setEndereco(end);
-            funcionario.setRelatorios(new ArrayList<Relatorio>());
-            funcionario.setTarefas(new ArrayList<Tarefa>());
             funcionario.setCaixa(c);
             funcionario.setFuncao(cadastroFuncionario.getTxtfuncao().getText());
             funcionario.setNome(cadastroFuncionario.getTxtnome().getText());

@@ -47,4 +47,9 @@ public class BusinessProduto implements IBusinessProduto {
     public void ativarDesativar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Produto> getPorBuscaProduto(String busca) {
+       return this.daoProduto.getPorBuscaProduto(busca);
+    }
 }

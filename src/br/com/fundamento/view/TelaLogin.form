@@ -28,7 +28,7 @@
       <Color blue="f0" green="f0" red="f0" type="rgb"/>
     </Property>
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
-      <Point value="[350, 240]"/>
+      <Point value="[450, 180]"/>
     </Property>
     <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
