@@ -617,6 +617,26 @@ public class Fachada implements IFachada {
         return this.businessLogin.buscarLogin(nome);
     }
 
+    @Override
+    public Login buscarLoginMedico(String parametro,String nome){
+    return this.businessLogin.buscarLoginMedico(parametro,nome);
+    }
+
+    @Override
+    public Consultorio bucarConsultorio() {
+      return this.businessConsultorio.bucarConsultorio();
+    }
+
+    @Override
+    public Especializacao buscarEspecializaco(String busca) {
+      return this.businessEspecializacao.buscarEspecializaco(busca);
+    }
+
+    @Override
+    public Paciente buscarPaciente(String busca) {
+        return this.businessPaciente.buscarPaciente(busca);
+    }
+
  
    
 

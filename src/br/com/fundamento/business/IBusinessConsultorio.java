@@ -20,4 +20,5 @@ public interface IBusinessConsultorio {
     public List<Consultorio> getAllConsultorio();
     public void editarConsultorio(Consultorio consultorio);
     public void ativarDesativarConsultorio(int id);
+      public Consultorio bucarConsultorio();
 }

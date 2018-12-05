@@ -76,7 +76,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtconvenio = new javax.swing.JTextField();
         BotaoPesquisarPaciente = new javax.swing.JButton();
-        botaopagamento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(1, 134));
@@ -109,18 +108,20 @@ public class CadastroConsultas extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtmedico, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(38, 38, 38)
                         .addComponent(BotaoPesquisarmedico))
                     .addComponent(txtespecializacao, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +211,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
         });
 
         BotaoConsultaSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        BotaoConsultaSalvar.setText("Salvar");
+        BotaoConsultaSalvar.setText("Agendar");
         BotaoConsultaSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoConsultaSalvarActionPerformed(evt);
@@ -267,16 +268,12 @@ public class CadastroConsultas extends javax.swing.JFrame {
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
-        botaopagamento.setText("Pagamento");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaopagamento)
-                .addGap(31, 31, 31)
                 .addComponent(BotaoConsultaSalvar)
                 .addGap(32, 32, 32)
                 .addComponent(jButton9)
@@ -303,8 +300,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoConsultaSalvar)
-                    .addComponent(jButton9)
-                    .addComponent(botaopagamento))
+                    .addComponent(jButton9))
                 .addGap(27, 27, 27))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -383,7 +379,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
     private javax.swing.JButton BotaoPesquisarPaciente;
     private javax.swing.JButton BotaoPesquisarmedico;
     private javax.swing.JTextField TipoExameOuConsulta;
-    private javax.swing.JButton botaopagamento;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -472,20 +467,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
      */
     public void setTipoExameOuConsulta(javax.swing.JTextField TipoExameOuConsulta) {
         this.TipoExameOuConsulta = TipoExameOuConsulta;
-    }
-
-    /**
-     * @return the botaopagamento
-     */
-    public javax.swing.JButton getBotaopagamento() {
-        return botaopagamento;
-    }
-
-    /**
-     * @param botaopagamento the botaopagamento to set
-     */
-    public void setBotaopagamento(javax.swing.JButton botaopagamento) {
-        this.botaopagamento = botaopagamento;
     }
 
     /**

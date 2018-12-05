@@ -51,6 +51,11 @@ public class BusinessPaciente implements IBusinessPaciente{
     public List<Paciente> getPorBusca(String busca) {
      return this.daoPaciente.getPorBusca(busca);
     }
+
+    @Override
+    public Paciente buscarPaciente(String busca) {
+         return this.daoPaciente.buscarPaciente(busca);
+    }
     
 
 }

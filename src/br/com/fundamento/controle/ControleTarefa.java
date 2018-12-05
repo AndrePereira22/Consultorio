@@ -16,6 +16,8 @@ import br.com.fundamento.view.CadastroTarefas;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,6 +45,14 @@ public class ControleTarefa implements ActionListener {
         buscarTarefa.getBotaoExcluirTarefa().addActionListener(this);
         buscarTarefa.getBotaoFecharTarefa().addActionListener(this);
         buscarTarefa.getBotaoPesquisarTarefa().addActionListener(this);
+        buscarTarefa.getTxtPesquisarTarefa().addKeyListener(new KeyListener() {
+
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) { }
+            public void keyReleased(KeyEvent e) { PreencherTabela();
+            }
+       
+        });
   
     }
 
@@ -71,29 +81,8 @@ public class ControleTarefa implements ActionListener {
             cadastroTarefas.setVisible(false);
         }
         if(e.getSource() == buscarTarefa.getBotaoPesquisarTarefa()){
-             List<Tarefa> tarefas = fachada1.getPorBuscaTarefa(buscarTarefa.getTxtPesquisarTarefa().getText());
-
-            try {
-                String[] colunas = new String[]{"Descricao", "Prioridade", "Status", "Data Inicio","Data Termino"};
-                Object[][] dados = new Object[tarefas.size()][5];
-              String s = "Em Andamento";
-                for (int i = 0; i < tarefas.size(); i++) {
-                    
-                    Tarefa tarefa = tarefas.get(i);
-                    if(tarefa.isStatus())s = "Finalizado";
-                    dados[i][0] = tarefa.getDescricao();
-                    dados[i][1] = tarefa.getPrioridade();
-                    dados[i][2] = s;
-                    dados[i][3] = tarefa.getData_inicio();
-                    dados[i][4] = tarefa.getData_termino();
-                    s = "Em Andamento";
-
-                }
-                DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-                buscarTarefa.getTabelaTarefa().setModel(dataModel);
-            } catch (Exception ex) {
-
-            }
+            PreencherTabela();
+           
         }
         
         if (e.getSource() == cadastroTarefas.getBotaoSalvarTarefa()) {
@@ -121,12 +110,13 @@ public class ControleTarefa implements ActionListener {
 
     }
     public void PreencherTabela(){
-       List<Tarefa> tarefas = fachada1.getAllTarefa();
+    
+  List<Tarefa> tarefas = fachada1.getPorBuscaTarefa(buscarTarefa.getTxtPesquisarTarefa().getText());
 
             try {
                 String[] colunas = new String[]{"Descricao", "Prioridade", "Status", "Data Inicio","Data Termino"};
                 Object[][] dados = new Object[tarefas.size()][5];
-                String s = "Em Andamento";
+              String s = "Em Andamento";
                 for (int i = 0; i < tarefas.size(); i++) {
                     
                     Tarefa tarefa = tarefas.get(i);
@@ -143,6 +133,6 @@ public class ControleTarefa implements ActionListener {
                 buscarTarefa.getTabelaTarefa().setModel(dataModel);
             } catch (Exception ex) {
 
-            }  
+            }
     }
 }

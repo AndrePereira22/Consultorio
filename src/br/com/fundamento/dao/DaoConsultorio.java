@@ -119,4 +119,34 @@ public class DaoConsultorio implements IDaoConsultorio {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public Consultorio bucarConsultorio() {
+          Consultorio consultorio = null;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Consultorio.BuscaConsultorio());
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+                consultorio = new Consultorio();
+                
+                consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
+                consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
+                consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
+
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consultorio;
+    
+    
+        
+        }
+    
+    
+    
+
 }

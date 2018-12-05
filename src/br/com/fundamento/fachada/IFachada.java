@@ -39,6 +39,7 @@ public interface IFachada {
     public void editarLogin(Login login);
     public void ativarDesativarLogin(int id);
     public Login buscarLogin(String nome);
+    public Login buscarLoginMedico(String parametro,String nome);
 
     public void salvarProduto(Produto produto);
     public Produto buscarProdutoPorId(int id);
@@ -72,7 +73,7 @@ public interface IFachada {
     public List<Consultorio> getAllConsultorio();
     public void editarConsultorio(Consultorio consultorio);
     public void ativarDesativarConsultorio(int id);
-    
+     public Consultorio bucarConsultorio();
  
     
     public void salvarConsulta(Consulta consulta);
@@ -87,6 +88,7 @@ public interface IFachada {
     public List<Especializacao> getAllEspecializacao();
     public void editarEspecializacao(Especializacao especializacao);
     public void ativarDesativarEspecializacao(int id);
+    public Especializacao buscarEspecializaco(String busca);
     
 
   
@@ -114,6 +116,7 @@ public interface IFachada {
     public void editarPaciente(Paciente paciente);
     public void ativarDesativarPaciente(int id);
     public List<Paciente> getPorBusca(String busca);
+     public Paciente buscarPaciente(String busca) ;
     
     public void salvarPagamento(Pagamento pagamento);
     public Pagamento buscarPagamentoPorId(int id);

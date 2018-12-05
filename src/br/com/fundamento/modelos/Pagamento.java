@@ -16,7 +16,6 @@ import java.util.List;
 public class Pagamento {
 
     private double valor_total;
-    private String data_vencimento;
     private boolean status;
     private String forma_pagamento;
     private int quantidade_parcelas;
@@ -135,19 +134,6 @@ public class Pagamento {
         this.parcelas = parcelas;
     }
 
-    /**
-     * @return the data_vencimento
-     */
-    public String getData_vencimento() {
-        return data_vencimento;
-    }
-
-    /**
-     * @param data_vencimento the data_vencimento to set
-     */
-    public void setData_vencimento(String data_vencimento) {
-        this.data_vencimento = data_vencimento;
-    }
-
+ 
   
 }

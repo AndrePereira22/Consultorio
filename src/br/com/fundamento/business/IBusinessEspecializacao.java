@@ -19,5 +19,6 @@ public interface IBusinessEspecializacao {
     public List<Especializacao> getAllEspecializacao();
     public void editarEspecializacao(Especializacao especializacao);
     public void ativarDesativarEspecializacao(int id);
+     public Especializacao buscarEspecializaco(String busca) ;
     
 }

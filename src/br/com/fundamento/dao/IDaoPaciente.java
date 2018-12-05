@@ -21,5 +21,5 @@ public interface IDaoPaciente {
     public void editarPaciente(Paciente paciente);
     public void ativarDesativarPaciente(int id);
     public List<Paciente> getPorBusca(String busca);
-    
+     public Paciente buscarPaciente(String busca) ;
 }

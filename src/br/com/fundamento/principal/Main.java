@@ -16,13 +16,16 @@ import br.com.fundamento.controle.ControlePaciente;
 import br.com.fundamento.controle.ControleProduto;
 import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
+import br.com.fundamento.dao.CommumDao;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
+import br.com.fundamento.modelos.Consultorio;
+import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.BuscarCaixa;
-import br.com.fundamento.view.BuscarFornecedor;
 import br.com.fundamento.view.BuscarFornecedor;
 import br.com.fundamento.view.BuscarFuncionario;
 import br.com.fundamento.view.BuscarMedico;
@@ -37,6 +40,7 @@ import br.com.fundamento.view.CadastroMedico;
 import br.com.fundamento.view.CadastroPaciente;
 import br.com.fundamento.view.CadastroProduto;
 import br.com.fundamento.view.CadastroTarefas;
+import br.com.fundamento.view.TelaPagamento;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import br.com.fundamento.view.agendamento;
@@ -64,6 +68,8 @@ public class Main {
         CadastroConsultas cadastroConsultas = new CadastroConsultas();
         CadastroCaixa cadastroCaixa = new CadastroCaixa();
         AtualizarConsultorio atualizarConsultorio = new AtualizarConsultorio();
+        TelaPagamento pagamento = new TelaPagamento();
+                
                 
         
         
@@ -83,11 +89,10 @@ public class Main {
         ControleFornecedor controleFornecedor = new ControleFornecedor(telaPrincipal, cadastroFornecedor, buscarFornecedor,cadastroProduto);
        ControleProduto controleProduto = new ControleProduto(telaPrincipal, cp, buscarProduto);
         ControleTarefa controleTarefa = new ControleTarefa(telaPrincipal, cadastroTarefas, buscarTarefa);
-        ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento);
+        ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento,pagamento);
         ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, cadastroCaixa, buscarCaixa);
         ControleConsultorio controleConsultorio = new ControleConsultorio(telaPrincipal, atualizarConsultorio);
         
-    
- 
+   
     }
 }

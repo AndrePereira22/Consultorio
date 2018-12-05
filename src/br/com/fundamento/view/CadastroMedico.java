@@ -42,7 +42,7 @@ public class CadastroMedico extends javax.swing.JFrame {
         txtsalario1 = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtHorarioDisponivel = new javax.swing.JTextField();
+        txthorario = new javax.swing.JFormattedTextField();
         jPanel13 = new javax.swing.JPanel();
         txtlogin1 = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
@@ -114,6 +114,12 @@ public class CadastroMedico extends javax.swing.JFrame {
 
         jLabel5.setText("Horario Disponivel");
 
+        try {
+            txthorario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##  as  ##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -127,7 +133,9 @@ public class CadastroMedico extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtsalario1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                     .addComponent(txtEspecializacao)
-                    .addComponent(txtHorarioDisponivel))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(txthorario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -144,8 +152,8 @@ public class CadastroMedico extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtHorarioDisponivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txthorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
 
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados de acesso", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -195,7 +203,7 @@ public class CadastroMedico extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39)
                     .addComponent(txtconfirmasenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jLabel3.setText("Conselho:");
@@ -630,7 +638,6 @@ public class CadastroMedico extends javax.swing.JFrame {
     private javax.swing.JLabel lbltelefone1;
     private javax.swing.JComboBox<String> txtConselho;
     private javax.swing.JTextField txtEspecializacao;
-    private javax.swing.JTextField txtHorarioDisponivel;
     private javax.swing.JComboBox txtUf;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JFormattedTextField txtcelular;
@@ -639,6 +646,7 @@ public class CadastroMedico extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtconfirmasenha1;
     private javax.swing.JFormattedTextField txtcpf;
     private javax.swing.JTextField txtemail;
+    private javax.swing.JFormattedTextField txthorario;
     private javax.swing.JTextField txtlogin1;
     private javax.swing.JTextField txtnome;
     private javax.swing.JTextField txtnumero;
@@ -1353,16 +1361,18 @@ public class CadastroMedico extends javax.swing.JFrame {
     }
 
     /**
-     * @return the txtHorarioDisponivel
+     * @return the txthorario
      */
-    public javax.swing.JTextField getTxtHorarioDisponivel() {
-        return txtHorarioDisponivel;
+    public javax.swing.JFormattedTextField getTxthorario() {
+        return txthorario;
     }
 
     /**
-     * @param txtHorarioDisponivel the txtHorarioDisponivel to set
+     * @param txthorario the txthorario to set
      */
-    public void setTxtHorarioDisponivel(javax.swing.JTextField txtHorarioDisponivel) {
-        this.txtHorarioDisponivel = txtHorarioDisponivel;
+    public void setTxthorario(javax.swing.JFormattedTextField txthorario) {
+        this.txthorario = txthorario;
     }
+
+    
 }

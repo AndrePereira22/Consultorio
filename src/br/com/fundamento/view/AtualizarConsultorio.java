@@ -33,7 +33,7 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
         txtcnpj = new javax.swing.JFormattedTextField();
         lblcnpj = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtrazao1 = new javax.swing.JTextField();
+        txtnomefantasia = new javax.swing.JTextField();
         BotaoSalvarConsultorio = new javax.swing.JButton();
         BotaoCancelarrConsultorio = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -60,7 +60,6 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consultorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -105,7 +104,7 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtrazao1)))
+                        .addComponent(txtnomefantasia)))
                 .addGap(50, 50, 50))
         );
         jPanel3Layout.setVerticalGroup(
@@ -122,12 +121,12 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtrazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnomefantasia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
         BotaoSalvarConsultorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        BotaoSalvarConsultorio.setText("Salvar");
+        BotaoSalvarConsultorio.setText("Atualizar");
 
         BotaoCancelarrConsultorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoCancelarrConsultorio.setText("Cancelar");
@@ -396,9 +395,9 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
     private javax.swing.JTextField txtcidade;
     private javax.swing.JFormattedTextField txtcnpj;
     private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtnomefantasia;
     private javax.swing.JTextField txtnumero;
     private javax.swing.JTextField txtrazao;
-    private javax.swing.JTextField txtrazao1;
     private javax.swing.JTextField txtrua;
     private javax.swing.JFormattedTextField txttelefone;
     // End of variables declaration//GEN-END:variables
@@ -444,6 +443,7 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
     public void setjLabel2(javax.swing.JLabel jLabel2) {
         this.jLabel2 = jLabel2;
     }
+    
 
     /**
      * @return the jLabel3
@@ -771,14 +771,14 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
      * @return the txtrazao1
      */
     public javax.swing.JTextField getTxtrazao1() {
-        return txtrazao1;
+        return getTxtnomefantasia();
     }
 
     /**
      * @param txtrazao1 the txtrazao1 to set
      */
     public void setTxtrazao1(javax.swing.JTextField txtrazao1) {
-        this.txtrazao1 = txtrazao1;
+        this.setTxtnomefantasia(txtrazao1);
     }
 
     /**
@@ -807,6 +807,20 @@ public class AtualizarConsultorio extends javax.swing.JFrame {
      */
     public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
         this.txttelefone = txttelefone;
+    }
+
+    /**
+     * @return the txtnomefantasia
+     */
+    public javax.swing.JTextField getTxtnomefantasia() {
+        return txtnomefantasia;
+    }
+
+    /**
+     * @param txtnomefantasia the txtnomefantasia to set
+     */
+    public void setTxtnomefantasia(javax.swing.JTextField txtnomefantasia) {
+        this.txtnomefantasia = txtnomefantasia;
     }
 
 

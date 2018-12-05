@@ -19,6 +19,7 @@ public interface IBusinessLogin {
     public void editarLogin(Login login);
     public void ativarDesativarLogin(int id);
         public Login buscarLogin(String nome);
+          public Login buscarLoginMedico(String parametro,String nome);
     
     
 }

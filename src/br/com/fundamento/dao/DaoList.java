@@ -114,7 +114,6 @@ public class DaoList {
             statement.setString(3, pagamento.getForma_pagamento());
             statement.setDouble(4, pagamento.getQuantidade_parcelas());
             statement.setInt(5, id_caixa);
-            statement.setString(6, pagamento.getData_vencimento());
 
             statement.execute();
             statement.close();

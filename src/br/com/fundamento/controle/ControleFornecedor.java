@@ -19,6 +19,8 @@ import br.com.fundamento.view.CadastroProduto;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -52,6 +54,14 @@ public class ControleFornecedor implements ActionListener {
         buscarFornecedor.getBotaoPesquisarFornecedor().addActionListener(this);
         cadastroFornecedor.getBotaoAdicionarProduto().addActionListener(this);
         this.cadastroProduto.getBotaoSalvarProduto().addActionListener(this);
+        buscarFornecedor.getTxtPesquisarFornecedor().addKeyListener(new KeyListener() {
+
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) { }
+            public void keyReleased(KeyEvent e) { preenchertabela();
+            }
+       
+        });
     }
 
     @Override
@@ -117,24 +127,7 @@ public class ControleFornecedor implements ActionListener {
             cadastroFornecedor.setVisible(false);
         }
         if(e.getSource() == buscarFornecedor.getBotaoPesquisarFornecedor()){
-            
-        List<Fornecedor> fornecedores = fachada1.getPorBuscaFornecedor(buscarFornecedor.getTxtPesquisarFornecedor().getText());
-
-        try {
-            String[] colunas = new String[]{"Nome Fantasia", "Razao Social", "cnpj"};
-            Object[][] dados = new Object[fornecedores.size()][3];
-            for (int i = 0; i < fornecedores.size(); i++) {
-                Fornecedor fornecedor = fornecedores.get(i);
-                dados[i][0] = fornecedor.getNome_fantasia();
-                dados[i][1] = fornecedor.getRazao_social();
-                dados[i][2] = fornecedor.getCnpj();
-
-            }
-            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-            buscarFornecedor.getTabelaCoFornecedor().setModel(dataModel);
-        } catch (Exception ex) {
-
-        }
+       preenchertabela();
     
         }
         if (e.getSource() == cadastroFornecedor.getBotaoSalvarFornecedor()) {
@@ -173,8 +166,8 @@ public class ControleFornecedor implements ActionListener {
     }
 
     public void preenchertabela() {
-
-        List<Fornecedor> fornecedores = fachada1.getAllfornecedor();
+     
+        List<Fornecedor> fornecedores = fachada1.getPorBuscaFornecedor(buscarFornecedor.getTxtPesquisarFornecedor().getText());
 
         try {
             String[] colunas = new String[]{"Nome Fantasia", "Razao Social", "cnpj"};

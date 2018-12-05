@@ -162,5 +162,33 @@ public class DaoPaciente implements IDaoPaciente {
     public void ativarDesativarPaciente(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+     @Override
+     public Paciente buscarPaciente(String busca) {
+        Paciente paciente = null;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Paciente.buscarPaciente(busca));
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+                paciente = new Paciente();
+                
+                paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
+                paciente.setData_nascimento(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
+                paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
+                paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
+                paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
+                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
+                
+
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return paciente;
+    }
 
 }

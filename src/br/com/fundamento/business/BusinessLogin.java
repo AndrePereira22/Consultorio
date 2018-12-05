@@ -51,5 +51,10 @@ public class BusinessLogin implements  IBusinessLogin{
     public Login buscarLogin(String nome) {
       return this.daoLogin.buscarLogin(nome);
     }
+
+    @Override
+    public Login buscarLoginMedico(String parametro,String nome) {
+       return this.daoLogin.buscarLoginMedico(parametro,nome);
+    }
     
 }

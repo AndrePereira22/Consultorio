@@ -20,10 +20,13 @@ import br.com.fundamento.view.CadastroFuncionario;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -50,6 +53,14 @@ public class ControlerFuncionario implements ActionListener {
         buscarFuncionario.getBotaoAdicionarFuncionario().addActionListener(this);
         buscarFuncionario.getBotaoFecharFuncionario().addActionListener(this);
         buscarFuncionario.getBotaoPesquisar().addActionListener(this);
+        buscarFuncionario.getTxtPesquisar().addKeyListener(new KeyListener() {
+
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) { }
+            public void keyReleased(KeyEvent e) { preenchertabela();
+            }
+       
+        });
 
     }
 
@@ -73,26 +84,7 @@ public class ControlerFuncionario implements ActionListener {
         }
         
         if(e.getSource()==buscarFuncionario.getBotaoPesquisar()){
-            
-            List<Funcionario> funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
-
-        try {
-            String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento"};
-            Object[][] dados = new Object[funcionarios.size()][5];
-            for (int i = 0; i < funcionarios.size(); i++) {
-                Funcionario funcionario = funcionarios.get(i);
-                dados[i][0] = funcionario.getNome();
-                dados[i][1] = funcionario.getCpf();
-                dados[i][2] = funcionario.getSalario();
-                dados[i][3] = funcionario.getFuncao();
-                dados[i][4] = funcionario.getData_nascimento();
-
-            }
-            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-            buscarFuncionario.getTabelaFunionario().setModel(dataModel);
-        } catch (Exception ex) {
-
-        }
+        preenchertabela();
             
         }
         if (e.getSource() == buscarFuncionario.getBotaoFecharFuncionario()) {
@@ -139,22 +131,32 @@ public class ControlerFuncionario implements ActionListener {
             funcionario.setLogin(l);
             funcionario.setCpf(cadastroFuncionario.getTxtcpf().getText());
             String salario = cadastroFuncionario.getTxtsalario().getText();
+            try {
+                
+           
             salario = salario.replaceAll("[^0-9]", "");
             Double s = Double.parseDouble(salario);
             funcionario.setSalario(s);
             funcionario.setData_nascimento(cadastroFuncionario.getTxtdata().getText());
-
+                } catch (Exception erro) {
+            }
+            
+            String confirmarSenha = new String( cadastroFuncionario.getTxtconfirmasenha().getPassword());
+            
+            if(senha.equals(confirmarSenha)){
             fachada1.salvarFuncionario(funcionario);
             preenchertabela();
             buscarFuncionario.setVisible(true);
             cadastroFuncionario.setVisible(false);
             telaPrincipal.setEnabled(true);
+        }else JOptionPane.showMessageDialog(null, "Senha diferentes");
 
         }
     }
 
     public void preenchertabela() {
-        List<Funcionario> funcionarios = fachada1.getAllFuncionario();
+          
+            List<Funcionario> funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
 
         try {
             String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento"};

@@ -19,5 +19,7 @@ public interface IDaoLogin {
     public void editarLogin(Login login);
     public void ativarDesativarLogin(int id);
     public Login buscarLogin(String nome);
+    public Login buscarLoginMedico(String paramentro,String nome);
+    
     
 }

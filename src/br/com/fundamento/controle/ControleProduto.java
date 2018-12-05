@@ -18,6 +18,8 @@ import br.com.fundamento.view.CadastroProduto;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -46,6 +48,14 @@ public class ControleProduto implements ActionListener {
         buscarProduto.getBotaoExcluirProduto().addActionListener(this);
         buscarProduto.getBotaoFecharProduto().addActionListener(this);
         buscarProduto.getBotaoPesquisarProduto().addActionListener(this);
+        buscarProduto.getTxtPesquisarProduto().addKeyListener(new KeyListener() {
+
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) { }
+            public void keyReleased(KeyEvent e) { PreencherTabela();
+            }
+       
+        });
 
     }
 
@@ -73,25 +83,8 @@ public class ControleProduto implements ActionListener {
             cadastroProduto.setVisible(false);
         }
         if (e.getSource() == buscarProduto.getBotaoPesquisarProduto()) {
-            List<Produto> produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
-
-            try {
-                String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Quantidade Minima", "Preco Compra"};
-                Object[][] dados = new Object[produtos.size()][5];
-                for (int i = 0; i < produtos.size(); i++) {
-                    Produto produto = produtos.get(i);
-                    dados[i][0] = produto.getNome();
-                    dados[i][1] = produto.getFabricante();
-                    dados[i][2] = produto.getQuantidade_estoque();
-                    dados[i][3] = produto.getQuantidade_minima();
-                    dados[i][4] = produto.getPreco_compra();
-                }
-                DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-                buscarProduto.getTabela().setModel(dataModel);
-            } catch (Exception ex) {
-
-            }
-
+         
+PreencherTabela();
         }
         if (e.getSource() == cadastroProduto.getBotaoSalvarProduto()) {
             
@@ -157,24 +150,24 @@ public class ControleProduto implements ActionListener {
     }
 
     public void PreencherTabela() {
-        List<Produto> produtos = fachada1.getAllProdutos();
+           List<Produto> produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
 
-        try {
-            String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Quantidade Minima", "Preco Compra"};
-            Object[][] dados = new Object[produtos.size()][5];
-            for (int i = 0; i < produtos.size(); i++) {
-                Produto produto = produtos.get(i);
-                dados[i][0] = produto.getNome();
-                dados[i][1] = produto.getFabricante();
-                dados[i][2] = produto.getQuantidade_estoque();
-                dados[i][3] = produto.getQuantidade_minima();
-                dados[i][4] = produto.getPreco_compra();
+            try {
+                String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Quantidade Minima", "Preco Compra"};
+                Object[][] dados = new Object[produtos.size()][5];
+                for (int i = 0; i < produtos.size(); i++) {
+                    Produto produto = produtos.get(i);
+                    dados[i][0] = produto.getNome();
+                    dados[i][1] = produto.getFabricante();
+                    dados[i][2] = produto.getQuantidade_estoque();
+                    dados[i][3] = produto.getQuantidade_minima();
+                    dados[i][4] = produto.getPreco_compra();
+                }
+                DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+                buscarProduto.getTabela().setModel(dataModel);
+            } catch (Exception ex) {
+
             }
-            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-            buscarProduto.getTabela().setModel(dataModel);
-        } catch (Exception ex) {
-
-        }
 
     }
 }

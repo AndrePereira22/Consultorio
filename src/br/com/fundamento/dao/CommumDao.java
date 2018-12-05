@@ -52,8 +52,55 @@ public class CommumDao {
         }
         return id;
     }
+  public static Endereco bucarEndereco(String tabela, String coluna, String busca) {
+          Endereco endereco = null;
+        try {
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Endereco.buscaEndereco(tabela, coluna, busca));
+            result = statement.executeQuery();
 
-   
-    
+            if (result.next()) {
+                endereco= new Endereco();
+            
+            endereco.setCep(result.getString(SQLUtil.Endereco.COL_CEP));
+            endereco.setRua(result.getString(SQLUtil.Endereco.COL_RUA));
+            endereco.setBairro(result.getString(SQLUtil.Endereco.COL_BAIRRO));
+            endereco.setNumero(result.getString(SQLUtil.Endereco.COL_NUMERO));
+            endereco.setMunicipio(result.getString(SQLUtil.Endereco.COL_MUNICIPIO));
+           endereco.setEstado(result.getString(SQLUtil.Endereco.COL_ESTADO));
+           // statement.setString(6, end.getEstado());
+                
+                            }
+            conexao.close();
 
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return endereco;
+
+}
+  public static Contato bucarContato(String tabela, String coluna, String busca) {
+        Contato contato = null;
+        try {
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Contato.buscaContato(tabela, coluna, busca));
+            result = statement.executeQuery();
+
+            if (result.next()) {
+                contato = new Contato();
+            
+            contato.setEmail(result.getString(SQLUtil.Contato.COL_EMAIL));
+            contato.setCelular(result.getString(SQLUtil.Contato.COL_CELULAR));
+            contato.setTelefone(result.getString(SQLUtil.Contato.COL_TELEFONE));
+
+                
+                            }
+            conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contato;
+
+}
 }

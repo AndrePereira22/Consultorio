@@ -17,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,8 +56,13 @@ public class ControlePaciente implements ActionListener {
         buscarPaciente.getBotaoEditarPaciente().addActionListener(this);
         buscarPaciente.getBotaoExcluirPaciente().addActionListener(this);
         buscarPaciente.getBotaoPesquisarPaciente().addActionListener(this);
-        buscarPaciente.getTxtpesquisarPaciente().addActionListener(this);
+        buscarPaciente.getTxtpesquisarPaciente().addKeyListener(new KeyListener() {
 
+            public void keyTyped(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) { }
+            public void keyReleased(KeyEvent e) { preencherbuscas();
+            }
+        });
         
 
     }
@@ -64,7 +71,7 @@ public class ControlePaciente implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == telaPrincipal.getBotaoCadastroPaciente()) {
-            preenchertabela();
+            preencherbuscas();
             telaPrincipal.setEnabled(false);
             buscarPaciente.setVisible(true);
 
@@ -88,27 +95,7 @@ public class ControlePaciente implements ActionListener {
 
         if (e.getSource() == buscarPaciente.getBotaoPesquisarPaciente()) {
 
-            List<Paciente> pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());
-
-            try {
-                String[] colunas = new String[]{"Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio"};
-                Object[][] dados = new Object[pacientes.size()][7];
-                for (int i = 0; i < pacientes.size(); i++) {
-                    Paciente paciente = pacientes.get(i);
-                    dados[i][0] = paciente.getNome();
-                    dados[i][1] = paciente.getCpf();
-                    dados[i][2] = paciente.getSexo();
-                    dados[i][3] = paciente.getData_nascimento();
-                    dados[i][4] = paciente.getData_cadastro();
-                    dados[i][5] = paciente.getRg();
-                    dados[i][6] = paciente.getConvenio();
-
-                }
-                DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-                buscarPaciente.getTabelaPaciente().setModel(dataModel);
-            } catch (Exception ex) {
-
-            }
+           preencherbuscas();
 
         }
         if (e.getSource() == cadastroPaciente.getBotaoSalvarPaciente()) {
@@ -151,7 +138,7 @@ public class ControlePaciente implements ActionListener {
             paciente.setData_nascimento(cadastroPaciente.getTxtdata().getText());
 
             fachada1.salvarPaciente(paciente);
-            preenchertabela();
+            preencherbuscas();
             telaPrincipal.setEnabled(true);
             cadastroPaciente.setVisible(false);
             buscarPaciente.setVisible(true);
@@ -159,28 +146,29 @@ public class ControlePaciente implements ActionListener {
         }
     }
 
-    public void preenchertabela() {
-        List<Paciente> pacientes = fachada1.getAllPaciente();
+    public void preencherbuscas(){
+          List<Paciente> pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());
 
-        try {
-            String[] colunas = new String[]{"Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio"};
-            Object[][] dados = new Object[pacientes.size()][7];
-            for (int i = 0; i < pacientes.size(); i++) {
-                Paciente paciente = pacientes.get(i);
-                dados[i][0] = paciente.getNome();
-                dados[i][1] = paciente.getCpf();
-                dados[i][2] = paciente.getSexo();
-                dados[i][3] = paciente.getData_nascimento();
-                dados[i][4] = paciente.getData_cadastro();
-                dados[i][5] = paciente.getRg();
-                dados[i][6] = paciente.getConvenio();
+            try {
+                String[] colunas = new String[]{"Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio"};
+                Object[][] dados = new Object[pacientes.size()][7];
+                for (int i = 0; i < pacientes.size(); i++) {
+                    Paciente paciente = pacientes.get(i);
+                    dados[i][0] = paciente.getNome();
+                    dados[i][1] = paciente.getCpf();
+                    dados[i][2] = paciente.getSexo();
+                    dados[i][3] = paciente.getData_nascimento();
+                    dados[i][4] = paciente.getData_cadastro();
+                    dados[i][5] = paciente.getRg();
+                    dados[i][6] = paciente.getConvenio();
+
+                }
+                DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+                buscarPaciente.getTabelaPaciente().setModel(dataModel);
+            } catch (Exception ex) {
 
             }
-            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
-            buscarPaciente.getTabelaPaciente().setModel(dataModel);
-        } catch (Exception ex) {
-
-        }
+        
     }
 
 }

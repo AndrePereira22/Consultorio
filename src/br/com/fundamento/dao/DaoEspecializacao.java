@@ -103,5 +103,26 @@ public class DaoEspecializacao implements IDaoEspecializacao {
     public void ativarDesativarEspecializacao(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+     @Override
+     public Especializacao buscarEspecializaco(String busca) {
+        Especializacao especializacao = null;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Especializacao.buscarEspecializacao(busca));
+            this.result = this.statement.executeQuery();
 
+            if (result.next()) {
+                especializacao = new Especializacao();
+                
+                especializacao.setDescricao(result.getString(SQLUtil.Especializacao.COL_DESCRICAO));
+                especializacao.setSalario(result.getDouble(SQLUtil.Especializacao.COL_SALARIO));
+                especializacao.setHorario_disponivel(result.getString(SQLUtil.Especializacao.COL_HORARIO_DISPONIVEL));
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return especializacao;
+    }
 }
