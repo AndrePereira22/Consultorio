@@ -79,11 +79,62 @@ public class CommumDao {
         return endereco;
 
 }
+   public static Endereco bucarEnderecoPorId(int id) {
+          Endereco endereco = null;
+        try {
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Endereco.NOME_TABELA, id));
+            result = statement.executeQuery();
+
+            if (result.next()) {
+                endereco= new Endereco();
+            
+            endereco.setCep(result.getString(SQLUtil.Endereco.COL_CEP));
+            endereco.setRua(result.getString(SQLUtil.Endereco.COL_RUA));
+            endereco.setBairro(result.getString(SQLUtil.Endereco.COL_BAIRRO));
+            endereco.setNumero(result.getString(SQLUtil.Endereco.COL_NUMERO));
+            endereco.setMunicipio(result.getString(SQLUtil.Endereco.COL_MUNICIPIO));
+            endereco.setEstado(result.getString(SQLUtil.Endereco.COL_ESTADO));
+           
+                
+                            }
+            conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return endereco;
+
+}
   public static Contato bucarContato(String tabela, String coluna, String busca) {
         Contato contato = null;
         try {
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Contato.buscaContato(tabela, coluna, busca));
+            result = statement.executeQuery();
+
+            if (result.next()) {
+                contato = new Contato();
+            
+            contato.setEmail(result.getString(SQLUtil.Contato.COL_EMAIL));
+            contato.setCelular(result.getString(SQLUtil.Contato.COL_CELULAR));
+            contato.setTelefone(result.getString(SQLUtil.Contato.COL_TELEFONE));
+
+                
+                            }
+            conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contato;
+
+}
+  public static Contato bucarContatoPorId(int id) {
+        Contato contato = null;
+        try {
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Contato.NOME_TABELA, id));
             result = statement.executeQuery();
 
             if (result.next()) {

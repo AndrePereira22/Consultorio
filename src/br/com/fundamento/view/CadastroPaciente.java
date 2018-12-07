@@ -41,7 +41,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtprontuario = new javax.swing.JTextField();
-        txtSexo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -49,6 +48,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         TxtCpf = new javax.swing.JFormattedTextField();
         Txtrg = new javax.swing.JFormattedTextField();
         Txtdata = new javax.swing.JFormattedTextField();
+        Combosexo = new javax.swing.JComboBox<>();
         foto = new javax.swing.JLabel();
         BotaoSelecionarFotoPaciente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -120,7 +120,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel6.setToolTipText("");
@@ -157,6 +156,8 @@ public class CadastroPaciente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        Combosexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino" }));
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -174,8 +175,10 @@ public class CadastroPaciente extends javax.swing.JFrame {
                     .addComponent(txtNome)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSexo, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(TxtCpf))
+                            .addComponent(TxtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(Combosexo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -213,12 +216,12 @@ public class CadastroPaciente extends javax.swing.JFrame {
                     .addComponent(Txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
                     .addComponent(jLabelnome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
                     .addComponent(txtConvenio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Combosexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -505,6 +508,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JButton BotaoCancelarrPaciente;
     private javax.swing.JButton BotaoSalvarPaciente;
     private javax.swing.JButton BotaoSelecionarFotoPaciente;
+    private javax.swing.JComboBox<String> Combosexo;
     private javax.swing.JFormattedTextField TxtCep;
     private javax.swing.JFormattedTextField TxtCpf;
     private javax.swing.JFormattedTextField Txtdata;
@@ -536,7 +540,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel lbltelefone1;
     private javax.swing.JTextField txtConvenio;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtSexo;
     private javax.swing.JComboBox txtUf;
     private javax.swing.JTextField txtbairro;
     private javax.swing.JTextField txtcelular;
@@ -1001,20 +1004,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
     }
 
     /**
-     * @return the txtSexo
-     */
-    public javax.swing.JTextField getTxtSexo() {
-        return txtSexo;
-    }
-
-    /**
-     * @param txtSexo the txtSexo to set
-     */
-    public void setTxtSexo(javax.swing.JTextField txtSexo) {
-        this.txtSexo = txtSexo;
-    }
-
-    /**
      * @return the txtUf
      */
     public javax.swing.JComboBox getTxtUf() {
@@ -1208,6 +1197,20 @@ public class CadastroPaciente extends javax.swing.JFrame {
      */
     public void setTxtdata(javax.swing.JFormattedTextField Txtdata) {
         this.Txtdata = Txtdata;
+    }
+
+    /**
+     * @return the Combosexo
+     */
+    public javax.swing.JComboBox<String> getCombosexo() {
+        return Combosexo;
+    }
+
+    /**
+     * @param Combosexo the Combosexo to set
+     */
+    public void setCombosexo(javax.swing.JComboBox<String> Combosexo) {
+        this.Combosexo = Combosexo;
     }
 
    

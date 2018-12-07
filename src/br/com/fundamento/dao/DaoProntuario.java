@@ -104,5 +104,28 @@ public class DaoProntuario implements IDaoProntuario{
     public void ativarDesativarProntuario(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Prontuario buscarProntuario(String busca) {
+          Prontuario prontuario = null;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Prontuario.buscaProntuario(busca));
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+              prontuario = new Prontuario();
+              
+               prontuario.setExames(result.getString(SQLUtil.Prontuario.COL_EXAMES));
+               prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
+                       
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProntuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return prontuario;  
+    }
     
 }

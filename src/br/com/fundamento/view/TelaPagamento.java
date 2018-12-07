@@ -38,9 +38,9 @@ public class TelaPagamento extends javax.swing.JFrame {
         botaoOk = new javax.swing.JButton();
         panelParcela = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        txtValorparcela = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         txtdata_ven_parcela = new javax.swing.JFormattedTextField();
+        txtValorparcela = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         ComboCaixa = new javax.swing.JComboBox<>();
         ComboStatus = new javax.swing.JComboBox<>();
@@ -48,7 +48,6 @@ public class TelaPagamento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(300, 134));
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jLabel1.setText("Valor Total:");
 
@@ -79,13 +78,6 @@ public class TelaPagamento extends javax.swing.JFrame {
 
         jLabel9.setText("Valor Parcela:");
 
-        try {
-            txtValorparcela.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtValorparcela.setText("");
-
         jLabel7.setText("Data Vencimento:");
 
         try {
@@ -101,9 +93,9 @@ public class TelaPagamento extends javax.swing.JFrame {
             .addGroup(panelParcelaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(txtValorparcela, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtValorparcela, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(txtdata_ven_parcela, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
@@ -114,10 +106,10 @@ public class TelaPagamento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelParcelaLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(panelParcelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValorparcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel7)
-                    .addComponent(txtdata_ven_parcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtdata_ven_parcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtValorparcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -188,7 +180,7 @@ public class TelaPagamento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(panelParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botaoOk)
                     .addComponent(botaocancelarpacela))
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -259,7 +251,7 @@ public class TelaPagamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel panelParcela;
     private javax.swing.JTextField txtQParcela;
-    private javax.swing.JFormattedTextField txtValorparcela;
+    private javax.swing.JTextField txtValorparcela;
     private javax.swing.JFormattedTextField txtdata_ven_parcela;
     private javax.swing.JTextField txtvalortotal;
     // End of variables declaration//GEN-END:variables
@@ -454,19 +446,7 @@ public class TelaPagamento extends javax.swing.JFrame {
         this.txtQParcela = txtQParcela;
     }
 
-    /**
-     * @return the txtValorparcela
-     */
-    public javax.swing.JFormattedTextField getTxtValorparcela() {
-        return txtValorparcela;
-    }
 
-    /**
-     * @param txtValorparcela the txtValorparcela to set
-     */
-    public void setTxtValorparcela(javax.swing.JFormattedTextField txtValorparcela) {
-        this.txtValorparcela = txtValorparcela;
-    }
 
     
 
@@ -513,6 +493,20 @@ public class TelaPagamento extends javax.swing.JFrame {
      */
     public void setBotaocancelarpacela(javax.swing.JButton botaocancelarpacela) {
         this.botaocancelarpacela = botaocancelarpacela;
+    }
+
+    /**
+     * @return the txtValorparcela
+     */
+    public javax.swing.JTextField getTxtValorparcela() {
+        return txtValorparcela;
+    }
+
+    /**
+     * @param txtValorparcela the txtValorparcela to set
+     */
+    public void setTxtValorparcela(javax.swing.JTextField txtValorparcela) {
+        this.txtValorparcela = txtValorparcela;
     }
 
 }

@@ -637,6 +637,11 @@ public class Fachada implements IFachada {
         return this.businessPaciente.buscarPaciente(busca);
     }
 
+    @Override
+    public Prontuario buscarProntuario(String busca) {
+       return this.businessProntuario.buscarProntuario(busca);
+    }
+
  
    
 

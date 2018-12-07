@@ -135,6 +135,7 @@ public interface IFachada {
     public List<Prontuario> getAllProntuario();
     public void editarProntuario(Prontuario prontuario);
     public void ativarDesativarProntuario(int id);
+    public Prontuario buscarProntuario(String busca);
     
     public void salvarSaidaEstoque(SaidaEstoque saidaEstoque);
     public SaidaEstoque buscarSaidaEstoquePorId(int id);

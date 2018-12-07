@@ -8,9 +8,8 @@ package br.com.fundamento.principal;
 
 import br.com.fundamento.controle.ControleCaixa;
 import br.com.fundamento.controle.ControleConsulta;
-import br.com.fundamento.controle.ControleConsultorio;
+import br.com.fundamento.controle.ControlePrincipal;
 import br.com.fundamento.controle.ControleFornecedor;
-import br.com.fundamento.controle.ControleLogin;
 import br.com.fundamento.controle.ControleMedico;
 import br.com.fundamento.controle.ControlePaciente;
 import br.com.fundamento.controle.ControleProduto;
@@ -19,11 +18,13 @@ import br.com.fundamento.controle.ControlerFuncionario;
 import br.com.fundamento.dao.CommumDao;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
+import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Paciente;
+import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.BuscarCaixa;
 import br.com.fundamento.view.BuscarFornecedor;
@@ -44,6 +45,7 @@ import br.com.fundamento.view.TelaPagamento;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import br.com.fundamento.view.agendamento;
+import java.util.ArrayList;
 
 /**
  *
@@ -84,15 +86,15 @@ public class Main {
 
         ControlerFuncionario controlerFuncionario = new ControlerFuncionario(cadastroFuncionario, telaPrincipal, buscarFuncionario);
         ControlePaciente controlePaciente = new ControlePaciente(telaPrincipal, cadastroPaciente,buscarPaciente);
-        ControleLogin controleLogin = new  ControleLogin(telaLogin, telaPrincipal);
         ControleMedico controleMedico = new ControleMedico(telaPrincipal, cadastroMedico, buscarMedico);
-        ControleFornecedor controleFornecedor = new ControleFornecedor(telaPrincipal, cadastroFornecedor, buscarFornecedor,cadastroProduto);
+        ControleFornecedor controleFornecedor = new ControleFornecedor(telaPrincipal, cadastroFornecedor, buscarFornecedor);
        ControleProduto controleProduto = new ControleProduto(telaPrincipal, cp, buscarProduto);
         ControleTarefa controleTarefa = new ControleTarefa(telaPrincipal, cadastroTarefas, buscarTarefa);
         ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento,pagamento);
         ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, cadastroCaixa, buscarCaixa);
-        ControleConsultorio controleConsultorio = new ControleConsultorio(telaPrincipal, atualizarConsultorio);
-        
-   
+        ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal, atualizarConsultorio,telaLogin);
+
+  
+     
     }
 }

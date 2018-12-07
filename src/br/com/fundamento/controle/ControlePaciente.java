@@ -19,6 +19,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -128,8 +129,13 @@ public class ControlePaciente implements ActionListener {
             } catch (NumberFormatException erro) {
             }
 
+             java.util.Date d = new Date();
+
+            String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+
+            paciente.setData_cadastro(dStr);
             paciente.setCpf(cadastroPaciente.getTxtCpf().getText());
-            paciente.setSexo(cadastroPaciente.getTxtSexo().getText());
+             paciente.setSexo(cadastroPaciente.getCombosexo().getSelectedItem().toString());
             paciente.setConvenio(cadastroPaciente.getTxtConvenio().getText());
             paciente.setProntuario(p);
             paciente.setEndereco(end);

@@ -42,10 +42,9 @@ public class DaoProduto implements IDaoProduto {
             this.statement.setString(1, produto.getNome());
             this.statement.setString(2, produto.getFabricante());
             this.statement.setInt(3, produto.getQuantidade_estoque());
-            this.statement.setInt(4, produto.getQuantidade_minima());
-            this.statement.setDouble(5, produto.getPreco_compra());
-            this.statement.setInt(6, id_estoque);
-            this.statement.setInt(7,id_fornecedor);
+            this.statement.setDouble(4, produto.getPreco_compra());
+            this.statement.setInt(5, id_estoque);
+            this.statement.setInt(6,id_fornecedor);
 
             statement.execute();
             this.statement.close();
@@ -70,7 +69,6 @@ public class DaoProduto implements IDaoProduto {
                 produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
                 produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
                 produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
-                produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
                 produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
             }
             this.conexao.close();
@@ -95,7 +93,6 @@ public class DaoProduto implements IDaoProduto {
                produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
                 produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
                 produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
-                produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
                 produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
                 
                 produtos.add(produto);
@@ -132,7 +129,6 @@ public class DaoProduto implements IDaoProduto {
                produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
                 produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
                 produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
-                produto.setQuantidade_minima(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_MINIMA));
                 produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
                 
                 produtos.add(produto);

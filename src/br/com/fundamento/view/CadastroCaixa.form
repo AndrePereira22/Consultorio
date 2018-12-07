@@ -7,9 +7,6 @@
       <Point value="[3, 134]"/>
     </Property>
     <Property name="undecorated" type="boolean" value="true"/>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1360, 575]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -174,6 +171,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtvalorfechamento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0.0"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -181,6 +181,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtlucro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0.0"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtlucroActionPerformed"/>
           </Events>

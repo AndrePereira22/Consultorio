@@ -45,10 +45,9 @@ public class DaoList {
             statement.setString(1, produto.getNome());
             statement.setString(2, produto.getFabricante());
             statement.setInt(3, produto.getQuantidade_estoque());
-            statement.setInt(4, produto.getQuantidade_minima());
-            statement.setDouble(5, produto.getPreco_compra());
-            statement.setInt(6, estoque_id);
-            statement.setInt(7, id_fornecedor);
+            statement.setDouble(4, produto.getPreco_compra());
+            statement.setInt(5, estoque_id);
+            statement.setInt(6, id_fornecedor);
 
             statement.execute();
 

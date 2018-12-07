@@ -17,7 +17,6 @@ public class Produto {
     private String nome;
     private String fabricante;
     private int quantidade_estoque;
-    private int quantidade_minima;
     private double preco_compra;
     
     private Fornecedor fornecedor;
@@ -69,19 +68,7 @@ public class Produto {
         this.quantidade_estoque = quantidade_estoque;
     }
 
-    /**
-     * @return the quantidade_minima
-     */
-    public int getQuantidade_minima() {
-        return quantidade_minima;
-    }
 
-    /**
-     * @param quantidade_minima the quantidade_minima to set
-     */
-    public void setQuantidade_minima(int quantidade_minima) {
-        this.quantidade_minima = quantidade_minima;
-    }
 
     /**
      * @return the preco_compra

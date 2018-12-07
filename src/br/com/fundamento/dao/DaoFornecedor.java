@@ -6,6 +6,7 @@
 package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Fornecedor;
 import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
@@ -67,6 +68,9 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public Fornecedor buscarPorfornecedorId(int id) {
         Fornecedor fornecedor = null;
+        Contato contato=null;
+        Endereco endereco=null;
+        int idC=0,idE=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Fornecedor.NOME, id));
@@ -78,6 +82,17 @@ public class DaoFornecedor implements IDaoFornecedor {
                 fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
                 fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
                 fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
+                
+                
+                idE = result.getInt(SQLUtil.Fornecedor.COL_ENDERECO);
+                idC = result.getInt(SQLUtil.Fornecedor.COL_ID_CONTATO);
+                
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                
+               fornecedor.setEndereco(endereco);
+                fornecedor.setContato(contato);
+                fornecedor.setProdutos(new ArrayList<Produto>());
 
             }
             this.conexao.close();
@@ -91,6 +106,9 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public List<Fornecedor> getAllfornecedor() {
         List<Fornecedor> fornecedores = new ArrayList<>();
+        Contato contato=null;
+        Endereco endereco=null;
+        int idC=0,idE=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Fornecedor.NOME));
@@ -102,6 +120,16 @@ public class DaoFornecedor implements IDaoFornecedor {
                 fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
                 fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
                 fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
+                
+                idE = result.getInt(SQLUtil.Fornecedor.COL_ENDERECO);
+                idC = result.getInt(SQLUtil.Fornecedor.COL_ID_CONTATO);
+                
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                
+               fornecedor.setEndereco(endereco);
+                fornecedor.setContato(contato);
+                fornecedor.setProdutos(new ArrayList<Produto>());
                 
                 fornecedores.add(fornecedor);
             }
@@ -125,6 +153,9 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public List<Fornecedor> getPorBuscaFornecedor(String busca) {
          List<Fornecedor> fornecedores = new ArrayList<>();
+         Contato contato=null;
+        Endereco endereco=null;
+        int idC=0,idE=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.selectPorBusca(busca));
@@ -136,6 +167,16 @@ public class DaoFornecedor implements IDaoFornecedor {
                 fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
                 fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
                 fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
+                
+                idE = result.getInt(SQLUtil.Fornecedor.COL_ENDERECO);
+                idC = result.getInt(SQLUtil.Fornecedor.COL_ID_CONTATO);
+                
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                
+               fornecedor.setEndereco(endereco);
+                fornecedor.setContato(contato);
+                fornecedor.setProdutos(new ArrayList<Produto>());
                 
                 fornecedores.add(fornecedor);
             }

@@ -44,7 +44,6 @@ public class CadastroCaixa extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Caixa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -58,8 +57,11 @@ public class CadastroCaixa extends javax.swing.JFrame {
 
         jLabel4.setText("Valor Fechamento :");
 
+        txtvalorfechamento.setText("0.0");
+
         jLabel5.setText("Lucro :");
 
+        txtlucro.setText("0.0");
         txtlucro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtlucroActionPerformed(evt);

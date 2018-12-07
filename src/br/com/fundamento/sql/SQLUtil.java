@@ -13,7 +13,6 @@ public class SQLUtil {
         public static final String COL_NOME_PRODUTO = "nome";
         public static final String COL_FABRICANTE = "fabricante";
         public static final String COL_QUANTIDADE_ESTOQUE = "quantidade_estoque";
-        public static final String COL_QUANTIDADE_MINIMA = "quantidade_minina";
         public static final String COL_PRECO_COMPRA = "preco_compra";
         public static final String COL_ID_ESTOQUE = "id_estoque";
         public static final String COL_FORNECEDOR_ID = "id_fornecedor";
@@ -21,10 +20,9 @@ public class SQLUtil {
         public static final String INSERT = "insert into " + NOME + "(" + COL_NOME_PRODUTO + ","
                 + COL_FABRICANTE + ","
                 + COL_QUANTIDADE_ESTOQUE + ","
-                + COL_QUANTIDADE_MINIMA + ","
                 + COL_PRECO_COMPRA + ","
                 + COL_ID_ESTOQUE + ","
-                + COL_FORNECEDOR_ID + "" + ") values (?,?,?,?,?,?,?) ";
+                + COL_FORNECEDOR_ID + "" + ") values (?,?,?,?,?,?) ";
 
         public static String selectPorBusca(String busca) {
             return "select *from " + NOME + " where " + COL_NOME_PRODUTO + " like '%" + busca + "%' or " + COL_FABRICANTE + " like '%" + busca + "%'";
@@ -289,7 +287,12 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_EXAMES + ","
                 + COL_RECEITAS + "" + " ) values (?,?) returning id";
+        
+        public static final String buscaProntuario(String busca){
+            return  "select p.exames,p.receitas from prontuario p, paciente e where e.id_prontuario=p.id and e.nome='"+ busca +"'";
+        }
     }
+    
 
     public static class Caixa {
 

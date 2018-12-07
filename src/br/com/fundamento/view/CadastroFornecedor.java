@@ -35,7 +35,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         lblcnpj = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtrazao1 = new javax.swing.JTextField();
-        BotaoAdicionarProduto = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtcidade = new javax.swing.JTextField();
         txtrua = new javax.swing.JTextField();
@@ -63,7 +62,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -96,9 +94,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         jLabel7.setText("Nome Fantasia:");
 
-        BotaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Produto.png"))); // NOI18N
-        BotaoAdicionarProduto.setText("Adicionar Produto");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -118,9 +113,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtrazao1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(BotaoAdicionarProduto)
-                .addGap(35, 35, 35))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,16 +123,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(lblcnpj)
                     .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblnome)
-                            .addComponent(txtrazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtrazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(BotaoAdicionarProduto))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblnome)
+                    .addComponent(txtrazao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtrazao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -421,7 +411,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotaoAdicionarProduto;
     private javax.swing.JButton BotaoCancelarrFornecedor;
     private javax.swing.JButton BotaoSalvarFornecedor;
     private javax.swing.JLabel jLabel1;
@@ -874,22 +863,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
      */
     public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
         this.txttelefone = txttelefone;
+   
     }
-
-    /**
-     * @return the BotaoAdicionarProduto
-     */
-    public javax.swing.JButton getBotaoAdicionarProduto() {
-        return BotaoAdicionarProduto;
-    }
-
-    /**
-     * @param BotaoAdicionarProduto the BotaoAdicionarProduto to set
-     */
-    public void setBotaoAdicionarProduto(javax.swing.JButton BotaoAdicionarProduto) {
-        this.BotaoAdicionarProduto = BotaoAdicionarProduto;
-    }
-
 
 
 }

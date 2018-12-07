@@ -19,6 +19,7 @@ public interface IDaoProntuario {
     public List<Prontuario> getAllProntuario();
     public void editarProntuario(Prontuario prontuario);
     public void ativarDesativarProntuario(int id);
+    public Prontuario buscarProntuario(String busca);
     
     
 }

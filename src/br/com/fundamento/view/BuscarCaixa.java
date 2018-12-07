@@ -16,6 +16,7 @@ public class BuscarCaixa extends javax.swing.JFrame {
      */
     public BuscarCaixa() {
         initComponents();
+       
     }
 
     /**
@@ -39,7 +40,6 @@ public class BuscarCaixa extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(1, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         BotaoPesquisarCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
         BotaoPesquisarCaixa.setText("Pesquisar");
@@ -66,36 +66,38 @@ public class BuscarCaixa extends javax.swing.JFrame {
         BotaoFecharCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharCaixa.setText("Fechar");
 
+        TabelaCaixa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         TabelaCaixa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Status", "Numero", "Lucro Diario"
+                "Status", "Numero", "Lucro Diario", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        TabelaCaixa.setSelectionBackground(new java.awt.Color(255, 255, 153));
         jScrollPane1.setViewportView(TabelaCaixa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

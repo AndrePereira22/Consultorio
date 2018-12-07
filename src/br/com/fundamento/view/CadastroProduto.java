@@ -53,11 +53,11 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtvalorunitario = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         txtFabricante = new javax.swing.JTextField();
-        txtQuantidadeEstoque = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtFornecedor = new javax.swing.JTextField();
-        BotaoPesquisarFornecedor = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listafornecedor = new javax.swing.JList<>();
+        Botaonovo = new javax.swing.JButton();
         BotaoSalvarProduto = new javax.swing.JButton();
         BotaoCancelarProduto = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -65,7 +65,6 @@ public class CadastroProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -107,62 +106,58 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         jLabel1.setText("Fabricante:");
 
-        txtQuantidadeEstoque.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantidadeEstoqueActionPerformed(evt);
-            }
-        });
+        jLabel4.setText("Pesquisar Fornecedor:");
 
-        jLabel2.setText("Quantidade em Estoque: ");
+        jScrollPane1.setViewportView(listafornecedor);
 
-        jLabel4.setText("Fornecedor:");
-
-        BotaoPesquisarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        BotaoPesquisarFornecedor.setText("Pesquisar");
+        Botaonovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        Botaonovo.setText("Novo Fornecedor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addComponent(lblnomeproduto))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblfornecedor, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblquantidade, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel4)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(lblnomeproduto))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(lblquantidade))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblfornecedor)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtnomeproduto, javax.swing.GroupLayout.DEFAULT_SIZE, 848, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(41, 41, 41)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblvalor)
-                                            .addComponent(jLabel2))))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtvalorunitario, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
-                                    .addComponent(txtQuantidadeEstoque)))
-                            .addComponent(txtnomeproduto))
+                                        .addComponent(lblvalor)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Botaonovo))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(21, 21, 21))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BotaoPesquisarFornecedor)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(517, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,27 +167,30 @@ public class CadastroProduto extends javax.swing.JFrame {
                     .addComponent(txtnomeproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblnomeproduto))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblvalor)
-                    .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblquantidade))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(txtQuantidadeEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblquantidade))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblvalor)
+                        .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblfornecedor)
-                    .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblfornecedor))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoPesquisarFornecedor))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Botaonovo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         BotaoSalvarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
@@ -233,7 +231,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGap(44, 44, 44))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(774, Short.MAX_VALUE)
+                    .addContainerGap(846, Short.MAX_VALUE)
                     .addComponent(jLabel28)
                     .addGap(161, 161, 161)))
         );
@@ -253,7 +251,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(68, 68, 68)
                     .addComponent(jLabel28)
-                    .addContainerGap(395, Short.MAX_VALUE)))
+                    .addContainerGap(457, Short.MAX_VALUE)))
         );
 
         pack();
@@ -282,10 +280,6 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void BotaoSalvarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoSalvarProdutoActionPerformed
-
-    private void txtQuantidadeEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeEstoqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidadeEstoqueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,21 +319,21 @@ public class CadastroProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCancelarProduto;
-    private javax.swing.JButton BotaoPesquisarFornecedor;
     private javax.swing.JButton BotaoSalvarProduto;
+    private javax.swing.JButton Botaonovo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblfornecedor;
     private javax.swing.JLabel lblnomeproduto;
     private javax.swing.JLabel lblquantidade;
     private javax.swing.JLabel lblvalor;
+    private javax.swing.JList<String> listafornecedor;
     private javax.swing.JTextField txtFabricante;
     private javax.swing.JTextField txtFornecedor;
-    private javax.swing.JTextField txtQuantidadeEstoque;
     private javax.swing.JFormattedTextField txtcnpj;
     private javax.swing.JTextField txtnomeproduto;
     private javax.swing.JFormattedTextField txtquantidade;
@@ -375,17 +369,17 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     /**
-     * @return the jLabel28
+     * @return the Botaonovo
      */
-    public javax.swing.JLabel getjLabel28() {
-        return jLabel28;
+    public javax.swing.JButton getBotaonovo() {
+        return Botaonovo;
     }
 
     /**
-     * @param jLabel28 the jLabel28 to set
+     * @param Botaonovo the Botaonovo to set
      */
-    public void setjLabel28(javax.swing.JLabel jLabel28) {
-        this.jLabel28 = jLabel28;
+    public void setBotaonovo(javax.swing.JButton Botaonovo) {
+        this.Botaonovo = Botaonovo;
     }
 
     /**
@@ -400,6 +394,20 @@ public class CadastroProduto extends javax.swing.JFrame {
      */
     public void setjPanel1(javax.swing.JPanel jPanel1) {
         this.jPanel1 = jPanel1;
+    }
+
+    /**
+     * @return the jScrollPane1
+     */
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    /**
+     * @param jScrollPane1 the jScrollPane1 to set
+     */
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
     }
 
     /**
@@ -459,6 +467,34 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     /**
+     * @return the listafornecedor
+     */
+    public javax.swing.JList<String> getListafornecedor() {
+        return listafornecedor;
+    }
+
+    /**
+     * @param listafornecedor the listafornecedor to set
+     */
+    public void setListafornecedor(javax.swing.JList<String> listafornecedor) {
+        this.listafornecedor = listafornecedor;
+    }
+
+    /**
+     * @return the txtFornecedor
+     */
+    public javax.swing.JTextField getTxtFornecedor() {
+        return txtFornecedor;
+    }
+
+    /**
+     * @param txtFornecedor the txtFornecedor to set
+     */
+    public void setTxtFornecedor(javax.swing.JTextField txtFornecedor) {
+        this.txtFornecedor = txtFornecedor;
+    }
+
+    /**
      * @return the txtcnpj
      */
     public javax.swing.JFormattedTextField getTxtcnpj() {
@@ -514,47 +550,5 @@ public class CadastroProduto extends javax.swing.JFrame {
         this.txtvalorunitario = txtvalorunitario;
     }
 
-    /**
-     * @return the txtQuantidadeEstoque
-     */
-    public javax.swing.JTextField getTxtQuantidadeEstoque() {
-        return txtQuantidadeEstoque;
-    }
-
-    /**
-     * @param txtQuantidadeEstoque the txtQuantidadeEstoque to set
-     */
-    public void setTxtQuantidadeEstoque(javax.swing.JTextField txtQuantidadeEstoque) {
-        this.txtQuantidadeEstoque = txtQuantidadeEstoque;
-    }
-
-    /**
-     * @return the BotaoPesquisarFornecedor
-     */
-    public javax.swing.JButton getBotaoPesquisarFornecedor() {
-        return BotaoPesquisarFornecedor;
-    }
-
-    /**
-     * @param BotaoPesquisarFornecedor the BotaoPesquisarFornecedor to set
-     */
-    public void setBotaoPesquisarFornecedor(javax.swing.JButton BotaoPesquisarFornecedor) {
-        this.BotaoPesquisarFornecedor = BotaoPesquisarFornecedor;
-    }
-
-    /**
-     * @return the txtFornecedor
-     */
-    public javax.swing.JTextField getTxtFornecedor() {
-        return txtFornecedor;
-    }
-
-    /**
-     * @param txtFornecedor the txtFornecedor to set
-     */
-    public void setTxtFornecedor(javax.swing.JTextField txtFornecedor) {
-        this.txtFornecedor = txtFornecedor;
-    }
-
-
+    
 }

@@ -7,6 +7,8 @@ package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
+import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.sql.SQLConections;
@@ -64,6 +66,9 @@ public class DaoConsultorio implements IDaoConsultorio {
     @Override
     public Consultorio buscarConsultorioPorId(int id) {
         Consultorio consultorio = null;
+        int idE=0,idC=0;
+        Endereco endereco=null;
+        Contato contato=null;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Consultorio.NOME, id));
@@ -75,7 +80,15 @@ public class DaoConsultorio implements IDaoConsultorio {
                 consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
                 consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
                 consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
-
+                
+                idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
+                idC = result.getInt(SQLUtil.Consultorio.COL_ID_CONTATO);
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                consultorio.setEndereco(endereco);
+                consultorio.setContato(contato);
+                consultorio.setMedicos(new ArrayList<Medico>());
+                
             }
             this.conexao.close();
 
@@ -88,6 +101,9 @@ public class DaoConsultorio implements IDaoConsultorio {
     @Override
     public List<Consultorio> getAllConsultorio() {
          List<Consultorio> consultorios = new ArrayList<>();
+         int idE=0,idC=0;
+        Endereco endereco=null;
+        Contato contato=null;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Consultorio.NOME));
@@ -99,6 +115,13 @@ public class DaoConsultorio implements IDaoConsultorio {
                consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
                consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
                consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
+                   
+                idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
+                idC = result.getInt(SQLUtil.Consultorio.COL_ID_CONTATO);
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                consultorio.setEndereco(endereco);
+                consultorio.setContato(contato);
                 
                 consultorios.add(consultorio);
             }
@@ -122,6 +145,9 @@ public class DaoConsultorio implements IDaoConsultorio {
     @Override
     public Consultorio bucarConsultorio() {
           Consultorio consultorio = null;
+          int idE=0,idC=0;
+        Endereco endereco=null;
+        Contato contato=null;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Consultorio.BuscaConsultorio());
@@ -133,6 +159,13 @@ public class DaoConsultorio implements IDaoConsultorio {
                 consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
                 consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
                 consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
+                
+                 idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
+                idC = result.getInt(SQLUtil.Consultorio.COL_ID_CONTATO);
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                consultorio.setEndereco(endereco);
+                consultorio.setContato(contato);
 
             }
             this.conexao.close();
