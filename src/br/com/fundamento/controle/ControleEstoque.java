@@ -9,6 +9,6 @@ package br.com.fundamento.controle;
  *
  * @author Glenda Alves de Lima
  */
-public class ControleCaixa {
+public class ControleEstoque {
     
 }

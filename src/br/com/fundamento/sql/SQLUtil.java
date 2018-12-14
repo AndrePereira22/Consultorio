@@ -48,6 +48,10 @@ public class SQLUtil {
             return "select *from " + NOME + " where " + COL_RAZAO_SOCIAl + " like '%" + busca + "%' or " + COL_NOME_FORNECEDOR + " like '%" + busca + "%' or "
                     + COL_CNPJ + " like '%" + busca + "%'";
         }
+        public static final String updateFornecedor(String novoNome, int id_parametro) {
+            return "update fornecedor SET razao_social ='" + novoNome + "'  WHERE id =" + id_parametro;
+
+        }
     }
 
     public static class Medico {
@@ -82,6 +86,11 @@ public class SQLUtil {
 
         public static String buscarMedico(String busca) {
             return "select *from " + NOME + " where " + COL_NOME + " like '%" + busca + "%'";
+        }
+
+        public static final String updateMedico(String novoNome, String novoCpf, int novoRg, int id_parametro) {
+            return "update medico SET nome ='" + novoNome + "', cpf='" + novoCpf + "', rg=" + novoRg + "   WHERE id =" + id_parametro;
+
         }
     }
 
@@ -134,6 +143,10 @@ public class SQLUtil {
             return "select *from " + NOME + " where " + COL_NOME + " like '%" + busca + "%' or " + COL_FUNCAO + " like '%" + busca + "%' or "
                     + COL_CPF + " like '%" + busca + "%'";
         }
+         public static final String updateFuncionario(String novoNome, String novoCpf, double novoSalario,String novaFuncao, int id_parametro) {
+            return "update medico SET nome ='" + novoNome + "', cpf='" + novoCpf + "', salario=" + novoSalario + "',funcao=" + novaFuncao + "  WHERE id =" + id_parametro;
+
+        }
     }
 
     public static class Tarefa {
@@ -172,14 +185,21 @@ public class SQLUtil {
                 + COL_NUMERO + ","
                 + COL_MUNICIPIO + ","
                 + COL_ESTADO + "" + " ) values (?,?,?,?,?,?) returning id";
-        
-        public static String buscaEndereco(String tabela,String coluna,String busca) {
-        return "select  e.cep,e.rua, e.bairro, e.numero, e.municipio, e.estado from "+ 
-                tabela+" c, endereco e  where  c.id_endereco=e.id and "+ coluna+"='"+busca+"'";
-    
-    }
+
+        public static String buscaEndereco(String tabela, String coluna, String busca) {
+            return "select  e.cep,e.rua, e.bairro, e.numero, e.municipio, e.estado from "
+                    + tabela + " c, endereco e  where  c.id_endereco=e.id and " + coluna + "='" + busca + "'";
+
+        }
+
+        public static final String updateEnd(String novoCep, String novoRua, String novoNumero, String novoBairro, String novoMunicipio, String novoEstado, int id_parametro) {
+            return "UPDATE endereco SET  cep='" + novoCep + "', rua='" + novoRua + "', numero='" + novoNumero + "', bairro='" + novoBairro + "', municipio='" + novoMunicipio
+                    + "', estado ='" + novoEstado + "' WHERE id =" + id_parametro;
+
+        }
 
     }
+
     public static class Contato {
 
         public static final String NOME_TABELA = "contato";
@@ -190,12 +210,17 @@ public class SQLUtil {
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_EMAIL + ","
                 + COL_TELEFONE + ","
                 + COL_CELULAR + "" + " ) values (?,?,?) returning id ";
-        
-         public static String buscaContato(String tabela,String coluna,String busca) {
-        return "select  e.email,e.telefone, e.celular from "+ 
-                tabela+" c, contato e  where  c.id_contato=e.id and "+ coluna+"='"+busca+"'";
-    
-    }
+
+        public static String buscaContato(String tabela, String coluna, String busca) {
+            return "select  e.email,e.telefone, e.celular from "
+                    + tabela + " c, contato e  where  c.id_contato=e.id and " + coluna + "='" + busca + "'";
+
+        }
+
+        public static final String updateContato(String novoEmail, String novoTelefone, String novoCelular, int id_parametro) {
+            return "UPDATE contato SET  email ='" + novoEmail + "', telefone='" + novoTelefone + "', celular='" + novoCelular + "' WHERE id = " + id_parametro;
+
+        }
     }
 
     public static class Login {
@@ -206,15 +231,19 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_LOGIN + ","
                 + COL_SENHA + "" + " ) values (?,?) returning id ";
-        
-        
-         public static String BuscaloginFuncionario(String busca) {     
-             return "select  l.usuario,l.senha from funcionario f, login l " + " where  f.id_login=l.id and l.usuario='"+ busca+"'" ; 
-  }
-              public static String BuscaloginMedico(String paramentro,String busca) {     
-             return "select  l.usuario,l.senha from medico m, login l " + " where  m.id_login=l.id and "+ paramentro+"='"+ busca+"'" ; 
-  }
-   
+
+        public static String BuscaloginFuncionario(String busca) {
+            return "select l.id, l.usuario,l.senha from funcionario f, login l " + " where  f.id_login=l.id and l.usuario='" + busca + "'";
+        }
+
+        public static String BuscaloginMedico(String paramentro, String busca) {
+            return "select l.id, l.usuario,l.senha from medico m, login l " + " where  m.id_login=l.id and " + paramentro + "='" + busca + "'";
+        }
+
+        public static final String updateLoString(String novoUsuario, String novaSenha, int id_parametro) {
+            return "UPDATE login SET  usuario ='" + novoUsuario + "', senha='" + novaSenha + "' WHERE id = " + id_parametro;
+
+        }
     }
 
     public static class Estoque {
@@ -235,7 +264,7 @@ public class SQLUtil {
         public static final String COL_CPF = "cpf";
         public static final String COL_SEXO = "sexo";
         public static final String COL_RG = "rg";
-        public static final String COL_PRONTUARIO_ID = "id_prontuario";
+        public static final String COL_ID_PRONTUARIO = "id_prontuario";
         public static final String COL_ENDERECO_ID = "id_endereco";
         public static final String COL_ID_CONTATO = "id_contato";
         public static final String COL_CONVENIO = "convenio";
@@ -246,7 +275,7 @@ public class SQLUtil {
                 + COL_DATA_NASCIMENTO + ","
                 + COL_DATA_CADASTRO + ","
                 + COL_RG + ","
-                + COL_PRONTUARIO_ID + ","
+                + COL_ID_PRONTUARIO + ","
                 + COL_ENDERECO_ID + ","
                 + COL_ID_CONTATO + ","
                 + COL_CONVENIO + "" + " ) values (?,?,?,?,?,?,?,?,?,?) returning id";
@@ -255,11 +284,17 @@ public class SQLUtil {
             return "select *from " + NOME_TABELA + " where " + COL_NOME + " like '%" + busca + "%' or " + COL_CPF + " like '%" + busca + "%' or "
                     + COL_SEXO + " like '%" + busca + "%'";
         }
-         public static final String buscarPaciente(String busca){
-            return " select p.nome, p.cpf, p.sexo,p.data_nascimento,p.data_cadastro,p.rg,p.convenio from  Paciente p, Consulta c where  p.id=c.id_paciente and p.nome='"+ busca + "' ";
-                   
-         }
-    
+
+        public static final String buscarPaciente(String busca) {
+            return " select p.id,p.id_endereco,p.id_contato,p.id_prontuario,p.nome,"
+                    + "p.sexo,p.data_nascimento,p.data_cadastro, p.cpf, p.rg,p.convenio from  Paciente p where  p.nome='" + busca + "'  ";
+
+        }
+
+        public static final String updatePaciente(String novoNome, String novoCpf, int novoRg, String novoConvenio, int id_parametro) {
+            return "update paciente SET nome ='" + novoNome + "', cpf='" + novoCpf + "', rg=" + novoRg + " , convenio='" + novoConvenio + "'  WHERE id =" + id_parametro;
+
+        }
 
     }
 
@@ -287,12 +322,11 @@ public class SQLUtil {
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_EXAMES + ","
                 + COL_RECEITAS + "" + " ) values (?,?) returning id";
-        
-        public static final String buscaProntuario(String busca){
-            return  "select p.exames,p.receitas from prontuario p, paciente e where e.id_prontuario=p.id and e.nome='"+ busca +"'";
+
+        public static final String buscaProntuario(String busca) {
+            return "select p.exames,p.receitas from prontuario p, paciente e where e.id_prontuario=p.id and e.nome='" + busca + "'";
         }
     }
-    
 
     public static class Caixa {
 
@@ -348,8 +382,9 @@ public class SQLUtil {
                 + COL_SALARIO + ","
                 + COL_ID_MEDICO + ","
                 + COL_HORARIO_DISPONIVEL + "" + " ) values (?,?,?,?) returning id";
-        public static final String buscarEspecializacao(String busca){
-            return  "select e.descricao, e.salario, e.horario_disponivel  from  especializacao e, medico m  where  m.id=e.id_medico and m.nome='" + busca +"'";
+
+        public static final String buscarEspecializacao(String busca) {
+            return "select e.descricao, e.salario, e.horario_disponivel  from  especializacao e, medico m  where  m.id=e.id_medico and m.nome='" + busca + "'";
         }
     }
 
@@ -385,12 +420,12 @@ public class SQLUtil {
                 + COL_CNPJ + ","
                 + COL_ID_ENDERECO + ","
                 + COL_ID_CONTATO + "" + ") values (?,?,?,?,?) returning id";
-        
-               public static String BuscaConsultorio() {     
-               return " select * from "+ NOME +" where id = (select max(id) from consultorio)";
- 
-  }
- 
+
+        public static String BuscaConsultorio() {
+            return " select * from " + NOME + " where id = (select max(id) from consultorio)";
+
+        }
+
     }
 
     public static String selectAll(String nomeTabela) {

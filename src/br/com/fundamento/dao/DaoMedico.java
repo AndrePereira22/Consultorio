@@ -111,6 +111,13 @@ public class DaoMedico implements IDaoMedico {
                 medico.setLogin(login);
                 medico.setConsultas(new ArrayList<Consulta>());
                 medico.setEspecializacoes(new ArrayList<Especializacao>());
+                
+                 id = result.getInt(1);
+                medico.setId(id);
+                
+                medico.setId_end(idE);  
+                medico.setId_contato(idC);
+                medico.setId_login(idL);
             }
             this.conexao.close();
 
@@ -127,7 +134,7 @@ public class DaoMedico implements IDaoMedico {
         Contato contato=null;
         Consultorio consultorio=null;
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0;
+        int idE=0,idC=0,idCons=0,idL=0,id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Medico.NOME));
@@ -156,7 +163,12 @@ public class DaoMedico implements IDaoMedico {
                 medico.setLogin(login);
                 medico.setConsultas(new ArrayList<Consulta>());
                 medico.setEspecializacoes(new ArrayList<Especializacao>());
+                medico.setId_contato(idC);
+                medico.setId_end(idE);
+                medico.setId_login(idL);
                 
+                id = result.getInt(1);
+                 medico.setId(id);
                 medicos.add(medico);
             }
             this.conexao.close();
@@ -168,8 +180,24 @@ public class DaoMedico implements IDaoMedico {
 
     @Override
     public void editarMedico(Medico medico) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        
+      
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Medico.updateMedico(medico.getNome(),medico.getCpf(),medico.getRg(),medico.getId()));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                CommumDao.editarEndereco(medico.getEndereco(), medico.getId_end());
+                CommumDao.editarContato(medico.getContato(), medico.getId_contato());
+                new DaoLogin().editarLogin(medico.getLogin());
+      
+        }
 
     @Override
     public void ativarDesativarMedico(int id) {
@@ -183,7 +211,7 @@ public class DaoMedico implements IDaoMedico {
         Contato contato=null;
         Consultorio consultorio=null;
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0;
+        int idE=0,idC=0,idCons=0,idL=0,id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.selectPorBusca(busca));
@@ -212,8 +240,14 @@ public class DaoMedico implements IDaoMedico {
                 medico.setLogin(login);
                 medico.setConsultas(new ArrayList<Consulta>());
                 medico.setEspecializacoes(new ArrayList<Especializacao>());
+                medico.setId_contato(idC);
+                medico.setId_end(idE);
+                medico.setId_login(idL);
                 
+                id = result.getInt(1);
+                 medico.setId(id);
                 medicos.add(medico);
+                
             }
             this.conexao.close();
 
@@ -228,7 +262,7 @@ public class DaoMedico implements IDaoMedico {
         Contato contato=null;
         Consultorio consultorio=null;
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0;
+        int idE=0,idC=0,idCons=0,idL=0,id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.buscarMedico(busca));
@@ -255,6 +289,13 @@ public class DaoMedico implements IDaoMedico {
                 medico.setEndereco(endereco);
                 medico.setConsultorio(consultorio);
                 medico.setLogin(login);
+                
+                medico.setId_contato(idC);
+                medico.setId_end(idE);
+                medico.setId_login(idL);
+                
+                id = result.getInt(1);
+                 medico.setId(id);
              
             }
             this.conexao.close();

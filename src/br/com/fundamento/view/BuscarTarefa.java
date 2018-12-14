@@ -34,13 +34,11 @@ public class BuscarTarefa extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         txtPesquisarTarefa = new javax.swing.JTextField();
-        BotaoPesquisarTarefa = new javax.swing.JButton();
         BotaoAdicionarTarefa = new javax.swing.JButton();
-        BotaoEditarTarefa = new javax.swing.JButton();
-        BotaoExcluirTarefa = new javax.swing.JButton();
         BotaoFecharTarefa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaTarefa = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
         jButton1.setText("Pesquisar");
@@ -68,17 +66,8 @@ public class BuscarTarefa extends javax.swing.JFrame {
         jButton5.setText("Fechar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
-
-        BotaoPesquisarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        BotaoPesquisarTarefa.setText("Pesquisar");
-        BotaoPesquisarTarefa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoPesquisarTarefaActionPerformed(evt);
-            }
-        });
 
         BotaoAdicionarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarTarefa.setText("Adicionar");
@@ -87,12 +76,6 @@ public class BuscarTarefa extends javax.swing.JFrame {
                 BotaoAdicionarTarefaActionPerformed(evt);
             }
         });
-
-        BotaoEditarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        BotaoEditarTarefa.setText("Editar");
-
-        BotaoExcluirTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        BotaoExcluirTarefa.setText("Excluir");
 
         BotaoFecharTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharTarefa.setText("Fechar");
@@ -129,47 +112,36 @@ public class BuscarTarefa extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TabelaTarefa);
 
+        jLabel1.setText("Pesquisar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BotaoAdicionarTarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoEditarTarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoExcluirTarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(BotaoFecharTarefa)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addGap(164, 164, 164)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarTarefa)
-                    .addComponent(BotaoEditarTarefa)
-                    .addComponent(BotaoExcluirTarefa)
-                    .addComponent(BotaoFecharTarefa))
+                    .addComponent(BotaoFecharTarefa)
+                    .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -185,10 +157,6 @@ public class BuscarTarefa extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void BotaoPesquisarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarTarefaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoPesquisarTarefaActionPerformed
 
     private void BotaoAdicionarTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarTarefaActionPerformed
         // TODO add your handling code here:
@@ -231,16 +199,14 @@ public class BuscarTarefa extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAdicionarTarefa;
-    private javax.swing.JButton BotaoEditarTarefa;
-    private javax.swing.JButton BotaoExcluirTarefa;
     private javax.swing.JButton BotaoFecharTarefa;
-    private javax.swing.JButton BotaoPesquisarTarefa;
     private javax.swing.JTable TabelaTarefa;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtPesquisarTarefa;
@@ -260,33 +226,7 @@ public class BuscarTarefa extends javax.swing.JFrame {
         this.BotaoAdicionarTarefa = BotaoAdicionarTarefa;
     }
 
-    /**
-     * @return the BotaoEditarTarefa
-     */
-    public javax.swing.JButton getBotaoEditarTarefa() {
-        return BotaoEditarTarefa;
-    }
-
-    /**
-     * @param BotaoEditarTarefa the BotaoEditarTarefa to set
-     */
-    public void setBotaoEditarTarefa(javax.swing.JButton BotaoEditarTarefa) {
-        this.BotaoEditarTarefa = BotaoEditarTarefa;
-    }
-
-    /**
-     * @return the BotaoExcluirTarefa
-     */
-    public javax.swing.JButton getBotaoExcluirTarefa() {
-        return BotaoExcluirTarefa;
-    }
-
-    /**
-     * @param BotaoExcluirTarefa the BotaoExcluirTarefa to set
-     */
-    public void setBotaoExcluirTarefa(javax.swing.JButton BotaoExcluirTarefa) {
-        this.BotaoExcluirTarefa = BotaoExcluirTarefa;
-    }
+    
 
     /**
      * @return the BotaoFecharTarefa
@@ -302,19 +242,6 @@ public class BuscarTarefa extends javax.swing.JFrame {
         this.BotaoFecharTarefa = BotaoFecharTarefa;
     }
 
-    /**
-     * @return the BotaoPesquisarTarefa
-     */
-    public javax.swing.JButton getBotaoPesquisarTarefa() {
-        return BotaoPesquisarTarefa;
-    }
-
-    /**
-     * @param BotaoPesquisarTarefa the BotaoPesquisarTarefa to set
-     */
-    public void setBotaoPesquisarTarefa(javax.swing.JButton BotaoPesquisarTarefa) {
-        this.BotaoPesquisarTarefa = BotaoPesquisarTarefa;
-    }
 
     /**
      * @return the TabelaTarefa

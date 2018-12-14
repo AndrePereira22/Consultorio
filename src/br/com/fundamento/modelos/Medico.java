@@ -20,6 +20,10 @@ public class Medico {
     private String cpf;
     private String sexo;
     private int rg;
+    private int id;
+    private int id_end;
+    private int id_contato;
+    private int id_login;
     
     private List<Consulta> consultas;
     private List<Especializacao> especializacoes;
@@ -207,6 +211,62 @@ public class Medico {
      */
     public void setData_cadastro(String data_cadastro) {
         this.data_cadastro = data_cadastro;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the id_end
+     */
+    public int getId_end() {
+        return id_end;
+    }
+
+    /**
+     * @param id_end the id_end to set
+     */
+    public void setId_end(int id_end) {
+        this.id_end = id_end;
+    }
+
+    /**
+     * @return the id_contato
+     */
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    /**
+     * @param id_contato the id_contato to set
+     */
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
+    }
+
+    /**
+     * @param id_login the id_login to set
+     */
+    public void setId_login(int id_login) {
+        this.id_login = id_login;
+    }
+
+    /**
+     * @return the id_login
+     */
+    public int getId_login() {
+        return id_login;
     }
             
     

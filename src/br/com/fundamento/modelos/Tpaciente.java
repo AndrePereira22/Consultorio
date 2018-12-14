@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.fundamento.controle;
+package br.com.fundamento.modelos;
 
 /**
  *
  * @author Glenda Alves de Lima
  */
-public class ControleCaixa {
+public class Tpaciente {
     
 }

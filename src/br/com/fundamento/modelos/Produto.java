@@ -18,6 +18,7 @@ public class Produto {
     private String fabricante;
     private int quantidade_estoque;
     private double preco_compra;
+    private int id;
     
     private Fornecedor fornecedor;
     private Estoque estoque;
@@ -110,6 +111,20 @@ public class Produto {
      */
     public void setEstoque(Estoque estoque) {
         this.estoque = estoque;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     

@@ -54,6 +54,7 @@ public class DaoLogin implements  IDaoLogin{
     @Override
     public Login buscarLoginPorId(int id) {
         Login login = null;
+         int iD;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Login.NOME_TABELA, id));
@@ -64,6 +65,8 @@ public class DaoLogin implements  IDaoLogin{
                login.setUsuario(result.getString(SQLUtil.Login.COL_LOGIN));
                 login.setSenha(result.getString(SQLUtil.Login.COL_SENHA));
                        
+                 iD = result.getInt(1);
+               login.setId(iD);
             }
             this.conexao.close();
 
@@ -75,6 +78,7 @@ public class DaoLogin implements  IDaoLogin{
     @Override
     public List<Login> getAllLogin() {
         List<Login> logins = new ArrayList<>();
+         int id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Login.NOME_TABELA));
@@ -85,7 +89,8 @@ public class DaoLogin implements  IDaoLogin{
                 
                 login.setUsuario(result.getString(SQLUtil.Login.COL_LOGIN));
                 login.setSenha(result.getString(SQLUtil.Login.COL_SENHA));
-                
+                 id = result.getInt(1);
+                login.setId(id);
                 logins.add(login);
             }
             this.conexao.close();
@@ -97,8 +102,21 @@ public class DaoLogin implements  IDaoLogin{
 
     @Override
     public void editarLogin(Login login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+           try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Login.updateLoString(login.getUsuario(),login.getSenha(), login.getId()));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    
+     }
 
     @Override
     public void ativarDesativarLogin(int id) {
@@ -106,8 +124,9 @@ public class DaoLogin implements  IDaoLogin{
     }
 
     @Override
-    public Login buscarLogin(String nome) {
+    public Login buscarLoginFuncionario(String nome) {
           Login login = null;
+           int id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Login.BuscaloginFuncionario(nome));
@@ -117,7 +136,8 @@ public class DaoLogin implements  IDaoLogin{
               login = new Login();
                login.setUsuario(result.getString(SQLUtil.Login.COL_LOGIN));
                 login.setSenha(result.getString(SQLUtil.Login.COL_SENHA));
-                       
+                     id = result.getInt(1);
+                login.setId(id);  
             }
             this.conexao.close();
 
@@ -131,6 +151,7 @@ public class DaoLogin implements  IDaoLogin{
     @Override
     public Login buscarLoginMedico(String parametro,String nome) {
         Login login = null;
+        int id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Login.BuscaloginMedico(parametro ,nome));
@@ -140,7 +161,8 @@ public class DaoLogin implements  IDaoLogin{
               login = new Login();
                login.setUsuario(result.getString(SQLUtil.Login.COL_LOGIN));
                 login.setSenha(result.getString(SQLUtil.Login.COL_SENHA));
-                       
+                id = result.getInt(1);
+                login.setId(id);    
             }
             this.conexao.close();
 

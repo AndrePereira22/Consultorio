@@ -28,27 +28,16 @@ public class BuscarFuncionario extends javax.swing.JFrame {
     private void initComponents() {
 
         txtPesquisar = new javax.swing.JTextField();
-        BotaoPesquisar = new javax.swing.JButton();
         BotaoAdicionarFuncionario = new javax.swing.JButton();
-        BotaoEditarFuncionario = new javax.swing.JButton();
-        BotaoExcluirFuncionario = new javax.swing.JButton();
         BotaoFecharFuncionario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaFunionario = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
-
-        BotaoPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        BotaoPesquisar.setText("Pesquisar");
-        BotaoPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoPesquisarActionPerformed(evt);
-            }
-        });
 
         BotaoAdicionarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarFuncionario.setText("Adicionar");
@@ -57,12 +46,6 @@ public class BuscarFuncionario extends javax.swing.JFrame {
                 BotaoAdicionarFuncionarioActionPerformed(evt);
             }
         });
-
-        BotaoEditarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        BotaoEditarFuncionario.setText("Editar");
-
-        BotaoExcluirFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        BotaoExcluirFuncionario.setText("Excluir");
 
         BotaoFecharFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharFuncionario.setText("Fechar");
@@ -102,33 +85,26 @@ public class BuscarFuncionario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("BUSCAR FUNCIONARIO");
 
+        jLabel2.setText("Pesquisar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BotaoAdicionarFuncionario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoEditarFuncionario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoExcluirFuncionario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
                 .addComponent(BotaoFecharFuncionario)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(txtPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 773, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addGap(272, 272, 272)
                 .addComponent(jLabel1)
@@ -139,16 +115,12 @@ public class BuscarFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarFuncionario)
-                    .addComponent(BotaoEditarFuncionario)
-                    .addComponent(BotaoExcluirFuncionario)
-                    .addComponent(BotaoFecharFuncionario))
+                    .addComponent(BotaoFecharFuncionario)
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -156,10 +128,6 @@ public class BuscarFuncionario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BotaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoPesquisarActionPerformed
 
     private void BotaoAdicionarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarFuncionarioActionPerformed
         // TODO add your handling code here:
@@ -202,12 +170,10 @@ public class BuscarFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAdicionarFuncionario;
-    private javax.swing.JButton BotaoEditarFuncionario;
-    private javax.swing.JButton BotaoExcluirFuncionario;
     private javax.swing.JButton BotaoFecharFuncionario;
-    private javax.swing.JButton BotaoPesquisar;
     private javax.swing.JTable TabelaFunionario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
@@ -226,33 +192,6 @@ public class BuscarFuncionario extends javax.swing.JFrame {
         this.BotaoAdicionarFuncionario = BotaoAdicionarFuncionario;
     }
 
-    /**
-     * @return the BotaoEditarFuncionario
-     */
-    public javax.swing.JButton getBotaoEditarFuncionario() {
-        return BotaoEditarFuncionario;
-    }
-
-    /**
-     * @param BotaoEditarFuncionario the BotaoEditarFuncionario to set
-     */
-    public void setBotaoEditarFuncionario(javax.swing.JButton BotaoEditarFuncionario) {
-        this.BotaoEditarFuncionario = BotaoEditarFuncionario;
-    }
-
-    /**
-     * @return the BotaoExcluirFuncionario
-     */
-    public javax.swing.JButton getBotaoExcluirFuncionario() {
-        return BotaoExcluirFuncionario;
-    }
-
-    /**
-     * @param BotaoExcluirFuncionario the BotaoExcluirFuncionario to set
-     */
-    public void setBotaoExcluirFuncionario(javax.swing.JButton BotaoExcluirFuncionario) {
-        this.BotaoExcluirFuncionario = BotaoExcluirFuncionario;
-    }
 
     /**
      * @return the BotaoFecharFuncionario
@@ -268,19 +207,7 @@ public class BuscarFuncionario extends javax.swing.JFrame {
         this.BotaoFecharFuncionario = BotaoFecharFuncionario;
     }
 
-    /**
-     * @return the BotaoPesquisar
-     */
-    public javax.swing.JButton getBotaoPesquisar() {
-        return BotaoPesquisar;
-    }
-
-    /**
-     * @param BotaoPesquisar the BotaoPesquisar to set
-     */
-    public void setBotaoPesquisar(javax.swing.JButton BotaoPesquisar) {
-        this.BotaoPesquisar = BotaoPesquisar;
-    }
+    
 
     /**
      * @return the TabelaFunionario

@@ -17,16 +17,15 @@ public class Fornecedor {
     private String nome_fantasia;
     private String razao_social;
     private String cnpj;
-    
+    private int id;
+    private int id_contato;
+    private int id_endereco;
+
     private Endereco endereco;
-    
     private Contato contato;
     private List<Produto>  produtos;
     
-   
-    public Fornecedor(){
-        
-    }
+  
 
 
     /**
@@ -112,5 +111,48 @@ public class Fornecedor {
     public void setContato(Contato contato) {
         this.contato = contato;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the id_contato
+     */
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    /**
+     * @param id_contato the id_contato to set
+     */
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
+    }
+
+    /**
+     * @return the id_endereco
+     */
+    public int getId_endereco() {
+        return id_endereco;
+    }
+
+    /**
+     * @param id_endereco the id_endereco to set
+     */
+    public void setId_endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
+    }
+    
     
 }

@@ -28,26 +28,15 @@ public class BuscarProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         txtPesquisarProduto = new javax.swing.JTextField();
-        BotaoPesquisarProduto = new javax.swing.JButton();
         BotaoAdicionarProduto = new javax.swing.JButton();
-        BotaoEditarProduto = new javax.swing.JButton();
-        BotaoExcluirProduto = new javax.swing.JButton();
         BotaoFecharProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
-
-        BotaoPesquisarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        BotaoPesquisarProduto.setText("Pesquisar");
-        BotaoPesquisarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoPesquisarProdutoActionPerformed(evt);
-            }
-        });
 
         BotaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarProduto.setText("Adicionar");
@@ -56,12 +45,6 @@ public class BuscarProduto extends javax.swing.JFrame {
                 BotaoAdicionarProdutoActionPerformed(evt);
             }
         });
-
-        BotaoEditarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        BotaoEditarProduto.setText("Editar");
-
-        BotaoExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        BotaoExcluirProduto.setText("Excluir");
 
         BotaoFecharProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharProduto.setText("Fechar");
@@ -98,47 +81,36 @@ public class BuscarProduto extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabela);
 
+        jLabel1.setText("Pesquisar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoAdicionarProduto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoEditarProduto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoExcluirProduto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(BotaoFecharProduto)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)))
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addGap(164, 164, 164)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarProduto)
-                    .addComponent(BotaoEditarProduto)
-                    .addComponent(BotaoExcluirProduto)
-                    .addComponent(BotaoFecharProduto))
+                    .addComponent(BotaoFecharProduto)
+                    .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -146,10 +118,6 @@ public class BuscarProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BotaoPesquisarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarProdutoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoPesquisarProdutoActionPerformed
 
     private void BotaoAdicionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarProdutoActionPerformed
         // TODO add your handling code here:
@@ -192,11 +160,9 @@ public class BuscarProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAdicionarProduto;
-    private javax.swing.JButton BotaoEditarProduto;
-    private javax.swing.JButton BotaoExcluirProduto;
     private javax.swing.JButton BotaoFecharProduto;
-    private javax.swing.JButton BotaoPesquisarProduto;
     private javax.swing.JTable Tabela;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtPesquisarProduto;
     // End of variables declaration//GEN-END:variables
@@ -216,34 +182,6 @@ public class BuscarProduto extends javax.swing.JFrame {
     }
 
     /**
-     * @return the BotaoEditarProduto
-     */
-    public javax.swing.JButton getBotaoEditarProduto() {
-        return BotaoEditarProduto;
-    }
-
-    /**
-     * @param BotaoEditarProduto the BotaoEditarProduto to set
-     */
-    public void setBotaoEditarProduto(javax.swing.JButton BotaoEditarProduto) {
-        this.BotaoEditarProduto = BotaoEditarProduto;
-    }
-
-    /**
-     * @return the BotaoExcluircionarProduto
-     */
-    public javax.swing.JButton getBotaoExcluirProduto() {
-        return BotaoExcluirProduto;
-    }
-
-    /**
-     * @param BotaoExcluircionarProduto the BotaoExcluircionarProduto to set
-     */
-    public void setBotaoExcluirProduto(javax.swing.JButton BotaoExcluircionarProduto) {
-        this.BotaoExcluirProduto = BotaoExcluircionarProduto;
-    }
-
-    /**
      * @return the BotaoFecharProduto
      */
     public javax.swing.JButton getBotaoFecharProduto() {
@@ -257,20 +195,7 @@ public class BuscarProduto extends javax.swing.JFrame {
         this.BotaoFecharProduto = BotaoFecharProduto;
     }
 
-    /**
-     * @return the BotaoPesquisarProduto
-     */
-    public javax.swing.JButton getBotaoPesquisarProduto() {
-        return BotaoPesquisarProduto;
-    }
-
-    /**
-     * @param BotaoPesquisarProduto the BotaoPesquisarProduto to set
-     */
-    public void setBotaoPesquisarProduto(javax.swing.JButton BotaoPesquisarProduto) {
-        this.BotaoPesquisarProduto = BotaoPesquisarProduto;
-    }
-
+    
     /**
      * @return the Tabela
      */

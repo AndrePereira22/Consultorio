@@ -13,13 +13,13 @@ import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Medico;
-import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -28,17 +28,18 @@ import javax.swing.JOptionPane;
 public class ControlePrincipal implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    AtualizarConsultorio consultorio;
        private TelaLogin telaLogin;
     IFachada fachada1 = Fachada.getInstance();
 
-    public ControlePrincipal(TelaPrincipal telaPrincipal, AtualizarConsultorio consultorio,TelaLogin telaLogin) {
+    public ControlePrincipal(TelaPrincipal telaPrincipal,TelaLogin telaLogin) {
         this.telaPrincipal = telaPrincipal;
-        this.consultorio = consultorio;
+
         this.telaLogin = telaLogin;
+
+        
         telaPrincipal.getBotaoAtualizardados().addActionListener(this);
-        consultorio.getBotaoCancelarrConsultorio().addActionListener(this);
-        consultorio.getBotaoSalvarConsultorio().addActionListener(this);
+        telaPrincipal.getBotaoCancelarrConsultorio().addActionListener(this);
+        telaPrincipal.getBotaoSalvarConsultorio().addActionListener(this);
          telaLogin.setVisible(true);
         telaLogin.getEntrar().addActionListener(this);
         telaPrincipal.getBotaoSair().addActionListener(this);
@@ -49,68 +50,68 @@ public class ControlePrincipal implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == telaPrincipal.getBotaoAtualizardados()) {
-            telaPrincipal.setEnabled(false);
+                             telaPrincipal.getPanelConsultorio().setVisible(true);
+           
             try {
 
                 Consultorio c = fachada1.bucarConsultorio();
                
-                consultorio.getTxtnomefantasia().setText(c.getNome_fantasia());
-                consultorio.getTxtcnpj().setText(c.getCnpj());
-                consultorio.getTxtrazao().setText(c.getRazao_social());
+                telaPrincipal.getTxtnomefantasia().setText(c.getNome_fantasia());
+                telaPrincipal.getTxtcnpj().setText(c.getCnpj());
+                telaPrincipal.getTxtrazao().setText(c.getRazao_social());
 
-                consultorio.getTxtrua().setText(c.getEndereco().getRua());
-                consultorio.getTxtbairro().setText(c.getEndereco().getBairro());
-                consultorio.getTxtcep().setText(c.getEndereco().getCep());
-                consultorio.getTxtnumero().setText(c.getEndereco().getNumero());
-                consultorio.getTxtcidade().setText(c.getEndereco().getMunicipio());
+                telaPrincipal.getTxtrua().setText(c.getEndereco().getRua());
+                telaPrincipal.getTxtbairro().setText(c.getEndereco().getBairro());
+               telaPrincipal.getTxtcep().setText(c.getEndereco().getCep());
+                telaPrincipal.getTxtnumero().setText(c.getEndereco().getNumero());
+                telaPrincipal.getTxtcidade().setText(c.getEndereco().getMunicipio());
 
-                for (int u = 0; u < consultorio.getTxtUf().getItemCount(); u++) {
+                for (int u = 0; u < telaPrincipal.getTxtUf().getItemCount(); u++) {
 
-                    if (consultorio.getTxtUf().getItemAt(u).equals(c.getEndereco().getEstado())) {
-                        consultorio.getTxtUf().setSelectedItem(consultorio.getTxtUf().getItemAt(u));
+                    if (telaPrincipal.getTxtUf().getItemAt(u).equals(c.getEndereco().getEstado())) {
+                        telaPrincipal.getTxtUf().setSelectedItem(telaPrincipal.getTxtUf().getItemAt(u));
                     }
                 }
 
-                consultorio.getTxtemail().setText(c.getContato().getEmail());
-                consultorio.getTxtcelular().setText(c.getContato().getCelular());
-                consultorio.getTxttelefone().setText(c.getContato().getTelefone());
+                telaPrincipal.getTxtemail().setText(c.getContato().getEmail());
+                telaPrincipal.getTxtcelular().setText(c.getContato().getCelular());
+                telaPrincipal.getTxttelefone().setText(c.getContato().getTelefone());
             } catch (Exception p) {
             }
-            consultorio.setVisible(true);
+          
 
         }
 
-        if (e.getSource() == consultorio.getBotaoCancelarrConsultorio()) {
-            telaPrincipal.setEnabled(true);
-            consultorio.setVisible(false);
+        if (e.getSource() == telaPrincipal.getBotaoCancelarrConsultorio()) {
+ 
+      telaPrincipal.getPanelConsultorio().setVisible(false);
 
         }
-        if (e.getSource() == consultorio.getBotaoSalvarConsultorio()) {
+        if (e.getSource() == telaPrincipal.getBotaoSalvarConsultorio()) {
 
             Endereco end = new Endereco();
-            end.setBairro(consultorio.getTxtbairro().getText());
-            end.setRua(consultorio.getTxtrua().getText());
-            end.setCep(consultorio.getTxtcep().getText());
-            end.setNumero(consultorio.getTxtnumero().getText());
-            end.setEstado(consultorio.getTxtUf().getSelectedItem().toString());
-            end.setMunicipio(consultorio.getTxtcidade().getText());
+            end.setBairro(telaPrincipal.getTxtbairro().getText());
+            end.setRua(telaPrincipal.getTxtrua().getText());
+            end.setCep(telaPrincipal.getTxtcep().getText());
+            end.setNumero(telaPrincipal.getTxtnumero().getText());
+            end.setEstado(telaPrincipal.getTxtUf().getSelectedItem().toString());
+            end.setMunicipio(telaPrincipal.getTxtcidade().getText());
 
             Contato con = new Contato();
-            con.setEmail(consultorio.getTxtemail().getText());
-            con.setCelular(consultorio.getTxtcelular().getText());
-            con.setTelefone(consultorio.getTxttelefone().getText());
+            con.setEmail(telaPrincipal.getTxtemail().getText());
+            con.setCelular(telaPrincipal.getTxtcelular().getText());
+            con.setTelefone(telaPrincipal.getTxttelefone().getText());
 
             Consultorio consultori = new Consultorio();
             consultori.setEndereco(end);
             consultori.setContato(con);
-            consultori.setCnpj(consultorio.getTxtcnpj().getText());
-            consultori.setNome_fantasia(consultorio.getTxtnomefantasia().getText());
-            consultori.setRazao_social(consultorio.getTxtrazao().getText());
+            consultori.setCnpj(telaPrincipal.getTxtcnpj().getText());
+            consultori.setNome_fantasia(telaPrincipal.getTxtnomefantasia().getText());
+            consultori.setRazao_social(telaPrincipal.getTxtrazao().getText());
             consultori.setMedicos(new ArrayList<Medico>());
 
             fachada1.salvarConsultorio(consultori);
-            telaPrincipal.setEnabled(true);
-            consultorio.setVisible(false);
+           telaPrincipal.getPanelConsultorio().setVisible(false);
         }
         if (e.getSource() == telaLogin.getEntrar()) {
             Login loginF=null,loginM=null ;

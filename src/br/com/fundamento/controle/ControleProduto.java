@@ -12,6 +12,7 @@ import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Fornecedor;
 import br.com.fundamento.modelos.Produto;
+import br.com.fundamento.modelos.Render;
 import br.com.fundamento.modelos.SaidaEstoque;
 import br.com.fundamento.view.BuscarProduto;
 import br.com.fundamento.view.CadastroFornecedor;
@@ -22,9 +23,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -41,6 +47,7 @@ public class ControleProduto implements ActionListener {
     private List<Fornecedor> fornecedores;
     private Fornecedor fornecedor;
     private CadastroFornecedor cadastroFornecedor;
+    private JButton btn1, btn2;
 
     IFachada fachada1 = Fachada.getInstance();
 
@@ -63,10 +70,45 @@ public class ControleProduto implements ActionListener {
         cadastroFornecedor.getBotaoSalvarFornecedor().addActionListener(this);
         cadastroFornecedor.getBotaoCancelarrFornecedor().addActionListener(this);
         buscarProduto.getBotaoAdicionarProduto().addActionListener(this);
-        buscarProduto.getBotaoEditarProduto().addActionListener(this);
-        buscarProduto.getBotaoExcluirProduto().addActionListener(this);
         buscarProduto.getBotaoFecharProduto().addActionListener(this);
-        buscarProduto.getBotaoPesquisarProduto().addActionListener(this);
+        buscarProduto.getTabela().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column =  buscarProduto.getTabela().getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() /  buscarProduto.getTabela().getRowHeight();
+
+                if (row < buscarProduto.getTabela().getRowCount() && row >= 0 && column <  buscarProduto.getTabela().getColumnCount() && column >= 0) {
+                    Object value =  buscarProduto.getTabela().getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        ((JButton) value).doClick();
+                        JButton boton = (JButton) value;
+
+                        if (boton.getName().equals("m")) {
+                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+
+                        }
+                        if (boton.getName().equals("e")) {
+                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+
+                        }
+                    }
+                    if (value instanceof JCheckBox) {
+                        //((JCheckBox)value).doClick();
+                        JCheckBox ch = (JCheckBox) value;
+                        if (ch.isSelected() == true) {
+                            ch.setSelected(false);
+                        }
+                        if (ch.isSelected() == false) {
+                            ch.setSelected(true);
+                        }
+                    }
+                }
+
+            }
+            
+        });
+        
+        
         cadastroProduto.getListafornecedor().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -80,14 +122,9 @@ public class ControleProduto implements ActionListener {
                 }
             }
         });
-        buscarProduto.getTxtPesquisarProduto().addKeyListener(new KeyListener() {
+        buscarProduto.getTxtPesquisarProduto().addKeyListener(new KeyAdapter() {
 
-            public void keyTyped(KeyEvent e) {
-            }
-
-            public void keyPressed(KeyEvent e) {
-            }
-
+            @Override
             public void keyReleased(KeyEvent e) {
                 PreencherTabela();
             }
@@ -156,10 +193,7 @@ public class ControleProduto implements ActionListener {
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
         }
-        if (e.getSource() == buscarProduto.getBotaoPesquisarProduto()) {
-
-            PreencherTabela();
-        }
+        
         if (e.getSource() == cadastroProduto.getBotaoSalvarProduto()) {
 
             Endereco end = new Endereco();
@@ -227,18 +261,31 @@ public class ControleProduto implements ActionListener {
 
     public void PreencherTabela() {
         List<Produto> produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
-
+       
+        buscarProduto.getTabela().setDefaultRenderer(Object.class, new Render());
+        btn1 = new JButton("modificar"); 
+        btn1.setName("m");
+        btn2 = new JButton("Eliminar");
+        btn2.setName("e");
+        
         try {
-            String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Preco Compra"};
-            Object[][] dados = new Object[produtos.size()][4];
+            String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Preco Compra","E", "M"};
+            Object[][] dados = new Object[produtos.size()][6];
             for (int i = 0; i < produtos.size(); i++) {
                 Produto produto = produtos.get(i);
                 dados[i][0] = produto.getNome();
                 dados[i][1] = produto.getFabricante();
                 dados[i][2] = produto.getQuantidade_estoque();
                 dados[i][3] = produto.getPreco_compra();
+                dados[i][4] = btn1;
+                dados[i][5] = btn2;
             }
-            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
             buscarProduto.getTabela().setModel(dataModel);
         } catch (Exception ex) {
 

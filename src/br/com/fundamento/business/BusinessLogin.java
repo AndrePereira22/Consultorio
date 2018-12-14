@@ -49,7 +49,7 @@ public class BusinessLogin implements  IBusinessLogin{
 
     @Override
     public Login buscarLogin(String nome) {
-      return this.daoLogin.buscarLogin(nome);
+      return this.daoLogin.buscarLoginFuncionario(nome);
     }
 
     @Override

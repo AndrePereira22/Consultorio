@@ -12,6 +12,7 @@ package br.com.fundamento.modelos;
 public class Login {
     private String usuario;
     private String senha;
+    private int id;
 
     
     public Login(){}
@@ -42,6 +43,20 @@ public class Login {
      */
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     

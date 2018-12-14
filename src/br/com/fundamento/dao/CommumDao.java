@@ -52,7 +52,23 @@ public class CommumDao {
         }
         return id;
     }
-  public static Endereco bucarEndereco(String tabela, String coluna, String busca) {
+    public static void editarEndereco(Endereco end,int id) {
+        
+        try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Endereco.updateEnd(end.getCep(), end.getRua(), end.getNumero(),end.getBairro(), end.getMunicipio(), end.getEstado(), id));
+            
+            statement.execute();
+            statement.close();
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+  public static Endereco buscarEndereco(String tabela, String coluna, String busca) {
           Endereco endereco = null;
         try {
             conexao = SQLConections.getInstance();
@@ -68,7 +84,7 @@ public class CommumDao {
             endereco.setNumero(result.getString(SQLUtil.Endereco.COL_NUMERO));
             endereco.setMunicipio(result.getString(SQLUtil.Endereco.COL_MUNICIPIO));
            endereco.setEstado(result.getString(SQLUtil.Endereco.COL_ESTADO));
-           // statement.setString(6, end.getEstado());
+           
                 
                             }
             conexao.close();
@@ -154,4 +170,20 @@ public class CommumDao {
         return contato;
 
 }
+   public static void editarContato(Contato contato,int id) {
+        
+        try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Contato.updateContato(contato.getEmail(),contato.getTelefone(),contato.getTelefone(), id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
 }

@@ -21,6 +21,10 @@ public class Funcionario {
     private String data_nascimento;
     private Double salario;
     private String funcao;
+    private int id;
+    private int id_endereco;
+    private int id_contato;
+    private int id_login;
 
     private Endereco endereco;
     private Caixa caixa;
@@ -36,6 +40,7 @@ public class Funcionario {
         
         
     }
+    
 
     /**
      * @return the usuario
@@ -177,6 +182,62 @@ public class Funcionario {
      */
     public void setSalario(Double salario) {
         this.salario = salario;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the id_endereco
+     */
+    public int getId_endereco() {
+        return id_endereco;
+    }
+
+    /**
+     * @param id_endereco the id_endereco to set
+     */
+    public void setId_endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
+    }
+
+    /**
+     * @return the id_contato
+     */
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    /**
+     * @param id_contato the id_contato to set
+     */
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
+    }
+
+    /**
+     * @return the id_login
+     */
+    public int getId_login() {
+        return id_login;
+    }
+
+    /**
+     * @param id_login the id_login to set
+     */
+    public void setId_login(int id_login) {
+        this.id_login = id_login;
     }
 
 }

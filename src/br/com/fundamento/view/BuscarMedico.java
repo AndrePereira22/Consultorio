@@ -29,27 +29,16 @@ public class BuscarMedico extends javax.swing.JFrame {
     private void initComponents() {
 
         txtPesquisarMedico = new javax.swing.JTextField();
-        BotaoPesquisarMedico = new javax.swing.JButton();
         BotaoAdicionarMedico = new javax.swing.JButton();
-        BotaoEditarMedico = new javax.swing.JButton();
-        BotaoExckuirMedico = new javax.swing.JButton();
         BotaoFecharMedico = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaMedico = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
-
-        BotaoPesquisarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
-        BotaoPesquisarMedico.setText("Pesquisar");
-        BotaoPesquisarMedico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoPesquisarMedicoActionPerformed(evt);
-            }
-        });
 
         BotaoAdicionarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarMedico.setText("Adicionar");
@@ -58,12 +47,6 @@ public class BuscarMedico extends javax.swing.JFrame {
                 BotaoAdicionarMedicoActionPerformed(evt);
             }
         });
-
-        BotaoEditarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        BotaoEditarMedico.setText("Editar");
-
-        BotaoExckuirMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        BotaoExckuirMedico.setText("Excluir");
 
         BotaoFecharMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharMedico.setText("Fechar");
@@ -103,53 +86,43 @@ public class BuscarMedico extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("BUSCAR MEDICO");
 
+        jLabel2.setText("Pesquisar:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(BotaoAdicionarMedico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoEditarMedico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoExckuirMedico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoFecharMedico)
-                .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                        .addGap(10, 10, 10))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPesquisarMedico)
+                        .addGap(33, 33, 33)
+                        .addComponent(BotaoAdicionarMedico)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoFecharMedico))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(txtPesquisarMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoPesquisarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(276, 276, 276)
+                .addGap(277, 277, 277)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(67, 67, 67)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoPesquisarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarMedico)
-                    .addComponent(BotaoEditarMedico)
-                    .addComponent(BotaoExckuirMedico)
-                    .addComponent(BotaoFecharMedico))
+                    .addComponent(BotaoFecharMedico)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPesquisarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -157,10 +130,6 @@ public class BuscarMedico extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BotaoPesquisarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoPesquisarMedicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoPesquisarMedicoActionPerformed
 
     private void BotaoAdicionarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAdicionarMedicoActionPerformed
         // TODO add your handling code here:
@@ -203,12 +172,10 @@ public class BuscarMedico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAdicionarMedico;
-    private javax.swing.JButton BotaoEditarMedico;
-    private javax.swing.JButton BotaoExckuirMedico;
     private javax.swing.JButton BotaoFecharMedico;
-    private javax.swing.JButton BotaoPesquisarMedico;
     private javax.swing.JTable TabelaMedico;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtPesquisarMedico;
     // End of variables declaration//GEN-END:variables
@@ -227,33 +194,7 @@ public class BuscarMedico extends javax.swing.JFrame {
         this.BotaoAdicionarMedico = BotaoAdicionarMedico;
     }
 
-    /**
-     * @return the BotaoEditarMedico
-     */
-    public javax.swing.JButton getBotaoEditarMedico() {
-        return BotaoEditarMedico;
-    }
-
-    /**
-     * @param BotaoEditarMedico the BotaoEditarMedico to set
-     */
-    public void setBotaoEditarMedico(javax.swing.JButton BotaoEditarMedico) {
-        this.BotaoEditarMedico = BotaoEditarMedico;
-    }
-
-    /**
-     * @return the BotaoExckuirMedico
-     */
-    public javax.swing.JButton getBotaoExckuirMedico() {
-        return BotaoExckuirMedico;
-    }
-
-    /**
-     * @param BotaoExckuirMedico the BotaoExckuirMedico to set
-     */
-    public void setBotaoExckuirMedico(javax.swing.JButton BotaoExckuirMedico) {
-        this.BotaoExckuirMedico = BotaoExckuirMedico;
-    }
+   
 
     /**
      * @return the BotaoFecharMedico
@@ -269,19 +210,6 @@ public class BuscarMedico extends javax.swing.JFrame {
         this.BotaoFecharMedico = BotaoFecharMedico;
     }
 
-    /**
-     * @return the BotaoPesquisarMedico
-     */
-    public javax.swing.JButton getBotaoPesquisarMedico() {
-        return BotaoPesquisarMedico;
-    }
-
-    /**
-     * @param BotaoPesquisarMedico the BotaoPesquisarMedico to set
-     */
-    public void setBotaoPesquisarMedico(javax.swing.JButton BotaoPesquisarMedico) {
-        this.BotaoPesquisarMedico = BotaoPesquisarMedico;
-    }
 
     /**
      * @return the TabelaMedico

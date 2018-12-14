@@ -39,7 +39,7 @@ public class BusinessPaciente implements IBusinessPaciente{
 
     @Override
     public void editarPaciente(Paciente paciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.daoPaciente.editarPaciente(paciente);
     }
 
     @Override

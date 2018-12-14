@@ -354,7 +354,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarMedico(Medico medico) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.businessMedico.editarMedico(medico);
     }
 
     @Override
@@ -383,7 +383,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarPaciente(Paciente paciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.businessPaciente.editarPaciente(paciente);
     }
 
     @Override

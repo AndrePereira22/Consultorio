@@ -9,7 +9,6 @@ import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Paciente;
-import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
@@ -92,7 +91,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
                 paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
-                idP = result.getInt(SQLUtil.Paciente.COL_PRONTUARIO_ID);
+                idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);
                 idE = result.getInt(SQLUtil.Paciente.COL_ENDERECO_ID);
                 idC = result.getInt(SQLUtil.Paciente.COL_ID_CONTATO);
                 prontuario = new DaoProntuario().buscarProntuarioPorId(idP);
@@ -102,6 +101,14 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setEndereco(endereco);
                 paciente.setContato(contato);
                 paciente.setConsultas(new ArrayList<Consulta>());
+                
+                paciente.setId_contato(idC);
+                paciente.setId_endereco(idE);
+                paciente.setId_prontuario(idP);
+                
+                id = result.getInt(1);
+                 paciente.setId(id);
+                
             }
             this.conexao.close();
 
@@ -113,11 +120,12 @@ public class DaoPaciente implements IDaoPaciente {
 
     @Override
     public List<Paciente> getAllPaciente() {
+        
     List<Paciente> pacientes = new ArrayList<>();
      Prontuario prontuario=null;
         Contato contato=null;
         Endereco endereco=null;
-        int idP=0,idC=0,idE=0;
+        int idP=0,idC=0,idE=0,id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Paciente.NOME_TABELA));
@@ -135,7 +143,7 @@ public class DaoPaciente implements IDaoPaciente {
                   paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
                   
-                idP = result.getInt(SQLUtil.Paciente.COL_PRONTUARIO_ID);
+                idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);
                 idE = result.getInt(SQLUtil.Paciente.COL_ENDERECO_ID);
                 idC = result.getInt(SQLUtil.Paciente.COL_ID_CONTATO);
                 prontuario = new DaoProntuario().buscarProntuarioPorId(idP);
@@ -145,6 +153,14 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setEndereco(endereco);
                 paciente.setContato(contato);
                 paciente.setConsultas(new ArrayList<Consulta>());  
+                
+                
+                paciente.setId_contato(idC);
+                paciente.setId_endereco(idE);
+                paciente.setId_prontuario(idP);
+                
+                id = result.getInt(1);
+                 paciente.setId(id);
                   
                 pacientes.add(paciente);
             }
@@ -161,7 +177,7 @@ public class DaoPaciente implements IDaoPaciente {
     Prontuario prontuario=null;
         Contato contato=null;
         Endereco endereco=null;
-        int idP=0,idC=0,idE=0;
+        int idP=0,idC=0,idE=0,id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Paciente.selectPorBusca(busca));
@@ -170,7 +186,7 @@ public class DaoPaciente implements IDaoPaciente {
             while (result.next()) {
                 paciente = new Paciente();
                 
-             paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
+                paciente.setNome(result.getString(SQLUtil.Paciente.COL_NOME));
                 paciente.setData_nascimento(result.getString(SQLUtil.Paciente.COL_DATA_NASCIMENTO));
                 paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
@@ -178,7 +194,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
                 paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
-                idP = result.getInt(SQLUtil.Paciente.COL_PRONTUARIO_ID);
+                idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);
                 idE = result.getInt(SQLUtil.Paciente.COL_ENDERECO_ID);
                 idC = result.getInt(SQLUtil.Paciente.COL_ID_CONTATO);
                 prontuario = new DaoProntuario().buscarProntuarioPorId(idP);
@@ -189,6 +205,14 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setContato(contato);
                 paciente.setConsultas(new ArrayList<Consulta>());
                 pacientes.add(paciente);
+                
+                
+                paciente.setId_contato(idC);
+                paciente.setId_endereco(idE);
+                paciente.setId_prontuario(idP);
+                
+                id = result.getInt(1);
+                 paciente.setId(id);
             }
             this.conexao.close();
 
@@ -200,8 +224,22 @@ public class DaoPaciente implements IDaoPaciente {
     }
     @Override
     public void editarPaciente(Paciente paciente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+       
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Paciente.updatePaciente(paciente.getNome(),paciente.getCpf(),paciente.getRg(),paciente.getConvenio(),paciente.getId()));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   CommumDao.editarEndereco(paciente.getEndereco(), paciente.getId_endereco());
+   CommumDao.editarContato(paciente.getContato(), paciente.getId_contato());
+       }
 
     @Override
     public void ativarDesativarPaciente(int id) {
@@ -209,15 +247,17 @@ public class DaoPaciente implements IDaoPaciente {
     }
      @Override
      public Paciente buscarPaciente(String busca) {
+         
         Paciente paciente = null;
         Prontuario prontuario=null;
         Contato contato=null;
         Endereco endereco=null;
+        int id=0;
         int idP=0,idC=0,idE=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Paciente.buscarPaciente(busca));
-            this.result = this.statement.executeQuery();
+            result = statement.executeQuery();
 
             if (result.next()) {
                 paciente = new Paciente();
@@ -230,22 +270,34 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
                 paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
-                idP = result.getInt(SQLUtil.Paciente.COL_PRONTUARIO_ID);
+                idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);
                 idE = result.getInt(SQLUtil.Paciente.COL_ENDERECO_ID);
                 idC = result.getInt(SQLUtil.Paciente.COL_ID_CONTATO);
+                
                 prontuario = new DaoProntuario().buscarProntuarioPorId(idP);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
+                
+                
                 paciente.setProntuario(prontuario);
                 paciente.setEndereco(endereco);
                 paciente.setContato(contato);
-                paciente.setConsultas(new ArrayList<Consulta>());
+                
+                paciente.setId_contato(idC);
+                paciente.setId_endereco(idE);
+                paciente.setId_prontuario(idP);
+                
+                id = result.getInt(1);
+                 paciente.setId(id);
+                 
+                
             }
             this.conexao.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        paciente.setId(id);
         return paciente;
     }
 

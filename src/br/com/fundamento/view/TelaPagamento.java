@@ -86,6 +86,8 @@ public class TelaPagamento extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        txtValorparcela.setText("R$");
+
         javax.swing.GroupLayout panelParcelaLayout = new javax.swing.GroupLayout(panelParcela);
         panelParcela.setLayout(panelParcelaLayout);
         panelParcelaLayout.setHorizontalGroup(

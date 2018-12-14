@@ -33,7 +33,7 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public int salvarfornecedor(Fornecedor fornecedor) {
         int id = 0;
-         int id_estoque=0;
+        int id_estoque = 0;
         try {
             int id_contato = new DaoContato().salvarContato(fornecedor.getContato());
             int id_endereco = CommumDao.salvarEndereco(fornecedor.getEndereco());
@@ -51,14 +51,14 @@ public class DaoFornecedor implements IDaoFornecedor {
 
             if (result.next()) {
                 id = result.getInt(1);
-            }  
+            }
 
-            for(Produto p : fornecedor.getProdutos()){
-                  
+            for (Produto p : fornecedor.getProdutos()) {
+
                 id_estoque = new DaoEstoque().salvarEstoque(p.getEstoque());
                 DaoList.salvarProduto(p, id_estoque, id);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,9 +68,9 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public Fornecedor buscarPorfornecedorId(int id) {
         Fornecedor fornecedor = null;
-        Contato contato=null;
-        Endereco endereco=null;
-        int idC=0,idE=0;
+        Contato contato = null;
+        Endereco endereco = null;
+        int idC = 0, idE = 0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Fornecedor.NOME, id));
@@ -82,17 +82,21 @@ public class DaoFornecedor implements IDaoFornecedor {
                 fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
                 fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
                 fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
-                
-                
+
                 idE = result.getInt(SQLUtil.Fornecedor.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Fornecedor.COL_ID_CONTATO);
-                
+
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                
-               fornecedor.setEndereco(endereco);
+
+                fornecedor.setEndereco(endereco);
                 fornecedor.setContato(contato);
                 fornecedor.setProdutos(new ArrayList<Produto>());
+                
+                id = result.getInt(1);
+                fornecedor.setId(id);
+                fornecedor.setId_endereco(idE);
+                fornecedor.setId_contato(idC);
 
             }
             this.conexao.close();
@@ -106,9 +110,9 @@ public class DaoFornecedor implements IDaoFornecedor {
     @Override
     public List<Fornecedor> getAllfornecedor() {
         List<Fornecedor> fornecedores = new ArrayList<>();
-        Contato contato=null;
-        Endereco endereco=null;
-        int idC=0,idE=0;
+        Contato contato = null;
+        Endereco endereco = null;
+        int idC = 0, idE = 0, id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Fornecedor.NOME));
@@ -116,21 +120,25 @@ public class DaoFornecedor implements IDaoFornecedor {
             Fornecedor fornecedor;
             while (result.next()) {
                 fornecedor = new Fornecedor();
-                
+
                 fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
                 fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
                 fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
-                
+
                 idE = result.getInt(SQLUtil.Fornecedor.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Fornecedor.COL_ID_CONTATO);
-                
+
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                
-               fornecedor.setEndereco(endereco);
+
+                fornecedor.setEndereco(endereco);
                 fornecedor.setContato(contato);
                 fornecedor.setProdutos(new ArrayList<Produto>());
-                
+
+                fornecedor.setId_endereco(idE);
+                fornecedor.setId_contato(idC);
+                id = result.getInt(1);
+                fornecedor.setId(id);
                 fornecedores.add(fornecedor);
             }
             this.conexao.close();
@@ -138,11 +146,24 @@ public class DaoFornecedor implements IDaoFornecedor {
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return fornecedores;  }
+        return fornecedores;
+    }
 
     @Override
     public void editarfornecedor(Fornecedor fornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.updateFornecedor(fornecedor.getRazao_social(), fornecedor.getId()));
+
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   CommumDao.editarEndereco(fornecedor.getEndereco(), fornecedor.getId_endereco());
+   CommumDao.editarContato(fornecedor.getContato(), fornecedor.getId_contato());
     }
 
     @Override
@@ -152,10 +173,10 @@ public class DaoFornecedor implements IDaoFornecedor {
 
     @Override
     public List<Fornecedor> getPorBuscaFornecedor(String busca) {
-         List<Fornecedor> fornecedores = new ArrayList<>();
-         Contato contato=null;
-        Endereco endereco=null;
-        int idC=0,idE=0;
+        List<Fornecedor> fornecedores = new ArrayList<>();
+        Contato contato = null;
+        Endereco endereco = null;
+        int idC = 0, idE = 0, id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.selectPorBusca(busca));
@@ -163,21 +184,24 @@ public class DaoFornecedor implements IDaoFornecedor {
             Fornecedor fornecedor;
             while (result.next()) {
                 fornecedor = new Fornecedor();
-                
+
                 fornecedor.setNome_fantasia(result.getString(SQLUtil.Fornecedor.COL_NOME_FORNECEDOR));
                 fornecedor.setRazao_social(result.getString(SQLUtil.Fornecedor.COL_RAZAO_SOCIAl));
                 fornecedor.setCnpj(result.getString(SQLUtil.Fornecedor.COL_CNPJ));
-                
+
                 idE = result.getInt(SQLUtil.Fornecedor.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Fornecedor.COL_ID_CONTATO);
-                
+
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                
-               fornecedor.setEndereco(endereco);
+
+                fornecedor.setEndereco(endereco);
                 fornecedor.setContato(contato);
                 fornecedor.setProdutos(new ArrayList<Produto>());
-                
+                fornecedor.setId_endereco(idE);
+                fornecedor.setId_contato(idC);
+                id = result.getInt(1);
+                fornecedor.setId(id);
                 fornecedores.add(fornecedor);
             }
             this.conexao.close();
@@ -185,6 +209,7 @@ public class DaoFornecedor implements IDaoFornecedor {
         } catch (SQLException ex) {
             Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return fornecedores;}
+        return fornecedores;
+    }
 
 }
