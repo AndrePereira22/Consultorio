@@ -169,20 +169,21 @@ public class DaoFuncionario implements IDaoFuncionario {
     @Override
     public void editarFuncionario(Funcionario funcionario) {
           
-//        try {
-//            this.conexao = SQLConections.getInstance();
-//            this.statement = this.conexao.prepareStatement(SQLUtil.Fu.updateMedico(medico.getNome(),medico.getCpf(),medico.getRg(),medico.getId()));
-//         
-//           
-//            statement.execute();
-//            statement.close();
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//   CommumDao.editarEndereco(medico.getEndereco(), medico.getId_end());
-//   CommumDao.editarContato(medico.getContato(), medico.getId_contato());
-//   new DaoLogin().editarLogin(medico.getLogin(),medico.getId_login() );
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.updateFuncionario(funcionario.getNome(),funcionario.getCpf(),funcionario.getSalario(),funcionario.getFuncao(),funcionario.getId()));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   CommumDao.editarEndereco(funcionario.getEndereco(), funcionario.getId_endereco());
+   CommumDao.editarContato(funcionario.getContato(), funcionario.getId_contato());
+  new DaoLogin().editarLogin(funcionario.getLogin() );
+   //new DaoCaixa().editarCaixa(funcionario.getCaixa());
       
         
        }

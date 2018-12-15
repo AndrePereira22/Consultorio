@@ -21,6 +21,7 @@ public class Caixa {
     private double valor_receita;
     private boolean  status;
     private String  data;
+    private int id;
     private List<Funcionario>  funcionarios;       
     
     private List<Pagamento> pagamentos;
@@ -144,6 +145,20 @@ public class Caixa {
      */
     public void setData(String data) {
         this.data = data;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
 

@@ -39,6 +39,7 @@ public class BuscarTarefa extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaTarefa = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/search.png"))); // NOI18N
         jButton1.setText("Pesquisar");
@@ -69,6 +70,8 @@ public class BuscarTarefa extends javax.swing.JFrame {
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
 
+        BotaoAdicionarTarefa.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarTarefa.setForeground(new java.awt.Color(0, 0, 204));
         BotaoAdicionarTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarTarefa.setText("Adicionar");
         BotaoAdicionarTarefa.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +80,8 @@ public class BuscarTarefa extends javax.swing.JFrame {
             }
         });
 
+        BotaoFecharTarefa.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharTarefa.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFecharTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharTarefa.setText("Fechar");
 
@@ -110,9 +115,15 @@ public class BuscarTarefa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TabelaTarefa.setRowHeight(25);
+        TabelaTarefa.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        TabelaTarefa.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(TabelaTarefa);
 
         jLabel1.setText("Pesquisar:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Buscar Tarefa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,19 +143,26 @@ public class BuscarTarefa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(306, 306, 306)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoAdicionarTarefa)
-                    .addComponent(BotaoFecharTarefa)
-                    .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BotaoAdicionarTarefa)
+                        .addComponent(BotaoFecharTarefa)
+                        .addComponent(txtPesquisarTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -207,6 +225,7 @@ public class BuscarTarefa extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtPesquisarTarefa;

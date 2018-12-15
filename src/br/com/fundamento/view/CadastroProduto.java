@@ -60,7 +60,7 @@ public class CadastroProduto extends javax.swing.JFrame {
         Botaonovo = new javax.swing.JButton();
         BotaoSalvarProduto = new javax.swing.JButton();
         BotaoCancelarProduto = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        labelproduto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
@@ -209,8 +209,8 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel3.setText("CADASTRO DE PRODUTO");
+        labelproduto.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelproduto.setText("CADASTRO DE PRODUTO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,7 +221,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(310, 310, 310)
-                .addComponent(jLabel3)
+                .addComponent(labelproduto)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,7 +239,7 @@ public class CadastroProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(labelproduto)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -323,10 +323,10 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JButton Botaonovo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelproduto;
     private javax.swing.JLabel lblfornecedor;
     private javax.swing.JLabel lblnomeproduto;
     private javax.swing.JLabel lblquantidade;
@@ -548,6 +548,20 @@ public class CadastroProduto extends javax.swing.JFrame {
      */
     public void setTxtvalorunitario(javax.swing.JFormattedTextField txtvalorunitario) {
         this.txtvalorunitario = txtvalorunitario;
+    }
+
+    /**
+     * @return the labelproduto
+     */
+    public javax.swing.JLabel getLabelproduto() {
+        return labelproduto;
+    }
+
+    /**
+     * @param labelproduto the labelproduto to set
+     */
+    public void setLabelproduto(javax.swing.JLabel labelproduto) {
+        this.labelproduto = labelproduto;
     }
 
     

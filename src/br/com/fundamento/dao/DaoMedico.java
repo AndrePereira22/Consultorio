@@ -105,6 +105,7 @@ public class DaoMedico implements IDaoMedico {
                 contato = CommumDao.bucarContatoPorId(idC);
                 consultorio = new DaoConsultorio().buscarConsultorioPorId(idCons);
                 login =  new DaoLogin().buscarLoginPorId(idL);
+               
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
                 medico.setConsultorio(consultorio);
@@ -150,13 +151,15 @@ public class DaoMedico implements IDaoMedico {
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
                  idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
-                idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
+               
+                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
                 idCons = result.getInt(SQLUtil.Medico.COL_ID_CONSULTORIO);
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
                 consultorio = new DaoConsultorio().buscarConsultorioPorId(idCons);
                 login =  new DaoLogin().buscarLoginPorId(idL);
+               
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
                 medico.setConsultorio(consultorio);
@@ -185,8 +188,8 @@ public class DaoMedico implements IDaoMedico {
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.updateMedico(medico.getNome(),medico.getCpf(),medico.getRg(),medico.getId()));
-         
-           
+            System.out.println(medico.getId());
+            
             statement.execute();
             statement.close();
 
@@ -196,6 +199,7 @@ public class DaoMedico implements IDaoMedico {
                 CommumDao.editarEndereco(medico.getEndereco(), medico.getId_end());
                 CommumDao.editarContato(medico.getContato(), medico.getId_contato());
                 new DaoLogin().editarLogin(medico.getLogin());
+                
       
         }
 

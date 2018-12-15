@@ -175,7 +175,7 @@ public class CommumDao {
         try {
             
             conexao = SQLConections.getInstance();
-            statement = conexao.prepareStatement(SQLUtil.Contato.updateContato(contato.getEmail(),contato.getTelefone(),contato.getTelefone(), id));
+            statement = conexao.prepareStatement(SQLUtil.Contato.updateContato(contato.getEmail(),contato.getTelefone(),contato.getCelular(), id));
             
             
             statement.execute();

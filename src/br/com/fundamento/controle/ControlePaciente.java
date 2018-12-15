@@ -40,9 +40,11 @@ import javax.swing.table.DefaultTableModel;
 public class ControlePaciente implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    private CadastroPaciente cadastroPaciente;
+    private CadastroPaciente cadastroPaciente, cp;
     private BuscarPaciente buscarPaciente;
     private JButton btn1, btn2;
+    private List<Paciente> pacientes;
+    private Paciente p;
     private IFachada fachada1 = Fachada.getInstance();
 
     public ControlePaciente(TelaPrincipal telaPrincipal, CadastroPaciente cadastroPaciente, BuscarPaciente buscarPaciente) {
@@ -70,8 +72,37 @@ public class ControlePaciente implements ActionListener {
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("m")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = buscarPaciente.getTabelaPaciente().getSelectedRow();
+                            if (editar == 0) {
+                                cp = new CadastroPaciente();
+                                cp.getLabelcadastro().setText("ATUALIZAR PACIENTE");
+                                cp.setVisible(true);
+                                buscarPaciente.setVisible(false);
 
+                                p = pacientes.get(ro);
+                                preencherCadastro(p, cp);
+                                try {
+                                    cp.getBotaoSalvarPaciente().addActionListener(new Acaoupdate());
+                                    cp.getBotaoCancelarrPaciente().addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            cp.setVisible(false);
+
+                                            telaPrincipal.setVisible(true);
+
+                                            buscarPaciente.setVisible(true);
+                                            buscarPaciente.getTxtpesquisarPaciente().setText("");
+                                            preencherbuscas();
+                                            cp = null;
+                                            p = null;
+
+                                        }
+                                    });
+
+                                } catch (Exception ui) {
+                                }
+                            }
                         }
                         if (boton.getName().equals("e")) {
                             JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
@@ -92,7 +123,7 @@ public class ControlePaciente implements ActionListener {
                 }
 
             }
-        
+
         });
 
         buscarPaciente.getTxtpesquisarPaciente().addKeyListener(new KeyAdapter() {
@@ -116,6 +147,8 @@ public class ControlePaciente implements ActionListener {
         }
         if (e.getSource() == cadastroPaciente.getBotaoCancelarrPaciente()) {
             telaPrincipal.setEnabled(true);
+            buscarPaciente.getTxtpesquisarPaciente().setText("");
+            preencherbuscas();
             cadastroPaciente.setVisible(false);
             buscarPaciente.setVisible(true);
 
@@ -176,6 +209,7 @@ public class ControlePaciente implements ActionListener {
             paciente.setData_nascimento(cadastroPaciente.getTxtdata().getText());
 
             fachada1.salvarPaciente(paciente);
+            buscarPaciente.getTxtpesquisarPaciente().setText("");
             preencherbuscas();
             telaPrincipal.setEnabled(true);
             cadastroPaciente.setVisible(false);
@@ -185,7 +219,7 @@ public class ControlePaciente implements ActionListener {
     }
 
     public void preencherbuscas() {
-        List<Paciente> pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());
+        pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());
 
         buscarPaciente.getTabelaPaciente().setDefaultRenderer(Object.class, new Render());
         btn1 = new JButton("modificar");
@@ -223,4 +257,82 @@ public class ControlePaciente implements ActionListener {
 
     }
 
+    public void preencherCadastro(Paciente p, CadastroPaciente cp) {
+
+        cp.getTxtCep().setText(p.getEndereco().getCep());
+        cp.getTxtbairro().setText(p.getEndereco().getBairro());
+        cp.getTxtnumero().setText(p.getEndereco().getNumero());
+        cp.getTxtcidade().setText(p.getEndereco().getMunicipio());
+        cp.getTxtrua().setText(p.getEndereco().getRua());
+
+        for (int u = 0; u < cp.getTxtUf().getItemCount(); u++) {
+
+            if (cp.getTxtUf().getItemAt(u).equals(p.getEndereco().getEstado())) {
+                cp.getTxtUf().setSelectedItem(cp.getTxtUf().getItemAt(u));
+            }
+        }
+
+        cp.getTxtcelular2().setText(p.getContato().getCelular());
+        cp.getTxttelefone2().setText(p.getContato().getTelefone());
+        cp.getTxtemail2().setText(p.getContato().getEmail());
+
+        cp.getTxtCpf().setText(p.getCpf());
+        cp.getTxtNome().setText(p.getNome());
+        cp.getTxtrg().setText(p.getRg() + "");
+
+        for (int u = 0; u < cp.getCombosexo().getItemCount(); u++) {
+
+            if (cp.getCombosexo().getItemAt(u).equals(p.getSexo())) {
+                cp.getCombosexo().setSelectedItem(cp.getCombosexo().getItemAt(u));
+            }
+        }
+
+        cp.getTxtdata().setText(p.getData_nascimento());
+        cp.getTxtConvenio().setText(p.getConvenio());
+    }
+
+    public class Acaoupdate implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == cp.getBotaoSalvarPaciente()) {
+                Paciente paciente = p;
+
+                paciente.getEndereco().setBairro(cp.getTxtbairro().getText());
+                paciente.getEndereco().setRua(cp.getTxtrua().getText());
+                paciente.getEndereco().setCep(cp.getTxtCep().getText());
+                paciente.getEndereco().setNumero(cp.getTxtnumero().getText());
+                paciente.getEndereco().setMunicipio(cp.getTxtcidade().getText());
+                paciente.getEndereco().setEstado(cp.getTxtUf().getSelectedItem().toString());
+                paciente.getContato().setEmail(cp.getTxtemail2().getText());
+                paciente.getContato().setCelular(cp.getTxtcelular2().getText());
+                paciente.getContato().setTelefone(cp.getTxttelefone2().getText());
+                paciente.setNome(cp.getTxtNome().getText());
+                paciente.setCpf(cp.getTxtCpf().getText());
+                paciente.setConvenio(cp.getTxtConvenio().getText());
+
+                String rg = cp.getTxtrg().getText();
+                rg = rg.replaceAll("[^0-9]", "");
+                int RG = 0;
+                try {
+                    RG = Integer.parseInt(rg);
+                    paciente.setRg(RG);
+
+                } catch (NumberFormatException erro) {
+                }
+                
+
+                fachada1.editarPaciente(paciente);
+                buscarPaciente.getTxtpesquisarPaciente().setText("");
+                preencherbuscas();
+                cp.setVisible(false);
+                telaPrincipal.setVisible(true);
+                buscarPaciente.setVisible(true);
+                cp = null;
+                p = null;
+            }
+        }
+
+    }
 }

@@ -42,9 +42,11 @@ import javax.swing.table.DefaultTableModel;
 public class ControleMedico implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    CadastroMedico cadastroMedico;
+    CadastroMedico cadastroMedico, cm;
     BuscarMedico buscarMedico;
     JButton btn1, btn2;
+    private Medico m;
+    private List<Medico> medicos;
     IFachada fachada1 = Fachada.getInstance();
 
     public ControleMedico(TelaPrincipal telaPrincipal, CadastroMedico cadastroMedico, BuscarMedico buscarMedico) {
@@ -71,8 +73,38 @@ public class ControleMedico implements ActionListener {
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("m")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = buscarMedico.getTabelaMedico().getSelectedRow();
+                            if (editar == 0) {
+                                cm = new CadastroMedico();
+                                cm.getLabelmedico().setText("ATUALIZAR MEDICO");
+                                cm.setVisible(true);
+                                buscarMedico.setVisible(false);
 
+                                m = medicos.get(ro);
+
+                                preencherCadastro(m, cm);
+                                try {
+                                    cm.getBotaoSalvarMedico().addActionListener(new Acaoupdate());
+                                    cm.getBotaoCancelarMedico().addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            cm.setVisible(false);
+
+                                            telaPrincipal.setVisible(true);
+
+                                            buscarMedico.setVisible(true);
+                                            buscarMedico.getTxtPesquisarMedico().setText("");
+                                            preenchertabela();
+                                            cm = null;
+                                            m = null;
+
+                                        }
+                                    });
+
+                                } catch (Exception ui) {
+                                }
+                            }
                         }
                         if (boton.getName().equals("e")) {
                             JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
@@ -123,7 +155,8 @@ public class ControleMedico implements ActionListener {
             buscarMedico.setVisible(false);
         }
         if (e.getSource() == cadastroMedico.getBotaoCancelarMedico()) {
-            telaPrincipal.setEnabled(false);
+            buscarMedico.getTxtPesquisarMedico().setText("");
+            preenchertabela();
             buscarMedico.setVisible(true);
             cadastroMedico.setVisible(false);
         }
@@ -198,6 +231,9 @@ public class ControleMedico implements ActionListener {
             if (senha.equals(confirmarSenha)) {
 
                 fachada1.salvarMedico(medico);
+                buscarMedico.getTxtPesquisarMedico().setText("")
+                        
+                        ;
                 preenchertabela();
                 buscarMedico.setVisible(true);
                 cadastroMedico.setVisible(false);
@@ -210,7 +246,7 @@ public class ControleMedico implements ActionListener {
     }
 
     public void preenchertabela() {
-        List<Medico> medicos = fachada1.getPorBuscaMedico(buscarMedico.getTxtPesquisarMedico().getText());
+        medicos = fachada1.getPorBuscaMedico(buscarMedico.getTxtPesquisarMedico().getText());
         buscarMedico.getTabelaMedico().setDefaultRenderer(Object.class, new Render());
 
         btn1 = new JButton("Modificar");
@@ -244,6 +280,98 @@ public class ControleMedico implements ActionListener {
 
         }
 
+    }
+
+    public void preencherCadastro(Medico p, CadastroMedico cm) {
+
+        cm.getTxtcep().setText(p.getEndereco().getCep());
+        cm.getTxtbairro().setText(p.getEndereco().getBairro());
+        cm.getTxtnumero().setText(p.getEndereco().getNumero());
+        cm.getTxtcidade().setText(p.getEndereco().getMunicipio());
+        cm.getTxtrua().setText(p.getEndereco().getRua());
+
+        for (int u = 0; u < cm.getTxtUf().getItemCount(); u++) {
+
+            if (cm.getTxtUf().getItemAt(u).equals(p.getEndereco().getEstado())) {
+                cm.getTxtUf().setSelectedItem(cm.getTxtUf().getItemAt(u));
+            }
+        }
+
+        cm.getTxtcelular().setText(p.getContato().getCelular());
+        cm.getTxttelefone().setText(p.getContato().getTelefone());
+        cm.getTxtemail().setText(p.getContato().getEmail());
+
+        cm.getTxtcpf().setText(p.getCpf());
+        cm.getTxtnome().setText(p.getNome());
+        cm.getTxtrg().setText(p.getRg() + "");
+
+        for (int u = 0; u < cm.getjComboBox1().getItemCount(); u++) {
+
+            if (cm.getjComboBox1().getItemAt(u).equals(p.getSexo())) {
+                cm.getjComboBox1().setSelectedItem(cm.getjComboBox1().getItemAt(u));
+            }
+        }
+
+        cm.getTxtdata().setText(p.getData_nascimento());
+        cm.getTxtlogin1().setText(p.getLogin().getUsuario());
+        cm.getTxtsenha1().setText(p.getLogin().getSenha());
+        cm.getTxtconfirmasenha1().setText(p.getLogin().getSenha());
+    }
+
+    public class Acaoupdate implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == cm.getBotaoSalvarMedico()) {
+                
+                Medico medico = m;
+                
+                
+               medico.getEndereco().setBairro(cm.getTxtbairro().getText());
+                medico.getEndereco() .setRua(cm.getTxtrua().getText());
+                medico.getEndereco() .setCep(cm.getTxtcep().getText());
+                medico.getEndereco() .setNumero(cm.getTxtnumero().getText());
+                medico.getEndereco() .setMunicipio(cm.getTxtcidade().getText());
+                medico.getEndereco() .setEstado(cm.getTxtUf().getSelectedItem().toString());
+                medico.getContato().setEmail(cm.getTxtemail().getText());
+                 medico.getContato().setCelular(cm.getTxtcelular().getText());
+                 medico.getContato().setTelefone(cm.getTxttelefone().getText());
+                String senha = new String(cm.getTxtsenha1().getPassword());
+                 medico.getLogin().setSenha(senha);
+                 
+                 medico.getLogin().setUsuario(cm.getTxtlogin1().getText());
+
+                String confirmarSenha = new String(cm.getTxtconfirmasenha1().getPassword());
+                
+
+                medico.setCpf(cm.getTxtcpf().getText());
+
+                medico.setNome(cm.getTxtnome().getText());
+                String rg = cm.getTxtrg().getText();
+                rg = rg.replaceAll("[^0-9]", "");
+                int RG = Integer.parseInt(rg);
+                medico.setRg(RG);
+                medico.setSexo(cm.getjComboBox1().getSelectedItem().toString());
+                
+
+                if (senha.equals(confirmarSenha)) {
+
+                    fachada1.editarMedico(medico);
+                    buscarMedico.getTxtPesquisarMedico().setText("");
+                    buscarMedico.setVisible(true);
+                    preenchertabela();
+                    cm.setVisible(false);
+                    cm = null;
+                    m = null;
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha diferentes");
+                }
+
+            }
+
+        }
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IDaoProduto {
     
-    public void salvar(Produto produto);
+    public int salvar(Produto produto);
     public Produto buscarPorId(int id);
     public List<Produto> getAll();
     public void editar(Produto produto);

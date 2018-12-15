@@ -27,6 +27,11 @@ public class SQLUtil {
         public static String selectPorBusca(String busca) {
             return "select *from " + NOME + " where " + COL_NOME_PRODUTO + " like '%" + busca + "%' or " + COL_FABRICANTE + " like '%" + busca + "%'";
         }
+        
+        public static final String updateProduto(String novonome, String novoFabricante, int novaQuantidade, Double novoPreco , int id_parametro) {
+            return "UPDATE produto SET  nome ='" + novonome + "', fabricante='" + novoFabricante + "', quantidade_estoque=" + novaQuantidade + ", preco_compra=" + novoPreco + " WHERE id = " + id_parametro;
+
+        }
     }
 
     public static class Fornecedor {
@@ -48,10 +53,11 @@ public class SQLUtil {
             return "select *from " + NOME + " where " + COL_RAZAO_SOCIAl + " like '%" + busca + "%' or " + COL_NOME_FORNECEDOR + " like '%" + busca + "%' or "
                     + COL_CNPJ + " like '%" + busca + "%'";
         }
-        public static final String updateFornecedor(String novoNome, int id_parametro) {
-            return "update fornecedor SET razao_social ='" + novoNome + "'  WHERE id =" + id_parametro;
+        public static final String updateFornecedor(String novoRazao,String novoCnpj,String novoNome_fantasia, int id_parametro) {
+            return "update fornecedor SET razao_social ='" + novoRazao + "',cnpj ='" + novoCnpj + "',nome_fantasia ='" + novoNome_fantasia + "'  WHERE id =" + id_parametro;
 
         }
+        
     }
 
     public static class Medico {
@@ -143,8 +149,8 @@ public class SQLUtil {
             return "select *from " + NOME + " where " + COL_NOME + " like '%" + busca + "%' or " + COL_FUNCAO + " like '%" + busca + "%' or "
                     + COL_CPF + " like '%" + busca + "%'";
         }
-         public static final String updateFuncionario(String novoNome, String novoCpf, double novoSalario,String novaFuncao, int id_parametro) {
-            return "update medico SET nome ='" + novoNome + "', cpf='" + novoCpf + "', salario=" + novoSalario + "',funcao=" + novaFuncao + "  WHERE id =" + id_parametro;
+         public static final String updateFuncionario(String novoNome, String novoCpf, double novoSalario, String novaFuncao, int id_parametro) {
+            return "update funcionario SET nome ='" + novoNome + "', cpf='" + novoCpf + "', salario=" + novoSalario + ", funcao='" + novaFuncao + "'  WHERE id =" + id_parametro;
 
         }
     }
@@ -166,6 +172,10 @@ public class SQLUtil {
 
         public static String selectPorBusca(String busca) {
             return "select *from " + NOME + " where " + COL_DESCRICAO + " like '%" + busca + "%' or " + COL_DATA_TERMINO + " like '%" + busca + "%'";
+        }
+        public static final String updateTarefa(String novaDescricao, int novaPrioridade, boolean novoStatus, String novaDataTermino,int id_parametro) {
+            return "UPDATE tarefa SET  descricao='" + novaDescricao + "', prioridade='" + novaPrioridade + "', status='" + novoStatus + "', data_termino='" + novaDataTermino + "'  WHERE id =" + id_parametro;
+
         }
     }
 

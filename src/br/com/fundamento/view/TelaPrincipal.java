@@ -59,6 +59,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoCadastroCaixa = new javax.swing.JButton();
         BotaoCadastroCaixa1 = new javax.swing.JButton();
         BotaoCadastroCaixa3 = new javax.swing.JButton();
+        PanelDadosEstoque = new javax.swing.JPanel();
+        BotaoCadastroCaixa2 = new javax.swing.JButton();
+        BotaoCadastroCaixa4 = new javax.swing.JButton();
+        BotaoCadastroCaixa5 = new javax.swing.JButton();
         PanelRelatorio = new javax.swing.JPanel();
         PanelDadosConsultorio = new javax.swing.JPanel();
         BotaoAtualizardados = new javax.swing.JButton();
@@ -307,7 +311,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(BotaoLogoff)
                 .addGap(22, 22, 22)
                 .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(245, Short.MAX_VALUE))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,8 +339,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         BotaoCadastroCaixa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotaoCadastroCaixa.setForeground(new java.awt.Color(204, 204, 204));
-        BotaoCadastroCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Estoque.png"))); // NOI18N
-        BotaoCadastroCaixa.setText("Estoque");
+        BotaoCadastroCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/EntradadeProduto.png"))); // NOI18N
+        BotaoCadastroCaixa.setText("Contas a receber");
         BotaoCadastroCaixa.setBorderPainted(false);
         BotaoCadastroCaixa.setContentAreaFilled(false);
         BotaoCadastroCaixa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -366,7 +370,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoCadastroCaixa3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotaoCadastroCaixa3.setForeground(new java.awt.Color(204, 204, 204));
         BotaoCadastroCaixa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/SaidadeProduto.png"))); // NOI18N
-        BotaoCadastroCaixa3.setText("Saida Estoque");
+        BotaoCadastroCaixa3.setText("Contas a pagar");
         BotaoCadastroCaixa3.setBorderPainted(false);
         BotaoCadastroCaixa3.setContentAreaFilled(false);
         BotaoCadastroCaixa3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -386,13 +390,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(BotaoCadastroCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(892, Short.MAX_VALUE))
-            .addGroup(PanelFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelFinanceiroLayout.createSequentialGroup()
-                    .addGap(261, 261, 261)
-                    .addComponent(BotaoCadastroCaixa3)
-                    .addContainerGap(745, Short.MAX_VALUE)))
+                .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastroCaixa3)
+                .addContainerGap(785, Short.MAX_VALUE))
         );
         PanelFinanceiroLayout.setVerticalGroup(
             PanelFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,16 +401,95 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(PanelFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotaoCadastroCaixa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BotaoCadastroCaixa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotaoCadastroCaixa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(PanelFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelFinanceiroLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(BotaoCadastroCaixa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
 
         jTabbedPane1.addTab("FINANCEIRO   ", PanelFinanceiro);
+
+        PanelDadosEstoque.setBackground(new java.awt.Color(0, 57, 69));
+
+        BotaoCadastroCaixa2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroCaixa2.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroCaixa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Estoque.png"))); // NOI18N
+        BotaoCadastroCaixa2.setText("Estoque");
+        BotaoCadastroCaixa2.setBorderPainted(false);
+        BotaoCadastroCaixa2.setContentAreaFilled(false);
+        BotaoCadastroCaixa2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroCaixa2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroCaixa2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroCaixa2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroCaixa2ActionPerformed(evt);
+            }
+        });
+
+        BotaoCadastroCaixa4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroCaixa4.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroCaixa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/EntradadeProduto.png"))); // NOI18N
+        BotaoCadastroCaixa4.setText("Entrada de Produtos");
+        BotaoCadastroCaixa4.setBorderPainted(false);
+        BotaoCadastroCaixa4.setContentAreaFilled(false);
+        BotaoCadastroCaixa4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroCaixa4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroCaixa4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroCaixa4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroCaixa4ActionPerformed(evt);
+            }
+        });
+
+        BotaoCadastroCaixa5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroCaixa5.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroCaixa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/SaidadeProduto.png"))); // NOI18N
+        BotaoCadastroCaixa5.setText("Saida Estoque");
+        BotaoCadastroCaixa5.setBorderPainted(false);
+        BotaoCadastroCaixa5.setContentAreaFilled(false);
+        BotaoCadastroCaixa5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroCaixa5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroCaixa5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroCaixa5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroCaixa5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelDadosEstoqueLayout = new javax.swing.GroupLayout(PanelDadosEstoque);
+        PanelDadosEstoque.setLayout(PanelDadosEstoqueLayout);
+        PanelDadosEstoqueLayout.setHorizontalGroup(
+            PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BotaoCadastroCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167)
+                .addComponent(BotaoCadastroCaixa4)
+                .addContainerGap(756, Short.MAX_VALUE))
+            .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
+                    .addGap(139, 139, 139)
+                    .addComponent(BotaoCadastroCaixa5)
+                    .addContainerGap(937, Short.MAX_VALUE)))
+        );
+        PanelDadosEstoqueLayout.setVerticalGroup(
+            PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
+                .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDadosEstoqueLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(BotaoCadastroCaixa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BotaoCadastroCaixa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(BotaoCadastroCaixa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jTabbedPane1.addTab("ESTOQUE", PanelDadosEstoque);
 
         PanelRelatorio.setBackground(new java.awt.Color(0, 57, 69));
 
@@ -417,7 +497,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PanelRelatorio.setLayout(PanelRelatorioLayout);
         PanelRelatorioLayout.setHorizontalGroup(
             PanelRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1125, Short.MAX_VALUE)
+            .addGap(0, 1195, Short.MAX_VALUE)
         );
         PanelRelatorioLayout.setVerticalGroup(
             PanelRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,7 +530,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(PanelDadosConsultorioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotaoAtualizardados)
-                .addContainerGap(986, Short.MAX_VALUE))
+                .addContainerGap(1056, Short.MAX_VALUE))
         );
         PanelDadosConsultorioLayout.setVerticalGroup(
             PanelDadosConsultorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -720,11 +800,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(PanelConsultorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(123, 123, 123))
+            .addComponent(jTabbedPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -732,7 +812,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PanelConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(520, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -773,10 +853,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoSairActionPerformed
 
-    private void BotaoCadastroCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroCaixaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoCadastroCaixaActionPerformed
-
     private void BotaoAtualizardadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoAtualizardadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoAtualizardadosActionPerformed
@@ -808,6 +884,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void BotaoCancelarrConsultorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarrConsultorioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoCancelarrConsultorioActionPerformed
+
+    private void BotaoCadastroCaixa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroCaixa2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroCaixa2ActionPerformed
+
+    private void BotaoCadastroCaixa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroCaixa4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroCaixa4ActionPerformed
+
+    private void BotaoCadastroCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroCaixaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroCaixaActionPerformed
+
+    private void BotaoCadastroCaixa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroCaixa5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroCaixa5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -853,7 +945,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotaoCadastrarTarefa;
     private javax.swing.JButton BotaoCadastroCaixa;
     private javax.swing.JButton BotaoCadastroCaixa1;
+    private javax.swing.JButton BotaoCadastroCaixa2;
     private javax.swing.JButton BotaoCadastroCaixa3;
+    private javax.swing.JButton BotaoCadastroCaixa4;
+    private javax.swing.JButton BotaoCadastroCaixa5;
     private javax.swing.JButton BotaoCadastroFornecedor;
     private javax.swing.JButton BotaoCadastroFuncionario;
     private javax.swing.JButton BotaoCadastroPaciente;
@@ -864,6 +959,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotaoSalvarConsultorio;
     private javax.swing.JPanel PanelConsultorio;
     private javax.swing.JPanel PanelDadosConsultorio;
+    private javax.swing.JPanel PanelDadosEstoque;
     private javax.swing.JPanel PanelFinanceiro;
     private javax.swing.JPanel PanelPrincipal;
     private javax.swing.JPanel PanelRelatorio;

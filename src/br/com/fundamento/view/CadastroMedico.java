@@ -84,12 +84,11 @@ public class CadastroMedico extends javax.swing.JFrame {
         lbltelefone1 = new javax.swing.JLabel();
         txttelefone = new javax.swing.JFormattedTextField();
         txtcelular = new javax.swing.JFormattedTextField();
-        jLabel9 = new javax.swing.JLabel();
+        labelmedico = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel8.setToolTipText("");
@@ -480,8 +479,8 @@ public class CadastroMedico extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel9.setText("CADASTRO DE MEDICO");
+        labelmedico.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelmedico.setText("CADASTRO DE MEDICO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -506,7 +505,7 @@ public class CadastroMedico extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(301, 301, 301)
-                                        .addComponent(jLabel9)
+                                        .addComponent(labelmedico)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(BotaoSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -519,7 +518,7 @@ public class CadastroMedico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(labelmedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -625,13 +624,13 @@ public class CadastroMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelnome;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel labelmedico;
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblendereco;
     private javax.swing.JLabel lbltelefone;
@@ -708,6 +707,7 @@ public class CadastroMedico extends javax.swing.JFrame {
     public javax.swing.JLabel getFoto() {
         return foto;
     }
+    
 
     /**
      * @param foto the foto to set
@@ -1372,6 +1372,20 @@ public class CadastroMedico extends javax.swing.JFrame {
      */
     public void setTxthorario(javax.swing.JFormattedTextField txthorario) {
         this.txthorario = txthorario;
+    }
+
+    /**
+     * @return the labelmedico
+     */
+    public javax.swing.JLabel getLabelmedico() {
+        return labelmedico;
+    }
+
+    /**
+     * @param labelmedico the labelmedico to set
+     */
+    public void setLabelmedico(javax.swing.JLabel labelmedico) {
+        this.labelmedico = labelmedico;
     }
 
     

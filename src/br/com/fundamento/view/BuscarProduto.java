@@ -33,11 +33,14 @@ public class BuscarProduto extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        labelproduto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
 
+        BotaoAdicionarProduto.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarProduto.setForeground(new java.awt.Color(0, 0, 204));
         BotaoAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarProduto.setText("Adicionar");
         BotaoAdicionarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +49,8 @@ public class BuscarProduto extends javax.swing.JFrame {
             }
         });
 
+        BotaoFecharProduto.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharProduto.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFecharProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharProduto.setText("Fechar");
 
@@ -79,9 +84,15 @@ public class BuscarProduto extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        Tabela.setRowHeight(25);
+        Tabela.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        Tabela.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(Tabela);
 
         jLabel1.setText("Pesquisar:");
+
+        labelproduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelproduto.setText("Buscar Produto");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,11 +112,17 @@ public class BuscarProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(251, 251, 251)
+                .addComponent(labelproduto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(164, 164, 164)
+                .addGap(33, 33, 33)
+                .addComponent(labelproduto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarProduto)
                     .addComponent(BotaoFecharProduto)
@@ -164,6 +181,7 @@ public class BuscarProduto extends javax.swing.JFrame {
     private javax.swing.JTable Tabela;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelproduto;
     private javax.swing.JTextField txtPesquisarProduto;
     // End of variables declaration//GEN-END:variables
 
@@ -173,6 +191,7 @@ public class BuscarProduto extends javax.swing.JFrame {
     public javax.swing.JButton getBotaoAdicionarProduto() {
         return BotaoAdicionarProduto;
     }
+    
 
     /**
      * @param BotaoAdicionarProduto the BotaoAdicionarProduto to set
@@ -236,6 +255,20 @@ public class BuscarProduto extends javax.swing.JFrame {
      */
     public void setTxtPesquisarProduto(javax.swing.JTextField txtPesquisarProduto) {
         this.txtPesquisarProduto = txtPesquisarProduto;
+    }
+
+    /**
+     * @return the labelproduto
+     */
+    public javax.swing.JLabel getLabelproduto() {
+        return labelproduto;
+    }
+
+    /**
+     * @param labelproduto the labelproduto to set
+     */
+    public void setLabelproduto(javax.swing.JLabel labelproduto) {
+        this.labelproduto = labelproduto;
     }
 
 

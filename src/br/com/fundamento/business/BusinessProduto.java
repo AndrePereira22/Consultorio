@@ -40,7 +40,7 @@ public class BusinessProduto implements IBusinessProduto {
 
     @Override
     public void editar(Produto produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoProduto.editar(produto);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class BusinessFuncionario implements IBusinessFuncionario{
 
     @Override
     public void editarFuncionario(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.daoFuncionario.editarFuncionario(funcionario);
     }
 
     @Override

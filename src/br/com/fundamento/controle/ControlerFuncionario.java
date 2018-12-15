@@ -12,10 +12,12 @@ import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Login;
+import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Render;
 import br.com.fundamento.view.BuscarFuncionario;
 import br.com.fundamento.view.CadastroFuncionario;
+import br.com.fundamento.view.CadastroPaciente;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,10 +42,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControlerFuncionario implements ActionListener {
 
-    private CadastroFuncionario cadastroFuncionario;
+    private CadastroFuncionario cadastroFuncionario, cf;
     private TelaPrincipal telaPrincipal;
     private BuscarFuncionario buscarFuncionario;
     private JButton btn1, btn2;
+    private Funcionario f;
+    private List<Funcionario> funcionarios;
+
     IFachada fachada1 = Fachada.getInstance();
 
     public ControlerFuncionario(CadastroFuncionario cadastroFuncionario, TelaPrincipal telaPrincipal, BuscarFuncionario buscarFuncionario) {
@@ -60,18 +65,47 @@ public class ControlerFuncionario implements ActionListener {
         buscarFuncionario.getTabelaFunionario().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int column =  buscarFuncionario.getTabelaFunionario().getColumnModel().getColumnIndexAtX(e.getX());
-                int row = e.getY() /  buscarFuncionario.getTabelaFunionario().getRowHeight();
+                int column = buscarFuncionario.getTabelaFunionario().getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / buscarFuncionario.getTabelaFunionario().getRowHeight();
 
-                if (row < buscarFuncionario.getTabelaFunionario().getRowCount() && row >= 0 && column <  buscarFuncionario.getTabelaFunionario().getColumnCount() && column >= 0) {
-                    Object value =  buscarFuncionario.getTabelaFunionario().getValueAt(row, column);
+                if (row < buscarFuncionario.getTabelaFunionario().getRowCount() && row >= 0 && column < buscarFuncionario.getTabelaFunionario().getColumnCount() && column >= 0) {
+                    Object value = buscarFuncionario.getTabelaFunionario().getValueAt(row, column);
                     if (value instanceof JButton) {
                         ((JButton) value).doClick();
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("m")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = buscarFuncionario.getTabelaFunionario().getSelectedRow();
+                            if (editar == 0) {
+                                cf = new CadastroFuncionario();
+                                cf.getLabelFucncionario().setText("ATUALIZAR FUNCIONARIO");
+                                cf.setVisible(true);
+                                buscarFuncionario.setVisible(false);
 
+                                f = funcionarios.get(ro);
+                                preencherCadastro(f, cf);
+                                try {
+                                    cf.getBotaosalvarFuncionario().addActionListener(new Acaoupdate());
+                                    cf.getBotaocancelarFuncionario().addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            cf.setVisible(false);
+
+                                            telaPrincipal.setVisible(true);
+
+                                            buscarFuncionario.setVisible(true);
+                                            buscarFuncionario.getTxtPesquisar().setText("");
+                                            preenchertabela();
+                                            cf = null;
+                                            f = null;
+
+                                        }
+                                    });
+
+                                } catch (Exception ui) {
+                                }
+                            }
                         }
                         if (boton.getName().equals("e")) {
                             JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
@@ -91,14 +125,15 @@ public class ControlerFuncionario implements ActionListener {
                 }
 
             }
-            
+
         });
         buscarFuncionario.getTxtPesquisar().addKeyListener(new KeyAdapter() {
 
             @Override
-            public void keyReleased(KeyEvent e) { preenchertabela();
+            public void keyReleased(KeyEvent e) {
+                preenchertabela();
             }
-       
+
         });
 
     }
@@ -117,11 +152,13 @@ public class ControlerFuncionario implements ActionListener {
         }
         if (e.getSource() == cadastroFuncionario.getBotaocancelarFuncionario()) {
             telaPrincipal.setEnabled(false);
+            buscarFuncionario.getTxtPesquisar().setText("");
+            preenchertabela();
             buscarFuncionario.setVisible(true);
             cadastroFuncionario.setVisible(false);
 
         }
-        
+
         if (e.getSource() == buscarFuncionario.getBotaoFecharFuncionario()) {
             telaPrincipal.setEnabled(true);
             buscarFuncionario.setVisible(false);
@@ -167,40 +204,42 @@ public class ControlerFuncionario implements ActionListener {
             funcionario.setCpf(cadastroFuncionario.getTxtcpf().getText());
             String salario = cadastroFuncionario.getTxtsalario().getText();
             try {
-                
-           
-            salario = salario.replaceAll("[^0-9]", "");
-            Double s = Double.parseDouble(salario);
-            funcionario.setSalario(s);
-            funcionario.setData_nascimento(cadastroFuncionario.getTxtdata().getText());
-                } catch (Exception erro) {
+
+                salario = salario.replaceAll("[^0-9]", "");
+                Double s = Double.parseDouble(salario);
+                funcionario.setSalario(s);
+                funcionario.setData_nascimento(cadastroFuncionario.getTxtdata().getText());
+            } catch (Exception erro) {
             }
-            
-            String confirmarSenha = new String( cadastroFuncionario.getTxtconfirmasenha().getPassword());
-            
-            if(senha.equals(confirmarSenha)){
-            fachada1.salvarFuncionario(funcionario);
+
+            String confirmarSenha = new String(cadastroFuncionario.getTxtconfirmasenha().getPassword());
+
+            if (senha.equals(confirmarSenha)) {
+                fachada1.salvarFuncionario(funcionario);
+              buscarFuncionario.getTxtPesquisar().setText("");
             preenchertabela();
-            buscarFuncionario.setVisible(true);
-            cadastroFuncionario.setVisible(false);
-            telaPrincipal.setEnabled(true);
-        }else JOptionPane.showMessageDialog(null, "Senha diferentes");
+                buscarFuncionario.setVisible(true);
+                cadastroFuncionario.setVisible(false);
+                telaPrincipal.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha diferentes");
+            }
 
         }
     }
 
     public void preenchertabela() {
-          
-            List<Funcionario> funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
-        
+
+        funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
+
         buscarFuncionario.getTabelaFunionario().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar"); 
+        btn1 = new JButton("modificar");
         btn1.setName("m");
         btn2 = new JButton("Eliminar");
         btn2.setName("e");
-        
+
         try {
-            String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento","E", "M"};
+            String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento", "E", "M"};
             Object[][] dados = new Object[funcionarios.size()][7];
             for (int i = 0; i < funcionarios.size(); i++) {
                 Funcionario funcionario = funcionarios.get(i);
@@ -225,4 +264,84 @@ public class ControlerFuncionario implements ActionListener {
 
     }
 
+    public void preencherCadastro(Funcionario f, CadastroFuncionario cf) {
+
+        cf.getTxtcep().setText(f.getEndereco().getCep());
+        cf.getTxtbairro().setText(f.getEndereco().getBairro());
+        cf.getTxtnumero().setText(f.getEndereco().getNumero());
+        cf.getTxtcidade().setText(f.getEndereco().getMunicipio());
+        cf.getTxtrua().setText(f.getEndereco().getRua());
+        for (int u = 0; u < cf.getTxtUF().getItemCount(); u++) {
+
+            if (cf.getTxtUF().getItemAt(u).equals(f.getEndereco().getEstado())) {
+                cf.getTxtUF().setSelectedItem(cf.getTxtUF().getItemAt(u));
+            }
+        }
+        cf.getTxtcelular().setText(f.getContato().getCelular());
+        cf.getTxttelefone().setText(f.getContato().getTelefone());
+        cf.getTxtemail().setText(f.getContato().getEmail());
+
+        cf.getTxtcpf().setText(f.getCpf());
+        cf.getTxtnome().setText(f.getNome());
+
+        cf.getTxtfuncao().setText(f.getFuncao());
+        cf.getTxtsalario().setText(f.getSalario() + "");
+        cf.getTxtlogin().setText(f.getLogin().getUsuario());
+        cf.getTxtsenha().setText(f.getLogin().getSenha());
+        cf.getTxtconfirmasenha().setText(f.getLogin().getSenha());
+        cf.getTxtdata().setText(f.getData_nascimento());
+
+    }
+
+    public class Acaoupdate implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == cf.getBotaosalvarFuncionario()) {
+
+                Funcionario funcionario = f;
+                f=null;
+                funcionario.getEndereco().setBairro(cf.getTxtbairro().getText());
+                funcionario.getEndereco().setRua(cf.getTxtrua().getText());
+                funcionario.getEndereco().setCep(cf.getTxtcep().getText());
+                funcionario.getEndereco().setNumero(cf.getTxtnumero().getText());
+                funcionario.getEndereco().setMunicipio(cf.getTxtcidade().getText());
+                funcionario.getEndereco().setEstado(cf.getTxtUF().getSelectedItem().toString());
+                funcionario.getContato().setEmail(cf.getTxtemail().getText());
+                funcionario.getContato().setCelular(cf.getTxtcelular().getText());
+                funcionario.getContato().setTelefone(cf.getTxttelefone().getText());
+                String senha = new String(cf.getTxtsenha().getPassword());
+                funcionario.getLogin().setSenha(senha);
+                funcionario.getLogin().setUsuario(cf.getTxtlogin().getText());
+                funcionario.setCpf(cf.getTxtcpf().getText());
+                funcionario.setNome(cf.getTxtnome().getText());
+                funcionario.setFuncao(cf.getTxtfuncao().getText());
+                String salario = cf.getTxtsalario().getText();
+                try {
+
+                    salario = salario.replaceAll("[^0-9]", "");
+                    Double s = Double.parseDouble(salario);
+                    funcionario.setSalario(s);
+                } catch (Exception fre) {
+                }
+                String confirmarSenha = new String(cf.getTxtconfirmasenha().getPassword());
+                if (senha.equals(confirmarSenha)) {
+
+                    fachada1.editarFuncionario(funcionario);
+                    buscarFuncionario.getTxtPesquisar().setText("");
+                    preenchertabela();
+                    buscarFuncionario.setVisible(true);
+                    cf.setVisible(false);
+                    telaPrincipal.setEnabled(true);
+                    cf = null;
+                    f = null;
+                    funcionario = null;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha diferentes");
+                }
+
+            }
+        }
+    }
 }

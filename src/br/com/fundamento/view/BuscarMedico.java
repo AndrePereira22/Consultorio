@@ -40,6 +40,8 @@ public class BuscarMedico extends javax.swing.JFrame {
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
 
+        BotaoAdicionarMedico.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarMedico.setForeground(new java.awt.Color(0, 0, 204));
         BotaoAdicionarMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarMedico.setText("Adicionar");
         BotaoAdicionarMedico.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +50,8 @@ public class BuscarMedico extends javax.swing.JFrame {
             }
         });
 
+        BotaoFecharMedico.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharMedico.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFecharMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharMedico.setText("Fechar");
 
@@ -81,6 +85,9 @@ public class BuscarMedico extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TabelaMedico.setRowHeight(25);
+        TabelaMedico.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        TabelaMedico.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(TabelaMedico);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -108,16 +115,16 @@ public class BuscarMedico extends javax.swing.JFrame {
                         .addGap(10, 10, 10)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(277, 277, 277)
+                .addGap(286, 286, 286)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarMedico)
                     .addComponent(BotaoFecharMedico)

@@ -154,7 +154,7 @@ public class DaoFornecedor implements IDaoFornecedor {
 
         try {
             this.conexao = SQLConections.getInstance();
-            this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.updateFornecedor(fornecedor.getRazao_social(), fornecedor.getId()));
+            this.statement = this.conexao.prepareStatement(SQLUtil.Fornecedor.updateFornecedor(fornecedor.getRazao_social(),fornecedor.getCnpj(),fornecedor.getNome_fantasia(), fornecedor.getId()));
 
             statement.execute();
             statement.close();

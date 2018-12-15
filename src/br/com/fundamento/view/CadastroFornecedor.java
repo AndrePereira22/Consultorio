@@ -57,7 +57,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         lbltelefone1 = new javax.swing.JLabel();
         BotaoSalvarFornecedor = new javax.swing.JButton();
         BotaoCancelarrFornecedor = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelFornecedor = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(3, 134));
@@ -289,8 +289,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("CADASTRO FORNECEDOR");
+        labelFornecedor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelFornecedor.setText("CADASTRO FORNECEDOR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -313,14 +313,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addGap(45, 45, 45))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(293, 293, 293)
-                .addComponent(jLabel1)
+                .addComponent(labelFornecedor)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(labelFornecedor)
                 .addGap(39, 39, 39)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -413,7 +413,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCancelarrFornecedor;
     private javax.swing.JButton BotaoSalvarFornecedor;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -424,6 +423,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel labelFornecedor;
     private javax.swing.JLabel lblcnpj;
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblendereco;
@@ -864,6 +864,20 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     public void setTxttelefone(javax.swing.JFormattedTextField txttelefone) {
         this.txttelefone = txttelefone;
    
+    }
+
+    /**
+     * @return the labelFornecedor
+     */
+    public javax.swing.JLabel getLabelFornecedor() {
+        return labelFornecedor;
+    }
+
+    /**
+     * @param labelFornecedor the labelFornecedor to set
+     */
+    public void setLabelFornecedor(javax.swing.JLabel labelFornecedor) {
+        this.labelFornecedor = labelFornecedor;
     }
 
 

@@ -204,7 +204,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setEndereco(endereco);
                 paciente.setContato(contato);
                 paciente.setConsultas(new ArrayList<Consulta>());
-                pacientes.add(paciente);
+                
                 
                 
                 paciente.setId_contato(idC);
@@ -213,6 +213,7 @@ public class DaoPaciente implements IDaoPaciente {
                 
                 id = result.getInt(1);
                  paciente.setId(id);
+                 pacientes.add(paciente);
             }
             this.conexao.close();
 

@@ -22,35 +22,33 @@ import java.util.logging.Logger;
  *
  * @author Glenda Alves de Lima
  */
-public class DaoTarefa  implements IDaoTarefa{
+public class DaoTarefa implements IDaoTarefa {
 
-     private Connection conexao;
+    private Connection conexao;
     private PreparedStatement statement;
     private ResultSet result;
-     
-    
+
     @Override
     public void salvarTarefa(Tarefa tarefa) {
-       try {
-            
-            
+        try {
+
             this.conexao = SQLConections.getInstance();
-         
-             this.statement = conexao.prepareStatement(SQLUtil.Tarefa.INSERT);
-        
-            this.statement.setString(1,tarefa.getDescricao());
-            this.statement.setInt(2,  tarefa.getPrioridade());
+
+            this.statement = conexao.prepareStatement(SQLUtil.Tarefa.INSERT);
+
+            this.statement.setString(1, tarefa.getDescricao());
+            this.statement.setInt(2, tarefa.getPrioridade());
             this.statement.setBoolean(3, tarefa.isStatus());
             this.statement.setString(4, tarefa.getData_inicio());
-             this.statement.setString(5, tarefa.getData_termino());
-             
+            this.statement.setString(5, tarefa.getData_termino());
+
             statement.execute();
-            this.statement.close();  
-            
-         } catch (SQLException ex) {
-             Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
-         }
-        
+            this.statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
@@ -62,15 +60,16 @@ public class DaoTarefa  implements IDaoTarefa{
             this.result = this.statement.executeQuery();
 
             if (result.next()) {
-              tarefa = new Tarefa();
-              
-               tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
-               tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
-               tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
-             tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
-             tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
-               
-                       
+                tarefa = new Tarefa();
+
+                tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
+                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+                tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
+                tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+                tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+                id = result.getInt(1);
+                tarefa.setId(id);
+
             }
             this.conexao.close();
 
@@ -82,7 +81,8 @@ public class DaoTarefa  implements IDaoTarefa{
 
     @Override
     public List<Tarefa> getAllTarefa() {
-         List<Tarefa> tarefas = new ArrayList<>();
+        List<Tarefa> tarefas = new ArrayList<>();
+        int id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Tarefa.NOME));
@@ -90,13 +90,15 @@ public class DaoTarefa  implements IDaoTarefa{
             Tarefa tarefa;
             while (result.next()) {
                 tarefa = new Tarefa();
-                
-              tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
-               tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
-               tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
-             tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
-             tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
-                
+
+                tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
+                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+                tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
+                tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+                tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+
+                id = result.getInt(1);
+                tarefa.setId(id);
                 tarefas.add(tarefa);
             }
             this.conexao.close();
@@ -104,12 +106,26 @@ public class DaoTarefa  implements IDaoTarefa{
         } catch (SQLException ex) {
             Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return tarefas; }
+        return tarefas;
+    }
 
     @Override
     public void editarTarefa(Tarefa tarefa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        
+              
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Tarefa.updateTarefa(tarefa.getDescricao(), tarefa.getPrioridade(), tarefa.isStatus(), tarefa.getData_termino(), tarefa.getId()));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+       }
 
     @Override
     public void ativarDesativarTarefa(int id) {
@@ -118,7 +134,8 @@ public class DaoTarefa  implements IDaoTarefa{
 
     @Override
     public List<Tarefa> getPorBuscaTarefa(String busca) {
-         List<Tarefa> tarefas = new ArrayList<>();
+        List<Tarefa> tarefas = new ArrayList<>();
+        int id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Tarefa.selectPorBusca(busca));
@@ -126,13 +143,15 @@ public class DaoTarefa  implements IDaoTarefa{
             Tarefa tarefa;
             while (result.next()) {
                 tarefa = new Tarefa();
-                
-              tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
-               tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
-               tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
-             tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
-             tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
-                
+
+                tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
+                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+                tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
+                tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
+                tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
+
+                id = result.getInt(1);
+                tarefa.setId(id);
                 tarefas.add(tarefa);
             }
             this.conexao.close();
@@ -140,6 +159,7 @@ public class DaoTarefa  implements IDaoTarefa{
         } catch (SQLException ex) {
             Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return tarefas;}
-    
+        return tarefas;
+    }
+
 }

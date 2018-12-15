@@ -19,6 +19,7 @@ public class Tarefa {
     private String descricao;
     private int prioridade;
     private boolean status;
+    private int id;
     
     private Funcionario funcionario;
     
@@ -112,6 +113,20 @@ public class Tarefa {
      */
     public void setData_termino(String data_termino) {
         this.data_termino = data_termino;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
    

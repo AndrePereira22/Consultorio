@@ -19,6 +19,8 @@ public class Produto {
     private int quantidade_estoque;
     private double preco_compra;
     private int id;
+    private int id_fornecedor;
+    private int id_estoque;
     
     private Fornecedor fornecedor;
     private Estoque estoque;

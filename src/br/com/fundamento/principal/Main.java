@@ -17,8 +17,11 @@ import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
 import br.com.fundamento.dao.CommumDao;
 import br.com.fundamento.dao.DaoFornecedor;
+import br.com.fundamento.dao.DaoFuncionario;
 import br.com.fundamento.dao.DaoMedico;
 import br.com.fundamento.dao.DaoPaciente;
+import br.com.fundamento.dao.DaoProduto;
+import br.com.fundamento.dao.DaoTarefa;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Contato;
@@ -28,6 +31,9 @@ import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.modelos.Fornecedor;
+import br.com.fundamento.modelos.Funcionario;
+import br.com.fundamento.modelos.Produto;
+import br.com.fundamento.modelos.Tarefa;
 import br.com.fundamento.view.BuscarFornecedor;
 import br.com.fundamento.view.BuscarFuncionario;
 import br.com.fundamento.view.BuscarMedico;
@@ -94,6 +100,5 @@ public class Main {
         ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal,telaLogin);
 
 
-      
     }
 }

@@ -39,6 +39,8 @@ public class BuscarFornecedor extends javax.swing.JFrame {
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
 
+        BotaoFecharFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharFornecedor.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFecharFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharFornecedor.setText("Fechar");
 
@@ -72,8 +74,13 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TabelaCoFornecedor.setRowHeight(25);
+        TabelaCoFornecedor.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        TabelaCoFornecedor.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(TabelaCoFornecedor);
 
+        BotaoAdicionarFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarFornecedor.setForeground(new java.awt.Color(0, 0, 204));
         BotaoAdicionarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarFornecedor.setText("Adicionar");
         BotaoAdicionarFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -96,26 +103,26 @@ public class BuscarFornecedor extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesquisarFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotaoAdicionarFornecedor)
                 .addGap(18, 18, 18)
+                .addComponent(txtPesquisarFornecedor)
+                .addGap(33, 33, 33)
+                .addComponent(BotaoAdicionarFornecedor)
+                .addGap(42, 42, 42)
                 .addComponent(BotaoFecharFornecedor)
-                .addGap(29, 29, 29))
+                .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
-                .addGap(319, 319, 319)
+                .addGap(320, 320, 320)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoFecharFornecedor)
                     .addComponent(BotaoAdicionarFornecedor)

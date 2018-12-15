@@ -352,12 +352,12 @@ public class ControleConsulta implements ActionListener {
         List<Consulta> consultas = fachada1.getPorBuscaConsulta(busca);
 
         try {
-            String[] colunas = new String[]{"Tipo", "Hora", "Paciente", "Medico"};
+            String[] colunas = new String[]{"Hora","Tipo", "Paciente", "Medico"};
             Object[][] dados = new Object[consultas.size()][4];
             for (Consulta c : consultas) {
-
-                dados[i][0] = c.getTipo();
-                dados[i][1] = c.getHora();
+                
+                dados[i][0] = c.getHora();
+                dados[i][1] = c.getTipo();
                 dados[i][2] = c.getPaciente().getNome();
                 dados[i][3] = c.getMedico().getNome();
                 i++;

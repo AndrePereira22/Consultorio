@@ -89,9 +89,14 @@ public class BuscarPaciente extends javax.swing.JFrame {
             }
         });
         TabelaPaciente.setFocusable(false);
+        TabelaPaciente.setRowHeight(25);
+        TabelaPaciente.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        TabelaPaciente.setShowHorizontalLines(false);
         TabelaPaciente.setUpdateSelectionOnSort(false);
         jScrollPane1.setViewportView(TabelaPaciente);
 
+        BotaoAdicionarPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarPaciente.setForeground(new java.awt.Color(0, 0, 255));
         BotaoAdicionarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarPaciente.setText("Adicionar");
         BotaoAdicionarPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +105,8 @@ public class BuscarPaciente extends javax.swing.JFrame {
             }
         });
 
+        BotaoFecharPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharPaciente.setForeground(new java.awt.Color(0, 51, 255));
         BotaoFecharPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharPaciente.setText("Fechar");
 

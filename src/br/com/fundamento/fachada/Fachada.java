@@ -137,7 +137,7 @@ public class Fachada implements IFachada {
     
     @Override
     public void editarProduto(Produto produto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.businessProduto.editar(produto);
     }
     
     @Override
@@ -212,7 +212,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarfornecedor(Fornecedor fornecedor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.businessFornecedor.editarfornecedor(fornecedor);
     }
 
     @Override
@@ -323,7 +323,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarFuncionario(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessFuncionario.editarFuncionario(funcionario);
     }
 
     @Override

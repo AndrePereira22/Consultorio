@@ -42,12 +42,14 @@ import javax.swing.table.DefaultTableModel;
 public class ControleProduto implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    private CadastroProduto cadastroProduto;
+    private CadastroProduto cadastroProduto,cp;
     private BuscarProduto buscarProduto;
     private List<Fornecedor> fornecedores;
     private Fornecedor fornecedor;
     private CadastroFornecedor cadastroFornecedor;
     private JButton btn1, btn2;
+    private  List<Produto> produtos;
+    private Produto p;
 
     IFachada fachada1 = Fachada.getInstance();
 
@@ -84,8 +86,37 @@ public class ControleProduto implements ActionListener {
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("m")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                              int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = buscarProduto.getTabela().getSelectedRow();
+                            if (editar == 0) {
+                                cp = new CadastroProduto();
+                                cp.getLabelproduto().setText("ATUALIZAR PRODUTO");
+                                cp.setVisible(true);
+                                buscarProduto.setVisible(false);
 
+                                p = produtos.get(ro);
+                                preencherCadastro(p, cp);
+                                try {
+                                    cp.getBotaoSalvarProduto().addActionListener(new Acaoupdate());
+                                    cp.getBotaoCancelarProduto().addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            cp.setVisible(false);
+
+                                            telaPrincipal.setVisible(true);
+
+                                            buscarProduto.setVisible(true);
+                                            buscarProduto.getTxtPesquisarProduto().setText("");
+                                            PreencherTabela();
+                                            cp = null;
+                                            p = null;
+
+                                        }
+                                    });
+
+                                } catch (Exception ui) {
+                                }
+                            }
                         }
                         if (boton.getName().equals("e")) {
                             JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
@@ -152,6 +183,7 @@ public class ControleProduto implements ActionListener {
             buscarProduto.setVisible(false);
         }
         if (e.getSource() == cadastroFornecedor.getBotaoCancelarrFornecedor()) {
+            
             cadastroFornecedor.setVisible(false);
 
         }
@@ -188,8 +220,8 @@ public class ControleProduto implements ActionListener {
         }
 
         if (e.getSource() == cadastroProduto.getBotaoCancelarProduto()) {
-            PreencherTabela();
-            telaPrincipal.setEnabled(false);
+buscarProduto.getTxtPesquisarProduto().setText("");
+                                            PreencherTabela();
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
         }
@@ -251,7 +283,8 @@ public class ControleProduto implements ActionListener {
                 fachada1.salvarProduto(produto);
             }
 
-            PreencherTabela();
+        buscarProduto.getTxtPesquisarProduto().setText("");
+                                            PreencherTabela();
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
             telaPrincipal.setEnabled(true);
@@ -260,7 +293,7 @@ public class ControleProduto implements ActionListener {
     }
 
     public void PreencherTabela() {
-        List<Produto> produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
+         produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
        
         buscarProduto.getTabela().setDefaultRenderer(Object.class, new Render());
         btn1 = new JButton("modificar"); 
@@ -306,5 +339,58 @@ public class ControleProduto implements ActionListener {
         cadastroProduto.getListafornecedor().setModel(model);
 
     }
+      public void preencherCadastro(Produto p, CadastroProduto cp) {
 
-}
+
+
+        cp.getTxtnomeproduto().setText(p.getNome());
+        cp.getTxtquantidade().setText(p.getQuantidade_estoque() + "");
+        cp.getTxtFabricante().setText(p.getFabricante());
+        cp.getTxtvalorunitario().setText(p.getPreco_compra()+"");
+        cp.getTxtFornecedor().setText(p.getFornecedor().getNome_fantasia());
+        cp.getTxtcnpj().setText(p.getFornecedor().getCnpj());
+
+    }
+
+    public class Acaoupdate implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == cp.getBotaoSalvarProduto()) {
+
+                Produto produto = p;
+                p=null;
+                produto.setFabricante(cp.getTxtFabricante().getText());
+                produto.setNome(cp.getTxtnomeproduto().getText());
+               
+                String precos = cp.getTxtvalorunitario().getText();
+                String quantidade = cp.getTxtquantidade().getText();
+                try {
+                    Double s = Double.parseDouble(precos);
+                    int t = Integer.parseInt(quantidade);
+                   produto.setPreco_compra(s);
+                   produto.setQuantidade_estoque(t);
+                } catch (Exception fre) {
+                }
+               produto.getFornecedor().setCnpj(cp.getTxtcnpj().getText());
+               produto.getFornecedor().setNome_fantasia(cp.getTxtFornecedor().getText());
+               
+                    fachada1.editarProduto(produto);
+                    buscarProduto.getTxtPesquisarProduto().setText("");
+                    PreencherTabela();
+                    buscarProduto.setVisible(true);
+                    cp.setVisible(false);
+                    telaPrincipal.setEnabled(true);
+                    cp = null;
+                    p = null;
+                    produto = null;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha diferentes");
+                }
+
+            }
+        }
+    }
+
+

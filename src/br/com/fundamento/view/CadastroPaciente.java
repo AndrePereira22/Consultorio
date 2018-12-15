@@ -73,7 +73,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         lbltelefone1 = new javax.swing.JLabel();
         BotaoSalvarPaciente = new javax.swing.JButton();
         BotaoCancelarrPaciente = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        labelcadastro = new javax.swing.JLabel();
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
 
@@ -392,8 +392,8 @@ public class CadastroPaciente extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("CADASTRO DE PACIENTE");
+        labelcadastro.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelcadastro.setText("CADASTRO DE PACIENTE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -409,7 +409,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(260, 260, 260)
-                                .addComponent(jLabel1)
+                                .addComponent(labelcadastro)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BotaoSelecionarFotoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -437,7 +437,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                         .addComponent(BotaoSelecionarFotoPaciente))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -514,7 +514,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField Txtdata;
     private javax.swing.JFormattedTextField Txtrg;
     private javax.swing.JLabel foto;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -534,6 +533,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel labelcadastro;
     private javax.swing.JLabel lblemail;
     private javax.swing.JLabel lblendereco;
     private javax.swing.JLabel lbltelefone;
@@ -1211,6 +1211,20 @@ public class CadastroPaciente extends javax.swing.JFrame {
      */
     public void setCombosexo(javax.swing.JComboBox<String> Combosexo) {
         this.Combosexo = Combosexo;
+    }
+
+    /**
+     * @return the labelcadastro
+     */
+    public javax.swing.JLabel getLabelcadastro() {
+        return labelcadastro;
+    }
+
+    /**
+     * @param labelcadastro the labelcadastro to set
+     */
+    public void setLabelcadastro(javax.swing.JLabel labelcadastro) {
+        this.labelcadastro = labelcadastro;
     }
 
    

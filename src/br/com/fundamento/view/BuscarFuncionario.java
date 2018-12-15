@@ -12,6 +12,20 @@ package br.com.fundamento.view;
 public class BuscarFuncionario extends javax.swing.JFrame {
 
     /**
+     * @return the labelFuncionario
+     */
+    public javax.swing.JLabel getLabelFuncionario() {
+        return labelFuncionario;
+    }
+
+    /**
+     * @param labelFuncionario the labelFuncionario to set
+     */
+    public void setLabelFuncionario(javax.swing.JLabel labelFuncionario) {
+        this.labelFuncionario = labelFuncionario;
+    }
+
+    /**
      * Creates new form BuscarFuncionario
      */
     public BuscarFuncionario() {
@@ -32,13 +46,15 @@ public class BuscarFuncionario extends javax.swing.JFrame {
         BotaoFecharFuncionario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaFunionario = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        labelFuncionario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
 
+        BotaoAdicionarFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarFuncionario.setForeground(new java.awt.Color(0, 0, 204));
         BotaoAdicionarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarFuncionario.setText("Adicionar");
         BotaoAdicionarFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -47,6 +63,8 @@ public class BuscarFuncionario extends javax.swing.JFrame {
             }
         });
 
+        BotaoFecharFuncionario.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharFuncionario.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFecharFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharFuncionario.setText("Fechar");
 
@@ -80,10 +98,13 @@ public class BuscarFuncionario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TabelaFunionario.setRowHeight(25);
+        TabelaFunionario.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        TabelaFunionario.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(TabelaFunionario);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("BUSCAR FUNCIONARIO");
+        labelFuncionario.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelFuncionario.setText("BUSCAR FUNCIONARIO");
 
         jLabel2.setText("Pesquisar:");
 
@@ -96,9 +117,9 @@ public class BuscarFuncionario extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(BotaoAdicionarFuncionario)
-                .addGap(38, 38, 38)
+                .addGap(29, 29, 29)
                 .addComponent(BotaoFecharFuncionario)
                 .addGap(29, 29, 29))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -107,15 +128,15 @@ public class BuscarFuncionario extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
                 .addGap(272, 272, 272)
-                .addComponent(jLabel1)
+                .addComponent(labelFuncionario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                .addComponent(labelFuncionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarFuncionario)
                     .addComponent(BotaoFecharFuncionario)
@@ -172,9 +193,9 @@ public class BuscarFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton BotaoAdicionarFuncionario;
     private javax.swing.JButton BotaoFecharFuncionario;
     private javax.swing.JTable TabelaFunionario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelFuncionario;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
 

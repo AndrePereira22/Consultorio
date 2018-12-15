@@ -79,7 +79,7 @@ public class agendamento extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Tipo", "Hora", "Paciente", "Medico"
+                "Hora", "Tipo", "Paciente", "Medico"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -90,7 +90,9 @@ public class agendamento extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TabelaAgendamento.setSelectionBackground(new java.awt.Color(51, 51, 255));
+        TabelaAgendamento.setRowHeight(25);
+        TabelaAgendamento.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        TabelaAgendamento.setShowHorizontalLines(false);
         TabelaAgendamento.setSurrendersFocusOnKeystroke(true);
         jScrollPane1.setViewportView(TabelaAgendamento);
 
@@ -189,6 +191,7 @@ public class agendamento extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new agendamento().setVisible(true);
+                
             }
         });
     }

@@ -83,6 +83,9 @@ public class DaoCaixa implements IDaoCaixa {
                 caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
                 caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
                caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+               
+               id = result.getInt(1);
+                caixa.setId(id);
             }
             this.conexao.close();
 
@@ -95,6 +98,7 @@ public class DaoCaixa implements IDaoCaixa {
     @Override
     public List<Caixa> getAllCaixa() {
          List<Caixa> caixas = new ArrayList<>();
+         int id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Caixa.NOME_TABELA));
@@ -110,6 +114,8 @@ public class DaoCaixa implements IDaoCaixa {
                 caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
                 caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
                 
+                id = result.getInt(1);
+                caixa.setId(id);
                 caixas.add(caixa);
             }
             this.conexao.close();
