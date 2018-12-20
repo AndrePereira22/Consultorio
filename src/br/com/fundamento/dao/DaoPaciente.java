@@ -47,11 +47,12 @@ public class DaoPaciente implements IDaoPaciente {
             this.statement.setString(3, paciente.getSexo());
             this.statement.setString(4, paciente.getData_nascimento());
             this.statement.setString(5, paciente.getData_cadastro());
-            this.statement.setInt(6, paciente.getRg());
-            this.statement.setInt(7, id_prontuario);
-            this.statement.setInt(8, id_endereco);
-            this.statement.setInt(9, id_contato);  
-            this.statement.setString(10, paciente.getConvenio());
+            this.statement.setString(6, paciente.getRg());
+            this.statement.setString(7, paciente.getConvenio());
+            this.statement.setInt(8, id_prontuario);
+            this.statement.setInt(9, id_endereco);
+            this.statement.setInt(10, id_contato);  
+            
 
             result = statement.executeQuery();
 
@@ -88,7 +89,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
                 paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
-                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setRg(result.getString(SQLUtil.Paciente.COL_RG));
                 paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
                 idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);
@@ -139,7 +140,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
                 paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
-                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setRg(result.getString(SQLUtil.Paciente.COL_RG));
                   paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
                   
@@ -191,7 +192,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
                 paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
-                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setRg(result.getString(SQLUtil.Paciente.COL_RG));
                 paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
                 idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);
@@ -244,8 +245,17 @@ public class DaoPaciente implements IDaoPaciente {
 
     @Override
     public void ativarDesativarPaciente(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+            try {
+            this.conexao = SQLConections.getInstance();
+            this.statement=this.conexao.prepareStatement(SQLUtil.Paciente.desativar(id));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }}
      @Override
      public Paciente buscarPaciente(String busca) {
          
@@ -268,7 +278,7 @@ public class DaoPaciente implements IDaoPaciente {
                 paciente.setData_cadastro(result.getString(SQLUtil.Paciente.COL_DATA_CADASTRO));
                 paciente.setCpf(result.getString(SQLUtil.Paciente.COL_CPF));
                 paciente.setSexo(result.getString(SQLUtil.Paciente.COL_SEXO));
-                paciente.setRg(result.getInt(SQLUtil.Paciente.COL_RG));
+                paciente.setRg(result.getString(SQLUtil.Paciente.COL_RG));
                 paciente.setConvenio(result.getString(SQLUtil.Paciente.COL_CONVENIO));
                 
                 idP = result.getInt(SQLUtil.Paciente.COL_ID_PRONTUARIO);

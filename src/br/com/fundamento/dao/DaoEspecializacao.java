@@ -36,8 +36,9 @@ public class DaoEspecializacao implements IDaoEspecializacao {
             this.statement = conexao.prepareStatement(SQLUtil.Especializacao.INSERT);
             this.statement.setString(1, especializacao.getDescricao());
             this.statement.setDouble(2, especializacao.getSalario());
-            this.statement.setInt(3, id_medico);
-            this.statement.setString(4, especializacao.getHorario_disponivel());
+            this.statement.setString(3, especializacao.getHorario_disponivel());
+            this.statement.setInt(4, id_medico);
+            
 
             statement.execute();
             this.statement.close();

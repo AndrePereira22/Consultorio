@@ -19,7 +19,7 @@ public class Medico {
     private String data_cadastro;
     private String cpf;
     private String sexo;
-    private int rg;
+    private String rg;
     private int id;
     private int id_end;
     private int id_contato;
@@ -27,7 +27,7 @@ public class Medico {
     
     private List<Consulta> consultas;
     private List<Especializacao> especializacoes;
-    private Consultorio consultorio;
+    
     
     private Login login;
     private Endereco endereco;
@@ -84,20 +84,6 @@ public class Medico {
     }
 
     /**
-     * @return the rg
-     */
-    public int getRg() {
-        return rg;
-    }
-
-    /**
-     * @param rg the rg to set
-     */
-    public void setRg(int rg) {
-        this.rg = rg;
-    }
-
-    /**
      * @return the consultas
      */
     public List<Consulta> getConsultas() {
@@ -128,20 +114,6 @@ public class Medico {
     }
 
  
-
-    /**
-     * @return the consultorio
-     */
-    public Consultorio getConsultorio() {
-        return consultorio;
-    }
-
-    /**
-     * @param consultorio the consultorio to set
-     */
-    public void setConsultorio(Consultorio consultorio) {
-        this.consultorio = consultorio;
-    }
 
     /**
      * @return the login
@@ -267,6 +239,20 @@ public class Medico {
      */
     public int getId_login() {
         return id_login;
+    }
+
+    /**
+     * @return the rg
+     */
+    public String getRg() {
+        return rg;
+    }
+
+    /**
+     * @param rg the rg to set
+     */
+    public void setRg(String rg) {
+        this.rg = rg;
     }
             
     

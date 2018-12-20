@@ -37,9 +37,10 @@ public class DaoConsultorio implements IDaoConsultorio {
         int id = 0;
         try {
             int id_contato = new DaoContato().salvarContato(consultorio.getContato());
+            int id_endereco = CommumDao.salvarEndereco(consultorio.getEndereco());
+
             this.conexao = SQLConections.getInstance();
             this.statement = conexao.prepareStatement(SQLUtil.Consultorio.INSERT);
-            int id_endereco = CommumDao.salvarEndereco(consultorio.getEndereco());
             this.statement.setString(1, consultorio.getNome_fantasia());
             this.statement.setString(2, consultorio.getRazao_social());
             this.statement.setString(3, consultorio.getCnpj());
@@ -51,10 +52,10 @@ public class DaoConsultorio implements IDaoConsultorio {
             if (result.next()) {
                 id = result.getInt(1);
             }
-            
+
             for (Medico m : consultorio.getMedicos()) {
-                
-                DaoList.salvarMedico(m, id,id_contato);
+
+                DaoList.salvarMedico(m, id, id_contato, id_endereco);
             }
 
         } catch (SQLException ex) {
@@ -66,9 +67,9 @@ public class DaoConsultorio implements IDaoConsultorio {
     @Override
     public Consultorio buscarConsultorioPorId(int id) {
         Consultorio consultorio = null;
-        int idE=0,idC=0;
-        Endereco endereco=null;
-        Contato contato=null;
+        int idE = 0, idC = 0;
+        Endereco endereco = null;
+        Contato contato = null;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Consultorio.NOME, id));
@@ -76,11 +77,11 @@ public class DaoConsultorio implements IDaoConsultorio {
 
             if (result.next()) {
                 consultorio = new Consultorio();
-                
+
                 consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
                 consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
                 consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
-                
+
                 idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
                 idC = result.getInt(SQLUtil.Consultorio.COL_ID_CONTATO);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
@@ -88,7 +89,9 @@ public class DaoConsultorio implements IDaoConsultorio {
                 consultorio.setEndereco(endereco);
                 consultorio.setContato(contato);
                 consultorio.setMedicos(new ArrayList<Medico>());
-                
+                consultorio.setId_endereco(idE);
+                consultorio.setId_contato(idC);
+
             }
             this.conexao.close();
 
@@ -100,10 +103,10 @@ public class DaoConsultorio implements IDaoConsultorio {
 
     @Override
     public List<Consultorio> getAllConsultorio() {
-         List<Consultorio> consultorios = new ArrayList<>();
-         int idE=0,idC=0;
-        Endereco endereco=null;
-        Contato contato=null;
+        List<Consultorio> consultorios = new ArrayList<>();
+        int idE = 0, idC = 0;
+        Endereco endereco = null;
+        Contato contato = null;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Consultorio.NOME));
@@ -111,18 +114,19 @@ public class DaoConsultorio implements IDaoConsultorio {
             Consultorio consultorio;
             while (result.next()) {
                 consultorio = new Consultorio();
-                
-               consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
-               consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
-               consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
-                   
+
+                consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
+                consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
+                consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
+
                 idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
                 idC = result.getInt(SQLUtil.Consultorio.COL_ID_CONTATO);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
                 consultorio.setEndereco(endereco);
                 consultorio.setContato(contato);
-                
+                consultorio.setId_endereco(idE);
+                consultorio.setId_contato(idC);
                 consultorios.add(consultorio);
             }
             this.conexao.close();
@@ -130,11 +134,24 @@ public class DaoConsultorio implements IDaoConsultorio {
         } catch (SQLException ex) {
             Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return consultorios; }
+        return consultorios;
+    }
 
     @Override
     public void editarConsultorio(Consultorio consultorio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Consultorio.updateConsultorio(consultorio.getRazao_social(), consultorio.getCnpj(), consultorio.getNome_fantasia()));
+
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        CommumDao.editarEndereco(consultorio.getEndereco(), consultorio.getId_endereco());
+        CommumDao.editarContato(consultorio.getContato(), consultorio.getId_contato());
     }
 
     @Override
@@ -144,10 +161,10 @@ public class DaoConsultorio implements IDaoConsultorio {
 
     @Override
     public Consultorio bucarConsultorio() {
-          Consultorio consultorio = null;
-          int idE=0,idC=0;
-        Endereco endereco=null;
-        Contato contato=null;
+        Consultorio consultorio = null;
+        int idE = 0, idC = 0, id = 0, ID;
+        Endereco endereco = null;
+        Contato contato = null;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Consultorio.BuscaConsultorio());
@@ -155,18 +172,21 @@ public class DaoConsultorio implements IDaoConsultorio {
 
             if (result.next()) {
                 consultorio = new Consultorio();
-                
+
                 consultorio.setNome_fantasia(result.getString(SQLUtil.Consultorio.COL_NOME_fANTASIA));
                 consultorio.setRazao_social(result.getString(SQLUtil.Consultorio.COL_RAZAO_SOCIAl));
                 consultorio.setCnpj(result.getString(SQLUtil.Consultorio.COL_CNPJ));
-                
-                 idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
+
+                idE = result.getInt(SQLUtil.Consultorio.COL_ID_ENDERECO);
                 idC = result.getInt(SQLUtil.Consultorio.COL_ID_CONTATO);
+                id = result.getInt(1);
+                consultorio.setId(id);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
                 consultorio.setEndereco(endereco);
                 consultorio.setContato(contato);
-
+                consultorio.setId_endereco(idE);
+                consultorio.setId_contato(idC);
             }
             this.conexao.close();
 
@@ -174,12 +194,7 @@ public class DaoConsultorio implements IDaoConsultorio {
             Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);
         }
         return consultorio;
-    
-    
-        
-        }
-    
-    
-    
+
+    }
 
 }

@@ -27,7 +27,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSpinner1 = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         lblnome = new javax.swing.JLabel();
         txtrazao = new javax.swing.JTextField();
@@ -58,10 +57,12 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         BotaoSalvarFornecedor = new javax.swing.JButton();
         BotaoCancelarrFornecedor = new javax.swing.JButton();
         labelFornecedor = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 610));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -278,9 +279,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        BotaoSalvarFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoSalvarFornecedor.setForeground(new java.awt.Color(0, 0, 204));
         BotaoSalvarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
         BotaoSalvarFornecedor.setText("Salvar");
 
+        BotaoCancelarrFornecedor.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoCancelarrFornecedor.setForeground(new java.awt.Color(0, 0, 204));
         BotaoCancelarrFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoCancelarrFornecedor.setText("Cancelar");
         BotaoCancelarrFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -289,13 +294,27 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             }
         });
 
-        labelFornecedor.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        labelFornecedor.setText("CADASTRO FORNECEDOR");
+        labelFornecedor.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        labelFornecedor.setText("CADASTRO de FORNECEDOR");
+
+        jPanel6.setBackground(new java.awt.Color(0, 57, 69));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,18 +329,19 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addComponent(BotaoSalvarFornecedor)
                         .addGap(18, 18, 18)
                         .addComponent(BotaoCancelarrFornecedor)
-                        .addGap(45, 45, 45))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(293, 293, 293)
-                .addComponent(labelFornecedor)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelFornecedor)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addComponent(labelFornecedor)
-                .addGap(39, 39, 39)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -422,7 +442,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JLabel labelFornecedor;
     private javax.swing.JLabel lblcnpj;
     private javax.swing.JLabel lblemail;
@@ -599,19 +619,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         this.jPanel3 = jPanel3;
     }
 
-    /**
-     * @return the jSpinner1
-     */
-    public javax.swing.JSpinner getjSpinner1() {
-        return jSpinner1;
-    }
-
-    /**
-     * @param jSpinner1 the jSpinner1 to set
-     */
-    public void setjSpinner1(javax.swing.JSpinner jSpinner1) {
-        this.jSpinner1 = jSpinner1;
-    }
 
     /**
      * @return the lblcnpj

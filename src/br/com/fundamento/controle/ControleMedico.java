@@ -59,7 +59,6 @@ public class ControleMedico implements ActionListener {
         buscarMedico.getBotaoAdicionarMedico().addActionListener(this);
         cadastroMedico.getBotaoCancelarMedico().addActionListener(this);
         cadastroMedico.getBotaoSalvarMedico().addActionListener(this);
-        cadastroMedico.getBotaoSelecionar().addActionListener(this);
         buscarMedico.getTabelaMedico().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -176,13 +175,7 @@ public class ControleMedico implements ActionListener {
             con.setCelular(cadastroMedico.getTxtcelular().getText());
             con.setTelefone(cadastroMedico.getTxttelefone().getText());
 
-            Consultorio c = fachada1.bucarConsultorio();
-            Endereco endConsultorio = CommumDao.buscarEndereco("consultorio", "nome_fantasia", c.getNome_fantasia());
-            Contato t = CommumDao.bucarContato("consultorio", "nome_fantasia", c.getNome_fantasia());
-
-            c.setMedicos(new ArrayList<Medico>());
-            c.setEndereco(endConsultorio);
-            c.setContato(t);
+            
 
             Login l = new Login();
             String senha = new String(cadastroMedico.getTxtsenha1().getPassword());
@@ -210,7 +203,7 @@ public class ControleMedico implements ActionListener {
             medico.setEspecializacoes(especializacoes);
             medico.setContato(con);
             medico.setEndereco(end);
-            medico.setConsultorio(c);
+            
             medico.setLogin(l);
             medico.setCpf(cadastroMedico.getTxtcpf().getText());
             java.util.Date d = new Date();
@@ -220,10 +213,7 @@ public class ControleMedico implements ActionListener {
             medico.setData_cadastro(dStr);
             medico.setData_nascimento(cadastroMedico.getTxtdata().getText());
             medico.setNome(cadastroMedico.getTxtnome().getText());
-            String rg = cadastroMedico.getTxtrg().getText();
-            rg = rg.replaceAll("[^0-9]", "");
-            int RG = Integer.parseInt(rg);
-            medico.setRg(RG);
+            medico.setRg(cadastroMedico.getTxtrg().getText());
             medico.setSexo(cadastroMedico.getjComboBox1().getSelectedItem().toString());
 
             String confirmarSenha = new String(cadastroMedico.getTxtconfirmasenha1().getPassword());
@@ -344,17 +334,11 @@ public class ControleMedico implements ActionListener {
 
                 String confirmarSenha = new String(cm.getTxtconfirmasenha1().getPassword());
                 
-
                 medico.setCpf(cm.getTxtcpf().getText());
-
                 medico.setNome(cm.getTxtnome().getText());
-                String rg = cm.getTxtrg().getText();
-                rg = rg.replaceAll("[^0-9]", "");
-                int RG = Integer.parseInt(rg);
-                medico.setRg(RG);
+                medico.setRg(cm.getTxtrg().getText());
                 medico.setSexo(cm.getjComboBox1().getSelectedItem().toString());
                 
-
                 if (senha.equals(confirmarSenha)) {
 
                     fachada1.editarMedico(medico);

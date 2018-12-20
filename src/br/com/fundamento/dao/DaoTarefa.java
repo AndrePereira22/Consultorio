@@ -6,6 +6,7 @@
  */
 package br.com.fundamento.dao;
 
+import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Tarefa;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
@@ -30,6 +31,7 @@ public class DaoTarefa implements IDaoTarefa {
 
     @Override
     public void salvarTarefa(Tarefa tarefa) {
+         Consultorio c = new DaoConsultorio().bucarConsultorio();
         try {
 
             this.conexao = SQLConections.getInstance();
@@ -41,7 +43,7 @@ public class DaoTarefa implements IDaoTarefa {
             this.statement.setBoolean(3, tarefa.isStatus());
             this.statement.setString(4, tarefa.getData_inicio());
             this.statement.setString(5, tarefa.getData_termino());
-
+            this.statement.setInt(6, c.getId());
             statement.execute();
             this.statement.close();
 
@@ -122,14 +124,26 @@ public class DaoTarefa implements IDaoTarefa {
             statement.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
         }
     
        }
 
     @Override
     public void ativarDesativarTarefa(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     try {
+            this.conexao = SQLConections.getInstance();
+            this.statement=this.conexao.prepareStatement(SQLUtil.Tarefa.desativar(id));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoTarefa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    
     }
 
     @Override

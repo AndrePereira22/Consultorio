@@ -55,7 +55,7 @@ public class DaoFornecedor implements IDaoFornecedor {
 
             for (Produto p : fornecedor.getProdutos()) {
 
-                id_estoque = new DaoEstoque().salvarEstoque(p.getEstoque());
+                id_estoque = p.getId_estoque();
                 DaoList.salvarProduto(p, id_estoque, id);
             }
 

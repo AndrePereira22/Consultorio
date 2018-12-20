@@ -46,6 +46,8 @@ public class ControleProduto implements ActionListener {
     private BuscarProduto buscarProduto;
     private List<Fornecedor> fornecedores;
     private Fornecedor fornecedor;
+    private List<Estoque> estoques;
+    private Estoque estoque;
     private CadastroFornecedor cadastroFornecedor;
     private JButton btn1, btn2;
     private  List<Produto> produtos;
@@ -58,13 +60,13 @@ public class ControleProduto implements ActionListener {
         this.cadastroProduto = cadastroProduto;
         this.buscarProduto = buscarProduto;
         cadastroFornecedor = new CadastroFornecedor();
-
+        cp = new CadastroProduto();
         telaPrincipal.getBotaoCadastarProduto().addActionListener(this);
         cadastroProduto.getBotaoCancelarProduto().addActionListener(this);
         cadastroProduto.getTxtFornecedor().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
-                PreencherBuscaFornecedor();
+                PreencherBuscaFornecedor(cadastroProduto);
             }
         });
         cadastroProduto.getBotaonovo().addActionListener(this);
@@ -89,13 +91,16 @@ public class ControleProduto implements ActionListener {
                               int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
                             int ro = buscarProduto.getTabela().getSelectedRow();
                             if (editar == 0) {
-                                cp = new CadastroProduto();
+                                if(cp==null)cp =new CadastroProduto();
+                                cp.getBotaonovo().setVisible(false);
                                 cp.getLabelproduto().setText("ATUALIZAR PRODUTO");
                                 cp.setVisible(true);
                                 buscarProduto.setVisible(false);
 
                                 p = produtos.get(ro);
                                 preencherCadastro(p, cp);
+                                PreencherBuscaFornecedor(cp);
+                                PreencherEstoque(cp);
                                 try {
                                     cp.getBotaoSalvarProduto().addActionListener(new Acaoupdate());
                                     cp.getBotaoCancelarProduto().addActionListener(new ActionListener() {
@@ -119,8 +124,17 @@ public class ControleProduto implements ActionListener {
                             }
                         }
                         if (boton.getName().equals("e")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                              int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
+                            int ro = buscarProduto.getTabela().getSelectedRow();
+                            if (editar == 0) {
+                                p = produtos.get(ro);
+
+                                fachada1.ativarDesativarProduto(p.getId());
+                                PreencherTabela();
+                            }
+
+                        
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -153,6 +167,41 @@ public class ControleProduto implements ActionListener {
                 }
             }
         });
+        cadastroProduto.getListestoque().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int indice = cadastroProduto.getListestoque().getMinSelectionIndex();
+                try {
+
+                estoque = estoques.get(indice);
+                } catch (Exception eu) {
+                }
+            }
+        });
+        cp.getListafornecedor().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int indice = cp.getListafornecedor().getMinSelectionIndex();
+                try {
+
+                    fornecedor = fornecedores.get(indice);
+                    cp.getTxtcnpj().setText(fornecedor.getCnpj());
+                    cp.getTxtFornecedor().setText(fornecedor.getNome_fantasia());
+                } catch (Exception eu) {
+                }
+            }
+        });
+        cp.getListestoque().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int indice = cp.getListestoque().getMinSelectionIndex();
+                try {
+
+                estoque = estoques.get(indice);
+                } catch (Exception eu) {
+                }
+            }
+        });
         buscarProduto.getTxtPesquisarProduto().addKeyListener(new KeyAdapter() {
 
             @Override
@@ -179,7 +228,8 @@ public class ControleProduto implements ActionListener {
         if (e.getSource() == buscarProduto.getBotaoAdicionarProduto()) {
 
             cadastroProduto.setVisible(true);
-            PreencherBuscaFornecedor();
+            PreencherBuscaFornecedor(cadastroProduto);
+            PreencherEstoque(cadastroProduto);
             buscarProduto.setVisible(false);
         }
         if (e.getSource() == cadastroFornecedor.getBotaoCancelarrFornecedor()) {
@@ -215,7 +265,7 @@ public class ControleProduto implements ActionListener {
 
             fachada1.salvarfornecedor(fornecedor);
             cadastroFornecedor.setVisible(false);
-            PreencherBuscaFornecedor();
+            PreencherBuscaFornecedor(cadastroProduto);
 
         }
 
@@ -228,34 +278,9 @@ buscarProduto.getTxtPesquisarProduto().setText("");
         
         if (e.getSource() == cadastroProduto.getBotaoSalvarProduto()) {
 
-            Endereco end = new Endereco();
-            end.setBairro("");
-            end.setRua("");
-            end.setCep("");
-            end.setNumero("");
-            end.setMunicipio("");
-            end.setEstado("");
-
-            Contato con = new Contato();
-            con.setEmail("");
-            con.setCelular("");
-            con.setTelefone("");
-
-            Fornecedor fornecedor = new Fornecedor();
-            fornecedor.setProdutos(new ArrayList<Produto>());
-            fornecedor.setCnpj("");
-            fornecedor.setContato(con);
-            fornecedor.setEndereco(end);
-            fornecedor.setNome_fantasia("");
-            fornecedor.setRazao_social("");
-
-            Estoque es = new Estoque();
-            es.setDescricao("");
-            es.setSaidasEstoque(new ArrayList<SaidaEstoque>());
-            es.setProdutos(new ArrayList<Produto>());
-
             Produto produto = new Produto();
-            produto.setEstoque(es);
+            System.out.println(estoque.getId());
+            produto.setEstoque(estoque);
             produto.setFornecedor(fornecedor);
             produto.setFabricante(cadastroProduto.getTxtFabricante().getText());
             produto.setNome(cadastroProduto.getTxtnomeproduto().getText());
@@ -277,10 +302,11 @@ buscarProduto.getTxtPesquisarProduto().setText("");
             }
             produto.setPreco_compra(valor);
             produto.setQuantidade_estoque(quantidade);
-            produto.setFornecedor(fornecedor);
+            
 
             if (fornecedor != null) {
                 fachada1.salvarProduto(produto);
+                System.out.println("br.com.fundamento.controle.ControleProduto.actionPerformed()");
             }
 
         buscarProduto.getTxtPesquisarProduto().setText("");
@@ -326,7 +352,7 @@ buscarProduto.getTxtPesquisarProduto().setText("");
 
     }
 
-    public void PreencherBuscaFornecedor() {
+    public void PreencherBuscaFornecedor(CadastroProduto cp) {
 
         fornecedores = fachada1.getPorBuscaFornecedor(cadastroProduto.getTxtFornecedor().getText());
 
@@ -336,8 +362,21 @@ buscarProduto.getTxtPesquisarProduto().setText("");
             model.addElement(f.getNome_fantasia());
         }
 
-        cadastroProduto.getListafornecedor().setModel(model);
+        cp.getListafornecedor().setModel(model);
 
+    }
+        public void PreencherEstoque(CadastroProduto cp) {
+
+        estoques = fachada1.getAllEstoque();
+
+        DefaultListModel model = new DefaultListModel();
+        for (Estoque f : estoques) {
+
+            model.addElement(f.getDescricao());
+           
+        }
+
+        cp.getListestoque().setModel(model);
     }
       public void preencherCadastro(Produto p, CadastroProduto cp) {
 
@@ -349,6 +388,8 @@ buscarProduto.getTxtPesquisarProduto().setText("");
         cp.getTxtvalorunitario().setText(p.getPreco_compra()+"");
         cp.getTxtFornecedor().setText(p.getFornecedor().getNome_fantasia());
         cp.getTxtcnpj().setText(p.getFornecedor().getCnpj());
+        
+     
 
     }
 
@@ -375,6 +416,9 @@ buscarProduto.getTxtPesquisarProduto().setText("");
                 }
                produto.getFornecedor().setCnpj(cp.getTxtcnpj().getText());
                produto.getFornecedor().setNome_fantasia(cp.getTxtFornecedor().getText());
+               
+               produto.setEstoque(estoque);
+               produto.setFornecedor(fornecedor);
                
                     fachada1.editarProduto(produto);
                     buscarProduto.getTxtPesquisarProduto().setText("");

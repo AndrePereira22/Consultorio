@@ -5,9 +5,6 @@
  */
 package br.com.fundamento.modelos;
 
-import java.util.Calendar;
-import java.util.Date;
-
 /**
  *
  * @author Glenda Alves de Lima
@@ -20,9 +17,8 @@ public class Consulta {
     private Medico medico;
     private Paciente paciente;
     private Pagamento pagamento;
-    
-    
-
+    private int id;
+   
     public Consulta() {
         
 
@@ -112,5 +108,19 @@ public class Consulta {
      */
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

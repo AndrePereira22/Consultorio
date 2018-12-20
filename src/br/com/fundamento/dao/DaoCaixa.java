@@ -9,7 +9,6 @@ package br.com.fundamento.dao;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Pagamento;
-import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -34,6 +33,7 @@ public class DaoCaixa implements IDaoCaixa {
     @Override
     public int salvarCaixa(Caixa caixa) {
         int id = 0;
+        
         try {
 
             this.conexao = SQLConections.getInstance();
@@ -44,7 +44,8 @@ public class DaoCaixa implements IDaoCaixa {
             this.statement.setDouble(4, caixa.getValor_fechamento());
             this.statement.setDouble(5, caixa.getValor_receita());
             this.statement.setString(6, caixa.getData());
-
+            this.statement.setInt(7, caixa.getFuncionario().getId());
+            
             result = statement.executeQuery();
 
             if (result.next()) {
@@ -53,12 +54,7 @@ public class DaoCaixa implements IDaoCaixa {
             for (Pagamento p : caixa.getPagamentos()) {
                 DaoList.salvarPagamento(p, id);
             }
-            for (Funcionario f : caixa.getFuncionarios()) {
-                int id_login = new DaoLogin().salvarLogin(f.getLogin());
-                 int id_contato = new DaoContato().salvarContato(f.getContato());
-
-                DaoList.salvarFuncionario(f, id, id_login,id_contato);
-            }
+           
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,6 +65,8 @@ public class DaoCaixa implements IDaoCaixa {
     @Override
     public Caixa buscarCaixaPorId(int id) {
         Caixa caixa = null;
+        int idF=0;
+        Funcionario funcionario;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Caixa.NOME_TABELA, id));
@@ -83,6 +81,10 @@ public class DaoCaixa implements IDaoCaixa {
                 caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
                 caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
                caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+               
+               idF= result.getInt(SQLUtil.Caixa.COL_ID_FUNCIONARIO);
+               funcionario = new DaoFuncionario().buscarFuncionarioPorId(idF);
+               caixa.setFuncionario(funcionario);
                
                id = result.getInt(1);
                 caixa.setId(id);
@@ -99,6 +101,8 @@ public class DaoCaixa implements IDaoCaixa {
     public List<Caixa> getAllCaixa() {
          List<Caixa> caixas = new ArrayList<>();
          int id;
+         int idF=0;
+        Funcionario funcionario;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Caixa.NOME_TABELA));
@@ -114,6 +118,11 @@ public class DaoCaixa implements IDaoCaixa {
                 caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
                 caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
                 
+                
+               idF= result.getInt(SQLUtil.Caixa.COL_ID_FUNCIONARIO);
+               funcionario = new DaoFuncionario().buscarFuncionarioPorId(idF);
+               caixa.setFuncionario(funcionario);
+               
                 id = result.getInt(1);
                 caixa.setId(id);
                 caixas.add(caixa);

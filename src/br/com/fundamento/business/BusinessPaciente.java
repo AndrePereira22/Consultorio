@@ -44,7 +44,7 @@ public class BusinessPaciente implements IBusinessPaciente{
 
     @Override
     public void ativarDesativarPaciente(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.daoPaciente.ativarDesativarPaciente(id);
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.dao;
 
+import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Relatorio;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
@@ -29,6 +30,7 @@ public class DaoRelatorio implements IDaoRelatorio {
 
     @Override
     public void salvar(Relatorio relatorio) {
+        Consultorio c = new DaoConsultorio().bucarConsultorio();
         try {
 
             this.conexao = SQLConections.getInstance();
@@ -37,7 +39,7 @@ public class DaoRelatorio implements IDaoRelatorio {
 
             this.statement.setString(1, relatorio.getDescricao());
             this.statement.setString(2, relatorio.getRelatorio());
-
+            this.statement.setInt(3, c.getId());
 
             statement.execute();
             this.statement.close();

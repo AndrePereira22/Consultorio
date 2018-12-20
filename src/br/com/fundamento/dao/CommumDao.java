@@ -34,8 +34,8 @@ public class CommumDao {
             
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Endereco.INSERT);
-            statement.setString(1, end.getCep());
-            statement.setString(2, end.getRua());
+            statement.setString(1, end.getRua());
+            statement.setString(2, end.getCep()); 
             statement.setString(3, end.getBairro());
             statement.setString(4, end.getNumero());
             statement.setString(5, end.getMunicipio());

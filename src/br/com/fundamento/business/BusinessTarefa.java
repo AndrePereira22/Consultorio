@@ -40,12 +40,12 @@ public class BusinessTarefa implements IBusinessTarefa{
 
     @Override
     public void editarTarefa(Tarefa tarefa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoTarefa.editarTarefa(tarefa);
     }
 
     @Override
     public void ativarDesativarTarefa(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.daoTarefa.ativarDesativarTarefa(id);
     }
 
     @Override

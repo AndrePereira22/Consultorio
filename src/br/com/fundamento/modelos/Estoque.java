@@ -15,7 +15,7 @@ public class Estoque {
     private List<Produto> produtos;
     private List<SaidaEstoque> saidasEstoque;
     private String descricao;
-    
+    private int id;
      
     public Estoque(){}
 
@@ -59,6 +59,20 @@ public class Estoque {
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
 

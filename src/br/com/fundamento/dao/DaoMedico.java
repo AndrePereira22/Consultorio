@@ -39,21 +39,19 @@ public class DaoMedico implements IDaoMedico {
         try {
             this.conexao = SQLConections.getInstance();
             int id_contato = new DaoContato().salvarContato(medico.getContato());
-            int id_consultorio = new DaoConsultorio().salvarConsultorio(medico.getConsultorio());
             int id_login = new DaoLogin().salvarLogin(medico.getLogin());
             int id_endereco = CommumDao.salvarEndereco(medico.getEndereco());
 
             this.statement = conexao.prepareStatement(SQLUtil.Medico.INSERT);
             this.statement.setString(1, medico.getNome());
             this.statement.setString(2, medico.getSexo());
-            this.statement.setInt(3, medico.getRg());
-            this.statement.setInt(4, id_consultorio);
-            this.statement.setString(5, medico.getCpf());
-            this.statement.setString(6, medico.getData_nascimento());
-            this.statement.setString(7, medico.getData_cadastro());
-            this.statement.setInt(8, id_login);
-            this.statement.setInt(9, id_endereco);
-            this.statement.setInt(10, id_contato);
+            this.statement.setString(3, medico.getRg());
+            this.statement.setString(4, medico.getCpf());
+            this.statement.setString(5, medico.getData_nascimento());
+            this.statement.setString(6, medico.getData_cadastro());
+            this.statement.setInt(7, id_login);
+            this.statement.setInt(8, id_endereco);
+            this.statement.setInt(9, id_contato);
 
             result = statement.executeQuery();
 
@@ -80,9 +78,9 @@ public class DaoMedico implements IDaoMedico {
         Medico medico = null;
         Endereco endereco=null;
         Contato contato=null;
-        Consultorio consultorio=null;
+       
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0;
+        int idE=0,idC=0,idL=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Medico.NOME, id));
@@ -96,19 +94,19 @@ public class DaoMedico implements IDaoMedico {
                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
-                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
                 idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                idCons = result.getInt(SQLUtil.Medico.COL_ID_CONSULTORIO);
+               
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                consultorio = new DaoConsultorio().buscarConsultorioPorId(idCons);
+            
                 login =  new DaoLogin().buscarLoginPorId(idL);
                
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                medico.setConsultorio(consultorio);
+               
                 medico.setLogin(login);
                 medico.setConsultas(new ArrayList<Consulta>());
                 medico.setEspecializacoes(new ArrayList<Especializacao>());
@@ -133,9 +131,9 @@ public class DaoMedico implements IDaoMedico {
         List<Medico> medicos = new ArrayList<>();
          Endereco endereco=null;
         Contato contato=null;
-        Consultorio consultorio=null;
+        
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0,id;
+        int idE=0,idC=0,idL=0,id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Medico.NOME));
@@ -149,20 +147,20 @@ public class DaoMedico implements IDaoMedico {
                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
-                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
                  idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                
                  idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                idCons = result.getInt(SQLUtil.Medico.COL_ID_CONSULTORIO);
+                
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                consultorio = new DaoConsultorio().buscarConsultorioPorId(idCons);
+                
                 login =  new DaoLogin().buscarLoginPorId(idL);
                
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                medico.setConsultorio(consultorio);
+                
                 medico.setLogin(login);
                 medico.setConsultas(new ArrayList<Consulta>());
                 medico.setEspecializacoes(new ArrayList<Especializacao>());
@@ -188,8 +186,7 @@ public class DaoMedico implements IDaoMedico {
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.updateMedico(medico.getNome(),medico.getCpf(),medico.getRg(),medico.getId()));
-            System.out.println(medico.getId());
-            
+           
             statement.execute();
             statement.close();
 
@@ -213,9 +210,9 @@ public class DaoMedico implements IDaoMedico {
         List<Medico> medicos = new ArrayList<>();
          Endereco endereco=null;
         Contato contato=null;
-        Consultorio consultorio=null;
+       
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0,id;
+        int idE=0,idC=0,idL=0,id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.selectPorBusca(busca));
@@ -229,18 +226,18 @@ public class DaoMedico implements IDaoMedico {
                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
-                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
                  idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                idCons = result.getInt(SQLUtil.Medico.COL_ID_CONSULTORIO);
+                
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                consultorio = new DaoConsultorio().buscarConsultorioPorId(idCons);
+                
                 login =  new DaoLogin().buscarLoginPorId(idL);
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                medico.setConsultorio(consultorio);
+                
                 medico.setLogin(login);
                 medico.setConsultas(new ArrayList<Consulta>());
                 medico.setEspecializacoes(new ArrayList<Especializacao>());
@@ -264,9 +261,9 @@ public class DaoMedico implements IDaoMedico {
      Medico medico = new Medico();
       Endereco endereco=null;
         Contato contato=null;
-        Consultorio consultorio=null;
+       
         Login login=null;
-        int idE=0,idC=0,idCons=0,idL=0,id;
+        int idE=0,idC=0,idL=0,id;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.buscarMedico(busca));
@@ -280,18 +277,18 @@ public class DaoMedico implements IDaoMedico {
                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
-                medico.setRg(result.getInt(SQLUtil.Medico.COL_RG));
+                medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
                  idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                idCons = result.getInt(SQLUtil.Medico.COL_ID_CONSULTORIO);
+                
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                consultorio = new DaoConsultorio().buscarConsultorioPorId(idCons);
+                
                 login =  new DaoLogin().buscarLoginPorId(idL);
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                medico.setConsultorio(consultorio);
+                
                 medico.setLogin(login);
                 
                 medico.setId_contato(idC);

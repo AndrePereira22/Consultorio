@@ -27,7 +27,6 @@ public class Funcionario {
     private int id_login;
 
     private Endereco endereco;
-    private Caixa caixa;
     private Login usuario;
     private Contato contato;
 
@@ -36,9 +35,7 @@ public class Funcionario {
     
 
     public Funcionario() {
-        
-        
-        
+     
     }
     
 
@@ -84,21 +81,6 @@ public class Funcionario {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-
-    /**
-     * @return the caixa
-     */
-    public Caixa getCaixa() {
-        return caixa;
-    }
-
-    /**
-     * @param caixa the caixa to set
-     */
-    public void setCaixa(Caixa caixa) {
-        this.caixa = caixa;
-    }
-
 
     /**
      * @return the funcao

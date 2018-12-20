@@ -34,10 +34,12 @@ public class BuscarProduto extends javax.swing.JFrame {
         Tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         labelproduto = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 500));
 
         BotaoAdicionarProduto.setBackground(new java.awt.Color(255, 255, 255));
         BotaoAdicionarProduto.setForeground(new java.awt.Color(0, 0, 204));
@@ -91,18 +93,31 @@ public class BuscarProduto extends javax.swing.JFrame {
 
         jLabel1.setText("Pesquisar:");
 
-        labelproduto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelproduto.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labelproduto.setText("Buscar Produto");
+
+        jPanel6.setBackground(new java.awt.Color(0, 57, 69));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoAdicionarProduto)
                 .addGap(18, 18, 18)
@@ -112,17 +127,20 @@ public class BuscarProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(251, 251, 251)
+                .addContainerGap()
                 .addComponent(labelproduto)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(11, 11, 11)
                 .addComponent(labelproduto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoAdicionarProduto)
                     .addComponent(BotaoFecharProduto)
@@ -180,6 +198,7 @@ public class BuscarProduto extends javax.swing.JFrame {
     private javax.swing.JButton BotaoFecharProduto;
     private javax.swing.JTable Tabela;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelproduto;
     private javax.swing.JTextField txtPesquisarProduto;

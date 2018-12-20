@@ -15,10 +15,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,7 +54,7 @@ public class ControlePaciente implements ActionListener {
         telaPrincipal.getBotaoCadastroPaciente().addActionListener(this);
         cadastroPaciente.getBotaoCancelarrPaciente().addActionListener(this);
         cadastroPaciente.getBotaoSalvarPaciente().addActionListener(this);
-        cadastroPaciente.getBotaoSelecionarFotoPaciente().addActionListener(this);
+        
         buscarPaciente.getBotaoAdicionarPaciente().addActionListener(this);
         buscarPaciente.getBotaoFecharPaciente().addActionListener(this);
         buscarPaciente.getTabelaPaciente().addMouseListener(new MouseAdapter() {
@@ -105,8 +103,18 @@ public class ControlePaciente implements ActionListener {
                             }
                         }
                         if (boton.getName().equals("e")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
+                            int ro = buscarPaciente.getTabelaPaciente().getSelectedRow();
+                            if (editar == 0) {
+                                p = pacientes.get(ro);
+
+                                fachada1.ativarDesativarPaciente(p.getId());
+                                preencherbuscas();
+                            }
+
+                        
+                        
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -184,16 +192,8 @@ public class ControlePaciente implements ActionListener {
 
             Paciente paciente = new Paciente();
             paciente.setNome(cadastroPaciente.getTxtNome().getText());
-            String rg = cadastroPaciente.getTxtrg().getText();
-            rg = rg.replaceAll("[^0-9]", "");
-            int RG = 0;
-            try {
-                RG = Integer.parseInt(rg);
-                paciente.setRg(RG);
-
-            } catch (NumberFormatException erro) {
-            }
-
+           
+            paciente.setRg(cadastroPaciente.getTxtrg().getText());
             java.util.Date d = new Date();
 
             String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
@@ -312,16 +312,7 @@ public class ControlePaciente implements ActionListener {
                 paciente.setCpf(cp.getTxtCpf().getText());
                 paciente.setConvenio(cp.getTxtConvenio().getText());
 
-                String rg = cp.getTxtrg().getText();
-                rg = rg.replaceAll("[^0-9]", "");
-                int RG = 0;
-                try {
-                    RG = Integer.parseInt(rg);
-                    paciente.setRg(RG);
-
-                } catch (NumberFormatException erro) {
-                }
-                
+                paciente.setRg(cp.getTxtrg().getText());
 
                 fachada1.editarPaciente(paciente);
                 buscarPaciente.getTxtpesquisarPaciente().setText("");

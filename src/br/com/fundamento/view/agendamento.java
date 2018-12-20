@@ -31,14 +31,17 @@ public class agendamento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaAgendamento = new javax.swing.JTable();
         BotaoAdicionarAgendamento = new javax.swing.JButton();
-        BotaoEditarAgendamento = new javax.swing.JButton();
-        BotaoExcluirAgendamento = new javax.swing.JButton();
         BotaoFecharAgendamento = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listmedico = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1360, 575));
+        setPreferredSize(new java.awt.Dimension(1160, 620));
 
         calendario.setBackground(new java.awt.Color(51, 51, 255));
         calendario.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -50,10 +53,7 @@ public class agendamento extends javax.swing.JFrame {
         TabelaAgendamento.setAutoCreateRowSorter(true);
         TabelaAgendamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
+                {"", null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -96,6 +96,8 @@ public class agendamento extends javax.swing.JFrame {
         TabelaAgendamento.setSurrendersFocusOnKeystroke(true);
         jScrollPane1.setViewportView(TabelaAgendamento);
 
+        BotaoAdicionarAgendamento.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoAdicionarAgendamento.setForeground(new java.awt.Color(0, 0, 204));
         BotaoAdicionarAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
         BotaoAdicionarAgendamento.setText("Adicionar");
         BotaoAdicionarAgendamento.addActionListener(new java.awt.event.ActionListener() {
@@ -104,48 +106,80 @@ public class agendamento extends javax.swing.JFrame {
             }
         });
 
-        BotaoEditarAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
-        BotaoEditarAgendamento.setText("Editar");
-
-        BotaoExcluirAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        BotaoExcluirAgendamento.setText("Excluir");
-
+        BotaoFecharAgendamento.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoFecharAgendamento.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFecharAgendamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFecharAgendamento.setText("Fechar");
+
+        jPanel1.setBackground(new java.awt.Color(0, 57, 69));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        jLabel1.setText("Agendamento");
+
+        jLabel2.setText("Escolha o Medico:");
+
+        jScrollPane2.setViewportView(listmedico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BotaoAdicionarAgendamento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoEditarAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BotaoExcluirAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoFecharAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotaoAdicionarAgendamento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BotaoFecharAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoExcluirAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoFecharAgendamento)
-                    .addComponent(BotaoEditarAgendamento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotaoAdicionarAgendamento))
-                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(BotaoFecharAgendamento)
+                                .addComponent(BotaoAdicionarAgendamento))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -198,12 +232,15 @@ public class agendamento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAdicionarAgendamento;
-    private javax.swing.JButton BotaoEditarAgendamento;
-    private javax.swing.JButton BotaoExcluirAgendamento;
     private javax.swing.JButton BotaoFecharAgendamento;
     private javax.swing.JTable TabelaAgendamento;
     private com.toedter.calendar.JCalendar calendario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listmedico;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -219,35 +256,6 @@ public class agendamento extends javax.swing.JFrame {
     public void setBotaoAdicionarAgendamento(javax.swing.JButton BotaoAdicionarAgendamento) {
         this.BotaoAdicionarAgendamento = BotaoAdicionarAgendamento;
     }
-
-    /**
-     * @return the BotaoEditarAgendamento
-     */
-    public javax.swing.JButton getBotaoEditarAgendamento() {
-        return BotaoEditarAgendamento;
-    }
-
-    /**
-     * @param BotaoEditarAgendamento the BotaoEditarAgendamento to set
-     */
-    public void setBotaoEditarAgendamento(javax.swing.JButton BotaoEditarAgendamento) {
-        this.BotaoEditarAgendamento = BotaoEditarAgendamento;
-    }
-
-    /**
-     * @return the BotaoExcluirAgendamento
-     */
-    public javax.swing.JButton getBotaoExcluirAgendamento() {
-        return BotaoExcluirAgendamento;
-    }
-
-    /**
-     * @param BotaoExcluirAgendamento the BotaoExcluirAgendamento to set
-     */
-    public void setBotaoExcluirAgendamento(javax.swing.JButton BotaoExcluirAgendamento) {
-        this.BotaoExcluirAgendamento = BotaoExcluirAgendamento;
-    }
-
     /**
      * @return the BotaoFecharAgendamento
      */
@@ -302,6 +310,20 @@ public class agendamento extends javax.swing.JFrame {
      */
     public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the listmedico
+     */
+    public javax.swing.JList<String> getListmedico() {
+        return listmedico;
+    }
+
+    /**
+     * @param listmedico the listmedico to set
+     */
+    public void setListmedico(javax.swing.JList<String> listmedico) {
+        this.listmedico = listmedico;
     }
 
 

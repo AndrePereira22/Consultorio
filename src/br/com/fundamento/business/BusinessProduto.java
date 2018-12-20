@@ -45,7 +45,8 @@ public class BusinessProduto implements IBusinessProduto {
 
     @Override
     public void ativarDesativar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.daoProduto.ativarDesativar(id);
+    
     }
 
     @Override

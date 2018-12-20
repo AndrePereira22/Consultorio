@@ -37,16 +37,14 @@ public class DaoProduto implements IDaoProduto {
             
         try {
             
-            int id_fornecedor = new DaoFornecedor().salvarfornecedor(produto.getFornecedor());
-            int id_estoque = new DaoEstoque().salvarEstoque(produto.getEstoque());
             this.conexao = SQLConections.getInstance();
             this.statement = conexao.prepareStatement(SQLUtil.Produto.INSERT);
             this.statement.setString(1, produto.getNome());
             this.statement.setString(2, produto.getFabricante());
             this.statement.setInt(3, produto.getQuantidade_estoque());
             this.statement.setDouble(4, produto.getPreco_compra());
-            this.statement.setInt(5, id_estoque);
-            this.statement.setInt(6,id_fornecedor);
+            this.statement.setInt(5, produto.getEstoque().getId());
+            this.statement.setInt(6,produto.getFornecedor().getId());
 
             statement.execute();
             
@@ -144,22 +142,33 @@ public class DaoProduto implements IDaoProduto {
         
          try {
             this.conexao = SQLConections.getInstance();
-            this.statement = this.conexao.prepareStatement(SQLUtil.Produto.updateProduto(produto.getNome(), produto.getFabricante(),produto.getQuantidade_estoque(), produto.getPreco_compra(), produto.getId()));
+            this.statement = this.conexao.prepareStatement(SQLUtil.Produto.updateProduto(produto.getNome(), produto.getFabricante(),produto.getQuantidade_estoque(), 
+                    produto.getPreco_compra(),produto.getEstoque().getId(), produto.getFornecedor().getId(), produto.getId()));
            
             statement.execute();
             statement.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+      
     
     }
 
     @Override
     public void ativarDesativar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         try {
+            this.conexao = SQLConections.getInstance();
+            this.statement=this.conexao.prepareStatement(SQLUtil.Produto.desativar(id));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
 
     @Override
     public List<Produto> getPorBuscaProduto(String busca) {

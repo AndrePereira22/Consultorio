@@ -5,8 +5,6 @@
  */
 package br.com.fundamento.modelos;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,12 +20,11 @@ public class Caixa {
     private boolean  status;
     private String  data;
     private int id;
-    private List<Funcionario>  funcionarios;       
+    private Funcionario  funcionario;       
     
     private List<Pagamento> pagamentos;
     
-    
-            
+          
     public Caixa(){
         
       
@@ -119,19 +116,7 @@ public class Caixa {
         this.pagamentos = pagamentos;
     }
 
-    /**
-     * @return the funcionario
-     */
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
-    }
-
-    /**
-     * @param funcionario the funcionario to set
-     */
-    public void setFuncionarios(List<Funcionario> funcionario) {
-        this.funcionarios = funcionario;
-    }
+   
 
     /**
      * @return the data
@@ -159,6 +144,20 @@ public class Caixa {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the funcionario
+     */
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    /**
+     * @param funcionario the funcionario to set
+     */
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
 

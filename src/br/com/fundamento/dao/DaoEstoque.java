@@ -70,6 +70,7 @@ public class DaoEstoque implements  IDaoEstoque{
     @Override
     public Estoque buscarEstoquePorId(int id) {
         Estoque estoque = null;
+        int idE;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Estoque.NOME_TABELA, id));
@@ -78,7 +79,10 @@ public class DaoEstoque implements  IDaoEstoque{
             if (result.next()) {
               estoque = new Estoque();
                estoque.setDescricao(result.getString(SQLUtil.Estoque.COL_DESCRICAO));
-                       
+                     
+                idE = result.getInt(1);
+                estoque.setId(id);
+                
             }
             this.conexao.close();
 
@@ -91,6 +95,7 @@ public class DaoEstoque implements  IDaoEstoque{
     @Override
     public List<Estoque> getAllEstoque() {
         List<Estoque> estoques = new ArrayList<>();
+        int idE;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Estoque.NOME_TABELA));
@@ -99,6 +104,9 @@ public class DaoEstoque implements  IDaoEstoque{
             while (result.next()) {
                 estoque = new Estoque();
                 estoque.setDescricao(result.getString(SQLUtil.Estoque.COL_DESCRICAO));
+                
+                idE = result.getInt(1);
+                estoque.setId(idE);
                 
                 estoques.add(estoque);
             }

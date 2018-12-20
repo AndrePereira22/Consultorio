@@ -7,29 +7,20 @@ package br.com.fundamento.controle;
 
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
-import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Login;
-import br.com.fundamento.modelos.Paciente;
-import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Render;
 import br.com.fundamento.view.BuscarFuncionario;
 import br.com.fundamento.view.CadastroFuncionario;
-import br.com.fundamento.view.CadastroPaciente;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -178,17 +169,6 @@ public class ControlerFuncionario implements ActionListener {
             con.setCelular(cadastroFuncionario.getTxtcelular().getText());
             con.setTelefone(cadastroFuncionario.getTxttelefone().getText());
 
-            Caixa c = new Caixa();
-            c.setNumero(1);
-            java.util.Date d = new Date();
-
-            String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
-
-            c.setData(dStr);
-            c.setStatus(true);
-            c.setPagamentos(new ArrayList<Pagamento>());
-            c.setFuncionarios(new ArrayList<Funcionario>());
-
             Login l = new Login();
             String senha = new String(cadastroFuncionario.getTxtsenha().getPassword());
             l.setSenha(senha);
@@ -197,7 +177,6 @@ public class ControlerFuncionario implements ActionListener {
             Funcionario funcionario = new Funcionario();
             funcionario.setContato(con);
             funcionario.setEndereco(end);
-            funcionario.setCaixa(c);
             funcionario.setFuncao(cadastroFuncionario.getTxtfuncao().getText());
             funcionario.setNome(cadastroFuncionario.getTxtnome().getText());
             funcionario.setLogin(l);

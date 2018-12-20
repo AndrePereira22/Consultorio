@@ -39,7 +39,7 @@ public class BusinessConsultorio implements IBusinessConsultorio{
 
     @Override
     public void editarConsultorio(Consultorio consultorio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.daoConsultorio.editarConsultorio(consultorio);
     }
 
     @Override

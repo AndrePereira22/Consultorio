@@ -21,6 +21,7 @@ import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
 import br.com.fundamento.modelos.Prontuario;
+import br.com.fundamento.modelos.Render;
 import br.com.fundamento.view.CadastroConsultas;
 import br.com.fundamento.view.CadastroPaciente;
 import br.com.fundamento.view.TelaPagamento;
@@ -31,12 +32,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -59,7 +64,7 @@ public class ControleConsulta implements ActionListener {
     private List<Paciente> pacientes;
     private List<Medico> medicos;
     private List<Especializacao> especializacaos =  new ArrayList<Especializacao>();
-
+    private JButton btn1, btn2;
     IFachada fachada1 = Fachada.getInstance();
 
     public ControleConsulta(TelaPrincipal telaPrincipal, CadastroConsultas cadastroConsultas, agendamento agendamento, TelaPagamento pagamento) {
@@ -75,12 +80,50 @@ public class ControleConsulta implements ActionListener {
         cadastroPaciente.getBotaoCancelarrPaciente().addActionListener(this);
         cadastroPaciente.getBotaoSalvarPaciente().addActionListener(this);
         agendamento.getBotaoAdicionarAgendamento().addActionListener(this);
-        agendamento.getBotaoEditarAgendamento().addActionListener(this);
-        agendamento.getBotaoExcluirAgendamento().addActionListener(this);
         agendamento.getBotaoFecharAgendamento().addActionListener(this);
         telaPagamento.getBotaoOk().addActionListener(this);
         telaPagamento.getComboStatus().addActionListener(this);
         telaPagamento.getBotaocancelarpacela().addActionListener(this);
+        agendamento.getTabelaAgendamento().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = agendamento.getTabelaAgendamento().getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / agendamento.getTabelaAgendamento().getRowHeight();
+
+                if (row < agendamento.getTabelaAgendamento().getRowCount() && row >= 0 && column < agendamento.getTabelaAgendamento().getColumnCount() && column >= 0) {
+                    Object value = agendamento.getTabelaAgendamento().getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        ((JButton) value).doClick();
+                        JButton boton = (JButton) value;
+
+                        if (boton.getName().equals("m")) {
+                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                        }
+                        if (boton.getName().equals("e")) {
+                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+
+                        }
+                    }
+                    if (value instanceof JCheckBox) {
+                        //((JCheckBox)value).doClick();
+                        JCheckBox ch = (JCheckBox) value;
+                        if (ch.isSelected() == true) {
+                            ch.setSelected(false);
+                        }
+                        if (ch.isSelected() == false) {
+                            ch.setSelected(true);
+                        }
+
+                    }
+                }
+
+            }
+
+        });
+
+        
+        
+        
         cadastroConsultas.getTxtPaciente().addKeyListener(new KeyAdapter() {
              public void keyReleased(KeyEvent e) {
                  PreencherBuscaPaciente();
@@ -91,6 +134,7 @@ public class ControleConsulta implements ActionListener {
                  PreencherBuscaMedico();
              }
 });
+
         
         cadastroConsultas.getListPaciente().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -119,6 +163,7 @@ public class ControleConsulta implements ActionListener {
                 }
             }
         });
+         
 
         agendamento.getCalendario().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
             @Override
@@ -223,16 +268,8 @@ public class ControleConsulta implements ActionListener {
 
             Paciente pa = new Paciente();
             pa.setNome(cadastroPaciente.getTxtNome().getText());
-            String rg = cadastroPaciente.getTxtrg().getText();
-            rg = rg.replaceAll("[^0-9]", "");
-            int RG = 0;
-            try {
-                RG = Integer.parseInt(rg);
-                pa.setRg(RG);
-
-            } catch (NumberFormatException erro) {
-            }
-
+           
+            pa.setRg(cadastroPaciente.getTxtrg().getText());
             pa.setCpf(cadastroPaciente.getTxtCpf().getText());
             pa.setSexo(cadastroPaciente.getCombosexo().getSelectedItem().toString());
             pa.setConvenio(cadastroPaciente.getTxtConvenio().getText());
@@ -308,7 +345,7 @@ public class ControleConsulta implements ActionListener {
 
             Caixa cai = new Caixa();
             cai.setPagamentos(new ArrayList<Pagamento>());
-            cai.setFuncionarios(new ArrayList<Funcionario>());
+            cai.setFuncionario(ControlePrincipal.getF());
 
             pagamento.setCaixa(cai);
 
@@ -350,19 +387,33 @@ public class ControleConsulta implements ActionListener {
         String busca = formato.format(agendamento.getCalendario().getDate());
         int i = 0;
         List<Consulta> consultas = fachada1.getPorBuscaConsulta(busca);
-
+            agendamento.getTabelaAgendamento().setDefaultRenderer(Object.class, new Render());
+        btn1 = new JButton("modificar");
+        //btn1.setIcon(new ImageIcon("br.com.fundamento.resource/pencil.png"));
+        btn1.setName("m");
+        btn2 = new JButton("Eliminar");
+        btn2.setName("e");
+        
         try {
-            String[] colunas = new String[]{"Hora","Tipo", "Paciente", "Medico"};
-            Object[][] dados = new Object[consultas.size()][4];
+            String[] colunas = new String[]{"Hora","Tipo", "Paciente", "Medico","E", "M"};
+            Object[][] dados = new Object[consultas.size()][6];
             for (Consulta c : consultas) {
                 
                 dados[i][0] = c.getHora();
                 dados[i][1] = c.getTipo();
                 dados[i][2] = c.getPaciente().getNome();
                 dados[i][3] = c.getMedico().getNome();
+                dados[i][4] = btn1;
+                dados[i][5] = btn2;
                 i++;
-            }
-            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas);
+             }
+
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
             agendamento.getTabelaAgendamento().setModel(dataModel);
         } catch (Exception ex) {
 
@@ -398,4 +449,5 @@ public class ControleConsulta implements ActionListener {
         cadastroConsultas.getListaMedico().setModel(model);
 cadastroConsultas.getListaMedico().setVisible(true);
     }
+   
 }

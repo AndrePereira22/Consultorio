@@ -41,9 +41,9 @@ public class DaoParcela implements IDaoParcela {
             this.statement.setBoolean(2, parcela.isStatus());
             this.statement.setInt(3, parcela.getNumero());
             this.statement.setBoolean(4, parcela.isParcela_unica());
-            this.statement.setInt(5, id_pagamento); 
-            this.statement.setString(6, parcela.getData_vencimento());
-
+            this.statement.setString(5, parcela.getData_vencimento());
+            this.statement.setInt(6, id_pagamento); 
+        
             statement.execute();
             this.statement.close();
 

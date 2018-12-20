@@ -6,7 +6,6 @@
 package br.com.fundamento.modelos;
 
 
-
 /**
  *
  * @author prof Heldon
@@ -127,6 +126,34 @@ public class Produto {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the id_fornecedor
+     */
+    public int getId_fornecedor() {
+        return id_fornecedor;
+    }
+
+    /**
+     * @param id_fornecedor the id_fornecedor to set
+     */
+    public void setId_fornecedor(int id_fornecedor) {
+        this.id_fornecedor = id_fornecedor;
+    }
+
+    /**
+     * @return the id_estoque
+     */
+    public int getId_estoque() {
+        return id_estoque;
+    }
+
+    /**
+     * @param id_estoque the id_estoque to set
+     */
+    public void setId_estoque(int id_estoque) {
+        this.id_estoque = id_estoque;
     }
 
     

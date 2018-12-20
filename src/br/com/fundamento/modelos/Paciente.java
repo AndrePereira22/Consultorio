@@ -5,8 +5,6 @@
  */
 package br.com.fundamento.modelos;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,21 +12,20 @@ import java.util.List;
  * @author Glenda Alves de Lima
  */
 public class Paciente {
-    
-    
-    
+ 
     private String nome;
     private String data_nascimento;
     private String data_cadastro;
     private String cpf;
     private String sexo;
-    private int rg;
+    private String rg;
+    private String convenio;
     private int id;
     private int id_endereco;
     private int id_contato;
     private int id_prontuario;
   
-    private String convenio;
+    
     private Prontuario prontuario;
      private Endereco endereco;
      private Contato contato;
@@ -81,21 +78,6 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    /**
-     * @return the rg
-     */
-    public int getRg() {
-        return rg;
-    }
-
-    /**
-     * @param rg the rg to set
-     */
-    public void setRg(int rg) {
-        this.rg = rg;
-    }
-
-  
     /**
      * @return the prontuario
      */
@@ -250,6 +232,20 @@ public class Paciente {
      */
     public void setId_prontuario(int id_prontuario) {
         this.id_prontuario = id_prontuario;
+    }
+
+    /**
+     * @return the rg
+     */
+    public String getRg() {
+        return rg;
+    }
+
+    /**
+     * @param rg the rg to set
+     */
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     

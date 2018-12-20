@@ -16,7 +16,11 @@ public class Consultorio {
     private  String nome_fantasia;
     private  String cnpj;
     private String razao_social;
+    private int id;
+    private int id_endereco,id_contato;
     private List< Medico> medicos;
+    private List< Relatorio> relatorios;
+    private List< Tarefa> tarefas;
     
     private Endereco endereco;
     private Contato contato;
@@ -105,6 +109,76 @@ public class Consultorio {
      */
     public void setContato(Contato contato) {
         this.contato = contato;
+    }
+
+    /**
+     * @return the relatorios
+     */
+    public List< Relatorio> getRelatorios() {
+        return relatorios;
+    }
+
+    /**
+     * @param relatorios the relatorios to set
+     */
+    public void setRelatorios(List< Relatorio> relatorios) {
+        this.relatorios = relatorios;
+    }
+
+    /**
+     * @return the tarefas
+     */
+    public List< Tarefa> getTarefas() {
+        return tarefas;
+    }
+
+    /**
+     * @param tarefas the tarefas to set
+     */
+    public void setTarefas(List< Tarefa> tarefas) {
+        this.tarefas = tarefas;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the id_endereco
+     */
+    public int getId_endereco() {
+        return id_endereco;
+    }
+
+    /**
+     * @param id_endereco the id_endereco to set
+     */
+    public void setId_endereco(int id_endereco) {
+        this.id_endereco = id_endereco;
+    }
+
+    /**
+     * @return the id_contato
+     */
+    public int getId_contato() {
+        return id_contato;
+    }
+
+    /**
+     * @param id_contato the id_contato to set
+     */
+    public void setId_contato(int id_contato) {
+        this.id_contato = id_contato;
     }
     
     

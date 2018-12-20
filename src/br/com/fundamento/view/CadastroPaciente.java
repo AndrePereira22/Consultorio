@@ -49,8 +49,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         Txtrg = new javax.swing.JFormattedTextField();
         Txtdata = new javax.swing.JFormattedTextField();
         Combosexo = new javax.swing.JComboBox<>();
-        foto = new javax.swing.JLabel();
-        BotaoSelecionarFotoPaciente = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtcidade = new javax.swing.JTextField();
         txtrua = new javax.swing.JTextField();
@@ -74,6 +72,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         BotaoSalvarPaciente = new javax.swing.JButton();
         BotaoCancelarrPaciente = new javax.swing.JButton();
         labelcadastro = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Contato"));
 
@@ -118,8 +117,9 @@ public class CadastroPaciente extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
+        setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 610));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel6.setToolTipText("");
@@ -175,7 +175,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                     .addComponent(txtNome)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(TxtCpf)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(Combosexo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -195,7 +195,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
                                 .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtprontuario, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(txtprontuario)
                             .addComponent(txtConvenio))))
                 .addContainerGap())
         );
@@ -224,15 +224,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
                     .addComponent(Combosexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
-
-        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/perfil.png"))); // NOI18N
-
-        BotaoSelecionarFotoPaciente.setText("Selecionar Foto");
-        BotaoSelecionarFotoPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoSelecionarFotoPacienteActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Endereço", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -381,9 +372,13 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        BotaoSalvarPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoSalvarPaciente.setForeground(new java.awt.Color(0, 0, 255));
         BotaoSalvarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
         BotaoSalvarPaciente.setText("Salvar");
 
+        BotaoCancelarrPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoCancelarrPaciente.setForeground(new java.awt.Color(0, 0, 255));
         BotaoCancelarrPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoCancelarrPaciente.setText("Cancelar");
         BotaoCancelarrPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -392,54 +387,53 @@ public class CadastroPaciente extends javax.swing.JFrame {
             }
         });
 
-        labelcadastro.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        labelcadastro.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labelcadastro.setText("CADASTRO DE PACIENTE");
+
+        jPanel7.setBackground(new java.awt.Color(0, 57, 69));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(260, 260, 260)
-                                .addComponent(labelcadastro)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(BotaoSelecionarFotoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(foto))
-                        .addGap(38, 38, 38))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(BotaoSalvarPaciente)
-                                .addGap(18, 18, 18)
-                                .addComponent(BotaoCancelarrPaciente)
-                                .addGap(31, 31, 31))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BotaoSalvarPaciente)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoCancelarrPaciente)
+                        .addGap(31, 31, 31))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelcadastro)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(foto, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BotaoSelecionarFotoPaciente))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(labelcadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -448,15 +442,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoSalvarPaciente)
                     .addComponent(BotaoCancelarrPaciente))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BotaoSelecionarFotoPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSelecionarFotoPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoSelecionarFotoPacienteActionPerformed
 
     private void txtemail2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemail2ActionPerformed
         // TODO add your handling code here:
@@ -507,13 +497,11 @@ public class CadastroPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoCancelarrPaciente;
     private javax.swing.JButton BotaoSalvarPaciente;
-    private javax.swing.JButton BotaoSelecionarFotoPaciente;
     private javax.swing.JComboBox<String> Combosexo;
     private javax.swing.JFormattedTextField TxtCep;
     private javax.swing.JFormattedTextField TxtCpf;
     private javax.swing.JFormattedTextField Txtdata;
     private javax.swing.JFormattedTextField Txtrg;
-    private javax.swing.JLabel foto;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -532,6 +520,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel labelcadastro;
     private javax.swing.JLabel lblemail;
@@ -582,19 +571,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         this.BotaoSalvarPaciente = BotaoSalvarPaciente;
     }
 
-    /**
-     * @return the BotaoSelecionarFotoPaciente
-     */
-    public javax.swing.JButton getBotaoSelecionarFotoPaciente() {
-        return BotaoSelecionarFotoPaciente;
-    }
-
-    /**
-     * @param BotaoSelecionarFotoPaciente the BotaoSelecionarFotoPaciente to set
-     */
-    public void setBotaoSelecionarFotoPaciente(javax.swing.JButton BotaoSelecionarFotoPaciente) {
-        this.BotaoSelecionarFotoPaciente = BotaoSelecionarFotoPaciente;
-    }
 
     /**
      * @return the TxtCep
@@ -639,19 +615,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         this.Txtrg = Txtrg;
     }
 
-    /**
-     * @return the jLabel1
-     */
-    public javax.swing.JLabel getjLabel1() {
-        return getFoto();
-    }
-
-    /**
-     * @param jLabel1 the jLabel1 to set
-     */
-    public void setjLabel1(javax.swing.JLabel jLabel1) {
-        this.setFoto(jLabel1);
-    }
+   
 
     /**
      * @return the jLabel10
@@ -1171,19 +1135,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         this.txttelefone2 = txttelefone2;
     }
 
-    /**
-     * @return the foto
-     */
-    public javax.swing.JLabel getFoto() {
-        return foto;
-    }
-
-    /**
-     * @param foto the foto to set
-     */
-    public void setFoto(javax.swing.JLabel foto) {
-        this.foto = foto;
-    }
 
     /**
      * @return the Txtdata

@@ -6,7 +6,6 @@
 package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Login;
-import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -35,7 +34,7 @@ public class DaoLogin implements  IDaoLogin{
         
   try {
             this.conexao = SQLConections.getInstance();
-             this.statement = conexao.prepareStatement(SQLUtil.Login.INSERT);
+            this.statement = conexao.prepareStatement(SQLUtil.Login.INSERT);
             this.statement.setString(1, login.getUsuario());
             this.statement.setString(2, login.getSenha());
             result = statement.executeQuery();

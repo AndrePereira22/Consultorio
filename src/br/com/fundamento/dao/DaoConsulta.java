@@ -8,6 +8,7 @@ package br.com.fundamento.dao;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.modelos.Paciente;
+import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -35,18 +36,18 @@ public class DaoConsulta implements IDaoConsulta {
         try {
 
             int id_pagamento = new DaoPagamento().salvarPagamento(consulta.getPagamento());
-            int id_medico = new DaoMedico().salvarMedico(consulta.getMedico());
-            int id_paciente = new DaoPaciente().salvarPaciente(consulta.getPaciente());
+           
 
             this.conexao = SQLConections.getInstance();
             this.statement = conexao.prepareStatement(SQLUtil.Consulta.INSERT);
 
             this.statement.setString(1, consulta.getTipo());
-            this.statement.setInt(2, id_paciente);
-            this.statement.setInt(3, id_medico);
-            this.statement.setInt(4, id_pagamento);
-            this.statement.setString(5, consulta.getData());
-            this.statement.setString(6, consulta.getHora());
+            this.statement.setString(2, consulta.getData());
+            this.statement.setString(3, consulta.getHora());
+            this.statement.setInt(4, consulta.getPaciente().getId());
+            this.statement.setInt(5, consulta.getMedico().getId());
+            this.statement.setInt(6, id_pagamento);
+            
 
             result = statement.executeQuery();
 
@@ -84,7 +85,7 @@ public class DaoConsulta implements IDaoConsulta {
                 paciente = new DaoPaciente().buscarPacientePorId(idP);
                 consulta.setMedico(medico);
                 consulta.setPaciente(paciente);
-
+               
             }
             this.conexao.close();
 

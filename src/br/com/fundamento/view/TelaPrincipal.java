@@ -47,9 +47,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelPrincipal = new javax.swing.JPanel();
         BotaoCadastroPaciente = new javax.swing.JButton();
-        BotaoCadastroFornecedor = new javax.swing.JButton();
         BotaoCadastroFuncionario = new javax.swing.JButton();
-        BotaoCadastarProduto = new javax.swing.JButton();
         BotaoMedico = new javax.swing.JButton();
         BotaoAgendamento = new javax.swing.JButton();
         BotaoCadastrarTarefa = new javax.swing.JButton();
@@ -63,7 +61,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoCadastroCaixa2 = new javax.swing.JButton();
         BotaoCadastroCaixa4 = new javax.swing.JButton();
         BotaoCadastroCaixa5 = new javax.swing.JButton();
+        BotaoCadastarProduto = new javax.swing.JButton();
+        BotaoCadastroFornecedor = new javax.swing.JButton();
         PanelRelatorio = new javax.swing.JPanel();
+        BotaoCadastroFornecedor2 = new javax.swing.JButton();
+        BotaoCadastroFornecedor3 = new javax.swing.JButton();
+        BotaoCadastroFornecedor4 = new javax.swing.JButton();
+        BotaoCadastroFornecedor5 = new javax.swing.JButton();
         PanelDadosConsultorio = new javax.swing.JPanel();
         BotaoAtualizardados = new javax.swing.JButton();
         PanelConsultorio = new javax.swing.JPanel();
@@ -168,21 +172,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        BotaoCadastroFornecedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        BotaoCadastroFornecedor.setForeground(new java.awt.Color(204, 204, 204));
-        BotaoCadastroFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
-        BotaoCadastroFornecedor.setText("Fornecedor");
-        BotaoCadastroFornecedor.setBorderPainted(false);
-        BotaoCadastroFornecedor.setContentAreaFilled(false);
-        BotaoCadastroFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotaoCadastroFornecedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BotaoCadastroFornecedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BotaoCadastroFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoCadastroFornecedorActionPerformed(evt);
-            }
-        });
-
         BotaoCadastroFuncionario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotaoCadastroFuncionario.setForeground(new java.awt.Color(204, 204, 204));
         BotaoCadastroFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Cadastro.png"))); // NOI18N
@@ -195,21 +184,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoCadastroFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotaoCadastroFuncionarioActionPerformed(evt);
-            }
-        });
-
-        BotaoCadastarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        BotaoCadastarProduto.setForeground(new java.awt.Color(204, 204, 204));
-        BotaoCadastarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Produto.png"))); // NOI18N
-        BotaoCadastarProduto.setText("Produto");
-        BotaoCadastarProduto.setBorderPainted(false);
-        BotaoCadastarProduto.setContentAreaFilled(false);
-        BotaoCadastarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotaoCadastarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BotaoCadastarProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BotaoCadastarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoCadastarProdutoActionPerformed(evt);
             }
         });
 
@@ -298,20 +272,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoMedico)
                 .addGap(18, 18, 18)
-                .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoCadastroFornecedor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BotaoCadastroFuncionario)
                 .addGap(18, 18, 18)
                 .addComponent(BotaoCadastrarTarefa)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(BotaoAgendamento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(28, 28, 28)
                 .addComponent(BotaoLogoff)
-                .addGap(22, 22, 22)
+                .addGap(34, 34, 34)
                 .addComponent(BotaoSair, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,13 +291,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
                         .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(BotaoAgendamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotaoCadastroFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotaoCadastroFornecedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotaoMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotaoCadastroPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BotaoLogoff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BotaoSair, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(BotaoSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(BotaoCadastrarTarefa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -355,7 +323,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoCadastroCaixa1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotaoCadastroCaixa1.setForeground(new java.awt.Color(204, 204, 204));
         BotaoCadastroCaixa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Financeiro.png"))); // NOI18N
-        BotaoCadastroCaixa1.setText("Caixa");
+        BotaoCadastroCaixa1.setText("Fluxo Caixa");
         BotaoCadastroCaixa1.setBorderPainted(false);
         BotaoCadastroCaixa1.setContentAreaFilled(false);
         BotaoCadastroCaixa1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -390,10 +358,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addComponent(BotaoCadastroCaixa1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastroCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotaoCadastroCaixa3)
-                .addContainerGap(785, Short.MAX_VALUE))
+                .addContainerGap(715, Short.MAX_VALUE))
         );
         PanelFinanceiroLayout.setVerticalGroup(
             PanelFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,53 +423,158 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        BotaoCadastarProduto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastarProduto.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Produto.png"))); // NOI18N
+        BotaoCadastarProduto.setText("Produto");
+        BotaoCadastarProduto.setBorderPainted(false);
+        BotaoCadastarProduto.setContentAreaFilled(false);
+        BotaoCadastarProduto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastarProduto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastarProduto.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastarProdutoActionPerformed(evt);
+            }
+        });
+
+        BotaoCadastroFornecedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFornecedor.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
+        BotaoCadastroFornecedor.setText("Fornecedor");
+        BotaoCadastroFornecedor.setBorderPainted(false);
+        BotaoCadastroFornecedor.setContentAreaFilled(false);
+        BotaoCadastroFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFornecedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFornecedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroFornecedorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelDadosEstoqueLayout = new javax.swing.GroupLayout(PanelDadosEstoque);
         PanelDadosEstoque.setLayout(PanelDadosEstoqueLayout);
         PanelDadosEstoqueLayout.setHorizontalGroup(
             PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(BotaoCadastarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastroFornecedor)
+                .addGap(16, 16, 16)
                 .addComponent(BotaoCadastroCaixa2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167)
+                .addGap(28, 28, 28)
+                .addComponent(BotaoCadastroCaixa5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BotaoCadastroCaixa4)
-                .addContainerGap(756, Short.MAX_VALUE))
-            .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
-                    .addGap(139, 139, 139)
-                    .addComponent(BotaoCadastroCaixa5)
-                    .addContainerGap(937, Short.MAX_VALUE)))
+                .addContainerGap(470, Short.MAX_VALUE))
         );
         PanelDadosEstoqueLayout.setVerticalGroup(
             PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(BotaoCadastroCaixa5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDadosEstoqueLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(BotaoCadastroCaixa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BotaoCadastroCaixa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BotaoCadastroCaixa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BotaoCadastroFornecedor)
+                            .addComponent(BotaoCadastarProduto)
+                            .addComponent(BotaoCadastroCaixa2))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(PanelDadosEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelDadosEstoqueLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(BotaoCadastroCaixa5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
 
         jTabbedPane1.addTab("ESTOQUE", PanelDadosEstoque);
 
         PanelRelatorio.setBackground(new java.awt.Color(0, 57, 69));
 
+        BotaoCadastroFornecedor2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFornecedor2.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFornecedor2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
+        BotaoCadastroFornecedor2.setText("Relatorios Pessoais");
+        BotaoCadastroFornecedor2.setBorderPainted(false);
+        BotaoCadastroFornecedor2.setContentAreaFilled(false);
+        BotaoCadastroFornecedor2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFornecedor2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFornecedor2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFornecedor2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroFornecedor2ActionPerformed(evt);
+            }
+        });
+
+        BotaoCadastroFornecedor3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFornecedor3.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFornecedor3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
+        BotaoCadastroFornecedor3.setText("Relatorio de Consulta");
+        BotaoCadastroFornecedor3.setBorderPainted(false);
+        BotaoCadastroFornecedor3.setContentAreaFilled(false);
+        BotaoCadastroFornecedor3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFornecedor3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFornecedor3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFornecedor3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroFornecedor3ActionPerformed(evt);
+            }
+        });
+
+        BotaoCadastroFornecedor4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFornecedor4.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFornecedor4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
+        BotaoCadastroFornecedor4.setText("Relatorio de Produto");
+        BotaoCadastroFornecedor4.setBorderPainted(false);
+        BotaoCadastroFornecedor4.setContentAreaFilled(false);
+        BotaoCadastroFornecedor4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFornecedor4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFornecedor4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFornecedor4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroFornecedor4ActionPerformed(evt);
+            }
+        });
+
+        BotaoCadastroFornecedor5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotaoCadastroFornecedor5.setForeground(new java.awt.Color(204, 204, 204));
+        BotaoCadastroFornecedor5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Fornecedor.png"))); // NOI18N
+        BotaoCadastroFornecedor5.setText("Relatorio de Tarefa");
+        BotaoCadastroFornecedor5.setBorderPainted(false);
+        BotaoCadastroFornecedor5.setContentAreaFilled(false);
+        BotaoCadastroFornecedor5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BotaoCadastroFornecedor5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BotaoCadastroFornecedor5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        BotaoCadastroFornecedor5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoCadastroFornecedor5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelRelatorioLayout = new javax.swing.GroupLayout(PanelRelatorio);
         PanelRelatorio.setLayout(PanelRelatorioLayout);
         PanelRelatorioLayout.setHorizontalGroup(
             PanelRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1195, Short.MAX_VALUE)
+            .addGroup(PanelRelatorioLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(BotaoCadastroFornecedor2)
+                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastroFornecedor3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotaoCadastroFornecedor4)
+                .addGap(18, 18, 18)
+                .addComponent(BotaoCadastroFornecedor5)
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         PanelRelatorioLayout.setVerticalGroup(
             PanelRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelRelatorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotaoCadastroFornecedor4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotaoCadastroFornecedor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotaoCadastroFornecedor3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotaoCadastroFornecedor5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("RELATORIO   ", PanelRelatorio);
@@ -804,7 +877,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(131, 131, 131)
                 .addComponent(PanelConsultorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(123, 123, 123))
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1130, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -812,7 +885,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PanelConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(520, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -901,6 +974,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoCadastroCaixa5ActionPerformed
 
+    private void BotaoCadastroFornecedor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroFornecedor2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroFornecedor2ActionPerformed
+
+    private void BotaoCadastroFornecedor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroFornecedor3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroFornecedor3ActionPerformed
+
+    private void BotaoCadastroFornecedor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroFornecedor4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroFornecedor4ActionPerformed
+
+    private void BotaoCadastroFornecedor5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCadastroFornecedor5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoCadastroFornecedor5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -950,6 +1039,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotaoCadastroCaixa4;
     private javax.swing.JButton BotaoCadastroCaixa5;
     private javax.swing.JButton BotaoCadastroFornecedor;
+    private javax.swing.JButton BotaoCadastroFornecedor2;
+    private javax.swing.JButton BotaoCadastroFornecedor3;
+    private javax.swing.JButton BotaoCadastroFornecedor4;
+    private javax.swing.JButton BotaoCadastroFornecedor5;
     private javax.swing.JButton BotaoCadastroFuncionario;
     private javax.swing.JButton BotaoCadastroPaciente;
     private javax.swing.JButton BotaoCancelarrConsultorio;
