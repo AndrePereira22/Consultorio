@@ -5,7 +5,6 @@
  */
 package br.com.fundamento.dao;
 
-
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Especializacao;
 import br.com.fundamento.modelos.Medico;
@@ -57,18 +56,18 @@ public class DaoList {
         }
     }
 
-    public static void salvarSaidaEstoque(SaidaEstoque saidaEstoque, int estoque_id) {
+    public static void salvarSaidaEstoque(SaidaEstoque saidaEstoque) {
 
         try {
 
             conexao = SQLConections.getInstance();
 
             statement = conexao.prepareStatement(SQLUtil.SaidaEstoque.INSERT);
+            int id_produto = new DaoProduto().salvar(saidaEstoque.getProduto());
+            statement.setString(1, saidaEstoque.getData());
+            statement.setInt(2, saidaEstoque.getQuantidade_saida());
+            statement.setInt(3, id_produto);
 
-            statement.setString(1, saidaEstoque.getNome());
-            statement.setString(2, saidaEstoque.getFabricante());
-            statement.setInt(3, saidaEstoque.getQuantidade_saida());
-            statement.setInt(4, estoque_id);
 
             statement.execute();
             statement.close();
@@ -77,7 +76,6 @@ public class DaoList {
             Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 
     public static void salvarParcelas(Parcela parcela, int id_pagamento) {
 
@@ -93,7 +91,7 @@ public class DaoList {
             statement.setBoolean(4, parcela.isParcela_unica());
             statement.setString(5, parcela.getData_vencimento());
             statement.setInt(6, id_pagamento);
-        
+
             statement.execute();
             statement.close();
 
@@ -122,30 +120,10 @@ public class DaoList {
         }
     }
 
-    public static void salvarEspecializacao(Especializacao especializacao, int id_medico) {
+    public static void salvarPaciente(Paciente paciente, int id_convenio, int id_prontuario, int id_endereco, int id_contato) {
 
         try {
 
-            conexao = SQLConections.getInstance();
-            statement = conexao.prepareStatement(SQLUtil.Especializacao.INSERT);
-            statement.setString(1, especializacao.getDescricao());
-            statement.setDouble(2, especializacao.getSalario());
-            statement.setString(3, especializacao.getHorario_disponivel());
-            statement.setInt(4, id_medico);
-            
-            statement.execute();
-            statement.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public static void salvarPaciente(Paciente paciente, int id_convenio, int id_prontuario, int id_endereco , int id_contato) {
-
-        try {
-
-            
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.Paciente.INSERT);
             statement.setString(1, paciente.getNome());
@@ -157,7 +135,7 @@ public class DaoList {
             statement.setString(7, paciente.getConvenio());
             statement.setInt(8, id_prontuario);
             statement.setInt(9, id_endereco);
-            statement.setInt(10, id_contato);  
+            statement.setInt(10, id_contato);
             statement.execute();
             statement.close();
 
@@ -165,7 +143,8 @@ public class DaoList {
             Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
- public static void salvarTarefa(Tarefa tarefa, int id_consultorio) {
+
+    public static void salvarTarefa(Tarefa tarefa, int id_consultorio) {
 
         try {
 
@@ -175,11 +154,11 @@ public class DaoList {
             statement.setString(1, tarefa.getDescricao());
             statement.setInt(2, tarefa.getPrioridade());
             statement.setBoolean(3, tarefa.isStatus());
-            
+
             statement.setString(4, tarefa.getData_inicio());
             statement.setString(5, tarefa.getData_termino());
             statement.setInt(6, id_consultorio);
-            
+
             statement.execute();
             statement.close();
 
@@ -207,31 +186,7 @@ public class DaoList {
         }
     }
 
-    public static void salvarConsulta(Consulta consulta, int id_medico, int id_pagamento, int id_paciente) {
-
-        try {
-
-            conexao = SQLConections.getInstance();
-            statement = conexao.prepareStatement(SQLUtil.Consulta.INSERT);
-
-            statement.setString(1, consulta.getTipo());
-            statement.setString(2, consulta.getData());
-            statement.setString(3, consulta.getHora());
-            statement.setInt(4, id_paciente);
-            statement.setInt(5, id_medico);
-            statement.setInt(6, id_pagamento);
-
-            statement.execute();
-            statement.close();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    
-
-    public static void salvarMedico(Medico medico, int id_consultorio, int id_contato,int id_end) {
+    public static void salvarMedico(Medico medico, int id_consultorio, int id_contato, int id_end) {
 
         try {
 
@@ -260,7 +215,7 @@ public class DaoList {
     public static void salvarconsulta(Consulta consulta, int id_paciente) {
 
         try {
-            
+
             int id_pagamento = new DaoPagamento().salvarPagamento(consulta.getPagamento());
             int id_medico = new DaoMedico().salvarMedico(consulta.getMedico());
             conexao = SQLConections.getInstance();
@@ -271,7 +226,6 @@ public class DaoList {
             statement.setInt(4, id_paciente);
             statement.setInt(5, id_medico);
             statement.setInt(6, id_pagamento);
-            
 
             statement.execute();
             statement.close();

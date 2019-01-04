@@ -185,11 +185,24 @@ public class DaoFuncionario implements IDaoFuncionario {
 
     @Override
     public void ativarDesativarFuncionario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+      try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Funcionario.desativar(id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    
     }
-public Funcionario buscarFuncionario(String usuario) {
+        public Funcionario buscarFuncionario(String usuario) {
         Funcionario funcionario = null;
-         Endereco endereco=null;
+        Endereco endereco=null;
         Contato contato=null;
         Login login=null;
          int idE=0,idC=0,idL=0,id=0;

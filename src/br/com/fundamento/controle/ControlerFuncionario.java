@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.controle;
 
+import br.com.fundamento.dao.CommumDao;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Contato;
@@ -22,10 +23,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -99,8 +103,18 @@ public class ControlerFuncionario implements ActionListener {
                             }
                         }
                         if (boton.getName().equals("e")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
+                            int ro = buscarFuncionario.getTabelaFunionario().getSelectedRow();
+                            if (editar == 0) {
+                                f = funcionarios.get(ro);
+
+                                fachada1.ativarDesativarFuncionario(f.getId());
+                                CommumDao.ativarDesativarContato(f.getId_contato());
+                                CommumDao.ativarDesativarEndereco(f.getId_endereco());
+                                fachada1.ativarDesativarLogin(f.getId_login());
+                                preenchertabela();
+                            }
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -212,13 +226,21 @@ public class ControlerFuncionario implements ActionListener {
         funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
 
         buscarFuncionario.getTabelaFunionario().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar");
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+
+        JButton btn1 = new JButton(editar);
         btn1.setName("m");
-        btn2 = new JButton("Eliminar");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        JButton btn2 = new JButton(excluir);
         btn2.setName("e");
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
 
         try {
-            String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento", "E", "M"};
+            String[] colunas = new String[]{"Nome", "CPF", "Salario", "Funcao", "Data Nascimento","Editar","Excluir"};
             Object[][] dados = new Object[funcionarios.size()][7];
             for (int i = 0; i < funcionarios.size(); i++) {
                 Funcionario funcionario = funcionarios.get(i);
@@ -236,7 +258,11 @@ public class ControlerFuncionario implements ActionListener {
                     return false;
                 }
             };
-            buscarFuncionario.getTabelaFunionario().setModel(dataModel);
+              TableColumnModel columnModel = buscarFuncionario.getTabelaFunionario().getColumnModel();
+         buscarFuncionario.getTabelaFunionario().setModel(dataModel);
+            buscarFuncionario.getTabelaFunionario().setPreferredScrollableViewportSize(buscarFuncionario.getTabelaFunionario().getPreferredSize());
+
+            
         } catch (Exception ex) {
 
         }

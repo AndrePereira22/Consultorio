@@ -6,9 +6,12 @@
 package br.com.fundamento.dao;
 
 import br.com.fundamento.modelos.Consulta;
+import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
+import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -100,7 +103,7 @@ public class DaoConsulta implements IDaoConsulta {
         List<Consulta> consultas = new ArrayList<>();
         Medico medico = null;
         Paciente paciente = null;
-        int idM = 0, idP = 0;
+        int idM = 0, idP = 0,id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Consulta.NOME));
@@ -119,6 +122,9 @@ public class DaoConsulta implements IDaoConsulta {
                 consulta.setMedico(medico);
                 consulta.setPaciente(paciente);
 
+                
+                id = result.getInt(1);
+                consulta.setId(id);
                 consultas.add(consulta);
             }
             this.conexao.close();
@@ -131,12 +137,34 @@ public class DaoConsulta implements IDaoConsulta {
 
     @Override
     public void editarConsulta(Consulta consulta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Consulta.updateConsulta(consulta.getTipo(), consulta.getData(), consulta.getHora(), consulta.getId(),consulta.getMedico().getId()));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void ativarDesativarConsulta(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Consulta.desativar(id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }   
     }
 
     @Override
@@ -144,7 +172,7 @@ public class DaoConsulta implements IDaoConsulta {
         List<Consulta> consultas = new ArrayList<>();
         Medico medico = null;
         Paciente paciente = null;
-        int idM = 0, idP = 0;
+        int idM = 0, idP = 0,id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Consulta.selectPorBusca(busca));
@@ -162,6 +190,10 @@ public class DaoConsulta implements IDaoConsulta {
                 paciente = new DaoPaciente().buscarPacientePorId(idP);
                 consulta.setMedico(medico);
                 consulta.setPaciente(paciente);
+                
+                
+                id = result.getInt(1);
+                consulta.setId(id);
 
                 consultas.add(consulta);
             }
@@ -172,5 +204,6 @@ public class DaoConsulta implements IDaoConsulta {
         }
         return consultas;
     }
+   
 
 }

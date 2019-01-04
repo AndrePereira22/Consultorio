@@ -186,4 +186,32 @@ public class CommumDao {
         }
        
     }
+    public static void ativarDesativarContato(int id) {
+     try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Contato.desativar(id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+     public static void ativarDesativarEndereco(int id) {
+     try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Endereco.desativar(id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
 }

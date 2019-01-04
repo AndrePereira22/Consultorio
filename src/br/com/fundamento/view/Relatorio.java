@@ -27,96 +27,156 @@ public class Relatorio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtdescricao = new javax.swing.JTextField();
-        txtoRelatorio = new javax.swing.JTextField();
-        BotaoSalvarRelatorio = new javax.swing.JButton();
-        BotaoCancelarRelatorio = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txtfuncionario = new javax.swing.JTextField();
+        BotaoVoltarRelatorio = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        comboescolha = new javax.swing.JComboBox<>();
+        labelescolha = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelarelatorio = new javax.swing.JTable();
+        BotaoRelatorio = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(3, 134));
-        setPreferredSize(new java.awt.Dimension(1360, 575));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setLocation(new java.awt.Point(100, 134));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 500));
 
-        jLabel1.setText("Descricao Do Relatorio : ");
-
-        txtoRelatorio.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Relatorio", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
-
-        BotaoSalvarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        BotaoSalvarRelatorio.setText("Salvar");
-        BotaoSalvarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+        BotaoVoltarRelatorio.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoVoltarRelatorio.setForeground(new java.awt.Color(0, 0, 204));
+        BotaoVoltarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/arrow-left-1.png"))); // NOI18N
+        BotaoVoltarRelatorio.setText("Voltar");
+        BotaoVoltarRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoSalvarRelatorioActionPerformed(evt);
+                BotaoVoltarRelatorioActionPerformed(evt);
             }
         });
 
-        BotaoCancelarRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
-        BotaoCancelarRelatorio.setText("Cancelar");
-        BotaoCancelarRelatorio.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        jLabel5.setText("rELATORIO Persoais");
+
+        jPanel2.setBackground(new java.awt.Color(0, 57, 69));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+
+        comboescolha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Paciente", "Funcionario", "Medico", "Fornecedor" }));
+        comboescolha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoCancelarRelatorioActionPerformed(evt);
+                comboescolhaActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Funcionario :");
+        labelescolha.setText("Escolha o relatorio :");
+
+        tabelarelatorio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tabelarelatorio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {"", "", null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "", "", "", "", "", ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelarelatorio.setEnabled(false);
+        tabelarelatorio.setPreferredSize(new java.awt.Dimension(300, 400));
+        tabelarelatorio.setRowHeight(25);
+        tabelarelatorio.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tabelarelatorio.setShowHorizontalLines(false);
+        tabelarelatorio.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tabelarelatorio);
+
+        BotaoRelatorio.setBackground(new java.awt.Color(255, 255, 255));
+        BotaoRelatorio.setForeground(new java.awt.Color(0, 0, 204));
+        BotaoRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/stats-2.png"))); // NOI18N
+        BotaoRelatorio.setText("Gerar Relatorio");
+        BotaoRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotaoRelatorioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtoRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotaoSalvarRelatorio)
-                .addGap(26, 26, 26)
-                .addComponent(BotaoCancelarRelatorio)
-                .addGap(48, 48, 48))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(9, 9, 9)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelescolha)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboescolha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoVoltarRelatorio)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoRelatorio))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BotaoVoltarRelatorio)
+                    .addComponent(BotaoRelatorio)
+                    .addComponent(labelescolha)
+                    .addComponent(comboescolha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtfuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(txtoRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoCancelarRelatorio)
-                    .addComponent(BotaoSalvarRelatorio))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BotaoSalvarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarRelatorioActionPerformed
+    private void BotaoVoltarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoVoltarRelatorioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoSalvarRelatorioActionPerformed
+    }//GEN-LAST:event_BotaoVoltarRelatorioActionPerformed
 
-    private void BotaoCancelarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoCancelarRelatorioActionPerformed
+    private void comboescolhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboescolhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoCancelarRelatorioActionPerformed
+    }//GEN-LAST:event_comboescolhaActionPerformed
+
+    private void BotaoRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRelatorioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotaoRelatorioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,99 +214,130 @@ public class Relatorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotaoCancelarRelatorio;
-    private javax.swing.JButton BotaoSalvarRelatorio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtdescricao;
-    private javax.swing.JTextField txtfuncionario;
-    private javax.swing.JTextField txtoRelatorio;
+    private javax.swing.JButton BotaoRelatorio;
+    private javax.swing.JButton BotaoVoltarRelatorio;
+    private javax.swing.JComboBox<String> comboescolha;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelescolha;
+    private javax.swing.JTable tabelarelatorio;
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the BotaoCancelarRelatorio
+     * @return the BotaoVoltarRelatorio
      */
-    public javax.swing.JButton getBotaoCancelarRelatorio() {
-        return BotaoCancelarRelatorio;
+    public javax.swing.JButton getBotaoVoltarRelatorio() {
+        return BotaoVoltarRelatorio;
     }
 
     /**
-     * @param BotaoCancelarRelatorio the BotaoCancelarRelatorio to set
+     * @param BotaoVoltarRelatorio the BotaoVoltarRelatorio to set
      */
-    public void setBotaoCancelarRelatorio(javax.swing.JButton BotaoCancelarRelatorio) {
-        this.BotaoCancelarRelatorio = BotaoCancelarRelatorio;
+    public void setBotaoVoltarRelatorio(javax.swing.JButton BotaoVoltarRelatorio) {
+        this.BotaoVoltarRelatorio = BotaoVoltarRelatorio;
     }
 
     /**
-     * @return the BotaoSalvarRelatorio
+     * @return the comboescolha
      */
-    public javax.swing.JButton getBotaoSalvarRelatorio() {
-        return BotaoSalvarRelatorio;
+    public javax.swing.JComboBox<String> getComboescolha() {
+        return comboescolha;
     }
 
     /**
-     * @param BotaoSalvarRelatorio the BotaoSalvarRelatorio to set
+     * @param comboescolha the comboescolha to set
      */
-    public void setBotaoSalvarRelatorio(javax.swing.JButton BotaoSalvarRelatorio) {
-        this.BotaoSalvarRelatorio = BotaoSalvarRelatorio;
+    public void setComboescolha(javax.swing.JComboBox<String> comboescolha) {
+        this.comboescolha = comboescolha;
+    }
+    /**
+     * @return the jLabel5
+     */
+    public javax.swing.JLabel getjLabel5() {
+        return jLabel5;
     }
 
     /**
-     * @return the jLabel1
+     * @param jLabel5 the jLabel5 to set
      */
-    public javax.swing.JLabel getjLabel1() {
-        return jLabel1;
+    public void setjLabel5(javax.swing.JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
     }
 
     /**
-     * @param jLabel1 the jLabel1 to set
+     * @return the jPanel2
      */
-    public void setjLabel1(javax.swing.JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
+    public javax.swing.JPanel getjPanel2() {
+        return jPanel2;
     }
 
     /**
-     * @return the txtdescricao
+     * @param jPanel2 the jPanel2 to set
      */
-    public javax.swing.JTextField getTxtdescricao() {
-        return txtdescricao;
+    public void setjPanel2(javax.swing.JPanel jPanel2) {
+        this.jPanel2 = jPanel2;
     }
 
     /**
-     * @param txtdescricao the txtdescricao to set
+     * @return the jScrollPane1
      */
-    public void setTxtdescricao(javax.swing.JTextField txtdescricao) {
-        this.txtdescricao = txtdescricao;
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
     }
 
     /**
-     * @return the txtoRelatorio
+     * @param jScrollPane1 the jScrollPane1 to set
      */
-    public javax.swing.JTextField getTxtoRelatorio() {
-        return txtoRelatorio;
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
     }
 
     /**
-     * @param txtoRelatorio the txtoRelatorio to set
+     * @return the labelescolha
      */
-    public void setTxtoRelatorio(javax.swing.JTextField txtoRelatorio) {
-        this.txtoRelatorio = txtoRelatorio;
+    public javax.swing.JLabel getLabelescolha() {
+        return labelescolha;
     }
 
     /**
-     * @return the txtfuncionario
+     * @param labelescolha the labelescolha to set
      */
-    public javax.swing.JTextField getTxtfuncionario() {
-        return txtfuncionario;
+    public void setLabelescolha(javax.swing.JLabel labelescolha) {
+        this.labelescolha = labelescolha;
     }
 
     /**
-     * @param txtfuncionario the txtfuncionario to set
+     * @return the tabelarelatorio
      */
-    public void setTxtfuncionario(javax.swing.JTextField txtfuncionario) {
-        this.txtfuncionario = txtfuncionario;
+    public javax.swing.JTable getTabelarelatorio() {
+        return tabelarelatorio;
     }
 
+    /**
+     * @param tabelarelatorio the tabelarelatorio to set
+     */
+    public void setTabelarelatorio(javax.swing.JTable tabelarelatorio) {
+        this.tabelarelatorio = tabelarelatorio;
+    }
 
+    /**
+     * @return the BotaoRelatorio
+     */
+    public javax.swing.JButton getBotaoRelatorio() {
+        return BotaoRelatorio;
+    }
+
+    /**
+     * @param BotaoRelatorio the BotaoRelatorio to set
+     */
+    public void setBotaoRelatorio(javax.swing.JButton BotaoRelatorio) {
+        this.BotaoRelatorio = BotaoRelatorio;
+    }
+
+    
+
+
+  
 
 }

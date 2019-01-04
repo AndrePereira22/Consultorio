@@ -118,5 +118,29 @@ public class DaoPagamento implements IDaoPagamento {
     public void ativarDesativarPagamento(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+       public List<Pagamento> buscarpagamento() {
+        List<Pagamento> pagamentos = new ArrayList<>();
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Pagamento.buscarpagamento());
+            this.result = this.statement.executeQuery();
+            Pagamento pagamento;
+            while (result.next()) {
+                pagamento = new Pagamento();
+
+                pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
+                pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
+                pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
+
+                pagamentos.add(pagamento);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pagamentos;
+    }
 
 }

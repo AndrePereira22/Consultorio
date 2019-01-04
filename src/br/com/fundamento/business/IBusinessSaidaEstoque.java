@@ -14,10 +14,11 @@ import java.util.List;
  */
 public interface IBusinessSaidaEstoque {
     
-     public void salvarSaidaEstoque(SaidaEstoque saidaEstoque);
+    public void salvarSaidaEstoque(SaidaEstoque saidaEstoque);
     public SaidaEstoque buscarSaidaEstoquePorId(int id);
     public List<SaidaEstoque> getAllSaidaEstoque();
     public void editarSaidaEstoque(SaidaEstoque saidaEstoque);
     public void ativarDesativarSaidaEstoque(int id);
+    public List<SaidaEstoque> getPorBuscaSaidaEstoque(String busca);
     
 }

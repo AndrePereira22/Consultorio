@@ -168,7 +168,18 @@ public class DaoFornecedor implements IDaoFornecedor {
 
     @Override
     public void ativarDesativarfornecedor(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Fornecedor.desativar(id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }
 
     @Override

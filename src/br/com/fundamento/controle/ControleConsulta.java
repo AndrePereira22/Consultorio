@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,17 +6,15 @@
  */
 package br.com.fundamento.controle;
 
-import br.com.fundamento.dao.CommumDao;
+import br.com.fundamento.dao.DaoConsulta;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
-import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Especializacao;
 import br.com.fundamento.modelos.Funcionario;
-import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
@@ -40,12 +39,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -54,7 +56,7 @@ import javax.swing.table.DefaultTableModel;
 public class ControleConsulta implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    private CadastroConsultas cadastroConsultas;
+    private CadastroConsultas cadastroConsultas, cc;
     private agendamento agendamento;
     private TelaPagamento telaPagamento;
     private Medico medico;
@@ -63,8 +65,9 @@ public class ControleConsulta implements ActionListener {
     private CadastroPaciente cadastroPaciente = new CadastroPaciente();
     private List<Paciente> pacientes;
     private List<Medico> medicos;
-    private List<Especializacao> especializacaos =  new ArrayList<Especializacao>();
     private JButton btn1, btn2;
+    private List<Consulta> consultas;
+    private Consulta c;
     IFachada fachada1 = Fachada.getInstance();
 
     public ControleConsulta(TelaPrincipal telaPrincipal, CadastroConsultas cadastroConsultas, agendamento agendamento, TelaPagamento pagamento) {
@@ -72,6 +75,8 @@ public class ControleConsulta implements ActionListener {
         this.cadastroConsultas = cadastroConsultas;
         this.agendamento = agendamento;
         this.telaPagamento = pagamento;
+        this.consultas = new ArrayList<Consulta>();
+        cc=new CadastroConsultas();
 
         telaPrincipal.getBotaoAgendamento().addActionListener(this);
         cadastroConsultas.getBotaoConsultaCancelar().addActionListener(this);
@@ -80,6 +85,7 @@ public class ControleConsulta implements ActionListener {
         cadastroPaciente.getBotaoCancelarrPaciente().addActionListener(this);
         cadastroPaciente.getBotaoSalvarPaciente().addActionListener(this);
         agendamento.getBotaoAdicionarAgendamento().addActionListener(this);
+
         agendamento.getBotaoFecharAgendamento().addActionListener(this);
         telaPagamento.getBotaoOk().addActionListener(this);
         telaPagamento.getComboStatus().addActionListener(this);
@@ -97,11 +103,49 @@ public class ControleConsulta implements ActionListener {
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("m")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = agendamento.getTabelaAgendamento().getSelectedRow();
+                           
+                            if (editar == 0) {
+                                cc.getLabelConsulta().setText("ATUALIZAR CONSULTA");
+                                cc.setVisible(true);
+                                agendamento.setVisible(false);
+
+                                c = consultas.get(ro);
+
+                                preencherCadastro(c, cc);
+                                PreencherBuscaMedico(cc);
+                                try {
+                                    cc.getBotaoConsultaSalvar().addActionListener(new Acaoupdate());
+                                    cc.getBotaoConsultaCancelar().addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            cc.setVisible(false);
+
+                                            telaPrincipal.setVisible(true);
+
+                                            agendamento.setVisible(true);
+                                            preenchertabela();
+                                           
+                                            c = null;
+
+                                        }
+                                    });
+
+                                } catch (Exception ui) {
+                                }
+                            }
                         }
                         if (boton.getName().equals("e")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
+                            int roo = agendamento.getTabelaAgendamento().getSelectedRow();
+                            if (editar == 0) {
+                                c = consultas.get(roo);
+
+                                fachada1.ativarDesativarConsulta(c.getId());
+                                preenchertabela();
+                            }
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -121,21 +165,22 @@ public class ControleConsulta implements ActionListener {
 
         });
 
-        
-        
-        
         cadastroConsultas.getTxtPaciente().addKeyListener(new KeyAdapter() {
-             public void keyReleased(KeyEvent e) {
-                 PreencherBuscaPaciente();
-             }
-});
-         cadastroConsultas.getTxtmedico().addKeyListener(new KeyAdapter() {
-             public void keyReleased(KeyEvent e) {
-                 PreencherBuscaMedico();
-             }
-});
+            public void keyReleased(KeyEvent e) {
+                PreencherBuscaPaciente();
+            }
+        });
+        cadastroConsultas.getTxtmedico().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                PreencherBuscaMedico(cadastroConsultas);
+            }
+        });
+        cc.getTxtmedico().addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                PreencherBuscaMedico(cc);
+            }
+        });
 
-        
         cadastroConsultas.getListPaciente().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -156,14 +201,28 @@ public class ControleConsulta implements ActionListener {
                 try {
 
                     medico = medicos.get(indice);
-                    especializacao = especializacaos.get(indice);
+                    especializacao = fachada1.buscarEspecializacaoPorId(medico.getId_esp());
                     cadastroConsultas.getTxtmedico().setText(medico.getNome());
                     cadastroConsultas.getTxtespecializacao().setText(especializacao.getDescricao());
                 } catch (Exception eu) {
                 }
             }
         });
-         
+ cc.getListaMedico().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int indice = cc.getListaMedico().getMinSelectionIndex();
+                try {
+
+                    medico = medicos.get(indice);
+                    especializacao = fachada1.buscarEspecializacaoPorId(medico.getId_esp());
+                    cc.getTxtmedico().setText(medico.getNome());
+                    cc.getTxtespecializacao().setText(especializacao.getDescricao());
+                    
+                } catch (Exception eu) {
+                }
+            }
+        });
 
         agendamento.getCalendario().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
             @Override
@@ -200,21 +259,22 @@ public class ControleConsulta implements ActionListener {
                 preenchertabela();
             }
         });
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == telaPrincipal.getBotaoAgendamento()) {
-            preenchertabela();
-            telaPrincipal.setEnabled(false);
             agendamento.setVisible(true);
+            preenchertabela();
         }
+
         if (e.getSource() == agendamento.getBotaoFecharAgendamento()) {
             telaPrincipal.setEnabled(true);
             agendamento.setVisible(false);
         }
         if (e.getSource() == agendamento.getBotaoAdicionarAgendamento()) {
-           
+
             cadastroConsultas.setVisible(true);
             agendamento.setVisible(false);
         }
@@ -268,7 +328,7 @@ public class ControleConsulta implements ActionListener {
 
             Paciente pa = new Paciente();
             pa.setNome(cadastroPaciente.getTxtNome().getText());
-           
+
             pa.setRg(cadastroPaciente.getTxtrg().getText());
             pa.setCpf(cadastroPaciente.getTxtCpf().getText());
             pa.setSexo(cadastroPaciente.getCombosexo().getSelectedItem().toString());
@@ -289,7 +349,7 @@ public class ControleConsulta implements ActionListener {
         }
         if (e.getSource() == cadastroPaciente.getBotaoCancelarrPaciente()) {
             cadastroPaciente.setVisible(false);
-            
+
         }
         if (e.getSource() == telaPagamento.getBotaoOk()) {
 
@@ -345,7 +405,11 @@ public class ControleConsulta implements ActionListener {
 
             Caixa cai = new Caixa();
             cai.setPagamentos(new ArrayList<Pagamento>());
-            cai.setFuncionario(ControlePrincipal.getF());
+
+            //Funcionario ffunc=new DaoFuncionario().buscarFuncionario(ControlePrincipal.getLogin());
+            Funcionario o = fachada1.buscarFuncionarioPorId(3);
+
+            cai.setFuncionario(o);
 
             pagamento.setCaixa(cai);
 
@@ -362,7 +426,7 @@ public class ControleConsulta implements ActionListener {
             if (medico != null && paciente != null) {
                 fachada1.salvarConsulta(consulta);
             } else {
-                JOptionPane.showMessageDialog(null, "Precisa-se esoclher o Medico e o Paciente !!!");
+                JOptionPane.showMessageDialog(null, "Precisa-se escolher o Medico e o Paciente !!!");
             }
 
             preenchertabela();
@@ -385,28 +449,34 @@ public class ControleConsulta implements ActionListener {
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         String busca = formato.format(agendamento.getCalendario().getDate());
-        int i = 0;
-        List<Consulta> consultas = fachada1.getPorBuscaConsulta(busca);
-            agendamento.getTabelaAgendamento().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar");
-        //btn1.setIcon(new ImageIcon("br.com.fundamento.resource/pencil.png"));
+        consultas = fachada1.getPorBuscaConsulta(busca);
+        agendamento.getTabelaAgendamento().setDefaultRenderer(Object.class, new Render());
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+
+        btn1 = new JButton(editar);
         btn1.setName("m");
-        btn2 = new JButton("Eliminar");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        btn2 = new JButton(excluir);
         btn2.setName("e");
-        
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
+
         try {
-            String[] colunas = new String[]{"Hora","Tipo", "Paciente", "Medico","E", "M"};
+            String[] colunas = new String[]{"Hora", "Tipo", "Paciente", "Medico", "Editar", "Excluir"};
             Object[][] dados = new Object[consultas.size()][6];
-            for (Consulta c : consultas) {
-                
-                dados[i][0] = c.getHora();
-                dados[i][1] = c.getTipo();
-                dados[i][2] = c.getPaciente().getNome();
-                dados[i][3] = c.getMedico().getNome();
+            for (int i = 0; i < consultas.size(); i++) {
+                Consulta consulta = consultas.get(i);
+                dados[i][0] = consulta.getHora();
+                dados[i][1] = consulta.getTipo();
+                dados[i][2] = consulta.getPaciente().getNome();
+                dados[i][3] = consulta.getMedico().getNome();
                 dados[i][4] = btn1;
                 dados[i][5] = btn2;
-                i++;
-             }
+
+            }
 
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
                 @Override
@@ -414,7 +484,10 @@ public class ControleConsulta implements ActionListener {
                     return false;
                 }
             };
+            TableColumnModel columnModel = agendamento.getTabelaAgendamento().getColumnModel();
             agendamento.getTabelaAgendamento().setModel(dataModel);
+            agendamento.getTabelaAgendamento().setPreferredScrollableViewportSize(agendamento.getTabelaAgendamento().getPreferredSize());
+
         } catch (Exception ex) {
 
         }
@@ -435,19 +508,63 @@ public class ControleConsulta implements ActionListener {
 
     }
 
-    public void PreencherBuscaMedico() {
+    public void PreencherBuscaMedico(CadastroConsultas cadastroConsultas) {
 
         medicos = fachada1.getPorBuscaMedico(cadastroConsultas.getTxtmedico().getText());
 
         DefaultListModel model = new DefaultListModel();
         for (Medico m : medicos) {
-            Especializacao es = fachada1.buscarEspecializaco(m.getNome());
-            especializacaos.add(es);
             model.addElement(m.getNome());
         }
 
         cadastroConsultas.getListaMedico().setModel(model);
-cadastroConsultas.getListaMedico().setVisible(true);
+        cadastroConsultas.getListaMedico().setVisible(true);
     }
-   
+
+    public void preencherCadastro(Consulta c, CadastroConsultas cc) {
+
+        Paciente pa = fachada1.buscarPacientePorId(c.getPaciente().getId());
+        Medico me = fachada1.buscarMedicoPorId(c.getMedico().getId());
+        cc.getTxtHora().setText(c.getHora());
+        cc.getTxtdata().setText(c.getData());
+        cc.getTipoExameOuConsulta().setText(c.getTipo());
+        cc.getBotaoadd().setVisible(false);
+        cc.getListPaciente().setVisible(false);
+
+        cc.getTxtconvenio().setText(pa.getConvenio());
+        cc.getTxtPaciente().setText(pa.getNome());
+        cc.getTxtconvenio().setEditable(false);
+        cc.getTxtPaciente().setEditable(false);
+        cc.getTxtmedico().setText(me.getNome());
+        cc.getTxtespecializacao().setText(me.getEspecializacao().getDescricao());
+
+    }
+
+    public class Acaoupdate implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            if (e.getSource() == cc.getBotaoConsultaSalvar()) {
+
+                Consulta consulta = c;
+
+                consulta.setHora(cc.getTxtHora().getText());
+                consulta.setData(cc.getTxtdata().getText());
+                consulta.setTipo(cc.getTipoExameOuConsulta().getText());
+                consulta.setMedico(medico);
+
+                fachada1.editarConsulta(consulta);
+                agendamento.setVisible(true);
+                preenchertabela();
+                cc.setVisible(false);
+               
+                c = null;
+
+            }
+        }
+
+  
+
+    }
 }

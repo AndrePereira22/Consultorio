@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.controle;
 
+import br.com.fundamento.dao.CommumDao;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Contato;
@@ -26,10 +27,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -101,8 +105,17 @@ public class ControleFornecedor implements ActionListener {
                             }
                         }
                         if (boton.getName().equals("e")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
+                            int ro = buscarFornecedor.getTabelaCoFornecedor().getSelectedRow();
+                            if (editar == 0) {
+                                f = fornecedores.get(ro);
+
+                                fachada1.ativarDesativarfornecedor(f.getId());
+                                CommumDao.ativarDesativarContato(f.getId_contato());
+                                CommumDao.ativarDesativarEndereco(f.getId_endereco());
+                                preenchertabela();
+                            }
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -194,13 +207,20 @@ public class ControleFornecedor implements ActionListener {
         fornecedores = fachada1.getPorBuscaFornecedor(buscarFornecedor.getTxtPesquisarFornecedor().getText());
         
         buscarFornecedor.getTabelaCoFornecedor().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar");
-        
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+
+        btn1 = new JButton(editar);
         btn1.setName("m");
-        btn2 = new JButton("Eliminar");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        btn2 = new JButton(excluir);
         btn2.setName("e");
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
         try {
-            String[] colunas = new String[]{"Nome Fantasia", "Razao Social", "cnpj", "E", "M"};
+            String[] colunas = new String[]{"Nome Fantasia", "Razao Social", "cnpj", "Editar", "Excluir"};
             Object[][] dados = new Object[fornecedores.size()][5];
             for (int i = 0; i < fornecedores.size(); i++) {
                 Fornecedor fornecedor = fornecedores.get(i);
@@ -217,7 +237,10 @@ public class ControleFornecedor implements ActionListener {
                     return false;
                 }
             };
-            buscarFornecedor.getTabelaCoFornecedor().setModel(dataModel);
+             TableColumnModel columnModel =   buscarFornecedor.getTabelaCoFornecedor().getColumnModel();
+              buscarFornecedor.getTabelaCoFornecedor().setModel(dataModel);
+              buscarFornecedor.getTabelaCoFornecedor().setPreferredScrollableViewportSize(  buscarFornecedor.getTabelaCoFornecedor().getPreferredSize());
+
         } catch (Exception ex) {
             
         }

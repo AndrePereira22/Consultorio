@@ -37,6 +37,8 @@ public class DaoProntuario implements IDaoProntuario{
              this.statement = conexao.prepareStatement(SQLUtil.Prontuario.INSERT);
             this.statement.setString(1, prontuario.getExames());
             this.statement.setString(2, prontuario.getReceitas());
+             this.statement.setString(3, prontuario.getData());
+              this.statement.setString(4, prontuario.getSintomas());
              result = statement.executeQuery();
             
             if (result.next()) {
@@ -62,6 +64,8 @@ public class DaoProntuario implements IDaoProntuario{
               
                prontuario.setExames(result.getString(SQLUtil.Prontuario.COL_EXAMES));
                prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
+               prontuario.setData(result.getString(SQLUtil.Prontuario.COL_DATA));
+               prontuario.setSintomas(result.getString(SQLUtil.Prontuario.COL_SINTOMAS));
                        
             }
             this.conexao.close();
@@ -85,7 +89,9 @@ public class DaoProntuario implements IDaoProntuario{
                 
               prontuario.setExames(result.getString(SQLUtil.Prontuario.COL_EXAMES));
                prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
-                
+                prontuario.setData(result.getString(SQLUtil.Prontuario.COL_DATA));
+               prontuario.setSintomas(result.getString(SQLUtil.Prontuario.COL_SINTOMAS));
+               
                 prontuarios.add(prontuario);
             }
             this.conexao.close();
@@ -102,7 +108,19 @@ public class DaoProntuario implements IDaoProntuario{
 
     @Override
     public void ativarDesativarProntuario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Prontuario.desativar(id));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+     
     }
 
     @Override
@@ -118,6 +136,8 @@ public class DaoProntuario implements IDaoProntuario{
               
                prontuario.setExames(result.getString(SQLUtil.Prontuario.COL_EXAMES));
                prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
+               prontuario.setData(result.getString(SQLUtil.Prontuario.COL_DATA));
+               prontuario.setSintomas(result.getString(SQLUtil.Prontuario.COL_SINTOMAS));
                        
             }
             this.conexao.close();

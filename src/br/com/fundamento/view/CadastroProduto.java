@@ -61,15 +61,20 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Listestoque = new javax.swing.JList<>();
+        novoEstoque = new javax.swing.JButton();
+        panelEstoque = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        descricao = new javax.swing.JTextField();
+        salvar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
         BotaoSalvarProduto = new javax.swing.JButton();
         BotaoCancelarProduto = new javax.swing.JButton();
         labelproduto = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 610));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
@@ -130,6 +135,57 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(Listestoque);
 
+        novoEstoque.setBackground(new java.awt.Color(255, 255, 255));
+        novoEstoque.setForeground(new java.awt.Color(0, 0, 204));
+        novoEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
+        novoEstoque.setText("Novo Estoque");
+
+        panelEstoque.setBorder(javax.swing.BorderFactory.createTitledBorder("Estoque"));
+
+        jLabel3.setText("Descrição:");
+
+        salvar.setBackground(new java.awt.Color(255, 255, 255));
+        salvar.setForeground(new java.awt.Color(0, 0, 204));
+        salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+
+        cancelar.setBackground(new java.awt.Color(255, 255, 255));
+        cancelar.setForeground(new java.awt.Color(0, 0, 204));
+        cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelEstoqueLayout = new javax.swing.GroupLayout(panelEstoque);
+        panelEstoque.setLayout(panelEstoqueLayout);
+        panelEstoqueLayout.setHorizontalGroup(
+            panelEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEstoqueLayout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(salvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cancelar))
+        );
+        panelEstoqueLayout.setVerticalGroup(
+            panelEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEstoqueLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addGroup(panelEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelEstoqueLayout.createSequentialGroup()
+                .addGroup(panelEstoqueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,6 +209,13 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                            .addComponent(txtFornecedor, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(18, 18, 18)
+                        .addComponent(Botaonovo)
+                        .addContainerGap(443, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtcnpj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
@@ -160,21 +223,22 @@ public class CadastroProduto extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtnomeproduto, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)))
-                        .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(lblvalor))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                            .addComponent(txtFornecedor, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(36, 36, 36)
-                        .addComponent(Botaonovo)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblvalor)
+                                    .addComponent(jLabel1))
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(novoEstoque)
+                                .addGap(18, 18, 18)
+                                .addComponent(panelEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,31 +246,46 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(novoEstoque)
+                    .addComponent(panelEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnomeproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblnomeproduto)
-                    .addComponent(lblvalor)
-                    .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblquantidade)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblfornecedor))
-                .addGap(18, 18, 18)
+                    .addComponent(lblnomeproduto))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Botaonovo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtquantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblquantidade))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtvalorunitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblvalor))
+                                .addGap(6, 6, 6))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtcnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblfornecedor))
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addGap(24, 24, 24)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Botaonovo)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -267,7 +346,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(908, Short.MAX_VALUE)
+                    .addContainerGap(963, Short.MAX_VALUE)
                     .addComponent(jLabel28)
                     .addGap(161, 161, 161)))
         );
@@ -284,12 +363,12 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoCancelarProduto)
                     .addComponent(BotaoSalvarProduto))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(68, 68, 68)
                     .addComponent(jLabel28)
-                    .addContainerGap(462, Short.MAX_VALUE)))
+                    .addContainerGap(494, Short.MAX_VALUE)))
         );
 
         pack();
@@ -322,6 +401,10 @@ public class CadastroProduto extends javax.swing.JFrame {
     private void txtnomeprodutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnomeprodutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnomeprodutoActionPerformed
+
+    private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -364,9 +447,12 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JButton BotaoSalvarProduto;
     private javax.swing.JButton Botaonovo;
     private javax.swing.JList<String> Listestoque;
+    private javax.swing.JButton cancelar;
+    private javax.swing.JTextField descricao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
@@ -378,6 +464,9 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblquantidade;
     private javax.swing.JLabel lblvalor;
     private javax.swing.JList<String> listafornecedor;
+    private javax.swing.JButton novoEstoque;
+    private javax.swing.JPanel panelEstoque;
+    private javax.swing.JButton salvar;
     private javax.swing.JTextField txtFabricante;
     private javax.swing.JTextField txtFornecedor;
     private javax.swing.JFormattedTextField txtcnpj;
@@ -429,6 +518,104 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     /**
+     * @return the Listestoque
+     */
+    public javax.swing.JList<String> getListestoque() {
+        return Listestoque;
+    }
+
+    /**
+     * @param Listestoque the Listestoque to set
+     */
+    public void setListestoque(javax.swing.JList<String> Listestoque) {
+        this.Listestoque = Listestoque;
+    }
+
+    /**
+     * @return the jButton2
+     */
+    public javax.swing.JButton getjButton2() {
+        return getSalvar();
+    }
+
+    /**
+     * @param jButton2 the jButton2 to set
+     */
+    public void setjButton2(javax.swing.JButton jButton2) {
+        this.setSalvar(jButton2);
+    }
+
+    /**
+     * @return the jLabel1
+     */
+    public javax.swing.JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    /**
+     * @param jLabel1 the jLabel1 to set
+     */
+    public void setjLabel1(javax.swing.JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    /**
+     * @return the jLabel28
+     */
+    public javax.swing.JLabel getjLabel28() {
+        return jLabel28;
+    }
+
+    /**
+     * @param jLabel28 the jLabel28 to set
+     */
+    public void setjLabel28(javax.swing.JLabel jLabel28) {
+        this.jLabel28 = jLabel28;
+    }
+
+    /**
+     * @return the jLabel3
+     */
+    public javax.swing.JLabel getjLabel3() {
+        return jLabel3;
+    }
+
+    /**
+     * @param jLabel3 the jLabel3 to set
+     */
+    public void setjLabel3(javax.swing.JLabel jLabel3) {
+        this.jLabel3 = jLabel3;
+    }
+
+    /**
+     * @return the jLabel4
+     */
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    /**
+     * @param jLabel4 the jLabel4 to set
+     */
+    public void setjLabel4(javax.swing.JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    /**
      * @return the jPanel1
      */
     public javax.swing.JPanel getjPanel1() {
@@ -443,6 +630,20 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     /**
+     * @return the jPanel6
+     */
+    public javax.swing.JPanel getjPanel6() {
+        return jPanel6;
+    }
+
+    /**
+     * @param jPanel6 the jPanel6 to set
+     */
+    public void setjPanel6(javax.swing.JPanel jPanel6) {
+        this.jPanel6 = jPanel6;
+    }
+
+    /**
      * @return the jScrollPane1
      */
     public javax.swing.JScrollPane getjScrollPane1() {
@@ -454,6 +655,48 @@ public class CadastroProduto extends javax.swing.JFrame {
      */
     public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the jScrollPane2
+     */
+    public javax.swing.JScrollPane getjScrollPane2() {
+        return jScrollPane2;
+    }
+
+    /**
+     * @param jScrollPane2 the jScrollPane2 to set
+     */
+    public void setjScrollPane2(javax.swing.JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    /**
+     * @return the jTextField1
+     */
+    public javax.swing.JTextField getjTextField1() {
+        return getDescricao();
+    }
+
+    /**
+     * @param jTextField1 the jTextField1 to set
+     */
+    public void setjTextField1(javax.swing.JTextField jTextField1) {
+        this.setDescricao(jTextField1);
+    }
+
+    /**
+     * @return the labelproduto
+     */
+    public javax.swing.JLabel getLabelproduto() {
+        return labelproduto;
+    }
+
+    /**
+     * @param labelproduto the labelproduto to set
+     */
+    public void setLabelproduto(javax.swing.JLabel labelproduto) {
+        this.labelproduto = labelproduto;
     }
 
     /**
@@ -527,6 +770,34 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     /**
+     * @return the novoEstoque
+     */
+    public javax.swing.JButton getNovoEstoque() {
+        return novoEstoque;
+    }
+
+    /**
+     * @param novoEstoque the novoEstoque to set
+     */
+    public void setNovoEstoque(javax.swing.JButton novoEstoque) {
+        this.novoEstoque = novoEstoque;
+    }
+
+    /**
+     * @return the panelEstoque
+     */
+    public javax.swing.JPanel getPanelEstoque() {
+        return panelEstoque;
+    }
+
+    /**
+     * @param panelEstoque the panelEstoque to set
+     */
+    public void setPanelEstoque(javax.swing.JPanel panelEstoque) {
+        this.panelEstoque = panelEstoque;
+    }
+
+    /**
      * @return the txtFornecedor
      */
     public javax.swing.JTextField getTxtFornecedor() {
@@ -597,31 +868,45 @@ public class CadastroProduto extends javax.swing.JFrame {
     }
 
     /**
-     * @return the labelproduto
+     * @return the salvar
      */
-    public javax.swing.JLabel getLabelproduto() {
-        return labelproduto;
+    public javax.swing.JButton getSalvar() {
+        return salvar;
     }
 
     /**
-     * @param labelproduto the labelproduto to set
+     * @param salvar the salvar to set
      */
-    public void setLabelproduto(javax.swing.JLabel labelproduto) {
-        this.labelproduto = labelproduto;
+    public void setSalvar(javax.swing.JButton salvar) {
+        this.salvar = salvar;
     }
 
     /**
-     * @return the Listestoque
+     * @return the descricao
      */
-    public javax.swing.JList<String> getListestoque() {
-        return Listestoque;
+    public javax.swing.JTextField getDescricao() {
+        return descricao;
     }
 
     /**
-     * @param Listestoque the Listestoque to set
+     * @param descricao the descricao to set
      */
-    public void setListestoque(javax.swing.JList<String> Listestoque) {
-        this.Listestoque = Listestoque;
+    public void setDescricao(javax.swing.JTextField descricao) {
+        this.descricao = descricao;
+    }
+
+    /**
+     * @return the cancelar
+     */
+    public javax.swing.JButton getCancelar() {
+        return cancelar;
+    }
+
+    /**
+     * @param cancelar the cancelar to set
+     */
+    public void setCancelar(javax.swing.JButton cancelar) {
+        this.cancelar = cancelar;
     }
 
     

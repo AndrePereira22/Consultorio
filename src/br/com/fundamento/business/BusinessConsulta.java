@@ -39,12 +39,12 @@ public class BusinessConsulta implements IBusinessConsulta{
 
     @Override
     public void editarConsulta(Consulta consulta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.daoConsulta.editarConsulta(consulta);
     }
 
     @Override
     public void ativarDesativarConsulta(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.daoConsulta.ativarDesativarConsulta(id);
     }
 
     @Override

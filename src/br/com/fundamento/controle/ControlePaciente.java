@@ -1,10 +1,12 @@
 package br.com.fundamento.controle;
 
+import br.com.fundamento.dao.CommumDao;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
+import br.com.fundamento.modelos.JTableRenderer;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.modelos.Render;
@@ -21,10 +23,13 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,7 +45,6 @@ public class ControlePaciente implements ActionListener {
     private TelaPrincipal telaPrincipal;
     private CadastroPaciente cadastroPaciente, cp;
     private BuscarPaciente buscarPaciente;
-    private JButton btn1, btn2;
     private List<Paciente> pacientes;
     private Paciente p;
     private IFachada fachada1 = Fachada.getInstance();
@@ -54,7 +58,7 @@ public class ControlePaciente implements ActionListener {
         telaPrincipal.getBotaoCadastroPaciente().addActionListener(this);
         cadastroPaciente.getBotaoCancelarrPaciente().addActionListener(this);
         cadastroPaciente.getBotaoSalvarPaciente().addActionListener(this);
-        
+
         buscarPaciente.getBotaoAdicionarPaciente().addActionListener(this);
         buscarPaciente.getBotaoFecharPaciente().addActionListener(this);
         buscarPaciente.getTabelaPaciente().addMouseListener(new MouseAdapter() {
@@ -110,11 +114,12 @@ public class ControlePaciente implements ActionListener {
                                 p = pacientes.get(ro);
 
                                 fachada1.ativarDesativarPaciente(p.getId());
+                                CommumDao.ativarDesativarContato(p.getId_contato());
+                                CommumDao.ativarDesativarEndereco(p.getId_endereco());
+                                fachada1.ativarDesativarProntuario(p.getId_prontuario());
                                 preencherbuscas();
                             }
 
-                        
-                        
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -149,12 +154,10 @@ public class ControlePaciente implements ActionListener {
 
         if (e.getSource() == telaPrincipal.getBotaoCadastroPaciente()) {
             preencherbuscas();
-            telaPrincipal.setEnabled(false);
             buscarPaciente.setVisible(true);
 
         }
         if (e.getSource() == cadastroPaciente.getBotaoCancelarrPaciente()) {
-            telaPrincipal.setEnabled(true);
             buscarPaciente.getTxtpesquisarPaciente().setText("");
             preencherbuscas();
             cadastroPaciente.setVisible(false);
@@ -162,7 +165,7 @@ public class ControlePaciente implements ActionListener {
 
         }
         if (e.getSource() == buscarPaciente.getBotaoFecharPaciente()) {
-            telaPrincipal.setEnabled(true);
+      
             buscarPaciente.setVisible(false);
 
         }
@@ -192,7 +195,7 @@ public class ControlePaciente implements ActionListener {
 
             Paciente paciente = new Paciente();
             paciente.setNome(cadastroPaciente.getTxtNome().getText());
-           
+
             paciente.setRg(cadastroPaciente.getTxtrg().getText());
             java.util.Date d = new Date();
 
@@ -222,14 +225,21 @@ public class ControlePaciente implements ActionListener {
         pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());
 
         buscarPaciente.getTabelaPaciente().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar");
-        //btn1.setIcon(new ImageIcon("br.com.fundamento.resource/pencil.png"));
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+
+        JButton btn1 = new JButton(editar);
         btn1.setName("m");
-        btn2 = new JButton("Eliminar");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        JButton btn2 = new JButton(excluir);
         btn2.setName("e");
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
 
         try {
-            String[] colunas = new String[]{"Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio", "E", "M"};
+            String[] colunas = new String[]{"Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio","Editar","Excluir"};
             Object[][] dados = new Object[pacientes.size()][9];
             for (int i = 0; i < pacientes.size(); i++) {
                 Paciente paciente = pacientes.get(i);
@@ -250,7 +260,11 @@ public class ControlePaciente implements ActionListener {
                     return false;
                 }
             };
+
+            TableColumnModel columnModel = buscarPaciente.getTabelaPaciente().getColumnModel();
             buscarPaciente.getTabelaPaciente().setModel(dataModel);
+            buscarPaciente.getTabelaPaciente().setPreferredScrollableViewportSize(buscarPaciente.getTabelaPaciente().getPreferredSize());
+
         } catch (Exception erro) {
 
         }

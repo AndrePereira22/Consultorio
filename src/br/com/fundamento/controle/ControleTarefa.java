@@ -20,10 +20,13 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -196,13 +199,21 @@ public class ControleTarefa implements ActionListener {
         tarefas = fachada1.getPorBuscaTarefa(buscarTarefa.getTxtPesquisarTarefa().getText());
 
         buscarTarefa.getTabelaTarefa().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar");
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+
+        JButton btn1 = new JButton(editar);
         btn1.setName("m");
-        btn2 = new JButton("Eliminar");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        JButton btn2 = new JButton(excluir);
         btn2.setName("e");
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
 
         try {
-            String[] colunas = new String[]{"Descricao", "Prioridade", "Status", "Data Inicio", "Data Termino", "E", "M"};
+            String[] colunas = new String[]{"Descricao", "Prioridade", "Status", "Data Inicio", "Data Termino", "Editar", "Excluir"};
             Object[][] dados = new Object[tarefas.size()][7];
             String s = "Em Andamento";
             for (int i = 0; i < tarefas.size(); i++) {
@@ -227,7 +238,10 @@ public class ControleTarefa implements ActionListener {
                     return false;
                 }
             };
+            TableColumnModel columnModel = buscarTarefa.getTabelaTarefa().getColumnModel();
             buscarTarefa.getTabelaTarefa().setModel(dataModel);
+            buscarTarefa.getTabelaTarefa().setPreferredScrollableViewportSize(buscarTarefa.getTabelaTarefa().getPreferredSize());
+
         } catch (Exception ex) {
 
         }

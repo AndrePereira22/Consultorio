@@ -39,12 +39,12 @@ public class BusinessProntuario implements IBusinessProntuario{
 
     @Override
     public void editarProntuario(Prontuario prontuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.daoProntuario.editarProntuario(prontuario);
     }
 
     @Override
     public void ativarDesativarProntuario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoProntuario.ativarDesativarProntuario(id);
     }
 
     @Override

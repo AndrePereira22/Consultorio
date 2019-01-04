@@ -49,7 +49,7 @@ public class TelaPagamento extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(300, 134));
 
         botaoOk.setBackground(new java.awt.Color(255, 255, 255));
@@ -136,6 +136,11 @@ public class TelaPagamento extends javax.swing.JFrame {
         jLabel12.setText("Caixa:");
 
         ComboCaixa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Caixa 1" }));
+        ComboCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboCaixaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,11 +152,8 @@ public class TelaPagamento extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel4)
                     .addComponent(jLabel12)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ComboPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,6 +259,10 @@ public class TelaPagamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValorparcelaActionPerformed
 
+    private void ComboCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboCaixaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboCaixaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -311,7 +317,6 @@ public class TelaPagamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel panelParcela;
     private javax.swing.JTextField txtQParcela;

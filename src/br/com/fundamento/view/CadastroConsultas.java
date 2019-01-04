@@ -81,13 +81,12 @@ public class CadastroConsultas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listPaciente = new javax.swing.JList<>();
         Botaoadd = new javax.swing.JButton();
-        labelFornecedor = new javax.swing.JLabel();
+        labelConsulta = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 610));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Medico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -190,14 +189,11 @@ public class CadastroConsultas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel6)
-                                    .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(10, 10, 10))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(10, 10, 10)))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(TipoExameOuConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -282,8 +278,8 @@ public class CadastroConsultas extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
-        labelFornecedor.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
-        labelFornecedor.setText("CADASTRO de consulta");
+        labelConsulta.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        labelConsulta.setText("CADASTRO de consulta");
 
         jPanel6.setBackground(new java.awt.Color(0, 57, 69));
 
@@ -321,14 +317,14 @@ public class CadastroConsultas extends javax.swing.JFrame {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelFornecedor)
+                        .addComponent(labelConsulta)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelFornecedor)
+                .addComponent(labelConsulta)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -423,7 +419,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel labelFornecedor;
+    private javax.swing.JLabel labelConsulta;
     private javax.swing.JList<String> listPaciente;
     private javax.swing.JList<String> listaMedico;
     private javax.swing.JFormattedTextField txtHora;
@@ -744,6 +740,20 @@ public class CadastroConsultas extends javax.swing.JFrame {
      */
     public javax.swing.JList<String> getListaMedico() {
         return listaMedico;
+    }
+
+    /**
+     * @return the labelConsulta
+     */
+    public javax.swing.JLabel getLabelConsulta() {
+        return labelConsulta;
+    }
+
+    /**
+     * @param labelConsulta the labelConsulta to set
+     */
+    public void setLabelConsulta(javax.swing.JLabel labelConsulta) {
+        this.labelConsulta = labelConsulta;
     }
     
     

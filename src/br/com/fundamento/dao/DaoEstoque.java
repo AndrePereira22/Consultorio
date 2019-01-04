@@ -48,17 +48,17 @@ public class DaoEstoque implements  IDaoEstoque{
                 id_estoque = result.getInt(1);
             }
 
-            for (Produto p : estoque.getProdutos()) {
-                 id_fornecedor = new DaoFornecedor().salvarfornecedor(p.getFornecedor());
-  
-                DaoList.salvarProduto(p, id_estoque,id_fornecedor);
-                   
-            }
-             for (SaidaEstoque s : estoque.getSaidasEstoque()) {
-               
-                DaoList.salvarSaidaEstoque(s,id_estoque);
-                
-            }
+//            for (Produto p : estoque.getProdutos()) {
+//                 id_fornecedor = new DaoFornecedor().salvarfornecedor(p.getFornecedor());
+//  
+//                DaoList.salvarProduto(p, id_estoque,id_fornecedor);
+//                   
+//            }
+////             for (SaidaEstoque s : estoque.getSaidasEstoque()) {
+//               
+//                DaoList.salvarSaidaEstoque(s,id_estoque);
+//                
+//            }
                     
         } catch (SQLException ex) {
             Logger.getLogger(DaoEstoque.class.getName()).log(Level.SEVERE, null, ex);

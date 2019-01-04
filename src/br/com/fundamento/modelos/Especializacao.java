@@ -16,6 +16,7 @@ public class Especializacao {
     private String descricao;
     private  String horario_disponivel;
     private double  salario;
+    private int id;
     
     private Medico medico;
     
@@ -81,6 +82,20 @@ public class Especializacao {
      */
     public void setHorario_disponivel(String horario_disponivel) {
         this.horario_disponivel = horario_disponivel;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
    

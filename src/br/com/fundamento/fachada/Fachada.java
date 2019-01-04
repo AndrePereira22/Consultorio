@@ -8,7 +8,7 @@ package br.com.fundamento.fachada;
 import br.com.fundamento.business.BusinessCaixa;
 import br.com.fundamento.business.BusinessConsulta;
 import br.com.fundamento.business.BusinessConsultorio;
-import br.com.fundamento.business.BusinessContato;
+import br.com.fundamento.business.BusinessEntradaEstoque;
 import br.com.fundamento.business.BusinessEspecializacao;
 import br.com.fundamento.business.BusinessEstoque;
 import br.com.fundamento.business.BusinessFornecedor;
@@ -26,7 +26,8 @@ import br.com.fundamento.business.BusinessTarefa;
 import br.com.fundamento.business.IBusinessCaixa;
 import br.com.fundamento.business.IBusinessConsulta;
 import br.com.fundamento.business.IBusinessConsultorio;
-import br.com.fundamento.business.IBusinessContato;
+import br.com.fundamento.business.IBusinessEntradaEstoque;
+
 import br.com.fundamento.business.IBusinessEspecializacao;
 import br.com.fundamento.business.IBusinessEstoque;
 import br.com.fundamento.business.IBusinessFornecedor;
@@ -45,6 +46,7 @@ import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.EntradaEstoque;
 import br.com.fundamento.modelos.Especializacao;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Fornecedor;
@@ -66,7 +68,7 @@ import java.util.List;
  * @author prof Heldon
  */
 public class Fachada implements IFachada {
-    
+
     private static Fachada instance;
     private IBusinessProduto businessProduto;
     private IBusinessLogin businessLogin;
@@ -76,7 +78,7 @@ public class Fachada implements IFachada {
     private IBusinessRelatorio businessRelatorio;
     private IBusinessSaidaEstoque businessSaidaEstoque;
     private IBusinessParcela businessParcela;
-    private IBusinessEspecializacao businessEspecializacao; 
+    private IBusinessEspecializacao businessEspecializacao;
     private IBusinessConsultorio businessConsultorio;
     private IBusinessCaixa businessCaixa;
     private IBusinessConsulta businessConsulta;
@@ -85,18 +87,17 @@ public class Fachada implements IFachada {
     private IBusinessPaciente businessPaciente;
     private IBusinessPagamento businessPagamento;
     private IBusinessProntuario businessProntuario;
-    private IBusinessContato businessContato;
+    private IBusinessEntradaEstoque businessEntradaEstoque;
 
-    
     public static Fachada getInstance() {
         if (instance == null) {
             instance = new Fachada();
-        } 
+        }
         return instance;
     }
-    
+
     private Fachada() {
-       
+
         this.businessProduto = new BusinessProduto();
         this.businessLogin = new BusinessLogin();
         this.businessEstoque = new BusinessEstoque();
@@ -114,48 +115,45 @@ public class Fachada implements IFachada {
         this.businessPaciente = new BusinessPaciente();
         this.businessPagamento = new BusinessPagamento();
         this.businessProntuario = new BusinessProntuario();
-        this.businessContato = new BusinessContato();
-                
+        this.businessEntradaEstoque = new BusinessEntradaEstoque();
+
     }
-    
-    
+
     @Override
     public void salvarProduto(Produto produto) {
         this.businessProduto.salvar(produto);
     }
-    
+
     @Override
     public Produto buscarProdutoPorId(int id) {
         return this.businessProduto.buscarPorId(id);
-        
+
     }
-    
+
     @Override
     public List<Produto> getAllProdutos() {
         return this.businessProduto.getAll();
     }
-    
+
     @Override
     public void editarProduto(Produto produto) {
-     this.businessProduto.editar(produto);
-    }
-    
-    @Override
-    public void ativarDesativarProduto(int id) {
-      this.businessProduto.ativarDesativar(id);
+        this.businessProduto.editar(produto);
     }
 
-   
+    @Override
+    public void ativarDesativarProduto(int id) {
+        this.businessProduto.ativarDesativar(id);
+    }
 
     @Override
     public void ativarDesativarLogin(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessLogin.ativarDesativarLogin(id);
     }
 
     @Override
     public void salvarLogin(Login login) {
         this.businessLogin.salvarLogin(login);
-        }
+    }
 
     @Override
     public void editarLogin(Login login) {
@@ -164,7 +162,7 @@ public class Fachada implements IFachada {
 
     @Override
     public Login buscarLoginPorId(int id) {
-      return this.businessLogin.buscarLoginPorId(id);
+        return this.businessLogin.buscarLoginPorId(id);
     }
 
     @Override
@@ -172,19 +170,19 @@ public class Fachada implements IFachada {
         return this.businessLogin.getAllLogin();
     }
 
-    
     public void salvarEstoque(Estoque estoque) {
-         this.businessEstoque.salvarEstoque(estoque);
-        }
+        this.businessEstoque.salvarEstoque(estoque);
+    }
 
     @Override
     public Estoque buscarEstoquePorId(int id) {
-       return this.businessEstoque.buscarPorEstoqueId(id);
+        return this.businessEstoque.buscarPorEstoqueId(id);
     }
 
     @Override
     public List<Estoque> getAllEstoque() {
-      return this.businessEstoque.getAllEstoque();}
+        return this.businessEstoque.getAllEstoque();
+    }
 
     @Override
     public void editarEstoque(Estoque estoque) {
@@ -198,11 +196,12 @@ public class Fachada implements IFachada {
 
     @Override
     public void salvarfornecedor(Fornecedor fornecedor) {
-       this.businessFornecedor.salvarfornecedor(fornecedor); }
+        this.businessFornecedor.salvarfornecedor(fornecedor);
+    }
 
     @Override
     public Fornecedor buscarPorfornecedorId(int id) {
-       return this.businessFornecedor.buscarPorfornecedorId(id);
+        return this.businessFornecedor.buscarPorfornecedorId(id);
     }
 
     @Override
@@ -212,32 +211,32 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarfornecedor(Fornecedor fornecedor) {
-     this.businessFornecedor.editarfornecedor(fornecedor);
+        this.businessFornecedor.editarfornecedor(fornecedor);
     }
 
     @Override
     public void ativarDesativarfornecedor(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-       @Override
-    public List<Fornecedor> getPorBuscaFornecedor(String busca) {
-     return this.businessFornecedor.getPorBuscaFornecedor(busca);
+        this.businessFornecedor.ativarDesativarfornecedor(id);
     }
 
+    @Override
+    public List<Fornecedor> getPorBuscaFornecedor(String busca) {
+        return this.businessFornecedor.getPorBuscaFornecedor(busca);
+    }
 
     @Override
     public void salvarCaixa(Caixa caixa) {
-       this.businessCaixa.salvarCaixa(caixa);
+        this.businessCaixa.salvarCaixa(caixa);
     }
 
     @Override
     public Caixa buscarCaixaPorId(int id) {
-      return this.businessCaixa.buscarCaixaPorId(id);
-   }
+        return this.businessCaixa.buscarCaixaPorId(id);
+    }
 
     @Override
     public List<Caixa> getAllCaixa() {
-        return  this.businessCaixa.getAllCaixa();
+        return this.businessCaixa.getAllCaixa();
     }
 
     @Override
@@ -249,8 +248,6 @@ public class Fachada implements IFachada {
     public void ativarDesativarCaixa(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
 
     @Override
     public void salvarConsulta(Consulta consulta) {
@@ -269,18 +266,18 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarConsulta(Consulta consulta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.businessConsulta.editarConsulta(consulta);
     }
 
     @Override
     public void ativarDesativarConsulta(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.businessConsulta.ativarDesativarConsulta(id);
     }
 
     @Override
     public void salvarEspecializacao(Especializacao especializacao) {
-    
-        this.businessEspecializacao.salvarEspecializacao(especializacao);   
+
+        this.businessEspecializacao.salvarEspecializacao(especializacao);
     }
 
     @Override
@@ -295,15 +292,13 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarEspecializacao(Especializacao especializacao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessEspecializacao.editarEspecializacao(especializacao);
     }
 
     @Override
     public void ativarDesativarEspecializacao(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessEspecializacao.ativarDesativarEspecializacao(id);
     }
-
-   
 
     @Override
     public void salvarFuncionario(Funcionario funcionario) {
@@ -318,7 +313,7 @@ public class Fachada implements IFachada {
     @Override
     public List<Funcionario> getAllFuncionario() {
         return this.businessFuncionario.getAllFuncionario();
-    
+
     }
 
     @Override
@@ -328,15 +323,15 @@ public class Fachada implements IFachada {
 
     @Override
     public void ativarDesativarFuncionario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessFuncionario.ativarDesativarFuncionario(id);
     }
-    
+
     @Override
-    public List<Funcionario> getPorBuscaFuncionario(String busca){
-    return this.businessFuncionario.getPorBuscaFuncionario(busca);
-    
-     }
-    
+    public List<Funcionario> getPorBuscaFuncionario(String busca) {
+        return this.businessFuncionario.getPorBuscaFuncionario(busca);
+
+    }
+
     @Override
     public void salvarMedico(Medico medico) {
         this.businessMedico.salvarMedico(medico);
@@ -349,23 +344,25 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Medico> getAllMedico() {
-       return this.businessMedico.getAllMedico();
+        return this.businessMedico.getAllMedico();
     }
 
     @Override
     public void editarMedico(Medico medico) {
-       this.businessMedico.editarMedico(medico);
+        this.businessMedico.editarMedico(medico);
     }
 
     @Override
     public void ativarDesativarMedico(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessMedico.ativarDesativarMedico(id);
+
     }
- @Override
+
+    @Override
     public List<Medico> getPorBuscaMedico(String busca) {
-      return this.businessMedico.getPorBuscaMedico(busca);
+        return this.businessMedico.getPorBuscaMedico(busca);
     }
- 
+
     @Override
     public void salvarPaciente(Paciente paciente) {
         this.businessPaciente.salvarPaciente(paciente);
@@ -373,28 +370,29 @@ public class Fachada implements IFachada {
 
     @Override
     public Paciente buscarPacientePorId(int id) {
-       return this.businessPaciente.buscarPacientePorId(id);
+        return this.businessPaciente.buscarPacientePorId(id);
     }
 
     @Override
     public List<Paciente> getAllPaciente() {
-    return this.businessPaciente.getAllPaciente();
-            }
+        return this.businessPaciente.getAllPaciente();
+    }
 
     @Override
     public void editarPaciente(Paciente paciente) {
-       this.businessPaciente.editarPaciente(paciente);
+        this.businessPaciente.editarPaciente(paciente);
     }
 
     @Override
     public void ativarDesativarPaciente(int id) {
-      this.businessPaciente.ativarDesativarPaciente(id);
+        this.businessPaciente.ativarDesativarPaciente(id);
     }
-    
-@Override
+
+    @Override
     public List<Paciente> getPorBusca(String busca) {
         return this.businessPaciente.getPorBusca(busca);
     }
+
     @Override
     public void salvarPagamento(Pagamento pagamento) {
         this.businessPagamento.salvarPagamento(pagamento);
@@ -407,7 +405,7 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Pagamento> getAllPagamento() {
-     return this.businessPagamento.getAllPagamento();
+        return this.businessPagamento.getAllPagamento();
     }
 
     @Override
@@ -427,12 +425,12 @@ public class Fachada implements IFachada {
 
     @Override
     public Parcela buscarParcelaPorId(int id) {
-       return this.businessParcela.buscarParcelaPorId(id);
+        return this.businessParcela.buscarParcelaPorId(id);
     }
 
     @Override
     public List<Parcela> getAllParcela() {
-       return this.businessParcela.getAllParcela();
+        return this.businessParcela.getAllParcela();
     }
 
     @Override
@@ -457,17 +455,17 @@ public class Fachada implements IFachada {
 
     @Override
     public List<Prontuario> getAllProntuario() {
-      return this.businessProntuario.getAllProntuario();
+        return this.businessProntuario.getAllProntuario();
     }
 
     @Override
     public void editarProntuario(Prontuario prontuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessProntuario.editarProntuario(prontuario);
     }
 
     @Override
     public void ativarDesativarProntuario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.businessProntuario.ativarDesativarProntuario(id);
     }
 
     @Override
@@ -477,7 +475,7 @@ public class Fachada implements IFachada {
 
     @Override
     public SaidaEstoque buscarSaidaEstoquePorId(int id) {
-       return this.businessSaidaEstoque.buscarSaidaEstoquePorId(id);
+        return this.businessSaidaEstoque.buscarSaidaEstoquePorId(id);
     }
 
     @Override
@@ -497,40 +495,42 @@ public class Fachada implements IFachada {
 
     @Override
     public void salvarTarefa(Tarefa tarefa) {
-         this.businessTarefa.salvarTarefa(tarefa);}
+        this.businessTarefa.salvarTarefa(tarefa);
+    }
 
     @Override
     public Tarefa buscarTarefaPorId(int id) {
-       return this.businessTarefa.buscarTarefaPorId(id);
+        return this.businessTarefa.buscarTarefaPorId(id);
     }
 
     @Override
     public List<Tarefa> getAllTarefa() {
-       return this.businessTarefa.getAllTarefa();  }
+        return this.businessTarefa.getAllTarefa();
+    }
 
     @Override
     public void editarTarefa(Tarefa tarefa) {
-    this.businessTarefa.editarTarefa(tarefa);
+        this.businessTarefa.editarTarefa(tarefa);
     }
 
     @Override
     public void ativarDesativarTarefa(int id) {
-       this.businessTarefa.ativarDesativarTarefa(id);
+        this.businessTarefa.ativarDesativarTarefa(id);
     }
 
     @Override
     public void salvarRelatorio(Relatorio relatorio) {
-      this.businessRelatorio.salvar(relatorio);
+        this.businessRelatorio.salvar(relatorio);
     }
 
     @Override
     public Relatorio buscarRlatorioPorId(int id) {
-        return  this.businessRelatorio.buscarPorId(id);
+        return this.businessRelatorio.buscarPorId(id);
     }
 
     @Override
     public List<Relatorio> getAllRelatorio() {
-       return  this.businessRelatorio.getAll();
+        return this.businessRelatorio.getAll();
     }
 
     @Override
@@ -550,12 +550,12 @@ public class Fachada implements IFachada {
 
     @Override
     public Consultorio buscarConsultorioPorId(int id) {
-       return this.businessConsultorio.buscarConsultorioPorId(id);
+        return this.businessConsultorio.buscarConsultorioPorId(id);
     }
 
     @Override
     public List<Consultorio> getAllConsultorio() {
-   return this.businessConsultorio.getAllConsultorio();
+        return this.businessConsultorio.getAllConsultorio();
     }
 
     @Override
@@ -569,48 +569,23 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarContato(Contato contato) {
-       this.businessContato.salvarContato(contato);
-    }
-
-    @Override
-    public Contato buscarContatoPorId(int id) {
-        return this.businessContato.buscarContatoPorId(id);
-    }
-
-    @Override
-    public List<Contato> getAllContato() {
-       return this.businessContato.getAllContato();
-    }
-
-    @Override
-    public void editarContato(Contato contato) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ativarDesativarContato(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Produto> getPorBuscaProduto(String busca) {
         return this.businessProduto.getPorBuscaProduto(busca);
     }
 
     @Override
     public List<Tarefa> getPorBuscaTarefa(String busca) {
-       return this.businessTarefa.getPorBuscaTarefa(busca);
+        return this.businessTarefa.getPorBuscaTarefa(busca);
     }
 
     @Override
     public List<Consulta> getPorBuscaConsulta(String busca) {
-        return  this.businessConsulta.getPorBuscaConsulta(busca);
+        return this.businessConsulta.getPorBuscaConsulta(busca);
     }
 
     @Override
     public Medico BuscarMedico(String busca) {
-       return this.businessMedico.getBuscarMedico(busca);
+        return this.businessMedico.getBuscarMedico(busca);
     }
 
     @Override
@@ -619,18 +594,18 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public Login buscarLoginMedico(String parametro,String nome){
-    return this.businessLogin.buscarLoginMedico(parametro,nome);
+    public Login buscarLoginMedico(String parametro, String nome) {
+        return this.businessLogin.buscarLoginMedico(parametro, nome);
     }
 
     @Override
     public Consultorio bucarConsultorio() {
-      return this.businessConsultorio.bucarConsultorio();
+        return this.businessConsultorio.bucarConsultorio();
     }
 
     @Override
     public Especializacao buscarEspecializaco(String busca) {
-      return this.businessEspecializacao.buscarEspecializaco(busca);
+        return this.businessEspecializacao.buscarEspecializaco(busca);
     }
 
     @Override
@@ -640,15 +615,42 @@ public class Fachada implements IFachada {
 
     @Override
     public Prontuario buscarProntuario(String busca) {
-       return this.businessProntuario.buscarProntuario(busca);
+        return this.businessProntuario.buscarProntuario(busca);
     }
 
- 
-   
+    @Override
+    public List<SaidaEstoque> getPorBuscaSaidaEstoque(String busca) {
+        return this.businessSaidaEstoque.getPorBuscaSaidaEstoque(busca);
+    }
 
-    
+    @Override
+    public void salvarEntradaEstoque(EntradaEstoque entradaEstoque) {
+    this.businessEntradaEstoque.salvarEntradaEstoque(entradaEstoque);
+    }
 
-    
- 
-    
+    @Override
+
+    public EntradaEstoque buscarEntradaEstoquePorId(int id) {
+        return this.businessEntradaEstoque.buscarEntradaEstoquePorId(id);
+    }
+
+    @Override
+    public List<EntradaEstoque> getAllEntradaEstoque() {
+      return  this.businessEntradaEstoque.getAllEntradaEstoque();
+    }
+
+    @Override
+    public void editarEntradaEstoque(EntradaEstoque entradaEstoque) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ativarDesativarEntradaEstoque(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<EntradaEstoque> getPorBuscaEntradaEstoque(String busca) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -41,6 +41,7 @@ public class DaoMedico implements IDaoMedico {
             int id_contato = new DaoContato().salvarContato(medico.getContato());
             int id_login = new DaoLogin().salvarLogin(medico.getLogin());
             int id_endereco = CommumDao.salvarEndereco(medico.getEndereco());
+            int id_especializacao = new DaoEspecializacao().salvarEspecializacao(medico.getEspecializacao());
 
             this.statement = conexao.prepareStatement(SQLUtil.Medico.INSERT);
             this.statement.setString(1, medico.getNome());
@@ -52,19 +53,12 @@ public class DaoMedico implements IDaoMedico {
             this.statement.setInt(7, id_login);
             this.statement.setInt(8, id_endereco);
             this.statement.setInt(9, id_contato);
+            this.statement.setInt(10, id_especializacao);
 
             result = statement.executeQuery();
 
             if (result.next()) {
                 id = result.getInt(1);
-            }
-            for (Especializacao e : medico.getEspecializacoes()) {
-                DaoList.salvarEspecializacao(e, id);
-            }
-            for (Consulta c : medico.getConsultas()) {
-                int id_pagamento = new DaoPagamento().salvarPagamento(c.getPagamento());
-                int id_paciente = new DaoPaciente().salvarPaciente(c.getPaciente());
-                DaoList.salvarConsulta(c, id, id_pagamento, id_paciente);
             }
 
         } catch (SQLException ex) {
@@ -76,11 +70,11 @@ public class DaoMedico implements IDaoMedico {
     @Override
     public Medico buscarMedicoPorId(int id) {
         Medico medico = null;
-        Endereco endereco=null;
-        Contato contato=null;
-       
-        Login login=null;
-        int idE=0,idC=0,idL=0;
+        Endereco endereco = null;
+        Contato contato = null;
+        Especializacao especializacao = null;
+        Login login = null;
+        int idE = 0, idC = 0, idL = 0, idEsp = 0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Medico.NOME, id));
@@ -88,35 +82,38 @@ public class DaoMedico implements IDaoMedico {
 
             if (result.next()) {
                 medico = new Medico();
-                
+
                 medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
                 medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
-               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
                 idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-               
+                idEsp = result.getInt(SQLUtil.Medico.COL_ID_ESPECIALIZACAO);
+
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-            
-                login =  new DaoLogin().buscarLoginPorId(idL);
-               
+
+                login = new DaoLogin().buscarLoginPorId(idL);
+
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-               
+                especializacao = new DaoEspecializacao().buscarEspecializacaoPorId(idEsp);
                 medico.setLogin(login);
-                medico.setConsultas(new ArrayList<Consulta>());
-                medico.setEspecializacoes(new ArrayList<Especializacao>());
-                
-                 id = result.getInt(1);
+
+                medico.setEspecializacao(especializacao);
+
+                id = result.getInt(1);
                 medico.setId(id);
-                
-                medico.setId_end(idE);  
+
+                medico.setId_end(idE);
                 medico.setId_contato(idC);
                 medico.setId_login(idL);
+                medico.setId_esp(idEsp);
+
             }
             this.conexao.close();
 
@@ -129,11 +126,11 @@ public class DaoMedico implements IDaoMedico {
     @Override
     public List<Medico> getAllMedico() {
         List<Medico> medicos = new ArrayList<>();
-         Endereco endereco=null;
-        Contato contato=null;
-        
-        Login login=null;
-        int idE=0,idC=0,idL=0,id;
+        Endereco endereco = null;
+        Contato contato = null;
+        Especializacao especializacao = null;
+        Login login = null;
+        int idE = 0, idC = 0, idL = 0, id, idEsp = 0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Medico.NOME));
@@ -141,35 +138,37 @@ public class DaoMedico implements IDaoMedico {
             Medico medico;
             while (result.next()) {
                 medico = new Medico();
-                
+
                 medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
-               medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
-               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
-                 idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
-               
-                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                
+                idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
+                idEsp = result.getInt(SQLUtil.Medico.COL_ID_ESPECIALIZACAO);
+                idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
+                idEsp = result.getInt(SQLUtil.Medico.COL_ID_ESPECIALIZACAO);
+
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
+
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                
-                login =  new DaoLogin().buscarLoginPorId(idL);
-               
+                especializacao = new DaoEspecializacao().buscarEspecializacaoPorId(idEsp);
+                login = new DaoLogin().buscarLoginPorId(idL);
+
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                
+
                 medico.setLogin(login);
-                medico.setConsultas(new ArrayList<Consulta>());
-                medico.setEspecializacoes(new ArrayList<Especializacao>());
+                medico.setId_esp(idEsp);
+
                 medico.setId_contato(idC);
                 medico.setId_end(idE);
                 medico.setId_login(idL);
-                
+
                 id = result.getInt(1);
-                 medico.setId(id);
+                medico.setId(id);
                 medicos.add(medico);
             }
             this.conexao.close();
@@ -177,42 +176,52 @@ public class DaoMedico implements IDaoMedico {
         } catch (SQLException ex) {
             Logger.getLogger(DaoMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return medicos;}
+        return medicos;
+    }
 
     @Override
     public void editarMedico(Medico medico) {
-        
-      
+
         try {
             this.conexao = SQLConections.getInstance();
-            this.statement = this.conexao.prepareStatement(SQLUtil.Medico.updateMedico(medico.getNome(),medico.getCpf(),medico.getRg(),medico.getId()));
-           
+            this.statement = this.conexao.prepareStatement(SQLUtil.Medico.updateMedico(medico.getNome(), medico.getCpf(), medico.getRg(), medico.getId()));
+
             statement.execute();
             statement.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
-                CommumDao.editarEndereco(medico.getEndereco(), medico.getId_end());
-                CommumDao.editarContato(medico.getContato(), medico.getId_contato());
-                new DaoLogin().editarLogin(medico.getLogin());
-                
-      
-        }
+        CommumDao.editarEndereco(medico.getEndereco(), medico.getId_end());
+        CommumDao.editarContato(medico.getContato(), medico.getId_contato());
+        new DaoLogin().editarLogin(medico.getLogin());
+        new DaoEspecializacao().editarEspecializacao(medico.getEspecializacao());
+
+    }
 
     @Override
     public void ativarDesativarMedico(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Medico.desativar(id));
+
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<Medico> getPorBuscaMedico(String busca) {
         List<Medico> medicos = new ArrayList<>();
-         Endereco endereco=null;
-        Contato contato=null;
-       
-        Login login=null;
-        int idE=0,idC=0,idL=0,id;
+        Endereco endereco = null;
+        Contato contato = null;
+        Especializacao esp;
+        Login login = null;
+        int idE = 0, idC = 0, idL = 0, id, idEsp = 0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.selectPorBusca(busca));
@@ -220,91 +229,94 @@ public class DaoMedico implements IDaoMedico {
             Medico medico;
             while (result.next()) {
                 medico = new Medico();
-                
+
                 medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
-               medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
-               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+                medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
-                 idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
+                idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                
+                idEsp = result.getInt(SQLUtil.Medico.COL_ID_ESPECIALIZACAO);
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                
-                login =  new DaoLogin().buscarLoginPorId(idL);
+                esp = new DaoEspecializacao().buscarEspecializacaoPorId(idEsp);
+                login = new DaoLogin().buscarLoginPorId(idL);
+
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                
+                medico.setEspecializacao(esp);
                 medico.setLogin(login);
-                medico.setConsultas(new ArrayList<Consulta>());
-                medico.setEspecializacoes(new ArrayList<Especializacao>());
+
+                medico.setId_esp(idEsp);
                 medico.setId_contato(idC);
                 medico.setId_end(idE);
                 medico.setId_login(idL);
-                
+
                 id = result.getInt(1);
-                 medico.setId(id);
+                medico.setId(id);
                 medicos.add(medico);
-                
+
             }
             this.conexao.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return medicos;   
-      }
-     public Medico BuscarMedico(String busca) {
-     Medico medico = new Medico();
-      Endereco endereco=null;
-        Contato contato=null;
-       
-        Login login=null;
-        int idE=0,idC=0,idL=0,id;
+        return medicos;
+    }
+
+    public Medico BuscarMedico(String busca) {
+        Medico medico = new Medico();
+        Endereco endereco = null;
+        Contato contato = null;
+        Especializacao esp;
+        Login login = null;
+        int idE = 0, idC = 0, idL = 0, id, idEsp = 0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Medico.buscarMedico(busca));
             this.result = this.statement.executeQuery();
-           
+
             while (result.next()) {
-                
-                
-             medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
-               medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
-               medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
+
+                medico.setNome(result.getString(SQLUtil.Medico.COL_NOME));
+                medico.setData_nascimento(result.getString(SQLUtil.Medico.COL_DATA_NASCIMENTO));
+                medico.setData_cadastro(result.getString(SQLUtil.Medico.COL_DATA_CADASTRO));
                 medico.setCpf(result.getString(SQLUtil.Medico.COL_DATA_CPF));
                 medico.setSexo(result.getString(SQLUtil.Medico.COL_SEXO));
                 medico.setRg(result.getString(SQLUtil.Medico.COL_RG));
-                 idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
+                idE = result.getInt(SQLUtil.Medico.COL_ENDERECO);
                 idC = result.getInt(SQLUtil.Medico.COL_ID_CONTATO);
-                
+                idEsp = result.getInt(SQLUtil.Medico.COL_ID_ESPECIALIZACAO);
                 idL = result.getInt(SQLUtil.Medico.COL_ID_LOGIN);
                 endereco = CommumDao.bucarEnderecoPorId(idE);
                 contato = CommumDao.bucarContatoPorId(idC);
-                
-                login =  new DaoLogin().buscarLoginPorId(idL);
+                esp = new DaoEspecializacao().buscarEspecializacaoPorId(idEsp);
+
+                login = new DaoLogin().buscarLoginPorId(idL);
                 medico.setContato(contato);
                 medico.setEndereco(endereco);
-                
+
                 medico.setLogin(login);
-                
+                medico.setEspecializacao(esp);
+
                 medico.setId_contato(idC);
                 medico.setId_end(idE);
                 medico.setId_login(idL);
-                
+
                 id = result.getInt(1);
-                 medico.setId(id);
-             
+                medico.setId(id);
+
             }
             this.conexao.close();
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return medico; 
-     }
+        return medico;
+    }
 
 }

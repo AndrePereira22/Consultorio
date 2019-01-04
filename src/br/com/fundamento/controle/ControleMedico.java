@@ -30,10 +30,13 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -47,6 +50,7 @@ public class ControleMedico implements ActionListener {
     JButton btn1, btn2;
     private Medico m;
     private List<Medico> medicos;
+    private Especializacao especializacao;
     IFachada fachada1 = Fachada.getInstance();
 
     public ControleMedico(TelaPrincipal telaPrincipal, CadastroMedico cadastroMedico, BuscarMedico buscarMedico) {
@@ -74,6 +78,7 @@ public class ControleMedico implements ActionListener {
                         if (boton.getName().equals("m")) {
                             int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
                             int ro = buscarMedico.getTabelaMedico().getSelectedRow();
+                            System.out.println(ro);
                             if (editar == 0) {
                                 cm = new CadastroMedico();
                                 cm.getLabelmedico().setText("ATUALIZAR MEDICO");
@@ -106,8 +111,19 @@ public class ControleMedico implements ActionListener {
                             }
                         }
                         if (boton.getName().equals("e")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
+                            int ro = buscarMedico.getTabelaMedico().getSelectedRow();
+                            if (editar == 0) {
+                                m = medicos.get(ro);
+
+                                fachada1.ativarDesativarMedico(m.getId());
+                                CommumDao.ativarDesativarContato(m.getId_contato());
+                                CommumDao.ativarDesativarEndereco(m.getId_end());
+                                fachada1.ativarDesativarLogin(m.getId_login());
+                                fachada1.ativarDesativarEspecializacao(m.getId_esp());
+                                preenchertabela();
+                            }
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -141,11 +157,11 @@ public class ControleMedico implements ActionListener {
         if (e.getSource() == telaPrincipal.getBotaoMedico()) {
             preenchertabela();
 
-            telaPrincipal.setEnabled(false);
+           
             buscarMedico.setVisible(true);
         }
         if (e.getSource() == buscarMedico.getBotaoFecharMedico()) {
-            telaPrincipal.setEnabled(true);
+            
             buscarMedico.setVisible(false);
         }
         if (e.getSource() == buscarMedico.getBotaoAdicionarMedico()) {
@@ -175,14 +191,10 @@ public class ControleMedico implements ActionListener {
             con.setCelular(cadastroMedico.getTxtcelular().getText());
             con.setTelefone(cadastroMedico.getTxttelefone().getText());
 
-            
-
             Login l = new Login();
             String senha = new String(cadastroMedico.getTxtsenha1().getPassword());
             l.setSenha(senha);
             l.setUsuario(cadastroMedico.getTxtlogin1().getText());
-
-            List<Especializacao> especializacoes = new ArrayList<Especializacao>();
 
             Especializacao es = new Especializacao();
             es.setDescricao(cadastroMedico.getTxtEspecializacao().getText());
@@ -196,14 +208,13 @@ public class ControleMedico implements ActionListener {
             }
             es.setSalario(salario);
             es.setHorario_disponivel(cadastroMedico.getTxthorario().getText());
-            especializacoes.add(es);
 
             Medico medico = new Medico();
-            medico.setConsultas(new ArrayList<Consulta>());
-            medico.setEspecializacoes(especializacoes);
+
+            medico.setEspecializacao(es);
             medico.setContato(con);
             medico.setEndereco(end);
-            
+
             medico.setLogin(l);
             medico.setCpf(cadastroMedico.getTxtcpf().getText());
             java.util.Date d = new Date();
@@ -221,9 +232,7 @@ public class ControleMedico implements ActionListener {
             if (senha.equals(confirmarSenha)) {
 
                 fachada1.salvarMedico(medico);
-                buscarMedico.getTxtPesquisarMedico().setText("")
-                        
-                        ;
+                buscarMedico.getTxtPesquisarMedico().setText("");
                 preenchertabela();
                 buscarMedico.setVisible(true);
                 cadastroMedico.setVisible(false);
@@ -239,13 +248,20 @@ public class ControleMedico implements ActionListener {
         medicos = fachada1.getPorBuscaMedico(buscarMedico.getTxtPesquisarMedico().getText());
         buscarMedico.getTabelaMedico().setDefaultRenderer(Object.class, new Render());
 
-        btn1 = new JButton("Modificar");
-        btn1.setName("m");
-        btn2 = new JButton("Eliminar");
-        btn2.setName("e");
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
 
+        JButton btn1 = new JButton(editar);
+        btn1.setName("m");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        JButton btn2 = new JButton(excluir);
+        btn2.setName("e");
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
         try {
-            String[] colunas = new String[]{"Nome", "Sexo", "Rg", "CPF", "Data Nascimento", "Data Cadastro", "E", "M"};
+            String[] colunas = new String[]{"Nome", "Sexo", "Rg", "CPF", "Data Nascimento", "Data Cadastro", "Editar", "Excluir"};
             Object[][] dados = new Object[medicos.size()][8];
             for (int i = 0; i < medicos.size(); i++) {
                 Medico medico = medicos.get(i);
@@ -265,7 +281,11 @@ public class ControleMedico implements ActionListener {
                     return false;
                 }
             };
+            TableColumnModel columnModel = buscarMedico.getTabelaMedico().getColumnModel();
             buscarMedico.getTabelaMedico().setModel(dataModel);
+            buscarMedico.getTabelaMedico().setPreferredScrollableViewportSize(buscarMedico.getTabelaMedico().getPreferredSize());
+
+           
         } catch (Exception ex) {
 
         }
@@ -273,6 +293,11 @@ public class ControleMedico implements ActionListener {
     }
 
     public void preencherCadastro(Medico p, CadastroMedico cm) {
+
+        especializacao = fachada1.buscarEspecializaco(p.getNome());
+        cm.getTxtsalario1().setText(especializacao.getSalario() + "");
+        cm.getTxthorario().setText(especializacao.getHorario_disponivel());
+        cm.getTxtEspecializacao().setText(especializacao.getDescricao());
 
         cm.getTxtcep().setText(p.getEndereco().getCep());
         cm.getTxtbairro().setText(p.getEndereco().getBairro());
@@ -314,31 +339,43 @@ public class ControleMedico implements ActionListener {
         public void actionPerformed(ActionEvent e) {
 
             if (e.getSource() == cm.getBotaoSalvarMedico()) {
-                
+
                 Medico medico = m;
-                
-                
-               medico.getEndereco().setBairro(cm.getTxtbairro().getText());
-                medico.getEndereco() .setRua(cm.getTxtrua().getText());
-                medico.getEndereco() .setCep(cm.getTxtcep().getText());
-                medico.getEndereco() .setNumero(cm.getTxtnumero().getText());
-                medico.getEndereco() .setMunicipio(cm.getTxtcidade().getText());
-                medico.getEndereco() .setEstado(cm.getTxtUf().getSelectedItem().toString());
+
+                medico.getEndereco().setBairro(cm.getTxtbairro().getText());
+                medico.getEndereco().setRua(cm.getTxtrua().getText());
+                medico.getEndereco().setCep(cm.getTxtcep().getText());
+                medico.getEndereco().setNumero(cm.getTxtnumero().getText());
+                medico.getEndereco().setMunicipio(cm.getTxtcidade().getText());
+                medico.getEndereco().setEstado(cm.getTxtUf().getSelectedItem().toString());
                 medico.getContato().setEmail(cm.getTxtemail().getText());
-                 medico.getContato().setCelular(cm.getTxtcelular().getText());
-                 medico.getContato().setTelefone(cm.getTxttelefone().getText());
+                medico.getContato().setCelular(cm.getTxtcelular().getText());
+                medico.getContato().setTelefone(cm.getTxttelefone().getText());
                 String senha = new String(cm.getTxtsenha1().getPassword());
-                 medico.getLogin().setSenha(senha);
-                 
-                 medico.getLogin().setUsuario(cm.getTxtlogin1().getText());
+                medico.getLogin().setSenha(senha);
+
+                especializacao.setHorario_disponivel(cm.getTxthorario().getText());
+                especializacao.setDescricao(cm.getTxtEspecializacao().getText());
+                String salario = cm.getTxtsalario1().getText();
+                salario = salario.replaceAll("[^0-9]", "");
+                double s = 0;
+                try {
+                    s = Double.parseDouble(salario);
+
+                } catch (NumberFormatException erro) {
+                }
+                especializacao.setSalario(s);
+                medico.setEspecializacao(especializacao);
+
+                medico.getLogin().setUsuario(cm.getTxtlogin1().getText());
 
                 String confirmarSenha = new String(cm.getTxtconfirmasenha1().getPassword());
-                
+
                 medico.setCpf(cm.getTxtcpf().getText());
                 medico.setNome(cm.getTxtnome().getText());
                 medico.setRg(cm.getTxtrg().getText());
                 medico.setSexo(cm.getjComboBox1().getSelectedItem().toString());
-                
+
                 if (senha.equals(confirmarSenha)) {
 
                     fachada1.editarMedico(medico);

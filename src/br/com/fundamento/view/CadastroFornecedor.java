@@ -59,7 +59,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         labelFornecedor = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1160, 610));

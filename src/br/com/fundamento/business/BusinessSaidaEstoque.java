@@ -47,5 +47,10 @@ public class BusinessSaidaEstoque implements IBusinessSaidaEstoque{
     public void ativarDesativarSaidaEstoque(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<SaidaEstoque> getPorBuscaSaidaEstoque(String busca) {
+        return this.daoSaidaEstoque.getPorBuscaSaidaEstoque(busca);
+       }
     
 }

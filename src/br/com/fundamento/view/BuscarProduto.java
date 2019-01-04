@@ -36,7 +36,7 @@ public class BuscarProduto extends javax.swing.JFrame {
         labelproduto = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(1160, 500));

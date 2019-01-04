@@ -39,12 +39,12 @@ public class BusinessLogin implements  IBusinessLogin{
 
     @Override
     public void editarLogin(Login login) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoLogin.editarLogin(login);
     }
 
     @Override
     public void ativarDesativarLogin(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoLogin.ativarDesativarLogin(id);
     }
 
     @Override

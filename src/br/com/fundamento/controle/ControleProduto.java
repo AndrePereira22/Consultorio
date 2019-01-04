@@ -28,12 +28,15 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -42,7 +45,7 @@ import javax.swing.table.DefaultTableModel;
 public class ControleProduto implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    private CadastroProduto cadastroProduto,cp;
+    private CadastroProduto cadastroProduto, cp;
     private BuscarProduto buscarProduto;
     private List<Fornecedor> fornecedores;
     private Fornecedor fornecedor;
@@ -50,7 +53,7 @@ public class ControleProduto implements ActionListener {
     private Estoque estoque;
     private CadastroFornecedor cadastroFornecedor;
     private JButton btn1, btn2;
-    private  List<Produto> produtos;
+    private List<Produto> produtos;
     private Produto p;
 
     IFachada fachada1 = Fachada.getInstance();
@@ -73,26 +76,33 @@ public class ControleProduto implements ActionListener {
         cadastroProduto.getBotaoSalvarProduto().addActionListener(this);
         cadastroFornecedor.getBotaoSalvarFornecedor().addActionListener(this);
         cadastroFornecedor.getBotaoCancelarrFornecedor().addActionListener(this);
+        cadastroProduto.getNovoEstoque().addActionListener(this);
+        cadastroProduto.getSalvar().addActionListener(this);
+        cadastroProduto.getCancelar().addActionListener(this);
         buscarProduto.getBotaoAdicionarProduto().addActionListener(this);
         buscarProduto.getBotaoFecharProduto().addActionListener(this);
         buscarProduto.getTabela().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int column =  buscarProduto.getTabela().getColumnModel().getColumnIndexAtX(e.getX());
-                int row = e.getY() /  buscarProduto.getTabela().getRowHeight();
+                int column = buscarProduto.getTabela().getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / buscarProduto.getTabela().getRowHeight();
 
-                if (row < buscarProduto.getTabela().getRowCount() && row >= 0 && column <  buscarProduto.getTabela().getColumnCount() && column >= 0) {
-                    Object value =  buscarProduto.getTabela().getValueAt(row, column);
+                if (row < buscarProduto.getTabela().getRowCount() && row >= 0 && column < buscarProduto.getTabela().getColumnCount() && column >= 0) {
+                    Object value = buscarProduto.getTabela().getValueAt(row, column);
                     if (value instanceof JButton) {
                         ((JButton) value).doClick();
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("m")) {
-                              int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
                             int ro = buscarProduto.getTabela().getSelectedRow();
                             if (editar == 0) {
-                                if(cp==null)cp =new CadastroProduto();
+                                if (cp == null) {
+                                    cp = new CadastroProduto();
+                                }
                                 cp.getBotaonovo().setVisible(false);
+                                cp.getPanelEstoque().setVisible(false);
+                                cp.getNovoEstoque().setVisible(false);
                                 cp.getLabelproduto().setText("ATUALIZAR PRODUTO");
                                 cp.setVisible(true);
                                 buscarProduto.setVisible(false);
@@ -124,7 +134,7 @@ public class ControleProduto implements ActionListener {
                             }
                         }
                         if (boton.getName().equals("e")) {
-                              int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int editar = JOptionPane.showConfirmDialog(null, "Deseja eliminar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
 
                             int ro = buscarProduto.getTabela().getSelectedRow();
                             if (editar == 0) {
@@ -134,7 +144,6 @@ public class ControleProduto implements ActionListener {
                                 PreencherTabela();
                             }
 
-                        
                         }
                     }
                     if (value instanceof JCheckBox) {
@@ -150,10 +159,9 @@ public class ControleProduto implements ActionListener {
                 }
 
             }
-            
+
         });
-        
-        
+
         cadastroProduto.getListafornecedor().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -173,7 +181,7 @@ public class ControleProduto implements ActionListener {
                 int indice = cadastroProduto.getListestoque().getMinSelectionIndex();
                 try {
 
-                estoque = estoques.get(indice);
+                    estoque = estoques.get(indice);
                 } catch (Exception eu) {
                 }
             }
@@ -197,7 +205,7 @@ public class ControleProduto implements ActionListener {
                 int indice = cp.getListestoque().getMinSelectionIndex();
                 try {
 
-                estoque = estoques.get(indice);
+                    estoque = estoques.get(indice);
                 } catch (Exception eu) {
                 }
             }
@@ -228,17 +236,30 @@ public class ControleProduto implements ActionListener {
         if (e.getSource() == buscarProduto.getBotaoAdicionarProduto()) {
 
             cadastroProduto.setVisible(true);
+            cadastroProduto.getPanelEstoque().setVisible(false);
             PreencherBuscaFornecedor(cadastroProduto);
             PreencherEstoque(cadastroProduto);
             buscarProduto.setVisible(false);
         }
         if (e.getSource() == cadastroFornecedor.getBotaoCancelarrFornecedor()) {
-            
+
             cadastroFornecedor.setVisible(false);
 
         }
         if (e.getSource() == cadastroProduto.getBotaonovo()) {
             cadastroFornecedor.setVisible(true);
+        }
+        if (e.getSource() == cadastroProduto.getNovoEstoque()) {
+            cadastroProduto.getPanelEstoque().setVisible(true);
+        }
+        if (e.getSource() == cadastroProduto.getSalvar()) {
+            Estoque estoque = new Estoque();
+            estoque.setDescricao(cadastroProduto.getDescricao().getText());
+            fachada1.salvarEstoque(estoque);
+            PreencherEstoque(cadastroProduto);
+            cadastroProduto.getPanelEstoque().setVisible(false);
+            cadastroProduto.getDescricao().setText("");
+
         }
         if (e.getSource() == cadastroFornecedor.getBotaoSalvarFornecedor()) {
 
@@ -270,16 +291,18 @@ public class ControleProduto implements ActionListener {
         }
 
         if (e.getSource() == cadastroProduto.getBotaoCancelarProduto()) {
-buscarProduto.getTxtPesquisarProduto().setText("");
-                                            PreencherTabela();
+            buscarProduto.getTxtPesquisarProduto().setText("");
+            PreencherTabela();
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
         }
-        
+        if (e.getSource() == cadastroProduto.getCancelar()) {
+            cadastroProduto.getPanelEstoque().setVisible(false);
+        }
+
         if (e.getSource() == cadastroProduto.getBotaoSalvarProduto()) {
 
             Produto produto = new Produto();
-            System.out.println(estoque.getId());
             produto.setEstoque(estoque);
             produto.setFornecedor(fornecedor);
             produto.setFabricante(cadastroProduto.getTxtFabricante().getText());
@@ -302,15 +325,14 @@ buscarProduto.getTxtPesquisarProduto().setText("");
             }
             produto.setPreco_compra(valor);
             produto.setQuantidade_estoque(quantidade);
-            
 
             if (fornecedor != null) {
                 fachada1.salvarProduto(produto);
-                System.out.println("br.com.fundamento.controle.ControleProduto.actionPerformed()");
+
             }
 
-        buscarProduto.getTxtPesquisarProduto().setText("");
-                                            PreencherTabela();
+            buscarProduto.getTxtPesquisarProduto().setText("");
+            PreencherTabela();
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
             telaPrincipal.setEnabled(true);
@@ -319,16 +341,24 @@ buscarProduto.getTxtPesquisarProduto().setText("");
     }
 
     public void PreencherTabela() {
-         produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
-       
+        produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
+
         buscarProduto.getTabela().setDefaultRenderer(Object.class, new Render());
-        btn1 = new JButton("modificar"); 
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+
+        JButton btn1 = new JButton(editar);
         btn1.setName("m");
-        btn2 = new JButton("Eliminar");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        JButton btn2 = new JButton(excluir);
         btn2.setName("e");
-        
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
+
         try {
-            String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Preco Compra","E", "M"};
+            String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Preco Compra", "Editar", "Excluir"};
             Object[][] dados = new Object[produtos.size()][6];
             for (int i = 0; i < produtos.size(); i++) {
                 Produto produto = produtos.get(i);
@@ -345,7 +375,10 @@ buscarProduto.getTxtPesquisarProduto().setText("");
                     return false;
                 }
             };
+            TableColumnModel columnModel = buscarProduto.getTabela().getColumnModel();
             buscarProduto.getTabela().setModel(dataModel);
+            buscarProduto.getTabela().setPreferredScrollableViewportSize(buscarProduto.getTabela().getPreferredSize());
+
         } catch (Exception ex) {
 
         }
@@ -365,7 +398,8 @@ buscarProduto.getTxtPesquisarProduto().setText("");
         cp.getListafornecedor().setModel(model);
 
     }
-        public void PreencherEstoque(CadastroProduto cp) {
+
+    public void PreencherEstoque(CadastroProduto cp) {
 
         estoques = fachada1.getAllEstoque();
 
@@ -373,23 +407,20 @@ buscarProduto.getTxtPesquisarProduto().setText("");
         for (Estoque f : estoques) {
 
             model.addElement(f.getDescricao());
-           
+
         }
 
         cp.getListestoque().setModel(model);
     }
-      public void preencherCadastro(Produto p, CadastroProduto cp) {
 
-
+    public void preencherCadastro(Produto p, CadastroProduto cp) {
 
         cp.getTxtnomeproduto().setText(p.getNome());
         cp.getTxtquantidade().setText(p.getQuantidade_estoque() + "");
         cp.getTxtFabricante().setText(p.getFabricante());
-        cp.getTxtvalorunitario().setText(p.getPreco_compra()+"");
+        cp.getTxtvalorunitario().setText(p.getPreco_compra() + "");
         cp.getTxtFornecedor().setText(p.getFornecedor().getNome_fantasia());
         cp.getTxtcnpj().setText(p.getFornecedor().getCnpj());
-        
-     
 
     }
 
@@ -401,40 +432,38 @@ buscarProduto.getTxtPesquisarProduto().setText("");
             if (e.getSource() == cp.getBotaoSalvarProduto()) {
 
                 Produto produto = p;
-                p=null;
+                p = null;
                 produto.setFabricante(cp.getTxtFabricante().getText());
                 produto.setNome(cp.getTxtnomeproduto().getText());
-               
+
                 String precos = cp.getTxtvalorunitario().getText();
                 String quantidade = cp.getTxtquantidade().getText();
                 try {
                     Double s = Double.parseDouble(precos);
                     int t = Integer.parseInt(quantidade);
-                   produto.setPreco_compra(s);
-                   produto.setQuantidade_estoque(t);
+                    produto.setPreco_compra(s);
+                    produto.setQuantidade_estoque(t);
                 } catch (Exception fre) {
                 }
-               produto.getFornecedor().setCnpj(cp.getTxtcnpj().getText());
-               produto.getFornecedor().setNome_fantasia(cp.getTxtFornecedor().getText());
-               
-               produto.setEstoque(estoque);
-               produto.setFornecedor(fornecedor);
-               
-                    fachada1.editarProduto(produto);
-                    buscarProduto.getTxtPesquisarProduto().setText("");
-                    PreencherTabela();
-                    buscarProduto.setVisible(true);
-                    cp.setVisible(false);
-                    telaPrincipal.setEnabled(true);
-                    cp = null;
-                    p = null;
-                    produto = null;
-                } else {
-                    JOptionPane.showMessageDialog(null, "Senha diferentes");
-                }
+                produto.getFornecedor().setCnpj(cp.getTxtcnpj().getText());
+                produto.getFornecedor().setNome_fantasia(cp.getTxtFornecedor().getText());
 
+                produto.setEstoque(estoque);
+                produto.setFornecedor(fornecedor);
+
+                fachada1.editarProduto(produto);
+                buscarProduto.getTxtPesquisarProduto().setText("");
+                PreencherTabela();
+                buscarProduto.setVisible(true);
+                cp.setVisible(false);
+                telaPrincipal.setEnabled(true);
+                cp = null;
+                p = null;
+                produto = null;
+            } else {
+                JOptionPane.showMessageDialog(null, "Senha diferentes");
             }
+
         }
     }
-
-
+}

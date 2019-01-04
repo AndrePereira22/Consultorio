@@ -24,9 +24,9 @@ public class Medico {
     private int id_end;
     private int id_contato;
     private int id_login;
-    
-    private List<Consulta> consultas;
-    private List<Especializacao> especializacoes;
+    private int id_esp;
+   
+    private Especializacao especializacao;
     
     
     private Login login;
@@ -83,35 +83,9 @@ public class Medico {
         this.sexo = sexo;
     }
 
-    /**
-     * @return the consultas
-     */
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
-
-    /**
-     * @param consultas the consultas to set
-     */
-    public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
-    }
+    
 
    
-
-    /**
-     * @return the especializacoes
-     */
-    public List<Especializacao> getEspecializacoes() {
-        return especializacoes;
-    }
-
-    /**
-     * @param especializacoes the especializacoes to set
-     */
-    public void setEspecializacoes(List<Especializacao> especializacoes) {
-        this.especializacoes = especializacoes;
-    }
 
  
 
@@ -253,6 +227,34 @@ public class Medico {
      */
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    /**
+     * @return the especializacao
+     */
+    public Especializacao getEspecializacao() {
+        return especializacao;
+    }
+
+    /**
+     * @param especializacao the especializacao to set
+     */
+    public void setEspecializacao(Especializacao especializacao) {
+        this.especializacao = especializacao;
+    }
+
+    /**
+     * @return the id_esp
+     */
+    public int getId_esp() {
+        return id_esp;
+    }
+
+    /**
+     * @param id_esp the id_esp to set
+     */
+    public void setId_esp(int id_esp) {
+        this.id_esp = id_esp;
     }
             
     

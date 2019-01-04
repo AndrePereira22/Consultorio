@@ -9,6 +9,7 @@ import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.EntradaEstoque;
 import br.com.fundamento.modelos.Especializacao;
 
 import br.com.fundamento.modelos.Estoque;
@@ -142,6 +143,15 @@ public interface IFachada {
     public List<SaidaEstoque> getAllSaidaEstoque();
     public void editarSaidaEstoque(SaidaEstoque saidaEstoque);
     public void ativarDesativarSaidaEstoque(int id);
+     public List<SaidaEstoque> getPorBuscaSaidaEstoque(String busca);
+     
+    public void salvarEntradaEstoque(EntradaEstoque entradaEstoque);
+    public EntradaEstoque buscarEntradaEstoquePorId(int id);
+    public List<EntradaEstoque> getAllEntradaEstoque();
+    public void editarEntradaEstoque(EntradaEstoque entradaEstoque);
+    public void ativarDesativarEntradaEstoque(int id);
+    public List<EntradaEstoque> getPorBuscaEntradaEstoque(String busca);
+    
     
     public void salvarTarefa(Tarefa tarefa);
     public Tarefa buscarTarefaPorId(int id);
@@ -157,11 +167,7 @@ public interface IFachada {
     public void editarRelatorio(Relatorio relatroio);
     public void ativarDesativarRelatorio(int id);
     
-    public void salvarContato(Contato contato);
-    public Contato  buscarContatoPorId(int id);
-    public List<Contato> getAllContato();
-    public void editarContato(Contato contato);
-    public void ativarDesativarContato(int id);
+    
     
 
 }

@@ -12,45 +12,30 @@ package br.com.fundamento.modelos;
 public class SaidaEstoque {
     
     
-  private String nome;
-    private String fabricante;
+    private String data;
     private int quantidade_saida;
-    private Estoque estoque;
+    private Produto produto;
+    
+    private int id_produto;
     
     public SaidaEstoque(){
         
     }
 
-   
 
     /**
-     * @return the nome
+     * @return the data
      */
-    public String getNome() {
-        return nome;
+    public String getData() {
+        return data;
     }
 
     /**
-     * @param nome the nome to set
+     * @param data the data to set
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setData(String data) {
+        this.data = data;
     }
-
-    /**
-     * @return the fabricante
-     */
-    public String getFabricante() {
-        return fabricante;
-    }
-
-    /**
-     * @param fabricante the fabricante to set
-     */
-    public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
-    }
-
 
     /**
      * @return the quantidade_saida
@@ -69,14 +54,35 @@ public class SaidaEstoque {
     /**
      * @return the estoque
      */
-    public Estoque getEstoque() {
-        return estoque;
+ 
+    /**
+     * @return the produto
+     */
+    public Produto getProduto() {
+        return produto;
     }
 
     /**
-     * @param estoque the estoque to set
+     * @param produto the produto to set
      */
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
+
+    /**
+     * @return the id_produto
+     */
+    public int getId_produto() {
+        return id_produto;
+    }
+
+    /**
+     * @param id_produto the id_produto to set
+     */
+    public void setId_produto(int id_produto) {
+        this.id_produto = id_produto;
+    }
+
+   
+
 }

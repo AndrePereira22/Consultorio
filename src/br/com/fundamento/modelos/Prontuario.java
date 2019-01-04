@@ -13,6 +13,8 @@ public class Prontuario {
 
     private String exames;
     private String receitas;
+    private String sintomas;
+    private String Data;
     
     
     
@@ -47,6 +49,34 @@ public class Prontuario {
      */
     public void setReceitas(String receitas) {
         this.receitas = receitas;
+    }
+
+    /**
+     * @return the sintomas
+     */
+    public String getSintomas() {
+        return sintomas;
+    }
+
+    /**
+     * @param sintomas the sintomas to set
+     */
+    public void setSintomas(String sintomas) {
+        this.sintomas = sintomas;
+    }
+
+    /**
+     * @return the Data
+     */
+    public String getData() {
+        return Data;
+    }
+
+    /**
+     * @param Data the Data to set
+     */
+    public void setData(String Data) {
+        this.Data = Data;
     }
 
    

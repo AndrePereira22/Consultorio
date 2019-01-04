@@ -44,7 +44,7 @@ public class BusinessFuncionario implements IBusinessFuncionario{
 
     @Override
     public void ativarDesativarFuncionario(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoFuncionario.ativarDesativarFuncionario(id);
     }
 
     @Override

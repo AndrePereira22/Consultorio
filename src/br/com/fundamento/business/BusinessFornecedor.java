@@ -46,7 +46,7 @@ public class BusinessFornecedor implements IBusinessFornecedor{
 
     @Override
     public void ativarDesativarfornecedor(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.daoFornecedor.ativarDesativarfornecedor(id);
     }
 
     @Override

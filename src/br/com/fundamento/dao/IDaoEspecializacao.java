@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IDaoEspecializacao {
     
-    public void salvarEspecializacao(Especializacao especializacao);
+    public int salvarEspecializacao(Especializacao especializacao);
     public Especializacao buscarEspecializacaoPorId(int id);
     public List<Especializacao> getAllEspecializacao();
     public void editarEspecializacao(Especializacao especializacao);

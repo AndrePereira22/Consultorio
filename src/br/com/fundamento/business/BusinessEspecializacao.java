@@ -39,12 +39,12 @@ public class BusinessEspecializacao implements IBusinessEspecializacao{
 
     @Override
     public void editarEspecializacao(Especializacao especializacao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoEspecializacao.editarEspecializacao(especializacao);
     }
 
     @Override
     public void ativarDesativarEspecializacao(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.daoEspecializacao.ativarDesativarEspecializacao(id);
     }
 
     @Override
