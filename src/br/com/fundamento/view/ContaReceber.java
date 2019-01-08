@@ -29,23 +29,17 @@ public class ContaReceber extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        txtvencimento = new javax.swing.JFormattedTextField();
-        jLabel2 = new javax.swing.JLabel();
-        txtdescricao = new javax.swing.JTextField();
-        txtvalor = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         botaocancelar = new javax.swing.JButton();
-        botaosalvar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaContaReceber = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 400));
+        setPreferredSize(new java.awt.Dimension(1160, 500));
 
         jLabel5.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
-        jLabel5.setText("cadastar conta a receber");
+        jLabel5.setText("Parcelas");
 
         jPanel2.setBackground(new java.awt.Color(0, 57, 69));
 
@@ -60,55 +54,6 @@ public class ContaReceber extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Conta"));
-
-        jLabel1.setText("   Vencimento:");
-
-        try {
-            txtvencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel2.setText("Descrição:");
-
-        jLabel4.setText("Valor:");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtvencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(174, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtvencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
-        );
-
         botaocancelar.setBackground(new java.awt.Color(255, 255, 255));
         botaocancelar.setForeground(new java.awt.Color(0, 0, 204));
         botaocancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
@@ -119,15 +64,24 @@ public class ContaReceber extends javax.swing.JFrame {
             }
         });
 
-        botaosalvar.setBackground(new java.awt.Color(255, 255, 255));
-        botaosalvar.setForeground(new java.awt.Color(0, 0, 204));
-        botaosalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
-        botaosalvar.setText("Salvar");
-        botaosalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaosalvarActionPerformed(evt);
+        tabelaContaReceber.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Valor", "Numero", "Pago", "Data Vencimento"
             }
-        });
+        ));
+        tabelaContaReceber.setRowHeight(25);
+        tabelaContaReceber.setShowHorizontalLines(false);
+        jScrollPane1.setViewportView(tabelaContaReceber);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,17 +91,16 @@ public class ContaReceber extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(botaosalvar)
-                        .addGap(18, 18, 18)
                         .addComponent(botaocancelar)
-                        .addGap(12, 12, 12))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,13 +109,11 @@ public class ContaReceber extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaosalvar)
-                    .addComponent(botaocancelar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(botaocancelar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,10 +122,6 @@ public class ContaReceber extends javax.swing.JFrame {
     private void botaocancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaocancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botaocancelarActionPerformed
-
-    private void botaosalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaosalvarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaosalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,16 +161,10 @@ public class ContaReceber extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaocancelar;
-    private javax.swing.JButton botaosalvar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtdescricao;
-    private javax.swing.JTextField txtvalor;
-    private javax.swing.JFormattedTextField txtvencimento;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaContaReceber;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -240,61 +181,7 @@ public class ContaReceber extends javax.swing.JFrame {
         this.botaocancelar = botaocancelar;
     }
 
-    /**
-     * @return the botaosalvar
-     */
-    public javax.swing.JButton getBotaosalvar() {
-        return botaosalvar;
-    }
-
-    /**
-     * @param botaosalvar the botaosalvar to set
-     */
-    public void setBotaosalvar(javax.swing.JButton botaosalvar) {
-        this.botaosalvar = botaosalvar;
-    }
-
-    /**
-     * @return the jLabel1
-     */
-    public javax.swing.JLabel getjLabel1() {
-        return jLabel1;
-    }
-
-    /**
-     * @param jLabel1 the jLabel1 to set
-     */
-    public void setjLabel1(javax.swing.JLabel jLabel1) {
-        this.jLabel1 = jLabel1;
-    }
-
-    /**
-     * @return the jLabel2
-     */
-    public javax.swing.JLabel getjLabel2() {
-        return jLabel2;
-    }
-
-    /**
-     * @param jLabel2 the jLabel2 to set
-     */
-    public void setjLabel2(javax.swing.JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
-    }
-
-    /**
-     * @return the jLabel4
-     */
-    public javax.swing.JLabel getjLabel4() {
-        return jLabel4;
-    }
-
-    /**
-     * @param jLabel4 the jLabel4 to set
-     */
-    public void setjLabel4(javax.swing.JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
-    }
+  
 
     /**
      * @return the jLabel5
@@ -308,20 +195,6 @@ public class ContaReceber extends javax.swing.JFrame {
      */
     public void setjLabel5(javax.swing.JLabel jLabel5) {
         this.jLabel5 = jLabel5;
-    }
-
-    /**
-     * @return the jPanel1
-     */
-    public javax.swing.JPanel getjPanel1() {
-        return jPanel1;
-    }
-
-    /**
-     * @param jPanel1 the jPanel1 to set
-     */
-    public void setjPanel1(javax.swing.JPanel jPanel1) {
-        this.jPanel1 = jPanel1;
     }
 
     /**
@@ -339,45 +212,31 @@ public class ContaReceber extends javax.swing.JFrame {
     }
 
     /**
-     * @return the txtdescricao
+     * @return the jScrollPane1
      */
-    public javax.swing.JTextField getTxtdescricao() {
-        return txtdescricao;
+    public javax.swing.JScrollPane getjScrollPane1() {
+        return jScrollPane1;
     }
 
     /**
-     * @param txtdescricao the txtdescricao to set
+     * @param jScrollPane1 the jScrollPane1 to set
      */
-    public void setTxtdescricao(javax.swing.JTextField txtdescricao) {
-        this.txtdescricao = txtdescricao;
+    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
+        this.jScrollPane1 = jScrollPane1;
     }
 
     /**
-     * @return the txtvalor
+     * @return the tabelaContaReceber
      */
-    public javax.swing.JTextField getTxtvalor() {
-        return txtvalor;
+    public javax.swing.JTable getTabelaContaReceber() {
+        return tabelaContaReceber;
     }
 
     /**
-     * @param txtvalor the txtvalor to set
+     * @param tabelaContaReceber the tabelaContaReceber to set
      */
-    public void setTxtvalor(javax.swing.JTextField txtvalor) {
-        this.txtvalor = txtvalor;
-    }
-
-    /**
-     * @return the txtvencimento
-     */
-    public javax.swing.JFormattedTextField getTxtvencimento() {
-        return txtvencimento;
-    }
-
-    /**
-     * @param txtvencimento the txtvencimento to set
-     */
-    public void setTxtvencimento(javax.swing.JFormattedTextField txtvencimento) {
-        this.txtvencimento = txtvencimento;
+    public void setTabelaContaReceber(javax.swing.JTable tabelaContaReceber) {
+        this.tabelaContaReceber = tabelaContaReceber;
     }
 
 

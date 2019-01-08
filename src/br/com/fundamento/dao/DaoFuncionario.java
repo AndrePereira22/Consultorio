@@ -294,5 +294,53 @@ public class DaoFuncionario implements IDaoFuncionario {
         }
         return Funcionarios; 
     }
+    
+    public Funcionario buscarFuncionario(String usuario,String senha) {
+        Funcionario funcionario = null;
+         Endereco endereco=null;
+        Contato contato=null;
+        Login login=null;
+         int idE=0,idC=0,idL=0,id=0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Funcionario.BuscaFuncionario(usuario, senha));
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+                funcionario = new Funcionario();
+                
+                funcionario.setNome(result.getString(SQLUtil.Funcionario.COL_NOME));
+                funcionario.setCpf(result.getString(SQLUtil.Funcionario.COL_CPF));
+                funcionario.setData_nascimento(result.getString(SQLUtil.Funcionario.COL_DATA_NASCIMENTO));
+                funcionario.setSalario(result.getDouble(SQLUtil.Funcionario.COL_SALARIO));
+                funcionario.setFuncao(result.getString(SQLUtil.Funcionario.COL_FUNCAO));
+                
+                idE = result.getInt(SQLUtil.Funcionario.COL_ID_ENDERECO);
+                idC = result.getInt(SQLUtil.Funcionario.COL_ID_CONTATO);
+                idL = result.getInt(SQLUtil.Funcionario.COL_ID_LOGIN);
+                
+                endereco = CommumDao.bucarEnderecoPorId(idE);
+                contato = CommumDao.bucarContatoPorId(idC);
+                login =  new DaoLogin().buscarLoginPorId(idL);
+                
+                funcionario.setContato(contato);
+                funcionario.setEndereco(endereco);
+                funcionario.setLogin(login);
+                
+                id = result.getInt(1);
+                funcionario.setId(id);
+                
+                funcionario.setId_endereco(idE);  
+                funcionario.setId_contato(idC);
+                funcionario.setId_login(idL);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return funcionario;
+    }
+    
 
 }

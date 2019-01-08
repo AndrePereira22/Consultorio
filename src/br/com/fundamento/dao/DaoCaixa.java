@@ -143,5 +143,40 @@ public class DaoCaixa implements IDaoCaixa {
     public void ativarDesativarCaixa(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public Caixa buscarCaixaPorData(String data) {
+        Caixa caixa = null;
+        int idF=0,id=0;
+        Funcionario funcionario;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.caixaPorData(data));
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+                caixa = new Caixa();
+                
+                caixa.setStatus(result.getBoolean(SQLUtil.Caixa.COL_STATUS));
+                caixa.setNumero(result.getInt(SQLUtil.Caixa.COL_NUMERO));
+                caixa.setValor_abertura(result.getInt(SQLUtil.Caixa.COL_VALOR_ABERTURA));
+                caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
+                caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
+               caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+               
+               idF= result.getInt(SQLUtil.Caixa.COL_ID_FUNCIONARIO);
+               funcionario = new DaoFuncionario().buscarFuncionarioPorId(idF);
+               caixa.setPagamentos(new ArrayList<Pagamento>());
+               caixa.setFuncionario(funcionario);
+               
+               id = result.getInt(1);
+                caixa.setId(id);
+            }
+            
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return caixa;
+    }
 
 }

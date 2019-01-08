@@ -16,6 +16,7 @@ public class Historico extends javax.swing.JFrame {
      */
     public Historico() {
         initComponents();
+        
     }
 
     /**
@@ -33,11 +34,17 @@ public class Historico extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelahistorico = new javax.swing.JTable();
-        txtsinomas = new javax.swing.JTextField();
-        txtexames = new javax.swing.JTextField();
-        txtreceita = new javax.swing.JTextField();
-        txtdata = new javax.swing.JTextField();
         BotaoFechar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtsintomas = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textexames = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textreceita = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        textdata = new javax.swing.JTextArea();
+        botaoeditar = new javax.swing.JButton();
+        botaoatualizar = new javax.swing.JButton();
 
         labelproduto.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labelproduto.setText("saida de estoque");
@@ -58,7 +65,6 @@ public class Historico extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 620));
 
         labelproduto1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labelproduto1.setText("historico do paciente");
@@ -88,60 +94,78 @@ public class Historico extends javax.swing.JFrame {
                 "Data", "Sintomas", "Exames", "Receitas"
             }
         ));
+        tabelahistorico.setRowHeight(25);
+        tabelahistorico.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(tabelahistorico);
-
-        txtsinomas.setBorder(javax.swing.BorderFactory.createTitledBorder("Sintomas"));
-        txtsinomas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsinomasActionPerformed(evt);
-            }
-        });
-
-        txtexames.setBorder(javax.swing.BorderFactory.createTitledBorder("Exames"));
-
-        txtreceita.setBorder(javax.swing.BorderFactory.createTitledBorder("Receita"));
-
-        txtdata.setBorder(javax.swing.BorderFactory.createTitledBorder("Data"));
-        txtdata.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtdataActionPerformed(evt);
-            }
-        });
 
         BotaoFechar.setBackground(new java.awt.Color(255, 255, 255));
         BotaoFechar.setForeground(new java.awt.Color(0, 0, 204));
         BotaoFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFechar.setText("Fechar");
 
+        txtsintomas.setColumns(20);
+        txtsintomas.setRows(5);
+        txtsintomas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sintomas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jScrollPane2.setViewportView(txtsintomas);
+
+        textexames.setColumns(20);
+        textexames.setRows(5);
+        textexames.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Exames", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jScrollPane3.setViewportView(textexames);
+
+        textreceita.setColumns(20);
+        textreceita.setRows(5);
+        textreceita.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Receita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jScrollPane4.setViewportView(textreceita);
+
+        textdata.setColumns(20);
+        textdata.setRows(5);
+        textdata.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Data", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jScrollPane5.setViewportView(textdata);
+
+        botaoeditar.setBackground(new java.awt.Color(255, 255, 255));
+        botaoeditar.setForeground(new java.awt.Color(0, 0, 204));
+        botaoeditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"))); // NOI18N
+        botaoeditar.setText("Editar");
+
+        botaoatualizar.setBackground(new java.awt.Color(255, 255, 255));
+        botaoatualizar.setForeground(new java.awt.Color(0, 0, 204));
+        botaoatualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/tick.png"))); // NOI18N
+        botaoatualizar.setText("Atualizar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BotaoFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelproduto1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(456, 569, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtsinomas)
-                                    .addComponent(txtreceita))
-                                .addGap(40, 40, 40)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane4)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txtexames))))
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(botaoeditar)
+                .addGap(58, 58, 58)
+                .addComponent(botaoatualizar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotaoFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,32 +173,28 @@ public class Historico extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelproduto1)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtsinomas, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtexames, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtreceita, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(120, 120, 120)
-                .addComponent(BotaoFechar)
-                .addContainerGap())
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoeditar)
+                    .addComponent(botaoatualizar)
+                    .addComponent(BotaoFechar))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtsinomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsinomasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsinomasActionPerformed
-
-    private void txtdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtdataActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,16 +233,22 @@ public class Historico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoFechar;
+    private javax.swing.JButton botaoatualizar;
+    private javax.swing.JButton botaoeditar;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labelproduto;
     private javax.swing.JLabel labelproduto1;
     private javax.swing.JTable tabelahistorico;
-    private javax.swing.JTextField txtdata;
-    private javax.swing.JTextField txtexames;
-    private javax.swing.JTextField txtreceita;
-    private javax.swing.JTextField txtsinomas;
+    private javax.swing.JTextArea textdata;
+    private javax.swing.JTextArea textexames;
+    private javax.swing.JTextArea textreceita;
+    private javax.swing.JTextArea txtsintomas;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -324,59 +350,73 @@ public class Historico extends javax.swing.JFrame {
     }
 
     /**
-     * @return the txtdata
+     * @return the textdata
      */
-    public javax.swing.JTextField getTxtdata() {
-        return txtdata;
+    public javax.swing.JTextArea getTextdata() {
+        return textdata;
     }
 
     /**
-     * @param txtdata the txtdata to set
+     * @param textdata the textdata to set
      */
-    public void setTxtdata(javax.swing.JTextField txtdata) {
-        this.txtdata = txtdata;
+    public void setTextdata(javax.swing.JTextArea textdata) {
+        this.textdata = textdata;
     }
 
     /**
-     * @return the txtexames
+     * @return the textexames
      */
-    public javax.swing.JTextField getTxtexames() {
-        return txtexames;
+    public javax.swing.JTextArea getTextexames() {
+        return textexames;
     }
 
     /**
-     * @param txtexames the txtexames to set
+     * @param textexames the textexames to set
      */
-    public void setTxtexames(javax.swing.JTextField txtexames) {
-        this.txtexames = txtexames;
+    public void setTextexames(javax.swing.JTextArea textexames) {
+        this.textexames = textexames;
     }
 
     /**
-     * @return the txtreceita
+     * @return the textreceita
      */
-    public javax.swing.JTextField getTxtreceita() {
-        return txtreceita;
+    public javax.swing.JTextArea getTextreceita() {
+        return textreceita;
     }
 
     /**
-     * @param txtreceita the txtreceita to set
+     * @param textreceita the textreceita to set
      */
-    public void setTxtreceita(javax.swing.JTextField txtreceita) {
-        this.txtreceita = txtreceita;
+    public void setTextreceita(javax.swing.JTextArea textreceita) {
+        this.textreceita = textreceita;
     }
 
     /**
-     * @return the txtsinomas
+     * @return the txtsintomas
      */
-    public javax.swing.JTextField getTxtsinomas() {
-        return txtsinomas;
+    public javax.swing.JTextArea getTxtsintomas() {
+        return txtsintomas;
     }
 
     /**
-     * @param txtsinomas the txtsinomas to set
+     * @param txtsintomas the txtsintomas to set
      */
-    public void setTxtsinomas(javax.swing.JTextField txtsinomas) {
-        this.txtsinomas = txtsinomas;
+    public void setTxtsintomas(javax.swing.JTextArea txtsintomas) {
+        this.txtsintomas = txtsintomas;
+    }
+
+    /**
+     * @return the botaoeditar
+     */
+    public javax.swing.JButton getBotaoeditar() {
+        return botaoeditar;
+    }
+
+    /**
+     * @return the botaoatualizar
+     */
+    public javax.swing.JButton getBotaoatualizar() {
+        return botaoatualizar;
     }
 
     

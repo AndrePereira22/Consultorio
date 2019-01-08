@@ -50,6 +50,7 @@ public class Recibo extends javax.swing.JFrame {
         Txtnome = new javax.swing.JTextField();
         Funcionario = new javax.swing.JTextField();
         referente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         BotaoRecibo = new javax.swing.JButton();
         BotaoVoltarRecibo = new javax.swing.JButton();
 
@@ -113,6 +114,7 @@ public class Recibo extends javax.swing.JFrame {
         ano.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         assinaturaFuncionario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        assinaturaFuncionario.setEnabled(false);
 
         jLabel11.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
@@ -128,6 +130,7 @@ public class Recibo extends javax.swing.JFrame {
         jLabel13.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         assinaturaCliente.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        assinaturaCliente.setEnabled(false);
 
         jLabel6.setText("Eu,");
 
@@ -151,6 +154,9 @@ public class Recibo extends javax.swing.JFrame {
                 referenteActionPerformed(evt);
             }
         });
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Logo.png"))); // NOI18N
 
         javax.swing.GroupLayout reciboLayout = new javax.swing.GroupLayout(recibo);
         recibo.setLayout(reciboLayout);
@@ -211,11 +217,13 @@ public class Recibo extends javax.swing.JFrame {
                                 .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(assinaturaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         reciboLayout.setVerticalGroup(
             reciboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reciboLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(reciboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel1)
@@ -247,7 +255,7 @@ public class Recibo extends javax.swing.JFrame {
                 .addGroup(reciboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(assinaturaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(assinaturaCliente))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         BotaoRecibo.setBackground(new java.awt.Color(255, 255, 255));
@@ -399,6 +407,7 @@ public class Recibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField mes;

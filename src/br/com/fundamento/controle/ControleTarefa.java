@@ -199,9 +199,9 @@ public class ControleTarefa implements ActionListener {
         tarefas = fachada1.getPorBuscaTarefa(buscarTarefa.getTxtPesquisarTarefa().getText());
 
         buscarTarefa.getTabelaTarefa().setDefaultRenderer(Object.class, new Render());
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
-
+       Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
+        
         JButton btn1 = new JButton(editar);
         btn1.setName("m");
         btn1.setBorder(null);

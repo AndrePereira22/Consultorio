@@ -12,6 +12,7 @@ import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
 import br.com.fundamento.modelos.Produto;
+import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.modelos.Relatorio;
 import br.com.fundamento.modelos.SaidaEstoque;
 import br.com.fundamento.modelos.Tarefa;
@@ -68,7 +69,6 @@ public class DaoList {
             statement.setInt(2, saidaEstoque.getQuantidade_saida());
             statement.setInt(3, id_produto);
 
-
             statement.execute();
             statement.close();
 
@@ -88,9 +88,8 @@ public class DaoList {
             statement.setDouble(1, parcela.getValor());
             statement.setBoolean(2, parcela.isStatus());
             statement.setInt(3, parcela.getNumero());
-            statement.setBoolean(4, parcela.isParcela_unica());
-            statement.setString(5, parcela.getData_vencimento());
-            statement.setInt(6, id_pagamento);
+            statement.setString(4, parcela.getData_vencimento());
+            statement.setInt(5, id_pagamento);
 
             statement.execute();
             statement.close();
@@ -212,20 +211,16 @@ public class DaoList {
         }
     }
 
-    public static void salvarconsulta(Consulta consulta, int id_paciente) {
+    public static void salvarProntuario(Prontuario prontuario, int id_paciente) {
 
         try {
-
-            int id_pagamento = new DaoPagamento().salvarPagamento(consulta.getPagamento());
-            int id_medico = new DaoMedico().salvarMedico(consulta.getMedico());
             conexao = SQLConections.getInstance();
-            statement = conexao.prepareStatement(SQLUtil.Consulta.INSERT);
-            statement.setString(1, consulta.getTipo());
-            statement.setString(2, consulta.getData());
-            statement.setString(3, consulta.getHora());
-            statement.setInt(4, id_paciente);
-            statement.setInt(5, id_medico);
-            statement.setInt(6, id_pagamento);
+            statement = conexao.prepareStatement(SQLUtil.Prontuario.INSERT);
+            statement.setString(1, prontuario.getExames());
+            statement.setString(2, prontuario.getReceitas());
+            statement.setString(3, prontuario.getData());
+            statement.setString(4, prontuario.getSintomas());
+            statement.setInt(5, id_paciente);
 
             statement.execute();
             statement.close();
@@ -233,5 +228,7 @@ public class DaoList {
         } catch (SQLException ex) {
             Logger.getLogger(DaoList.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
+
 }

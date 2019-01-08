@@ -191,6 +191,45 @@ public class DaoProduto implements IDaoProduto {
                 
                  idE = result.getInt(SQLUtil.Produto.COL_ID_ESTOQUE);
                 idF = result.getInt(SQLUtil.Produto.COL_FORNECEDOR_ID);
+                produto.setId_estoque(idE);
+                produto.setId_fornecedor(idF);
+                
+                fornecedor=new DaoFornecedor().buscarPorfornecedorId(idF);
+                estoque = new DaoEstoque().buscarEstoquePorId(idE);
+                produto.setFornecedor(fornecedor);
+                produto.setEstoque(estoque);
+                
+                 id = result.getInt(1);
+                 produto.setId(id);
+                produtos.add(produto);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return produtos;  }
+
+    public List<Produto> buscarPorEstoque(String busca) {
+       List<Produto> produtos = new ArrayList<>();
+       Fornecedor fornecedor = null;
+        Estoque estoque = null;
+       int id, idE=0 , idF=0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Produto.buscarPorEstoque(busca));
+            this.result = this.statement.executeQuery();
+            Produto produto;
+            while (result.next()) {
+                produto = new Produto();
+                
+               produto.setNome(result.getString(SQLUtil.Produto.COL_NOME_PRODUTO));
+                produto.setFabricante(result.getString(SQLUtil.Produto.COL_FABRICANTE));
+                produto.setQuantidade_estoque(result.getInt(SQLUtil.Produto.COL_QUANTIDADE_ESTOQUE));
+                produto.setPreco_compra(result.getDouble(SQLUtil.Produto.COL_PRECO_COMPRA));
+                
+                 idE = result.getInt(SQLUtil.Produto.COL_ID_ESTOQUE);
+                idF = result.getInt(SQLUtil.Produto.COL_FORNECEDOR_ID);
                 
                 fornecedor=new DaoFornecedor().buscarPorfornecedorId(idF);
                 estoque = new DaoEstoque().buscarEstoquePorId(idE);

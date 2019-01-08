@@ -8,6 +8,7 @@ package br.com.fundamento.fachada;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
+import br.com.fundamento.modelos.ContaPagar;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.EntradaEstoque;
 import br.com.fundamento.modelos.Especializacao;
@@ -63,7 +64,7 @@ public interface IFachada {
     public List<Fornecedor> getPorBuscaFornecedor(String busca);
     
     
-    public void salvarCaixa(Caixa caixa);
+    public int salvarCaixa(Caixa caixa);
     public Caixa buscarCaixaPorId(int id);
     public List<Caixa> getAllCaixa();
     public void editarCaixa(Caixa caixa);
@@ -75,6 +76,12 @@ public interface IFachada {
     public void editarConsultorio(Consultorio consultorio);
     public void ativarDesativarConsultorio(int id);
      public Consultorio bucarConsultorio();
+     
+    public void salvarContaPagar(ContaPagar contaPagar);
+    public ContaPagar buscarContaPagarPorId(int id);
+    public List<ContaPagar> getAllContaPagar();
+    public void editarContaPagar(ContaPagar contaPagar);
+    public void ativarDesativarContaPagar(int id);
  
     
     public void salvarConsulta(Consulta consulta);
@@ -130,6 +137,7 @@ public interface IFachada {
     public List<Parcela> getAllParcela();
     public void editarParcela(Parcela parcela);
     public void ativarDesativarParcela(int id);
+    public List<Parcela> buscarParcela(int id);
     
     public void salvarProntuario(Prontuario prontuario);
     public Prontuario buscarProntuarioPorId(int id);

@@ -16,7 +16,7 @@ public class Parcela {
     private String data_vencimento;
     private boolean  status;
     private int numero;
-    private boolean parcela_unica;
+    private int id;
     
     private  Pagamento pagamento;
     
@@ -71,20 +71,6 @@ public class Parcela {
     }
 
     /**
-     * @return the parcela_unica
-     */
-    public boolean isParcela_unica() {
-        return parcela_unica;
-    }
-
-    /**
-     * @param parcela_unica the parcela_unica to set
-     */
-    public void setParcela_unica(boolean parcela_unica) {
-        this.parcela_unica = parcela_unica;
-    }
-
-    /**
      * @return the pagamento
      */
     public Pagamento getPagamento() {
@@ -110,6 +96,20 @@ public class Parcela {
      */
     public void setData_vencimento(String data_vencimento) {
         this.data_vencimento = data_vencimento;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
    

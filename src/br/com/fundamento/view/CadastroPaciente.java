@@ -39,8 +39,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        txtprontuario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -119,7 +117,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 610));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Principal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel6.setToolTipText("");
@@ -131,8 +128,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
         jLabel17.setText("RG:");
 
         jLabel15.setText("Sexo:");
-
-        jLabel18.setText("Prontuario :");
 
         jLabel10.setText("CPF:");
 
@@ -178,25 +173,21 @@ public class CadastroPaciente extends javax.swing.JFrame {
                             .addComponent(TxtCpf)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(Combosexo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(106, 106, 106)
+                                .addComponent(jLabelnome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Txtdata, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel18))
+                                .addComponent(Txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabelnome)
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Txtdata)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtprontuario)
-                            .addComponent(txtConvenio))))
+                                .addComponent(txtConvenio, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -210,8 +201,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(txtprontuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Txtrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -507,7 +496,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -537,7 +525,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtemail2;
     private javax.swing.JTextField txtnumero;
-    private javax.swing.JTextField txtprontuario;
     private javax.swing.JTextField txtrua;
     private javax.swing.JTextField txttelefone;
     private javax.swing.JFormattedTextField txttelefone2;
@@ -687,20 +674,7 @@ public class CadastroPaciente extends javax.swing.JFrame {
         this.jLabel17 = jLabel17;
     }
 
-    /**
-     * @return the jLabel18
-     */
-    public javax.swing.JLabel getjLabel18() {
-        return jLabel18;
-    }
-
-    /**
-     * @param jLabel18 the jLabel18 to set
-     */
-    public void setjLabel18(javax.swing.JLabel jLabel18) {
-        this.jLabel18 = jLabel18;
-    }
-
+   
     /**
      * @return the jLabel2
      */
@@ -1077,20 +1051,6 @@ public class CadastroPaciente extends javax.swing.JFrame {
      */
     public void setTxtnumero(javax.swing.JTextField txtnumero) {
         this.txtnumero = txtnumero;
-    }
-
-    /**
-     * @return the txtprontuario
-     */
-    public javax.swing.JTextField getTxtprontuario() {
-        return txtprontuario;
-    }
-
-    /**
-     * @param txtprontuario the txtprontuario to set
-     */
-    public void setTxtprontuario(javax.swing.JTextField txtprontuario) {
-        this.txtprontuario = txtprontuario;
     }
 
     /**

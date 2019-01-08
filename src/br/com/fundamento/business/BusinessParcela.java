@@ -39,12 +39,17 @@ public class BusinessParcela implements IBusinessParcela{
 
     @Override
     public void editarParcela(Parcela parcela) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.daoParcela.editarParcela(parcela);
     }
 
     @Override
     public void ativarDesativarParcela(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Parcela> buscarParcela(int id) {
+      return this.daoParcela.buscarParcela(id);
     }
     
 }

@@ -38,12 +38,12 @@ public class BusinessPagamento implements IBusinessPagamento{
 
     @Override
     public void editarPagamento(Pagamento pagamento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.daoPagamento.editarPagamento(pagamento);
     }
 
     @Override
     public void ativarDesativarPagamento(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.daoPagamento.ativarDesativarPagamento(id);
     }
      
 }

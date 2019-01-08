@@ -29,7 +29,6 @@ public class BuscarContaApagar extends javax.swing.JFrame {
 
         labeltarefa1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        txtdiario = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtvalor = new javax.swing.JTextField();
@@ -37,11 +36,11 @@ public class BuscarContaApagar extends javax.swing.JFrame {
         tabelacontapagar = new javax.swing.JTable();
         botaoadicionar = new javax.swing.JButton();
         botaofechar = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 500));
 
         labeltarefa1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labeltarefa1.setText("contas a pagar");
@@ -59,17 +58,15 @@ public class BuscarContaApagar extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
-        txtdiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Diario", "Semanal", "Mensal" }));
-
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         jLabel1.setText("R$");
 
         txtvalor.setBackground(new java.awt.Color(153, 255, 153));
-        txtvalor.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        txtvalor.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         txtvalor.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtvalor.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,15 +111,7 @@ public class BuscarContaApagar extends javax.swing.JFrame {
             new String [] {
                 "Descrição", "Data Vencimento", "Valor"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tabelacontapagar.setRowHeight(25);
         tabelacontapagar.setSelectionBackground(new java.awt.Color(153, 204, 255));
         tabelacontapagar.setShowHorizontalLines(false);
@@ -150,9 +139,9 @@ public class BuscarContaApagar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
-                .addComponent(txtdiario, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addComponent(botaoadicionar)
                 .addGap(18, 18, 18)
                 .addComponent(botaofechar)
@@ -173,12 +162,12 @@ public class BuscarContaApagar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botaofechar)
-                        .addComponent(botaoadicionar)
-                        .addComponent(txtdiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(332, Short.MAX_VALUE))
+                        .addComponent(botaoadicionar)))
+                .addGap(332, 332, 332))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -235,13 +224,13 @@ public class BuscarContaApagar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoadicionar;
     private javax.swing.JButton botaofechar;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labeltarefa1;
     private javax.swing.JTable tabelacontapagar;
-    private javax.swing.JComboBox<String> txtdiario;
     private javax.swing.JTextField txtvalor;
     // End of variables declaration//GEN-END:variables
 
@@ -357,20 +346,7 @@ public class BuscarContaApagar extends javax.swing.JFrame {
         this.tabelacontapagar = tabelacontapagar;
     }
 
-    /**
-     * @return the txtdiario
-     */
-    public javax.swing.JComboBox<String> getTxtdiario() {
-        return txtdiario;
-    }
-
-    /**
-     * @param txtdiario the txtdiario to set
-     */
-    public void setTxtdiario(javax.swing.JComboBox<String> txtdiario) {
-        this.txtdiario = txtdiario;
-    }
-
+   
     /**
      * @return the txtvalor
      */

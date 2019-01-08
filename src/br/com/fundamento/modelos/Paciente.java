@@ -23,13 +23,9 @@ public class Paciente {
     private int id;
     private int id_endereco;
     private int id_contato;
-    private int id_prontuario;
-  
-    
-    private Prontuario prontuario;
+    private List<Prontuario> prontuarios;
      private Endereco endereco;
      private Contato contato;
-    private List<Consulta> consultas;
     
    
     
@@ -78,19 +74,6 @@ public class Paciente {
         this.sexo = sexo;
     }
 
-    /**
-     * @return the prontuario
-     */
-    public Prontuario getProntuario() {
-        return prontuario;
-    }
-
-    /**
-     * @param prontuario the prontuario to set
-     */
-    public void setProntuario(Prontuario prontuario) {
-        this.prontuario = prontuario;
-    }
 
     /**
      * @return the endereco
@@ -104,22 +87,6 @@ public class Paciente {
      */
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }
-
-   
-
-    /**
-     * @return the consultas
-     */
-    public List<Consulta> getConsultas() {
-        return consultas;
-    }
-
-    /**
-     * @param consultas the consultas to set
-     */
-    public void setConsultas(List<Consulta> consultas) {
-        this.consultas = consultas;
     }
 
     /**
@@ -220,19 +187,7 @@ public class Paciente {
         this.id_contato = id_contato;
     }
 
-    /**
-     * @return the id_prontuario
-     */
-    public int getId_prontuario() {
-        return id_prontuario;
-    }
-
-    /**
-     * @param id_prontuario the id_prontuario to set
-     */
-    public void setId_prontuario(int id_prontuario) {
-        this.id_prontuario = id_prontuario;
-    }
+   
 
     /**
      * @return the rg
@@ -246,6 +201,20 @@ public class Paciente {
      */
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    /**
+     * @return the prontuarios
+     */
+    public List<Prontuario> getProntuarios() {
+        return prontuarios;
+    }
+
+    /**
+     * @param prontuarios the prontuarios to set
+     */
+    public void setProntuarios(List<Prontuario> prontuarios) {
+        this.prontuarios = prontuarios;
     }
 
     

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IBusinessCaixa {
     
-    public void salvarCaixa(Caixa caixa);
+    public int salvarCaixa(Caixa caixa);
     public Caixa buscarCaixaPorId(int id);
     public List<Caixa> getAllCaixa();
     public void editarCaixa(Caixa caixa);

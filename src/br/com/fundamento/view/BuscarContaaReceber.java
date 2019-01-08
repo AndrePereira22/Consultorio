@@ -32,16 +32,17 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtvalor = new javax.swing.JTextField();
-        txtdiario = new javax.swing.JComboBox<>();
-        botaoadicionar = new javax.swing.JButton();
         botaofechar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelacontaReceber = new javax.swing.JTable();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtvalor1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 500));
 
         labeltarefa1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labeltarefa1.setText("contas a receber");
@@ -60,14 +61,15 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor a Receber", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         jLabel1.setText("R$");
 
         txtvalor.setBackground(new java.awt.Color(153, 255, 153));
-        txtvalor.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        txtvalor.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         txtvalor.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtvalor.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -89,18 +91,6 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        txtdiario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Diario", "Semanal", "Mensal" }));
-
-        botaoadicionar.setBackground(new java.awt.Color(255, 255, 255));
-        botaoadicionar.setForeground(new java.awt.Color(0, 0, 204));
-        botaoadicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/plus.png"))); // NOI18N
-        botaoadicionar.setText("Adicionar");
-        botaoadicionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoadicionarActionPerformed(evt);
-            }
-        });
 
         botaofechar.setBackground(new java.awt.Color(255, 255, 255));
         botaofechar.setForeground(new java.awt.Color(0, 0, 204));
@@ -142,6 +132,38 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
         tabelacontaReceber.setShowHorizontalLines(false);
         jScrollPane1.setViewportView(tabelacontaReceber);
 
+        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor Recebido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setEnabled(false);
+
+        jLabel2.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        jLabel2.setText("R$");
+
+        txtvalor1.setBackground(new java.awt.Color(153, 255, 153));
+        txtvalor1.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        txtvalor1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtvalor1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtvalor1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,21 +172,22 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labeltarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
-                        .addComponent(txtdiario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(botaoadicionar)
-                        .addGap(18, 18, 18)
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(botaofechar)
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 24, 24))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labeltarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,23 +197,23 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaofechar)
-                        .addComponent(botaoadicionar)
-                        .addComponent(txtdiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaofechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botaoadicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoadicionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoadicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,31 +251,20 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoadicionar;
     private javax.swing.JButton botaofechar;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labeltarefa1;
     private javax.swing.JTable tabelacontaReceber;
-    private javax.swing.JComboBox<String> txtdiario;
     private javax.swing.JTextField txtvalor;
+    private javax.swing.JTextField txtvalor1;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the botaoadicionar
-     */
-    public javax.swing.JButton getBotaoadicionar() {
-        return botaoadicionar;
-    }
-
-    /**
-     * @param botaoadicionar the botaoadicionar to set
-     */
-    public void setBotaoadicionar(javax.swing.JButton botaoadicionar) {
-        this.botaoadicionar = botaoadicionar;
-    }
 
     /**
      * @return the botaofechar
@@ -350,20 +362,6 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
      */
     public void setTabelacontaReceber(javax.swing.JTable tabelacontaReceber) {
         this.tabelacontaReceber = tabelacontaReceber;
-    }
-
-    /**
-     * @return the txtdiario
-     */
-    public javax.swing.JComboBox<String> getTxtdiario() {
-        return txtdiario;
-    }
-
-    /**
-     * @param txtdiario the txtdiario to set
-     */
-    public void setTxtdiario(javax.swing.JComboBox<String> txtdiario) {
-        this.txtdiario = txtdiario;
     }
 
     /**

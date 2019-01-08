@@ -51,6 +51,8 @@ import br.com.fundamento.view.Relatorio;
 import br.com.fundamento.view.Saida_Es;
 import br.com.fundamento.modelos.EntradaEstoque;
 import br.com.fundamento.modelos.Paciente;
+import br.com.fundamento.modelos.Prontuario;
+import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.Historico;
 import br.com.fundamento.view.ListaConsulta;
 import br.com.fundamento.view.TelaProntuario;
@@ -58,6 +60,9 @@ import br.com.fundamento.view.TelaPagamento;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import br.com.fundamento.view.agendamento;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -92,6 +97,7 @@ public class Main {
         ListaConsulta lconsulta = new ListaConsulta();
         TelaProntuario prontuario = new TelaProntuario();
         Historico historico = new Historico();
+        AtualizarConsultorio atualizarConsultorio = new AtualizarConsultorio();
 
         BuscarMedico buscarMedico = new BuscarMedico();
         BuscarFuncionario buscarFuncionario = new BuscarFuncionario();
@@ -112,12 +118,18 @@ public class Main {
         ControleProduto controleProduto = new ControleProduto(telaPrincipal, cp, buscarProduto);
         ControleTarefa controleTarefa = new ControleTarefa(telaPrincipal, cadastroTarefas, buscarTarefa);
         ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento, pagamento);
-        ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal, telaLogin, lconsulta, prontuario, historico);
+        ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal, telaLogin, lconsulta, prontuario, historico, atualizarConsultorio);
         ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, fluxodeCaixa, buscarContaApagar, buscarContaaReceber, contaReceber, contaaPagar);
         ControleEstoque controleEstoque = new ControleEstoque(telaPrincipal, saida_Estoque, entrada_Estoque, buscarSaidaEstoque, buscarEntradaEstoque);
         ControleRelatorios controleRelatorios =  new ControleRelatorios(telaPrincipal, relatorio, recibo);
        
-     
-       
-    }
+        
+        
+   
+
+
+
+
+
+    } 
 }

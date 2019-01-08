@@ -32,11 +32,13 @@ public class ListaConsulta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelalistaPaciente = new javax.swing.JTable();
         BotaoFechar = new javax.swing.JButton();
+        txtdata = new javax.swing.JLabel();
+        calendariopaciente = new com.toedter.calendar.JCalendar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 620));
+        setPreferredSize(new java.awt.Dimension(1160, 500));
 
         labelproduto.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labelproduto.setText("LIsta de pacientes");
@@ -104,22 +106,31 @@ public class ListaConsulta extends javax.swing.JFrame {
         BotaoFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"))); // NOI18N
         BotaoFechar.setText("Fechar");
 
+        txtdata.setFont(new java.awt.Font("Felix Titling", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelproduto)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(BotaoFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16))
+                            .addComponent(txtdata, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BotaoFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)))
+                        .addGap(10, 10, 10)
+                        .addComponent(labelproduto)
+                        .addGap(0, 529, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(calendariopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,8 +143,12 @@ public class ListaConsulta extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(BotaoFechar)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calendariopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -178,9 +193,11 @@ public class ListaConsulta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoFechar;
     private javax.swing.JTable TabelalistaPaciente;
+    private com.toedter.calendar.JCalendar calendariopaciente;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelproduto;
+    private javax.swing.JLabel txtdata;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -237,6 +254,34 @@ public class ListaConsulta extends javax.swing.JFrame {
      */
     public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
         this.jScrollPane1 = jScrollPane1;
+    }
+
+    /**
+     * @return the txtdata
+     */
+    public javax.swing.JLabel getTxtdata() {
+        return txtdata;
+    }
+
+    /**
+     * @param txtdata the txtdata to set
+     */
+    public void setTxtdata(javax.swing.JLabel txtdata) {
+        this.txtdata = txtdata;
+    }
+
+    /**
+     * @return the calendariopaciente
+     */
+    public com.toedter.calendar.JCalendar getCalendariopaciente() {
+        return calendariopaciente;
+    }
+
+    /**
+     * @param calendariopaciente the calendariopaciente to set
+     */
+    public void setCalendariopaciente(com.toedter.calendar.JCalendar calendariopaciente) {
+        this.calendariopaciente = calendariopaciente;
     }
 
    

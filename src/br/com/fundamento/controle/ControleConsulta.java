@@ -6,7 +6,9 @@
  */
 package br.com.fundamento.controle;
 
-import br.com.fundamento.dao.DaoConsulta;
+import br.com.fundamento.dao.DaoCaixa;
+import br.com.fundamento.dao.DaoFuncionario;
+import br.com.fundamento.dao.DaoLogin;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
@@ -30,13 +32,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -65,9 +70,13 @@ public class ControleConsulta implements ActionListener {
     private CadastroPaciente cadastroPaciente = new CadastroPaciente();
     private List<Paciente> pacientes;
     private List<Medico> medicos;
-    private JButton btn1, btn2;
+    private JButton btn1, btn2, btn3;
     private List<Consulta> consultas;
     private Consulta c;
+    private static Caixa caixa;
+    private static Funcionario funcionario;
+    Date data2 = new Date();
+    Calendar ca = new GregorianCalendar();
     IFachada fachada1 = Fachada.getInstance();
 
     public ControleConsulta(TelaPrincipal telaPrincipal, CadastroConsultas cadastroConsultas, agendamento agendamento, TelaPagamento pagamento) {
@@ -76,7 +85,8 @@ public class ControleConsulta implements ActionListener {
         this.agendamento = agendamento;
         this.telaPagamento = pagamento;
         this.consultas = new ArrayList<Consulta>();
-        cc=new CadastroConsultas();
+        cc = new CadastroConsultas();
+        funcionario = new Funcionario();
 
         telaPrincipal.getBotaoAgendamento().addActionListener(this);
         cadastroConsultas.getBotaoConsultaCancelar().addActionListener(this);
@@ -105,7 +115,7 @@ public class ControleConsulta implements ActionListener {
                         if (boton.getName().equals("m")) {
                             int editar = JOptionPane.showConfirmDialog(null, "Deseja Modificar este registro", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
                             int ro = agendamento.getTabelaAgendamento().getSelectedRow();
-                           
+
                             if (editar == 0) {
                                 cc.getLabelConsulta().setText("ATUALIZAR CONSULTA");
                                 cc.setVisible(true);
@@ -126,7 +136,7 @@ public class ControleConsulta implements ActionListener {
 
                                             agendamento.setVisible(true);
                                             preenchertabela();
-                                           
+
                                             c = null;
 
                                         }
@@ -145,6 +155,14 @@ public class ControleConsulta implements ActionListener {
 
                                 fachada1.ativarDesativarConsulta(c.getId());
                                 preenchertabela();
+                            }
+                        }
+                        if (boton.getName().equals("p")) {
+                            int pagar = JOptionPane.showConfirmDialog(null, "Deseja Realizar o Pagamento", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int roo = agendamento.getTabelaAgendamento().getSelectedRow();
+                            if (pagar == 0) {
+                                c = consultas.get(roo);
+                                telaPagamento.setVisible(true);
                             }
                         }
                     }
@@ -208,7 +226,7 @@ public class ControleConsulta implements ActionListener {
                 }
             }
         });
- cc.getListaMedico().addListSelectionListener(new ListSelectionListener() {
+        cc.getListaMedico().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 int indice = cc.getListaMedico().getMinSelectionIndex();
@@ -218,7 +236,7 @@ public class ControleConsulta implements ActionListener {
                     especializacao = fachada1.buscarEspecializacaoPorId(medico.getId_esp());
                     cc.getTxtmedico().setText(medico.getNome());
                     cc.getTxtespecializacao().setText(especializacao.getDescricao());
-                    
+
                 } catch (Exception eu) {
                 }
             }
@@ -250,6 +268,16 @@ public class ControleConsulta implements ActionListener {
                 }
 
                 telaPagamento.getTxtValorparcela().setText(valorParcela + "");
+
+                Date data2 = new Date();
+                Calendar c = new GregorianCalendar();
+                c.setTime(data2);
+                c.set(Calendar.MONTH, c.get(Calendar.MONTH) + qparcela);
+                c.set(Calendar.YEAR, c.get(Calendar.YEAR));
+
+                String f = new SimpleDateFormat("dd/MM/yyyy").format(c.getTime());
+                telaPagamento.getTxtdata_ven_parcela().setText(f);
+
             }
         });
 
@@ -267,6 +295,7 @@ public class ControleConsulta implements ActionListener {
         if (e.getSource() == telaPrincipal.getBotaoAgendamento()) {
             agendamento.setVisible(true);
             preenchertabela();
+            abrirCaixa();
         }
 
         if (e.getSource() == agendamento.getBotaoFecharAgendamento()) {
@@ -321,11 +350,6 @@ public class ControleConsulta implements ActionListener {
             con.setCelular(cadastroPaciente.getTxtcelular2().getText());
             con.setTelefone(cadastroPaciente.getTxttelefone().getText());
 
-            Prontuario p = new Prontuario();
-
-            p.setExames("nulo");
-            p.setReceitas("nulo");
-
             Paciente pa = new Paciente();
             pa.setNome(cadastroPaciente.getTxtNome().getText());
 
@@ -333,10 +357,8 @@ public class ControleConsulta implements ActionListener {
             pa.setCpf(cadastroPaciente.getTxtCpf().getText());
             pa.setSexo(cadastroPaciente.getCombosexo().getSelectedItem().toString());
             pa.setConvenio(cadastroPaciente.getTxtConvenio().getText());
-            pa.setProntuario(p);
             pa.setEndereco(end);
             pa.setContato(con);
-            pa.setConsultas(new ArrayList<Consulta>());
             pa.setData_nascimento(cadastroPaciente.getTxtdata().getText());
             paciente = pa;
 
@@ -354,8 +376,8 @@ public class ControleConsulta implements ActionListener {
         if (e.getSource() == telaPagamento.getBotaoOk()) {
 
             ArrayList<Parcela> parcelas = new ArrayList<Parcela>();
+            Pagamento pagamento = fachada1.buscarPagamentoPorId(c.getId());
 
-            Pagamento pagamento = new Pagamento();
             pagamento.setForma_pagamento(telaPagamento.getComboPagamento().getSelectedItem().toString());
 
             if (telaPagamento.getComboStatus().getSelectedItem().toString().equals("A Vista")) {
@@ -386,14 +408,16 @@ public class ControleConsulta implements ActionListener {
                     Parcela parcela = new Parcela();
 
                     parcela.setNumero(j);
-                    if (qparcela == 1) {
-                        parcela.setParcela_unica(true);
-                    } else {
-                        parcela.setParcela_unica(false);
-                    }
+
                     parcela.setStatus(false);
                     parcela.setPagamento(pagamento);
-                    parcela.setData_vencimento(telaPagamento.getTxtdata_ven_parcela().getText());
+
+                    ca.setTime(data2);
+                    ca.set(Calendar.MONTH, ca.get(Calendar.MONTH) + j);
+                    ca.set(Calendar.YEAR, ca.get(Calendar.YEAR));
+
+                    String f = new SimpleDateFormat("dd/MM/yyyy").format(ca.getTime());
+                    parcela.setData_vencimento(f);
                     parcela.setValor(valorpacela);
                     parcelas.add(parcela);
 
@@ -402,17 +426,20 @@ public class ControleConsulta implements ActionListener {
             }
 
             pagamento.setParcelas(parcelas);
+            fachada1.editarPagamento(pagamento);
 
-            Caixa cai = new Caixa();
-            cai.setPagamentos(new ArrayList<Pagamento>());
+            preenchertabela();
+            agendamento.setVisible(true);
+            telaPagamento.setVisible(false);
 
-            //Funcionario ffunc=new DaoFuncionario().buscarFuncionario(ControlePrincipal.getLogin());
-            Funcionario o = fachada1.buscarFuncionarioPorId(3);
+        }
+        if (e.getSource() == cadastroConsultas.getBotaoConsultaSalvar()) {
 
-            cai.setFuncionario(o);
+            Pagamento pagamento = new Pagamento();
 
-            pagamento.setCaixa(cai);
+            pagamento.setCaixa(caixa);
 
+            pagamento.setParcelas(new ArrayList<Parcela>());
             Consulta consulta = new Consulta();
             consulta.setData(cadastroConsultas.getTxtdata().getText());
             consulta.setHora(cadastroConsultas.getTxtHora().getText());
@@ -432,15 +459,6 @@ public class ControleConsulta implements ActionListener {
             preenchertabela();
             agendamento.setVisible(true);
             cadastroConsultas.setVisible(false);
-            telaPagamento.setVisible(false);
-            telaPrincipal.setEnabled(true);
-
-            medico = null;
-            paciente = null;
-
-        }
-        if (e.getSource() == cadastroConsultas.getBotaoConsultaSalvar()) {
-            telaPagamento.setVisible(true);
         }
 
     }
@@ -451,8 +469,9 @@ public class ControleConsulta implements ActionListener {
         String busca = formato.format(agendamento.getCalendario().getDate());
         consultas = fachada1.getPorBuscaConsulta(busca);
         agendamento.getTabelaAgendamento().setDefaultRenderer(Object.class, new Render());
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
+        Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagar.png"));
 
         btn1 = new JButton(editar);
         btn1.setName("m");
@@ -464,9 +483,14 @@ public class ControleConsulta implements ActionListener {
         btn2.setBorder(null);
         btn2.setContentAreaFilled(false);
 
+        btn3 = new JButton(pagar);
+        btn3.setName("p");
+        btn3.setBorder(null);
+        btn3.setContentAreaFilled(false);
+
         try {
-            String[] colunas = new String[]{"Hora", "Tipo", "Paciente", "Medico", "Editar", "Excluir"};
-            Object[][] dados = new Object[consultas.size()][6];
+            String[] colunas = new String[]{"Hora", "Tipo", "Paciente", "Medico", "Editar", "Excluir", "Pagar"};
+            Object[][] dados = new Object[consultas.size()][7];
             for (int i = 0; i < consultas.size(); i++) {
                 Consulta consulta = consultas.get(i);
                 dados[i][0] = consulta.getHora();
@@ -475,6 +499,7 @@ public class ControleConsulta implements ActionListener {
                 dados[i][3] = consulta.getMedico().getNome();
                 dados[i][4] = btn1;
                 dados[i][5] = btn2;
+                dados[i][6] = btn3;
 
             }
 
@@ -558,13 +583,51 @@ public class ControleConsulta implements ActionListener {
                 agendamento.setVisible(true);
                 preenchertabela();
                 cc.setVisible(false);
-               
+
                 c = null;
 
             }
         }
 
-  
+    }
+
+    public void abrirCaixa() {
+
+        java.util.Date d = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        caixa = new DaoCaixa().buscarCaixaPorData(dStr);
+        if (caixa != null)caixa.setFuncionario(funcionario);
+        
+        if (caixa == null) {
+
+            caixa = new Caixa();
+
+            caixa.setPagamentos(new ArrayList<Pagamento>());
+            caixa.setData(dStr);
+            caixa.setFuncionario(funcionario);
+
+            int id = fachada1.salvarCaixa(caixa);
+
+            caixa.setId(id);
+
+        }
+
+        
 
     }
+
+    /**
+     * @return the funcionario
+     */
+    public static Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    /**
+     * @param aFuncionario the funcionario to set
+     */
+    public static void setFuncionario(Funcionario aFuncionario) {
+        funcionario = aFuncionario;
+    }
+
 }

@@ -40,9 +40,8 @@ public class DaoParcela implements IDaoParcela {
             this.statement.setDouble(1, parcela.getValor());
             this.statement.setBoolean(2, parcela.isStatus());
             this.statement.setInt(3, parcela.getNumero());
-            this.statement.setBoolean(4, parcela.isParcela_unica());
-            this.statement.setString(5, parcela.getData_vencimento());
-            this.statement.setInt(6, id_pagamento); 
+            this.statement.setString(4, parcela.getData_vencimento());
+            this.statement.setInt(5, id_pagamento); 
         
             statement.execute();
             this.statement.close();
@@ -66,7 +65,7 @@ public class DaoParcela implements IDaoParcela {
                 parcela.setValor(result.getDouble(SQLUtil.Parcela.COL_VALOR));
                 parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
                 parcela.setStatus(result.getBoolean(SQLUtil.Parcela.COL_STATUS));
-                parcela.setParcela_unica(result.getBoolean(SQLUtil.Parcela.COL_PARCELA_UNICA));
+                
 
             }
             this.conexao.close();
@@ -80,6 +79,7 @@ public class DaoParcela implements IDaoParcela {
     @Override
     public List<Parcela> getAllParcela() {
         List<Parcela> parcelas = new ArrayList<>();
+        int id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Parcela.NOME_TABELA));
@@ -92,8 +92,9 @@ public class DaoParcela implements IDaoParcela {
                 parcela.setValor(result.getDouble(SQLUtil.Parcela.COL_VALOR));
                 parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
                 parcela.setStatus(result.getBoolean(SQLUtil.Parcela.COL_STATUS));
-                parcela.setParcela_unica(result.getBoolean(SQLUtil.Parcela.COL_PARCELA_UNICA));
                 
+                id=result.getInt(1);
+              parcela.setId(id);
                 parcelas.add(parcela);
             }
             this.conexao.close();
@@ -105,12 +106,51 @@ public class DaoParcela implements IDaoParcela {
 
     @Override
     public void editarParcela(Parcela parcela) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   try {
+           //boolean parc
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Parcela.updateParcela(true,parcela.getId()));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoParcela.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void ativarDesativarParcela(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List<Parcela> buscarParcela(int id) {
+        List<Parcela> parcelas = new ArrayList<>();
+        int idP=0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Parcela.busacarParcelas(id));
+            this.result = this.statement.executeQuery();
+            Parcela parcela;
+            while (result.next()) {
+                parcela = new Parcela();
+                
+               parcela.setNumero(result.getInt(SQLUtil.Parcela.COL_NUMERO));
+                parcela.setValor(result.getDouble(SQLUtil.Parcela.COL_VALOR));
+                parcela.setData_vencimento(result.getString(SQLUtil.Parcela.COL_DATA_VENCIMENTO));
+                parcela.setStatus(result.getBoolean(SQLUtil.Parcela.COL_STATUS));
+               
+                 idP=result.getInt(1);
+              parcela.setId(idP);
+                parcelas.add(parcela);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoParcela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return parcelas; 
     }
 
 }

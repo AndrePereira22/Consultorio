@@ -116,7 +116,6 @@ public class ControlePaciente implements ActionListener {
                                 fachada1.ativarDesativarPaciente(p.getId());
                                 CommumDao.ativarDesativarContato(p.getId_contato());
                                 CommumDao.ativarDesativarEndereco(p.getId_endereco());
-                                fachada1.ativarDesativarProntuario(p.getId_prontuario());
                                 preencherbuscas();
                             }
 
@@ -190,8 +189,7 @@ public class ControlePaciente implements ActionListener {
             con.setCelular(cadastroPaciente.getTxtcelular2().getText());
             con.setTelefone(cadastroPaciente.getTxttelefone().getText());
 
-            Prontuario p = new Prontuario();
-            // p.setExames(exames);
+           
 
             Paciente paciente = new Paciente();
             paciente.setNome(cadastroPaciente.getTxtNome().getText());
@@ -205,10 +203,8 @@ public class ControlePaciente implements ActionListener {
             paciente.setCpf(cadastroPaciente.getTxtCpf().getText());
             paciente.setSexo(cadastroPaciente.getCombosexo().getSelectedItem().toString());
             paciente.setConvenio(cadastroPaciente.getTxtConvenio().getText());
-            paciente.setProntuario(p);
             paciente.setEndereco(end);
             paciente.setContato(con);
-            paciente.setConsultas(new ArrayList<Consulta>());
             paciente.setData_nascimento(cadastroPaciente.getTxtdata().getText());
 
             fachada1.salvarPaciente(paciente);
@@ -225,9 +221,9 @@ public class ControlePaciente implements ActionListener {
         pacientes = fachada1.getPorBusca(buscarPaciente.getTxtpesquisarPaciente().getText());
 
         buscarPaciente.getTabelaPaciente().setDefaultRenderer(Object.class, new Render());
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
-
+      Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
+        
         JButton btn1 = new JButton(editar);
         btn1.setName("m");
         btn1.setBorder(null);

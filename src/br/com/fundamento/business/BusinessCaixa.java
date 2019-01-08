@@ -23,8 +23,8 @@ public class BusinessCaixa  implements IBusinessCaixa{
     }
 
     @Override
-    public void salvarCaixa(Caixa caixa) {
-       this.daoCaixa.salvarCaixa(caixa);
+    public int salvarCaixa(Caixa caixa) {
+      return this.daoCaixa.salvarCaixa(caixa);
     }
 
     @Override

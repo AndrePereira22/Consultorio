@@ -5,9 +5,14 @@
  */
 package br.com.fundamento.controle;
 
+import br.com.fundamento.dao.DaoCaixa;
+import br.com.fundamento.dao.DaoConsulta;
 import br.com.fundamento.dao.DaoFuncionario;
+import br.com.fundamento.dao.DaoMedico;
+import br.com.fundamento.dao.DaoProntuario;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
+import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
@@ -15,14 +20,15 @@ import br.com.fundamento.modelos.Endereco;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.modelos.Medico;
+import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Render;
 import br.com.fundamento.view.Historico;
 import br.com.fundamento.view.ListaConsulta;
 import br.com.fundamento.view.TelaProntuario;
 import br.com.fundamento.modelos.Prontuario;
+import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
-import br.com.fundamento.view.agendamento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -51,21 +57,30 @@ public class ControlePrincipal implements ActionListener {
     private ListaConsulta Liconsulta;
     private TelaProntuario telaprontuario;
     private Historico historico;
-    private static String login="",password="";
+    private static Funcionario funcionario;
+    private static Medico medico;
+    private AtualizarConsultorio atualizarConsultorio;
+    private static String login = "", password = "";
+    private List<Consulta> consultas;
+    private Paciente paciente;
+    
+    private List<Prontuario> prontuarios;
+    private Prontuario prontuario;
 
     IFachada fachada1 = Fachada.getInstance();
 
-    public ControlePrincipal(TelaPrincipal telaPrincipal, TelaLogin telaLogin, ListaConsulta Liconsulta, TelaProntuario telaprontuario, Historico historico) {
+    public ControlePrincipal(TelaPrincipal telaPrincipal, TelaLogin telaLogin, ListaConsulta Liconsulta, TelaProntuario telaprontuario, Historico historico, AtualizarConsultorio atualizarConsultorio) {
         this.telaPrincipal = telaPrincipal;
         this.telaLogin = telaLogin;
         this.Liconsulta = Liconsulta;
         this.telaprontuario = telaprontuario;
         this.historico = historico;
+        this.atualizarConsultorio = atualizarConsultorio;
 
         telaPrincipal.getBotaoAtualizardados().addActionListener(this);
-        telaPrincipal.getBotaoCancelarrConsultorio().addActionListener(this);
-        telaPrincipal.getBotaoSalvarConsultorio().addActionListener(this);
         telaLogin.setVisible(true);
+        atualizarConsultorio.getBotaoCancelarrConsultorio().addActionListener(this);
+        atualizarConsultorio.getBotaoSalvarConsultorio().addActionListener(this);
         telaLogin.getEntrar().addActionListener(this);
         telaPrincipal.getBotaoSair().addActionListener(this);
         telaLogin.getCancelarLogin().addActionListener(this);
@@ -76,6 +91,8 @@ public class ControlePrincipal implements ActionListener {
         telaprontuario.getBotaoCancelarProntuario().addActionListener(this);
         telaprontuario.getBotaoSalvarProntuario().addActionListener(this);
         historico.getBotaoFechar().addActionListener(this);
+        historico.getBotaoeditar().addActionListener(this);
+        historico.getBotaoatualizar().addActionListener(this);
         Liconsulta.getTabelalistaPaciente().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -89,21 +106,37 @@ public class ControlePrincipal implements ActionListener {
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("a")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja Atender este Paceinte,", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
-                            telaprontuario.setVisible(true);
-                            Liconsulta.setVisible(false);
-                           telaprontuario.getTxtoExames().setText("");
-                           telaprontuario.getTxtoReceita().setText("");
-                           telaprontuario.getSintomas().setText("");
+                            int atender = JOptionPane.showConfirmDialog(null, "Deseja atender este paciente", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = Liconsulta.getTabelalistaPaciente().getSelectedRow();
+                            if (atender == 0) {
 
+                                paciente = consultas.get(ro).getPaciente();
+                                telaprontuario.setVisible(true);
+                                Liconsulta.setVisible(false);
+                                telaprontuario.getTxtoExames().setText("");
+                                telaprontuario.getTxtoReceita().setText("");
+                                telaprontuario.getSintomas().setText("");
+
+                            }
                         }
                         if (boton.getName().equals("h")) {
-                            JOptionPane.showConfirmDialog(null, "Deseja ver o historico deste Paceinte,", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
-                            historico.setVisible(true);
-                            Liconsulta.setVisible(false);
+                            int history = JOptionPane.showConfirmDialog(null, "Deseja ver o Historico", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = Liconsulta.getTabelalistaPaciente().getSelectedRow();
+                            if (history == 0) {
 
+                                paciente = consultas.get(ro).getPaciente();
+                                preenchertabelaHistorio();
+                                historico.setVisible(true);
+                                Liconsulta.setVisible(false);
+                                historico.getTextdata().setEditable(false);
+                                historico.getTextexames().setEditable(false);
+                                historico.getTextreceita().setEditable(false);
+                                historico.getTxtsintomas().setEditable(false);
+                                historico.getBotaoatualizar().setVisible(false);
+                                historico.getBotaoeditar().setVisible(false);
+
+                            }
                         }
-
                     }
                     if (value instanceof JCheckBox) {
                         //((JCheckBox)value).doClick();
@@ -114,7 +147,44 @@ public class ControlePrincipal implements ActionListener {
                         if (ch.isSelected() == false) {
                             ch.setSelected(true);
                         }
+                    }
+                }
 
+            }
+
+        });
+        historico.getTabelahistorico().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = historico.getTabelahistorico().getColumnModel().getColumnIndexAtX(e.getX());
+                int row = e.getY() / historico.getTabelahistorico().getRowHeight();
+
+                if (row < historico.getTabelahistorico().getRowCount() && row >= 0 && column < historico.getTabelahistorico().getColumnCount() && column >= 0) {
+                    Object value = historico.getTabelahistorico().getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        ((JButton) value).doClick();
+                        JButton boton = (JButton) value;
+
+                        if (boton.getName().equals("d")) {
+                            int atender = JOptionPane.showConfirmDialog(null, "Deseja ver detalhes", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int ro = historico.getTabelahistorico().getSelectedRow();
+                            if (atender == 0) {
+                                prontuario = prontuarios.get(ro);
+                                preencherDetalhes();
+                                historico.getBotaoeditar().setVisible(true);
+
+                            }
+                        }
+                    }
+                    if (value instanceof JCheckBox) {
+                        //((JCheckBox)value).doClick();
+                        JCheckBox ch = (JCheckBox) value;
+                        if (ch.isSelected() == true) {
+                            ch.setSelected(false);
+                        }
+                        if (ch.isSelected() == false) {
+                            ch.setSelected(true);
+                        }
                     }
                 }
 
@@ -126,45 +196,66 @@ public class ControlePrincipal implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == telaPrincipal.getBotaoAtualizardados()) {
-            telaPrincipal.getPanelConsultorio().setVisible(true);
+            atualizarConsultorio.setVisible(true);
 
             try {
 
                 Consultorio c = fachada1.bucarConsultorio();
 
-                telaPrincipal.getTxtnomefantasia().setText(c.getNome_fantasia());
-                telaPrincipal.getTxtcnpj().setText(c.getCnpj());
-                telaPrincipal.getTxtrazao().setText(c.getRazao_social());
+                atualizarConsultorio.getTxtnomefantasia().setText(c.getNome_fantasia());
+                atualizarConsultorio.getTxtcnpj().setText(c.getCnpj());
+                atualizarConsultorio.getTxtrazao().setText(c.getRazao_social());
 
-                telaPrincipal.getTxtrua().setText(c.getEndereco().getRua());
-                telaPrincipal.getTxtbairro().setText(c.getEndereco().getBairro());
-                telaPrincipal.getTxtcep().setText(c.getEndereco().getCep());
-                telaPrincipal.getTxtnumero().setText(c.getEndereco().getNumero());
-                telaPrincipal.getTxtcidade().setText(c.getEndereco().getMunicipio());
+                atualizarConsultorio.getTxtrua().setText(c.getEndereco().getRua());
+                atualizarConsultorio.getTxtbairro().setText(c.getEndereco().getBairro());
+                atualizarConsultorio.getTxtcep().setText(c.getEndereco().getCep());
+                atualizarConsultorio.getTxtnumero().setText(c.getEndereco().getNumero());
+                atualizarConsultorio.getTxtcidade().setText(c.getEndereco().getMunicipio());
 
-                for (int u = 0; u < telaPrincipal.getTxtUf().getItemCount(); u++) {
+                for (int u = 0; u < atualizarConsultorio.getTxtUf().getItemCount(); u++) {
 
-                    if (telaPrincipal.getTxtUf().getItemAt(u).equals(c.getEndereco().getEstado())) {
-                        telaPrincipal.getTxtUf().setSelectedItem(telaPrincipal.getTxtUf().getItemAt(u));
+                    if (atualizarConsultorio.getTxtUf().getItemAt(u).equals(c.getEndereco().getEstado())) {
+                        atualizarConsultorio.getTxtUf().setSelectedItem(atualizarConsultorio.getTxtUf().getItemAt(u));
                     }
                 }
 
-                telaPrincipal.getTxtemail().setText(c.getContato().getEmail());
-                telaPrincipal.getTxtcelular().setText(c.getContato().getCelular());
-                telaPrincipal.getTxttelefone().setText(c.getContato().getTelefone());
+                atualizarConsultorio.getTxtemail().setText(c.getContato().getEmail());
+                atualizarConsultorio.getTxtcelular().setText(c.getContato().getCelular());
+                atualizarConsultorio.getTxttelefone().setText(c.getContato().getTelefone());
             } catch (Exception p) {
             }
 
         }
 
-        if (e.getSource() == telaPrincipal.getBotaoCancelarrConsultorio()) {
-            telaPrincipal.getPanelConsultorio().setVisible(false);
+        if (e.getSource() == historico.getBotaoeditar()) {
+
+            historico.getTextexames().setEditable(true);
+            historico.getTextreceita().setEditable(true);
+            historico.getTxtsintomas().setEditable(true);
+            historico.getBotaoatualizar().setVisible(true);
+            historico.getBotaoeditar().setVisible(false);
         }
+        if (e.getSource() == historico.getBotaoatualizar()) {
+
+            prontuario.setExames(historico.getTextexames().getText());
+            prontuario.setReceitas(historico.getTextreceita().getText());
+            prontuario.setSintomas(historico.getTxtsintomas().getText());
+            fachada1.editarProntuario(prontuario);
+            
+            historico.getBotaoatualizar().setVisible(false);
+            preenchertabelaHistorio();
+        }
+
         if (e.getSource() == telaprontuario.getBotaoCancelarProntuario()) {
             telaprontuario.setVisible(false);
             Liconsulta.setVisible(true);
         }
         if (e.getSource() == telaprontuario.getBotaoSalvarProntuario()) {
+
+            Paciente p = paciente;
+
+            List<Prontuario> list = new ArrayList<Prontuario>();
+
             Prontuario pron = new Prontuario();
             pron.setExames(telaprontuario.getTxtoExames().getText());
             pron.setReceitas(telaprontuario.getTxtoReceita().getText());
@@ -172,8 +263,15 @@ public class ControlePrincipal implements ActionListener {
             java.util.Date d = new Date();
             String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
             pron.setData(dStr);
-            fachada1.salvarProntuario(pron);
-             Liconsulta.setVisible(true);
+
+            list.add(pron);
+
+            p.setProntuarios(list);
+
+            fachada1.editarPaciente(p);
+            telaprontuario.setVisible(false);
+            Liconsulta.setVisible(true);
+
         }
 
         if (e.getSource() == telaPrincipal.getBotaolist()) {
@@ -183,7 +281,7 @@ public class ControlePrincipal implements ActionListener {
         if (e.getSource() == Liconsulta.getBotaoFechar()) {
             Liconsulta.setVisible(false);
         }
-        if (e.getSource() == telaPrincipal.getBotaoSalvarConsultorio()) {
+        if (e.getSource() == atualizarConsultorio.getBotaoSalvarConsultorio()) {
 
             Consultorio consultori = fachada1.buscarConsultorioPorId(1);
             if (consultori == null) {
@@ -191,26 +289,26 @@ public class ControlePrincipal implements ActionListener {
             } else {
                 Endereco end = consultori.getEndereco();
 
-                end.setBairro(telaPrincipal.getTxtbairro().getText());
-                end.setRua(telaPrincipal.getTxtrua().getText());
-                end.setCep(telaPrincipal.getTxtcep().getText());
-                end.setNumero(telaPrincipal.getTxtnumero().getText());
-                end.setEstado(telaPrincipal.getTxtUf().getSelectedItem().toString());
-                end.setMunicipio(telaPrincipal.getTxtcidade().getText());
+                end.setBairro(atualizarConsultorio.getTxtbairro().getText());
+                end.setRua(atualizarConsultorio.getTxtrua().getText());
+                end.setCep(atualizarConsultorio.getTxtcep().getText());
+                end.setNumero(atualizarConsultorio.getTxtnumero().getText());
+                end.setEstado(atualizarConsultorio.getTxtUf().getSelectedItem().toString());
+                end.setMunicipio(atualizarConsultorio.getTxtcidade().getText());
                 Contato con = consultori.getContato();
 
-                con.setEmail(telaPrincipal.getTxtemail().getText());
-                con.setCelular(telaPrincipal.getTxtcelular().getText());
-                con.setTelefone(telaPrincipal.getTxttelefone().getText());
+                con.setEmail(atualizarConsultorio.getTxtemail().getText());
+                con.setCelular(atualizarConsultorio.getTxtcelular().getText());
+                con.setTelefone(atualizarConsultorio.getTxttelefone().getText());
                 consultori.setEndereco(end);
                 consultori.setContato(con);
-                consultori.setCnpj(telaPrincipal.getTxtcnpj().getText());
-                consultori.setNome_fantasia(telaPrincipal.getTxtnomefantasia().getText());
-                consultori.setRazao_social(telaPrincipal.getTxtrazao().getText());
+                consultori.setCnpj(atualizarConsultorio.getTxtcnpj().getText());
+                consultori.setNome_fantasia(atualizarConsultorio.getTxtnomefantasia().getText());
+                consultori.setRazao_social(atualizarConsultorio.getTxtrazao().getText());
                 consultori.setMedicos(new ArrayList<Medico>());
 
                 fachada1.editarConsultorio(consultori);
-                telaPrincipal.getPanelConsultorio().setVisible(false);
+                atualizarConsultorio.setVisible(false);
             }
         }
         if (e.getSource() == telaLogin.getEntrar()) {
@@ -221,19 +319,40 @@ public class ControlePrincipal implements ActionListener {
                 loginF = fachada1.buscarLogin(telaLogin.getTextlogin().getText());
                 loginM = fachada1.buscarLoginMedico("l.usuario", telaLogin.getTextlogin().getText());
                 if (loginF.getUsuario().equals(telaLogin.getTextlogin().getText()) && loginF.getSenha().equals(senha)) {
-                    
-                    password=senha;
+
+                    password = senha;
                     login = telaLogin.getTextlogin().getText();
-                    
+                   
+
                     telaPrincipal.getBotaolist().setVisible(false);
                     telaPrincipal.setVisible(true);
                     telaLogin.setVisible(false);
+                    criarFuncionario(login, password);
+                    telaPrincipal.getPanelP().setEnabledAt(1, true);
+                    telaPrincipal.getPanelP().setEnabledAt(2, true);
+                    telaPrincipal.getPanelP().setEnabledAt(3, true);
+                    telaPrincipal.getPanelP().setEnabledAt(4, true);
+                    telaPrincipal.getBotaoCadastroPaciente().setVisible(true);
+                    telaPrincipal.getBotaoMedico().setVisible(true);
+                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
+                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
+                    telaPrincipal.getBotaoAgendamento().setVisible(true);
+                    telaPrincipal.getBotaolist().setVisible(false); 
+                   
                 }
             } catch (Exception a) {
             }
 
             try {
                 if (loginM.getUsuario().equals(telaLogin.getTextlogin().getText()) && loginM.getSenha().equals(senha)) {
+
+                    password = senha;
+                    login = telaLogin.getTextlogin().getText();
+
+                    telaPrincipal.getBotaolist().setVisible(false);
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                    criarMedico(login, password);
 
                     telaPrincipal.getPanelP().setEnabledAt(1, false);
                     telaPrincipal.getPanelP().setEnabledAt(2, false);
@@ -263,11 +382,14 @@ public class ControlePrincipal implements ActionListener {
             telaLogin.getTextsenha().setText("");
             telaLogin.setVisible(true);
             telaLogin.getTextlogin().grabFocus();
-
         }
         if (e.getSource() == historico.getBotaoFechar()) {
             historico.setVisible(false);
             Liconsulta.setVisible(true);
+            historico.getTextdata().setText("");
+            historico.getTextexames().setText("");
+            historico.getTextreceita().setText("");
+            historico.getTxtsintomas().setText("");
 
         }
 
@@ -280,43 +402,44 @@ public class ControlePrincipal implements ActionListener {
 
     }
 
-   
     public void criarConsultorio() {
 
         Consultorio consultori = new Consultorio();
         Endereco end = new Endereco();
 
-        end.setBairro(telaPrincipal.getTxtbairro().getText());
-        end.setRua(telaPrincipal.getTxtrua().getText());
-        end.setCep(telaPrincipal.getTxtcep().getText());
-        end.setNumero(telaPrincipal.getTxtnumero().getText());
-        end.setEstado(telaPrincipal.getTxtUf().getSelectedItem().toString());
-        end.setMunicipio(telaPrincipal.getTxtcidade().getText());
+        end.setBairro(atualizarConsultorio.getTxtbairro().getText());
+        end.setRua(atualizarConsultorio.getTxtrua().getText());
+        end.setCep(atualizarConsultorio.getTxtcep().getText());
+        end.setNumero(atualizarConsultorio.getTxtnumero().getText());
+        end.setEstado(atualizarConsultorio.getTxtUf().getSelectedItem().toString());
+        end.setMunicipio(atualizarConsultorio.getTxtcidade().getText());
         Contato con = new Contato();
 
-        con.setEmail(telaPrincipal.getTxtemail().getText());
-        con.setCelular(telaPrincipal.getTxtcelular().getText());
-        con.setTelefone(telaPrincipal.getTxttelefone().getText());
+        con.setEmail(atualizarConsultorio.getTxtemail().getText());
+        con.setCelular(atualizarConsultorio.getTxtcelular().getText());
+        con.setTelefone(atualizarConsultorio.getTxttelefone().getText());
         consultori.setEndereco(end);
         consultori.setContato(con);
-        consultori.setCnpj(telaPrincipal.getTxtcnpj().getText());
-        consultori.setNome_fantasia(telaPrincipal.getTxtnomefantasia().getText());
-        consultori.setRazao_social(telaPrincipal.getTxtrazao().getText());
+        consultori.setCnpj(atualizarConsultorio.getTxtcnpj().getText());
+        consultori.setNome_fantasia(atualizarConsultorio.getTxtnomefantasia().getText());
+        consultori.setRazao_social(atualizarConsultorio.getTxtrazao().getText());
         consultori.setMedicos(new ArrayList<Medico>());
 
         fachada1.salvarConsultorio(consultori);
-        telaPrincipal.getPanelConsultorio().setVisible(false);
+        atualizarConsultorio.setVisible(false);
 
     }
 
     public void preenchertabela() {
 
         java.util.Date d = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        String data = java.text.DateFormat.getDateInstance(DateFormat.LONG).format(d);
         int i = 0;
-        List<Consulta> consultas = fachada1.getAllConsulta();
+        consultas = new DaoConsulta().BuscaConsultadoMedico(medico.getNome(), dStr);
         Liconsulta.getTabelalistaPaciente().setDefaultRenderer(Object.class, new Render());
-        Icon atender = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/user.png"));
-        Icon historico = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/stats-2.png"));
+        Icon atender = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/atender.png"));
+        Icon historico = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/historico.png"));
 
         JButton btn1 = new JButton(atender);
         btn1.setName("a");
@@ -329,18 +452,16 @@ public class ControlePrincipal implements ActionListener {
         btn2.setContentAreaFilled(false);
 
         try {
-            String[] colunas = new String[]{"Hora", "Tipo", "Paciente", "Medico", "Data", "Atender", "Historico"};
-            Object[][] dados = new Object[consultas.size()][7];
+            String[] colunas = new String[]{"Hora", "Tipo", "Paciente", "Atender", "Historico"};
+            Object[][] dados = new Object[consultas.size()][5];
             for (Consulta c : consultas) {
 
                 telaprontuario.getTxtpaciente().setText(c.getPaciente().getNome());
                 dados[i][0] = c.getHora();
                 dados[i][1] = c.getTipo();
                 dados[i][2] = c.getPaciente().getNome();
-                dados[i][3] = c.getMedico().getNome();
-                dados[i][4] = c.getData();
-                dados[i][5] = btn1;
-                dados[i][6] = btn2;
+                dados[i][3] = btn1;
+                dados[i][4] = btn2;
                 i++;
             }
 
@@ -353,24 +474,82 @@ public class ControlePrincipal implements ActionListener {
             TableColumnModel columnModel = Liconsulta.getTabelalistaPaciente().getColumnModel();
             Liconsulta.getTabelalistaPaciente().setModel(dataModel);
             Liconsulta.getTabelalistaPaciente().setPreferredScrollableViewportSize(Liconsulta.getTabelalistaPaciente().getPreferredSize());
+            Liconsulta.getTxtdata().setText(data);
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public void preenchertabelaHistorio() {
+
+        int i = 0;
+        prontuarios = new DaoProntuario().ProntuariosPaciente(paciente.getId());
+        historico.getTabelahistorico().setDefaultRenderer(Object.class, new Render());
+        Icon atender = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/detalhes.png"));
+
+        JButton btn1 = new JButton(atender);
+        btn1.setName("d");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        try {
+            String[] colunas = new String[]{"Data", "Sintomas", "Exames", "Receitas", "Detallhe"};
+            Object[][] dados = new Object[prontuarios.size()][5];
+            for (Prontuario p : prontuarios) {
+
+                dados[i][0] = p.getData();
+                dados[i][1] = p.getSintomas();
+                dados[i][2] = p.getExames();
+                dados[i][3] = p.getReceitas();
+                dados[i][4] = btn1;
+                i++;
+            }
+
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            TableColumnModel columnModel = historico.getTabelahistorico().getColumnModel();
+            historico.getTabelahistorico().setModel(dataModel);
+            historico.getTabelahistorico().setPreferredScrollableViewportSize(historico.getTabelahistorico().getPreferredSize());
 
         } catch (Exception ex) {
 
         }
     }
 
-    /**
-     * @return the login
-     */
-    public static String getLogin() {
-        return login;
+    public void criarFuncionario(String login, String senha) {
+
+        Funcionario funcionario = new DaoFuncionario().buscarFuncionario(login, senha);
+
+        ControleConsulta.setFuncionario(funcionario);
+        Icon fun = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/funcionario.png"));
+
+        telaPrincipal.getImagem().setIcon(fun);
+        telaPrincipal.getImagem().setText(funcionario.getNome());
+
     }
 
-    /**
-     * @return the password
-     */
-    public static String getPassword() {
-        return password;
+    public void criarMedico(String login, String senha) {
+
+        medico = new DaoMedico().buscarMedico(login, senha);
+        Icon medicou = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/medico.png"));
+
+        telaPrincipal.getImagem().setIcon(medicou);
+        telaPrincipal.getImagem().setText(medico.getNome());
+
     }
+
+    public void preencherDetalhes() {
+
+        historico.getTextdata().setText(prontuario.getData());
+        historico.getTextexames().setText(prontuario.getExames());
+        historico.getTextreceita().setText(prontuario.getReceitas());
+        historico.getTxtsintomas().setText(prontuario.getSintomas());
+
+    }
+
 
 }

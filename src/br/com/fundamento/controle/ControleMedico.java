@@ -157,11 +157,10 @@ public class ControleMedico implements ActionListener {
         if (e.getSource() == telaPrincipal.getBotaoMedico()) {
             preenchertabela();
 
-           
             buscarMedico.setVisible(true);
         }
         if (e.getSource() == buscarMedico.getBotaoFecharMedico()) {
-            
+
             buscarMedico.setVisible(false);
         }
         if (e.getSource() == buscarMedico.getBotaoAdicionarMedico()) {
@@ -194,27 +193,33 @@ public class ControleMedico implements ActionListener {
             Login l = new Login();
             String senha = new String(cadastroMedico.getTxtsenha1().getPassword());
             l.setSenha(senha);
-            l.setUsuario(cadastroMedico.getTxtlogin1().getText());
+            String login = cadastroMedico.getTxtlogin1().getText();
+            l.setUsuario(login);
 
             Especializacao es = new Especializacao();
             es.setDescricao(cadastroMedico.getTxtEspecializacao().getText());
             String sa = cadastroMedico.getTxtsalario1().getText();
+            String numero = cadastroMedico.getTxtnumero().getText();
             sa = sa.replaceAll("[^0-9]", "");
             double salario = 0;
+            int numer = 0;
             try {
                 salario = Double.parseDouble(sa);
+                numer = Integer.parseInt(numero);
 
             } catch (NumberFormatException erro) {
             }
+
             es.setSalario(salario);
             es.setHorario_disponivel(cadastroMedico.getTxthorario().getText());
 
             Medico medico = new Medico();
+            medico.setNumero(numer);
+            medico.setConselho(cadastroMedico.getTxtConselho().getSelectedItem().toString());
 
             medico.setEspecializacao(es);
             medico.setContato(con);
             medico.setEndereco(end);
-
             medico.setLogin(l);
             medico.setCpf(cadastroMedico.getTxtcpf().getText());
             java.util.Date d = new Date();
@@ -222,6 +227,7 @@ public class ControleMedico implements ActionListener {
             String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
 
             medico.setData_cadastro(dStr);
+
             medico.setData_nascimento(cadastroMedico.getTxtdata().getText());
             medico.setNome(cadastroMedico.getTxtnome().getText());
             medico.setRg(cadastroMedico.getTxtrg().getText());
@@ -229,27 +235,40 @@ public class ControleMedico implements ActionListener {
 
             String confirmarSenha = new String(cadastroMedico.getTxtconfirmasenha1().getPassword());
 
-            if (senha.equals(confirmarSenha)) {
+            List<Login> logins = fachada1.getAllLogin();
 
-                fachada1.salvarMedico(medico);
-                buscarMedico.getTxtPesquisarMedico().setText("");
-                preenchertabela();
-                buscarMedico.setVisible(true);
-                cadastroMedico.setVisible(false);
-                telaPrincipal.setEnabled(true);
+            boolean existe = false;
+
+            for (Login lo : logins) {
+                if (lo.getSenha().equals(senha) && lo.getUsuario().equals(login)) {
+                    existe = true;
+                }
+
+            }
+            if (existe) {
+                JOptionPane.showMessageDialog(null, "Escolha um login ou senha diferente");
             } else {
-                JOptionPane.showMessageDialog(null, "Senha diferentes");
+                if (senha.equals(confirmarSenha)) {
+
+                    fachada1.salvarMedico(medico);
+                    buscarMedico.getTxtPesquisarMedico().setText("");
+                    preenchertabela();
+                    buscarMedico.setVisible(true);
+                    cadastroMedico.setVisible(false);
+                    telaPrincipal.setEnabled(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha diferentes");
+                }
             }
         }
-
     }
 
     public void preenchertabela() {
         medicos = fachada1.getPorBuscaMedico(buscarMedico.getTxtPesquisarMedico().getText());
         buscarMedico.getTabelaMedico().setDefaultRenderer(Object.class, new Render());
 
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
 
         JButton btn1 = new JButton(editar);
         btn1.setName("m");
@@ -285,7 +304,6 @@ public class ControleMedico implements ActionListener {
             buscarMedico.getTabelaMedico().setModel(dataModel);
             buscarMedico.getTabelaMedico().setPreferredScrollableViewportSize(buscarMedico.getTabelaMedico().getPreferredSize());
 
-           
         } catch (Exception ex) {
 
         }
@@ -326,7 +344,13 @@ public class ControleMedico implements ActionListener {
                 cm.getjComboBox1().setSelectedItem(cm.getjComboBox1().getItemAt(u));
             }
         }
+        for (int u = 0; u < cm.getTxtConselho().getItemCount(); u++) {
 
+            if (cm.getTxtConselho().getItemAt(u).equals(p.getConselho())) {
+                cm.getTxtConselho().setSelectedItem(cm.getTxtConselho().getItemAt(u));
+            }
+        }
+        cm.getTxtnumero().setText(p.getNumero() + "");
         cm.getTxtdata().setText(p.getData_nascimento());
         cm.getTxtlogin1().setText(p.getLogin().getUsuario());
         cm.getTxtsenha1().setText(p.getLogin().getSenha());
@@ -351,16 +375,21 @@ public class ControleMedico implements ActionListener {
                 medico.getContato().setEmail(cm.getTxtemail().getText());
                 medico.getContato().setCelular(cm.getTxtcelular().getText());
                 medico.getContato().setTelefone(cm.getTxttelefone().getText());
+                medico.setConselho(cm.getTxtConselho().getSelectedItem().toString());
                 String senha = new String(cm.getTxtsenha1().getPassword());
                 medico.getLogin().setSenha(senha);
 
                 especializacao.setHorario_disponivel(cm.getTxthorario().getText());
                 especializacao.setDescricao(cm.getTxtEspecializacao().getText());
                 String salario = cm.getTxtsalario1().getText();
+
+                String numero = cm.getTxtnumero().getText();
                 salario = salario.replaceAll("[^0-9]", "");
                 double s = 0;
+                int n =0;
                 try {
                     s = Double.parseDouble(salario);
+                    n =Integer.parseInt(numero);
 
                 } catch (NumberFormatException erro) {
                 }
@@ -372,6 +401,8 @@ public class ControleMedico implements ActionListener {
                 String confirmarSenha = new String(cm.getTxtconfirmasenha1().getPassword());
 
                 medico.setCpf(cm.getTxtcpf().getText());
+                medico.setNumero(n);
+
                 medico.setNome(cm.getTxtnome().getText());
                 medico.setRg(cm.getTxtrg().getText());
                 medico.setSexo(cm.getjComboBox1().getSelectedItem().toString());

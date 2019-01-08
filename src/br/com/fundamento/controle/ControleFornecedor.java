@@ -207,9 +207,9 @@ public class ControleFornecedor implements ActionListener {
         fornecedores = fachada1.getPorBuscaFornecedor(buscarFornecedor.getTxtPesquisarFornecedor().getText());
         
         buscarFornecedor.getTabelaCoFornecedor().setDefaultRenderer(Object.class, new Render());
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
-
+       Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
+        
         btn1 = new JButton(editar);
         btn1.setName("m");
         btn1.setBorder(null);

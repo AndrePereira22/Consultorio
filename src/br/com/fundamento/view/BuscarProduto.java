@@ -35,6 +35,8 @@ public class BuscarProduto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         labelproduto = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        ComboEstoque = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
@@ -109,29 +111,38 @@ public class BuscarProduto extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
+        jLabel2.setText("Escolher Estoque:");
+
+        ComboEstoque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Todos" }));
+        ComboEstoque.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BotaoAdicionarProduto)
-                .addGap(18, 18, 18)
-                .addComponent(BotaoFecharProduto)
-                .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelproduto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPesquisarProduto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboEstoque, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BotaoAdicionarProduto)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotaoFecharProduto)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelproduto)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +156,9 @@ public class BuscarProduto extends javax.swing.JFrame {
                     .addComponent(BotaoAdicionarProduto)
                     .addComponent(BotaoFecharProduto)
                     .addComponent(txtPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(ComboEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
@@ -196,8 +209,10 @@ public class BuscarProduto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoAdicionarProduto;
     private javax.swing.JButton BotaoFecharProduto;
+    private javax.swing.JComboBox<String> ComboEstoque;
     private javax.swing.JTable Tabela;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelproduto;
@@ -288,6 +303,20 @@ public class BuscarProduto extends javax.swing.JFrame {
      */
     public void setLabelproduto(javax.swing.JLabel labelproduto) {
         this.labelproduto = labelproduto;
+    }
+
+    /**
+     * @return the ComboEstoque
+     */
+    public javax.swing.JComboBox<String> getComboEstoque() {
+        return ComboEstoque;
+    }
+
+    /**
+     * @param ComboEstoque the ComboEstoque to set
+     */
+    public void setComboEstoque(javax.swing.JComboBox<String> ComboEstoque) {
+        this.ComboEstoque = ComboEstoque;
     }
 
 

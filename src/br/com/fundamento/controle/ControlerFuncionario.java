@@ -186,7 +186,8 @@ public class ControlerFuncionario implements ActionListener {
             Login l = new Login();
             String senha = new String(cadastroFuncionario.getTxtsenha().getPassword());
             l.setSenha(senha);
-            l.setUsuario(cadastroFuncionario.getTxtlogin().getText());
+            String login=cadastroFuncionario.getTxtlogin().getText();
+            l.setUsuario(login);
 
             Funcionario funcionario = new Funcionario();
             funcionario.setContato(con);
@@ -206,7 +207,17 @@ public class ControlerFuncionario implements ActionListener {
             }
 
             String confirmarSenha = new String(cadastroFuncionario.getTxtconfirmasenha().getPassword());
-
+            List<Login> logins = fachada1.getAllLogin();
+            
+            boolean existe =false;
+            
+            for(Login lo: logins){
+                if(lo.getSenha().equals(senha) && lo.getUsuario().equals(login)) existe= true;
+                
+            }
+            if(existe) {
+                JOptionPane.showMessageDialog(null, "Escolha um login ou senha diferente");
+            }else{
             if (senha.equals(confirmarSenha)) {
                 fachada1.salvarFuncionario(funcionario);
               buscarFuncionario.getTxtPesquisar().setText("");
@@ -215,9 +226,9 @@ public class ControlerFuncionario implements ActionListener {
                 cadastroFuncionario.setVisible(false);
                 telaPrincipal.setEnabled(true);
             } else {
-                JOptionPane.showMessageDialog(null, "Senha diferentes");
+                JOptionPane.showMessageDialog(null, "Confime a senha");
             }
-
+            }
         }
     }
 
@@ -226,9 +237,9 @@ public class ControlerFuncionario implements ActionListener {
         funcionarios = fachada1.getPorBuscaFuncionario(buscarFuncionario.getTxtPesquisar().getText());
 
         buscarFuncionario.getTabelaFunionario().setDefaultRenderer(Object.class, new Render());
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
-
+       Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
+        
         JButton btn1 = new JButton(editar);
         btn1.setName("m");
         btn1.setBorder(null);

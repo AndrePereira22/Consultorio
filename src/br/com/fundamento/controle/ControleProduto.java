@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.controle;
 
+import br.com.fundamento.dao.DaoProduto;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Contato;
@@ -20,6 +21,8 @@ import br.com.fundamento.view.CadastroProduto;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -50,6 +53,7 @@ public class ControleProduto implements ActionListener {
     private List<Fornecedor> fornecedores;
     private Fornecedor fornecedor;
     private List<Estoque> estoques;
+    // private List< Estoque> es;
     private Estoque estoque;
     private CadastroFornecedor cadastroFornecedor;
     private JButton btn1, btn2;
@@ -191,10 +195,12 @@ public class ControleProduto implements ActionListener {
             public void valueChanged(ListSelectionEvent e) {
                 int indice = cp.getListafornecedor().getMinSelectionIndex();
                 try {
+                    
 
                     fornecedor = fornecedores.get(indice);
-                    cp.getTxtcnpj().setText(fornecedor.getCnpj());
                     cp.getTxtFornecedor().setText(fornecedor.getNome_fantasia());
+                    cp.getTxtcnpj().setText(fornecedor.getCnpj());
+                    
                 } catch (Exception eu) {
                 }
             }
@@ -215,8 +221,28 @@ public class ControleProduto implements ActionListener {
             @Override
             public void keyReleased(KeyEvent e) {
                 PreencherTabela();
+                buscarProduto.getComboEstoque().setSelectedIndex(0);
             }
 
+        });
+
+        buscarProduto.getComboEstoque().addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                int indice = buscarProduto.getComboEstoque().getSelectedIndex() - 2;
+
+                if (buscarProduto.getComboEstoque().getSelectedItem().toString().equals("Todos")) {
+                    buscarProduto.getTxtPesquisarProduto().setText("");
+                    PreencherTabela();
+                }
+
+                if (indice >= 0) {
+                    System.out.println(indice);
+                    Estoque est = estoques.get(indice);
+                    preencherPorEstoque(est);
+
+                }
+            }
         });
 
     }
@@ -228,6 +254,7 @@ public class ControleProduto implements ActionListener {
             PreencherTabela();
             telaPrincipal.setEnabled(false);
             buscarProduto.setVisible(true);
+            preencherListEstoque();
         }
         if (e.getSource() == buscarProduto.getBotaoFecharProduto()) {
             telaPrincipal.setEnabled(true);
@@ -240,6 +267,7 @@ public class ControleProduto implements ActionListener {
             PreencherBuscaFornecedor(cadastroProduto);
             PreencherEstoque(cadastroProduto);
             buscarProduto.setVisible(false);
+
         }
         if (e.getSource() == cadastroFornecedor.getBotaoCancelarrFornecedor()) {
 
@@ -326,9 +354,11 @@ public class ControleProduto implements ActionListener {
             produto.setPreco_compra(valor);
             produto.setQuantidade_estoque(quantidade);
 
-            if (fornecedor != null) {
+            if (fornecedor != null && estoque != null) {
                 fachada1.salvarProduto(produto);
 
+            } else {
+                JOptionPane.showConfirmDialog(null, "Selecione o Estoque ou o Fornecedor");
             }
 
             buscarProduto.getTxtPesquisarProduto().setText("");
@@ -336,6 +366,8 @@ public class ControleProduto implements ActionListener {
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
             telaPrincipal.setEnabled(true);
+            preencherPorEstoque(estoque);
+            preencherListEstoque();
         }
 
     }
@@ -344,8 +376,8 @@ public class ControleProduto implements ActionListener {
         produtos = fachada1.getPorBuscaProduto(buscarProduto.getTxtPesquisarProduto().getText());
 
         buscarProduto.getTabela().setDefaultRenderer(Object.class, new Render());
-        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pencil.png"));
-        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/cross.png"));
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
 
         JButton btn1 = new JButton(editar);
         btn1.setName("m");
@@ -422,6 +454,9 @@ public class ControleProduto implements ActionListener {
         cp.getTxtFornecedor().setText(p.getFornecedor().getNome_fantasia());
         cp.getTxtcnpj().setText(p.getFornecedor().getCnpj());
 
+        estoque = fachada1.buscarEstoquePorId(p.getId_estoque());
+        fornecedor = fachada1.buscarPorfornecedorId(p.getId_fornecedor());
+
     }
 
     public class Acaoupdate implements ActionListener {
@@ -457,13 +492,69 @@ public class ControleProduto implements ActionListener {
                 buscarProduto.setVisible(true);
                 cp.setVisible(false);
                 telaPrincipal.setEnabled(true);
-                cp = null;
-                p = null;
-                produto = null;
+               
+              
             } else {
                 JOptionPane.showMessageDialog(null, "Senha diferentes");
             }
 
         }
     }
+
+    public void preencherListEstoque() {
+        estoques = fachada1.getAllEstoque();
+
+        for (Estoque e : estoques) {
+            buscarProduto.getComboEstoque().addItem(e.getDescricao());
+
+        }
+
+    }
+
+    public void preencherPorEstoque(Estoque e) {
+
+        produtos = new DaoProduto().buscarPorEstoque(e.getDescricao());
+
+        buscarProduto.getTabela().setDefaultRenderer(Object.class, new Render());
+        Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
+        Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
+
+        JButton btn1 = new JButton(editar);
+        btn1.setName("m");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+
+        JButton btn2 = new JButton(excluir);
+        btn2.setName("e");
+        btn2.setBorder(null);
+        btn2.setContentAreaFilled(false);
+
+        try {
+            String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Preco Compra", "Editar", "Excluir"};
+            Object[][] dados = new Object[produtos.size()][6];
+            for (int i = 0; i < produtos.size(); i++) {
+                Produto produto = produtos.get(i);
+                dados[i][0] = produto.getNome();
+                dados[i][1] = produto.getFabricante();
+                dados[i][2] = produto.getQuantidade_estoque();
+                dados[i][3] = produto.getPreco_compra();
+                dados[i][4] = btn1;
+                dados[i][5] = btn2;
+            }
+
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            TableColumnModel columnModel = buscarProduto.getTabela().getColumnModel();
+            buscarProduto.getTabela().setModel(dataModel);
+            buscarProduto.getTabela().setPreferredScrollableViewportSize(buscarProduto.getTabela().getPreferredSize());
+
+        } catch (Exception ex) {
+
+        }
+
+    }
+
 }

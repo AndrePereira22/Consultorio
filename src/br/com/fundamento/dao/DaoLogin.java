@@ -5,6 +5,9 @@
  */
 package br.com.fundamento.dao;
 
+import br.com.fundamento.modelos.Contato;
+import br.com.fundamento.modelos.Endereco;
+import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Login;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
@@ -180,5 +183,8 @@ public class DaoLogin implements  IDaoLogin{
             Logger.getLogger(DaoLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
         return login; }
+    
+   
+  
     
 }

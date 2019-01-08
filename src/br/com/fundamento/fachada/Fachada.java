@@ -8,6 +8,7 @@ package br.com.fundamento.fachada;
 import br.com.fundamento.business.BusinessCaixa;
 import br.com.fundamento.business.BusinessConsulta;
 import br.com.fundamento.business.BusinessConsultorio;
+import br.com.fundamento.business.BusinessContaPagar;
 import br.com.fundamento.business.BusinessEntradaEstoque;
 import br.com.fundamento.business.BusinessEspecializacao;
 import br.com.fundamento.business.BusinessEstoque;
@@ -26,6 +27,7 @@ import br.com.fundamento.business.BusinessTarefa;
 import br.com.fundamento.business.IBusinessCaixa;
 import br.com.fundamento.business.IBusinessConsulta;
 import br.com.fundamento.business.IBusinessConsultorio;
+import br.com.fundamento.business.IBusinessContaPagar;
 import br.com.fundamento.business.IBusinessEntradaEstoque;
 
 import br.com.fundamento.business.IBusinessEspecializacao;
@@ -45,6 +47,7 @@ import br.com.fundamento.business.IBusinessTarefa;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
+import br.com.fundamento.modelos.ContaPagar;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.EntradaEstoque;
 import br.com.fundamento.modelos.Especializacao;
@@ -88,6 +91,7 @@ public class Fachada implements IFachada {
     private IBusinessPagamento businessPagamento;
     private IBusinessProntuario businessProntuario;
     private IBusinessEntradaEstoque businessEntradaEstoque;
+    private IBusinessContaPagar businessContaPagar;
 
     public static Fachada getInstance() {
         if (instance == null) {
@@ -116,6 +120,7 @@ public class Fachada implements IFachada {
         this.businessPagamento = new BusinessPagamento();
         this.businessProntuario = new BusinessProntuario();
         this.businessEntradaEstoque = new BusinessEntradaEstoque();
+        this.businessContaPagar = new BusinessContaPagar();
 
     }
 
@@ -225,8 +230,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarCaixa(Caixa caixa) {
-        this.businessCaixa.salvarCaixa(caixa);
+    public int salvarCaixa(Caixa caixa) {
+        return this.businessCaixa.salvarCaixa(caixa);
     }
 
     @Override
@@ -410,12 +415,12 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarPagamento(Pagamento pagamento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.businessPagamento.editarPagamento(pagamento);
     }
 
     @Override
     public void ativarDesativarPagamento(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.businessPagamento.ativarDesativarPagamento(id);
     }
 
     @Override
@@ -435,7 +440,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarParcela(Parcela parcela) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.businessParcela.editarParcela(parcela);
     }
 
     @Override
@@ -652,5 +657,35 @@ public class Fachada implements IFachada {
     @Override
     public List<EntradaEstoque> getPorBuscaEntradaEstoque(String busca) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void salvarContaPagar(ContaPagar contaPagar) {
+     this.businessContaPagar.salvarContaPagar(contaPagar);
+    }
+
+    @Override
+    public ContaPagar buscarContaPagarPorId(int id) {
+      return  this.businessContaPagar.buscarContaPagarPorId(id);
+    }
+
+    @Override
+    public List<ContaPagar> getAllContaPagar() {
+     return  this.businessContaPagar.getAllContaPagar();
+    }
+
+    @Override
+    public void editarContaPagar(ContaPagar contaPagar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ativarDesativarContaPagar(int id) {
+     this.businessContaPagar.ativarDesativarContaPagar(id);
+    }
+
+    @Override
+    public List<Parcela> buscarParcela(int id) {
+    return  this.businessParcela.buscarParcela(id);
     }
 }

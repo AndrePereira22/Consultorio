@@ -18,5 +18,6 @@ public interface IBusinessParcela {
     public List<Parcela> getAllParcela();
     public void editarParcela(Parcela parcela);
     public void ativarDesativarParcela(int id);
+    public List<Parcela> buscarParcela(int id);
     
 }

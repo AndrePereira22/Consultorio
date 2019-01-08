@@ -206,4 +206,42 @@ public class DaoConsulta implements IDaoConsulta {
     }
    
 
+    public List<Consulta> BuscaConsultadoMedico(String nome,String data) {
+        List<Consulta> consultas = new ArrayList<>();
+        Medico medico = null;
+        Paciente paciente = null;
+        int idM = 0, idP = 0,id=0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Consulta.selectPorMedico(nome,data));
+            this.result = this.statement.executeQuery();
+            Consulta consulta;
+            while (result.next()) {
+                consulta = new Consulta();
+
+                consulta.setData(result.getString(SQLUtil.Consulta.COL_DATA));
+                consulta.setHora(result.getString(SQLUtil.Consulta.COL_HORA));
+                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
+                idM = result.getInt(SQLUtil.Consulta.COL_ID_MEDICO);
+                idP = result.getInt(SQLUtil.Consulta.COL_ID_PACIENTE);
+                medico = new DaoMedico().buscarMedicoPorId(idM);
+                paciente = new DaoPaciente().buscarPacientePorId(idP);
+                consulta.setMedico(medico);
+                consulta.setPaciente(paciente);
+                
+                
+                id = result.getInt(1);
+                consulta.setId(id);
+
+                consultas.add(consulta);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consultas;
+    }
+   
+
 }

@@ -20,6 +20,8 @@ public class Medico {
     private String cpf;
     private String sexo;
     private String rg;
+    private String conselho;
+    private int numero;
     private int id;
     private int id_end;
     private int id_contato;
@@ -40,6 +42,7 @@ public class Medico {
         
     }
 
+    
     /**
      * @return the nome
      */
@@ -255,6 +258,34 @@ public class Medico {
      */
     public void setId_esp(int id_esp) {
         this.id_esp = id_esp;
+    }
+
+    /**
+     * @return the conselho
+     */
+    public String getConselho() {
+        return conselho;
+    }
+
+    /**
+     * @param conselho the conselho to set
+     */
+    public void setConselho(String conselho) {
+        this.conselho = conselho;
+    }
+
+    /**
+     * @return the numero
+     */
+    public int getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
             
     

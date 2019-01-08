@@ -17,6 +17,7 @@ public class Pagamento {
     private boolean status;
     private String forma_pagamento;
     private int quantidade_parcelas;
+    private int id;
     
     private Caixa caixa;
     private Consulta consulta;
@@ -130,6 +131,20 @@ public class Pagamento {
      */
     public void setParcelas(List<Parcela> parcelas) {
         this.parcelas = parcelas;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
  

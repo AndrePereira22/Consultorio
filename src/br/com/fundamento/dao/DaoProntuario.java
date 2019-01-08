@@ -79,6 +79,7 @@ public class DaoProntuario implements IDaoProntuario{
     @Override
     public List<Prontuario> getAllProntuario() {
        List<Prontuario> prontuarios = new ArrayList<>();
+       int id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Prontuario.NOME_TABELA));
@@ -91,7 +92,9 @@ public class DaoProntuario implements IDaoProntuario{
                prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
                 prontuario.setData(result.getString(SQLUtil.Prontuario.COL_DATA));
                prontuario.setSintomas(result.getString(SQLUtil.Prontuario.COL_SINTOMAS));
-               
+                id = result.getInt(1);
+                
+                prontuario.setId(id);
                 prontuarios.add(prontuario);
             }
             this.conexao.close();
@@ -103,8 +106,20 @@ public class DaoProntuario implements IDaoProntuario{
 
     @Override
     public void editarProntuario(Prontuario prontuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        
+           try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Prontuario.updateProntuario(prontuario.getReceitas(), prontuario.getSintomas(), prontuario.getExames(), prontuario.getId()));
+         
+           
+            statement.execute();
+            statement.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+   }
 
     @Override
     public void ativarDesativarProntuario(int id) {
@@ -126,6 +141,7 @@ public class DaoProntuario implements IDaoProntuario{
     @Override
     public Prontuario buscarProntuario(String busca) {
           Prontuario prontuario = null;
+          int id=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Prontuario.buscaProntuario(busca));
@@ -138,7 +154,9 @@ public class DaoProntuario implements IDaoProntuario{
                prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
                prontuario.setData(result.getString(SQLUtil.Prontuario.COL_DATA));
                prontuario.setSintomas(result.getString(SQLUtil.Prontuario.COL_SINTOMAS));
-                       
+                        id = result.getInt(1);
+                
+                prontuario.setId(id);
             }
             this.conexao.close();
 
@@ -148,4 +166,30 @@ public class DaoProntuario implements IDaoProntuario{
         return prontuario;  
     }
     
+     public List<Prontuario> ProntuariosPaciente(int id) {
+       List<Prontuario> prontuarios = new ArrayList<>();
+       int idd=0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Prontuario.prontuarioPaciente(id));
+            this.result = this.statement.executeQuery();
+            Prontuario prontuario;
+            while (result.next()) {
+                prontuario = new Prontuario();
+                
+              prontuario.setExames(result.getString(SQLUtil.Prontuario.COL_EXAMES));
+               prontuario.setReceitas(result.getString(SQLUtil.Prontuario.COL_RECEITAS));
+                prontuario.setData(result.getString(SQLUtil.Prontuario.COL_DATA));
+               prontuario.setSintomas(result.getString(SQLUtil.Prontuario.COL_SINTOMAS));
+                idd = result.getInt(1);
+                
+                prontuario.setId(idd);
+                prontuarios.add(prontuario);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoProntuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return prontuarios;  }
 }

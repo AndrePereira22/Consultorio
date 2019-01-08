@@ -18,6 +18,7 @@ import br.com.fundamento.modelos.Tarefa;
 import br.com.fundamento.view.Recibo;
 import br.com.fundamento.view.Relatorio;
 import br.com.fundamento.view.TelaPrincipal;
+import br.com.fundamento.view.TelaProntuario;
 import br.com.fundamento.view.agendamento;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -250,7 +251,7 @@ public class ControleRelatorios implements ActionListener {
 
         }
         if (e.getSource() == recibo.getBotaoRecibo()) {
-             printComponenet();
+             printRecibo();
              
         }
         recibo.getTxtnome().addKeyListener(new KeyAdapter() {
@@ -487,9 +488,9 @@ public class ControleRelatorios implements ActionListener {
 
     }
 
-    public void printComponenet() {
+    public void printRecibo() {
         PrinterJob pj = PrinterJob.getPrinterJob();
-        pj.setJobName(" Print Component ");
+        pj.setJobName(" Recibo ");
         pj.setPrintable(new Printable() {
             public int print(Graphics pg, PageFormat pf, int pageNum) {
                 if (pageNum > 0) {
@@ -510,5 +511,5 @@ public class ControleRelatorios implements ActionListener {
             // handle exception
         }
     }
-
+    
 }

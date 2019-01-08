@@ -15,6 +15,7 @@ public class Prontuario {
     private String receitas;
     private String sintomas;
     private String Data;
+    private int id;
     
     
     
@@ -77,6 +78,20 @@ public class Prontuario {
      */
     public void setData(String Data) {
         this.Data = Data;
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
    
