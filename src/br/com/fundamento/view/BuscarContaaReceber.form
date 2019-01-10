@@ -243,7 +243,7 @@
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="txtvalor1" pref="149" max="32767" attributes="0"/>
+                  <Component id="txtvalorRecebido" pref="149" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -253,7 +253,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtvalor1" alignment="0" pref="39" max="32767" attributes="0"/>
+                      <Component id="txtvalorRecebido" alignment="0" pref="39" max="32767" attributes="0"/>
                       <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -270,7 +270,7 @@
             <Property name="text" type="java.lang.String" value="R$"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtvalor1">
+        <Component class="javax.swing.JTextField" name="txtvalorRecebido">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="ff" red="99" type="rgb"/>

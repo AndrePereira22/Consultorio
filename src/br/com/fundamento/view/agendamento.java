@@ -38,7 +38,6 @@ public class agendamento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 600));
 
         calendario.setBackground(new java.awt.Color(51, 51, 255));
         calendario.addMouseListener(new java.awt.event.MouseAdapter() {

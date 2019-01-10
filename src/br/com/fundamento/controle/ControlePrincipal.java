@@ -27,12 +27,21 @@ import br.com.fundamento.view.ListaConsulta;
 import br.com.fundamento.view.TelaProntuario;
 import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.view.AtualizarConsultorio;
+import br.com.fundamento.view.Receita_Exames;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,22 +72,26 @@ public class ControlePrincipal implements ActionListener {
     private static String login = "", password = "";
     private List<Consulta> consultas;
     private Paciente paciente;
-    
+    private Receita_Exames receita_Exames;
     private List<Prontuario> prontuarios;
     private Prontuario prontuario;
+    private JButton btn1, btn2;
 
     IFachada fachada1 = Fachada.getInstance();
 
-    public ControlePrincipal(TelaPrincipal telaPrincipal, TelaLogin telaLogin, ListaConsulta Liconsulta, TelaProntuario telaprontuario, Historico historico, AtualizarConsultorio atualizarConsultorio) {
+    public ControlePrincipal(TelaPrincipal telaPrincipal, TelaLogin telaLogin, ListaConsulta Liconsulta, TelaProntuario telaprontuario, Historico historico, AtualizarConsultorio atualizarConsultorio, Receita_Exames receita_Exames) {
         this.telaPrincipal = telaPrincipal;
         this.telaLogin = telaLogin;
         this.Liconsulta = Liconsulta;
         this.telaprontuario = telaprontuario;
         this.historico = historico;
         this.atualizarConsultorio = atualizarConsultorio;
+        this.receita_Exames = receita_Exames;
 
         telaPrincipal.getBotaoAtualizardados().addActionListener(this);
         telaLogin.setVisible(true);
+        telaprontuario.getBotaoexames().addActionListener(this);
+        telaprontuario.getBotaoreceita().addActionListener(this);
         atualizarConsultorio.getBotaoCancelarrConsultorio().addActionListener(this);
         atualizarConsultorio.getBotaoSalvarConsultorio().addActionListener(this);
         telaLogin.getEntrar().addActionListener(this);
@@ -106,11 +119,13 @@ public class ControlePrincipal implements ActionListener {
                         JButton boton = (JButton) value;
 
                         if (boton.getName().equals("a")) {
+
                             int atender = JOptionPane.showConfirmDialog(null, "Deseja atender este paciente", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
                             int ro = Liconsulta.getTabelalistaPaciente().getSelectedRow();
                             if (atender == 0) {
 
                                 paciente = consultas.get(ro).getPaciente();
+
                                 telaprontuario.setVisible(true);
                                 Liconsulta.setVisible(false);
                                 telaprontuario.getTxtoExames().setText("");
@@ -118,6 +133,7 @@ public class ControlePrincipal implements ActionListener {
                                 telaprontuario.getSintomas().setText("");
 
                             }
+
                         }
                         if (boton.getName().equals("h")) {
                             int history = JOptionPane.showConfirmDialog(null, "Deseja ver o Historico", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
@@ -191,6 +207,12 @@ public class ControlePrincipal implements ActionListener {
             }
 
         });
+         this.Liconsulta.getCalendariopaciente().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                preenchertabela();
+            }
+        });
     }
 
     @Override
@@ -241,7 +263,7 @@ public class ControlePrincipal implements ActionListener {
             prontuario.setReceitas(historico.getTextreceita().getText());
             prontuario.setSintomas(historico.getTxtsintomas().getText());
             fachada1.editarProntuario(prontuario);
-            
+
             historico.getBotaoatualizar().setVisible(false);
             preenchertabelaHistorio();
         }
@@ -322,7 +344,6 @@ public class ControlePrincipal implements ActionListener {
 
                     password = senha;
                     login = telaLogin.getTextlogin().getText();
-                   
 
                     telaPrincipal.getBotaolist().setVisible(false);
                     telaPrincipal.setVisible(true);
@@ -337,8 +358,8 @@ public class ControlePrincipal implements ActionListener {
                     telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
                     telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
                     telaPrincipal.getBotaoAgendamento().setVisible(true);
-                    telaPrincipal.getBotaolist().setVisible(false); 
-                   
+                    telaPrincipal.getBotaolist().setVisible(false);
+
                 }
             } catch (Exception a) {
             }
@@ -399,6 +420,34 @@ public class ControlePrincipal implements ActionListener {
         if (e.getSource() == telaLogin.getCancelarLogin()) {
             System.exit(0);
         }
+        if (e.getSource() == telaprontuario.getBotaoexames()) {
+            if (telaprontuario.getTxtoExames().getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Exame vazia");
+            } else {
+
+                java.util.Date d = new Date();
+                String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+
+                receita_Exames.getNome().setText(telaprontuario.getTxtpaciente().getText());
+                receita_Exames.getData().setText(dStr);
+                receita_Exames.getTexto().setText(telaprontuario.getTxtoExames().getText());
+                printExames();
+            }
+        }
+        if (e.getSource() == telaprontuario.getBotaoreceita()) {
+            if (telaprontuario.getTxtoReceita().getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Receita vazia");
+            } else {
+
+                java.util.Date d = new Date();
+                String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+
+                receita_Exames.getNome().setText(telaprontuario.getTxtpaciente().getText());
+                receita_Exames.getData().setText(dStr);
+                receita_Exames.getTexto().setText(telaprontuario.getTxtoReceita().getText());
+                printReceita();
+            }
+        }
 
     }
 
@@ -432,21 +481,20 @@ public class ControlePrincipal implements ActionListener {
 
     public void preenchertabela() {
 
-        java.util.Date d = new Date();
-        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
-        String data = java.text.DateFormat.getDateInstance(DateFormat.LONG).format(d);
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String busca = formato.format(Liconsulta.getCalendariopaciente().getDate());
         int i = 0;
-        consultas = new DaoConsulta().BuscaConsultadoMedico(medico.getNome(), dStr);
+        consultas = new DaoConsulta().BuscaConsultadoMedico(medico.getNome(), busca);
         Liconsulta.getTabelalistaPaciente().setDefaultRenderer(Object.class, new Render());
         Icon atender = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/atender.png"));
         Icon historico = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/historico.png"));
 
-        JButton btn1 = new JButton(atender);
+        btn1 = new JButton(atender);
         btn1.setName("a");
         btn1.setBorder(null);
         btn1.setContentAreaFilled(false);
 
-        JButton btn2 = new JButton(historico);
+        btn2 = new JButton(historico);
         btn2.setName("h");
         btn2.setBorder(null);
         btn2.setContentAreaFilled(false);
@@ -462,7 +510,9 @@ public class ControlePrincipal implements ActionListener {
                 dados[i][2] = c.getPaciente().getNome();
                 dados[i][3] = btn1;
                 dados[i][4] = btn2;
+
                 i++;
+
             }
 
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
@@ -474,7 +524,7 @@ public class ControlePrincipal implements ActionListener {
             TableColumnModel columnModel = Liconsulta.getTabelalistaPaciente().getColumnModel();
             Liconsulta.getTabelalistaPaciente().setModel(dataModel);
             Liconsulta.getTabelalistaPaciente().setPreferredScrollableViewportSize(Liconsulta.getTabelalistaPaciente().getPreferredSize());
-            Liconsulta.getTxtdata().setText(data);
+          
         } catch (Exception ex) {
 
         }
@@ -551,5 +601,52 @@ public class ControlePrincipal implements ActionListener {
 
     }
 
+    public void printReceita() {
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        pj.setJobName(" Exames ");
+        pj.setPrintable(new Printable() {
+            public int print(Graphics pg, PageFormat pf, int pageNum) {
+                if (pageNum > 0) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+                Graphics2D g2 = (Graphics2D) pg;
+                g2.translate(pf.getImageableX(), pf.getImageableY());
+                receita_Exames.getPanelR_E().paint(g2);
+                return Printable.PAGE_EXISTS;
+            }
+        });
+        if (pj.printDialog() == false) {
+            return;
+        }
+        try {
+            pj.print();
+        } catch (PrinterException ex) {
+            // handle exception
+        }
+    }
+
+    public void printExames() {
+        PrinterJob pj = PrinterJob.getPrinterJob();
+        pj.setJobName(" Exames ");
+        pj.setPrintable(new Printable() {
+            public int print(Graphics pg, PageFormat pf, int pageNum) {
+                if (pageNum > 0) {
+                    return Printable.NO_SUCH_PAGE;
+                }
+                Graphics2D g2 = (Graphics2D) pg;
+                g2.translate(pf.getImageableX(), pf.getImageableY());
+                receita_Exames.getPanelR_E().paint(g2);
+                return Printable.PAGE_EXISTS;
+            }
+        });
+        if (pj.printDialog() == false) {
+            return;
+        }
+        try {
+            pj.print();
+        } catch (PrinterException ex) {
+            // handle exception
+        }
+    }
 
 }

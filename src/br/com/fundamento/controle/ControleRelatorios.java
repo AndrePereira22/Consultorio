@@ -15,6 +15,7 @@ import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.modelos.Render;
 import br.com.fundamento.modelos.Tarefa;
+import br.com.fundamento.view.Receita_Exames;
 import br.com.fundamento.view.Recibo;
 import br.com.fundamento.view.Relatorio;
 import br.com.fundamento.view.TelaPrincipal;
@@ -31,8 +32,10 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -105,8 +108,6 @@ public class ControleRelatorios implements ActionListener {
         }
         if (e.getSource() == recibo.getBotaoVoltarRecibo()) {
             recibo.setVisible(false);
-           
-
 
         }
         if (e.getSource() == telaPrincipal.getBotaoRelatorioPessoais()) {
@@ -251,31 +252,32 @@ public class ControleRelatorios implements ActionListener {
 
         }
         if (e.getSource() == recibo.getBotaoRecibo()) {
-             printRecibo();
-             
+            printRecibo();
+
         }
         recibo.getTxtnome().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
- 
+
                 recibo.getAssinaturaCliente().setText(recibo.getTxtnome().getText());
             }
         });
-         recibo.getFuncionario().addKeyListener(new KeyAdapter() {
+        recibo.getFuncionario().addKeyListener(new KeyAdapter() {
 
             public void keyReleased(KeyEvent e) {
- 
+
                 recibo.getAssinaturaFuncionario().setText(recibo.getFuncionario().getText());
             }
         });
-
-
+        
     }
 
     public void PreencherTabelaproduto() {
 
         List<Produto> produtos = fachada1.getAllProdutos();
-        relatorioP.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorioP
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Nome", "Fabricante", "Quantidade Estoque", "Preco Compra"};
@@ -305,7 +307,9 @@ public class ControleRelatorios implements ActionListener {
 
         List<Tarefa> tarefas = fachada1.getAllTarefa();
 
-        relatorioT.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorioT
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Descricao", "Prioridade", "Status", "Data Inicio", "Data Termino"};
@@ -340,7 +344,9 @@ public class ControleRelatorios implements ActionListener {
     public void preenchertabelaConsulta() {
 
         List<Consulta> consultas = fachada1.getAllConsulta();
-        relatorioC.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorioC
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Hora", "Tipo", "Paciente", "Medico"};
@@ -372,7 +378,9 @@ public class ControleRelatorios implements ActionListener {
 
         List<Fornecedor> fornecedores = fachada1.getAllfornecedor();
 
-        relatorio.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorio
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Nome Fantasia", "Razao Social", "cnpj"};
@@ -398,7 +406,9 @@ public class ControleRelatorios implements ActionListener {
 
     public void preenchertabelaMedico() {
         List<Medico> medicos = fachada1.getAllMedico();
-        relatorio.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorio
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Nome", "Sexo", "Rg", "CPF", "Data Nascimento", "Data Cadastro"};
@@ -429,7 +439,9 @@ public class ControleRelatorios implements ActionListener {
     public void preencherbuscasPaciente() {
         List<Paciente> pacientes = fachada1.getAllPaciente();
 
-        relatorio.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorio
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Nome", "CPF", "Sexo", "Data Nascimento", "Data Cadastro", "Rg", "Convenio"};
@@ -462,7 +474,9 @@ public class ControleRelatorios implements ActionListener {
 
         List<Funcionario> funcionarios = fachada1.getAllFuncionario();
 
-        relatorio.getTabelarelatorio().setDefaultRenderer(Object.class, new Render());
+        relatorio
+                .getTabelarelatorio().setDefaultRenderer(Object.class,
+                         new Render());
 
         try {
             String[] colunas = new String[]{"Nome", "CPF", "Salario", "Fuuncao", "Data Nascimento"};
@@ -498,7 +512,7 @@ public class ControleRelatorios implements ActionListener {
                 }
                 Graphics2D g2 = (Graphics2D) pg;
                 g2.translate(pf.getImageableX(), pf.getImageableY());
-                recibo.getRecibo().paint(g2);        
+                recibo.getRecibo().paint(g2);
                 return Printable.PAGE_EXISTS;
             }
         });
@@ -511,5 +525,6 @@ public class ControleRelatorios implements ActionListener {
             // handle exception
         }
     }
-    
+
+
 }

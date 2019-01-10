@@ -48,7 +48,6 @@ public class DaoPagamento implements IDaoPagamento {
             if (result.next()) {
                 id = result.getInt(1);
             }
-            
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +59,7 @@ public class DaoPagamento implements IDaoPagamento {
     @Override
     public Pagamento buscarPagamentoPorId(int id) {
         Pagamento pagamento = null;
-  
+
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.Pagamento.NOME_TABELA, id));
@@ -73,9 +72,9 @@ public class DaoPagamento implements IDaoPagamento {
                 pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
                 pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
                 pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
-               
-              pagamento.setId(id);
-            
+
+                pagamento.setId(id);
+
             }
             this.conexao.close();
 
@@ -89,7 +88,7 @@ public class DaoPagamento implements IDaoPagamento {
     public List<Pagamento> getAllPagamento() {
         List<Pagamento> pagamentos = new ArrayList<>();
         Caixa c = null;
-        int idC =0,idP=0;
+        int idC = 0, idP = 0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectAll(SQLUtil.Pagamento.NOME_TABELA));
@@ -102,11 +101,11 @@ public class DaoPagamento implements IDaoPagamento {
                 pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
                 pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
                 pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
-                
+
                 idC = result.getInt(SQLUtil.Pagamento.COL_CAIXA_ID);
                 c = new DaoCaixa().buscarCaixaPorId(idC);
-                
-                idP= result.getInt(1);
+
+                idP = result.getInt(1);
                 pagamento.setCaixa(c);
                 pagamento.setId(idP);
 
@@ -122,34 +121,31 @@ public class DaoPagamento implements IDaoPagamento {
 
     @Override
     public void editarPagamento(Pagamento pagamento) {
-     try {
-            
+        try {
+
             conexao = SQLConections.getInstance();
-            statement = conexao.prepareStatement(SQLUtil.Pagamento.updatePagamento(pagamento.getValor_total(), pagamento.getForma_pagamento(), pagamento.getQuantidade_parcelas(), pagamento.getId()));
-            
-            
+            statement = conexao.prepareStatement(SQLUtil.Pagamento.updatePagamento(pagamento.getValor_total(), pagamento.isStatus(), pagamento.getForma_pagamento(), pagamento.getQuantidade_parcelas(), pagamento.getId()));
+
             statement.execute();
             statement.close();
-            
-           for(Parcela p : pagamento.getParcelas()){
-               DaoList.salvarParcelas(p, pagamento.getId());
-           }
-         
+
+            for (Parcela p : pagamento.getParcelas()) {
+                DaoList.salvarParcelas(p, pagamento.getId());
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-       
     }
 
     @Override
     public void ativarDesativarPagamento(int id) {
 
-         try {
+        try {
             this.conexao = SQLConections.getInstance();
-            this.statement=this.conexao.prepareStatement(SQLUtil.Pagamento.desativar(id));
-         
-           
+            this.statement = this.conexao.prepareStatement(SQLUtil.Pagamento.desativar(id));
+
             statement.execute();
             statement.close();
 
@@ -157,14 +153,14 @@ public class DaoPagamento implements IDaoPagamento {
             Logger.getLogger(DaoPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-       public List<Pagamento> buscarpagamento() {
+
+    public List<Pagamento> buscarpagamento(String data) {
         List<Pagamento> pagamentos = new ArrayList<>();
-        
-        int idC =0,idP=0;
+
+        int idC = 0, idP = 0;
         try {
             this.conexao = SQLConections.getInstance();
-            this.statement = this.conexao.prepareStatement(SQLUtil.Pagamento.buscarpagamento());
+            this.statement = this.conexao.prepareStatement(SQLUtil.Pagamento.buscarpagamento(data));
             this.result = this.statement.executeQuery();
             Pagamento pagamento;
             while (result.next()) {
@@ -173,11 +169,10 @@ public class DaoPagamento implements IDaoPagamento {
                 pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
                 pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
                 pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
+                pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
 
-                 
-                
-                idP= result.getInt(1);
-                
+                idP = result.getInt(1);
+
                 pagamento.setId(idP);
 
                 pagamentos.add(pagamento);

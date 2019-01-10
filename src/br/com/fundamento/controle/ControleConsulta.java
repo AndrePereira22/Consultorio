@@ -7,8 +7,6 @@
 package br.com.fundamento.controle;
 
 import br.com.fundamento.dao.DaoCaixa;
-import br.com.fundamento.dao.DaoFuncionario;
-import br.com.fundamento.dao.DaoLogin;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
@@ -21,7 +19,6 @@ import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
-import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.modelos.Render;
 import br.com.fundamento.view.CadastroConsultas;
 import br.com.fundamento.view.CadastroPaciente;
@@ -37,6 +34,7 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -75,9 +73,12 @@ public class ControleConsulta implements ActionListener {
     private Consulta c;
     private static Caixa caixa;
     private static Funcionario funcionario;
-    Date data2 = new Date();
-    Calendar ca = new GregorianCalendar();
-    IFachada fachada1 = Fachada.getInstance();
+    private Date data2 = new Date();
+    private static double valor;
+    private static int id;
+    private Calendar ca = new GregorianCalendar();
+    private List<String> horasMarcados, horas;
+    private static IFachada fachada1 = Fachada.getInstance();
 
     public ControleConsulta(TelaPrincipal telaPrincipal, CadastroConsultas cadastroConsultas, agendamento agendamento, TelaPagamento pagamento) {
         this.telaPrincipal = telaPrincipal;
@@ -87,6 +88,8 @@ public class ControleConsulta implements ActionListener {
         this.consultas = new ArrayList<Consulta>();
         cc = new CadastroConsultas();
         funcionario = new Funcionario();
+        horas = new ArrayList<String>();
+        horasMarcados = new ArrayList<String>();
 
         telaPrincipal.getBotaoAgendamento().addActionListener(this);
         cadastroConsultas.getBotaoConsultaCancelar().addActionListener(this);
@@ -119,6 +122,7 @@ public class ControleConsulta implements ActionListener {
                             if (editar == 0) {
                                 cc.getLabelConsulta().setText("ATUALIZAR CONSULTA");
                                 cc.setVisible(true);
+                                preencherHorarioDisponivel(cc);
                                 agendamento.setVisible(false);
 
                                 c = consultas.get(ro);
@@ -155,14 +159,22 @@ public class ControleConsulta implements ActionListener {
 
                                 fachada1.ativarDesativarConsulta(c.getId());
                                 preenchertabela();
+                                preencherHorarioDisponivel(cadastroConsultas);
                             }
                         }
                         if (boton.getName().equals("p")) {
-                            int pagar = JOptionPane.showConfirmDialog(null, "Deseja Realizar o Pagamento", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
+                            int pagar = JOptionPane.showConfirmDialog(null, "Ir para o Pagamento", "Confirmar", JOptionPane.OK_CANCEL_OPTION);
                             int roo = agendamento.getTabelaAgendamento().getSelectedRow();
                             if (pagar == 0) {
                                 c = consultas.get(roo);
-                                telaPagamento.setVisible(true);
+                                Pagamento pagamento = fachada1.buscarPagamentoPorId(c.getPagamento().getId());
+                                if (pagamento.getValor_total() == 0) {
+                                    telaPagamento.setVisible(true);
+                                    telaPagamento.getTxtQParcela().setEnabled(false);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Forma de pagamento ja escolhido ");
+                                }
+
                             }
                         }
                     }
@@ -222,6 +234,7 @@ public class ControleConsulta implements ActionListener {
                     especializacao = fachada1.buscarEspecializacaoPorId(medico.getId_esp());
                     cadastroConsultas.getTxtmedico().setText(medico.getNome());
                     cadastroConsultas.getTxtespecializacao().setText(especializacao.getDescricao());
+
                 } catch (Exception eu) {
                 }
             }
@@ -245,7 +258,9 @@ public class ControleConsulta implements ActionListener {
         agendamento.getCalendario().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
+                horasMarcados.clear();
                 preenchertabela();
+
             }
         });
         telaPagamento.getTxtQParcela().addKeyListener(new KeyAdapter() {
@@ -281,13 +296,12 @@ public class ControleConsulta implements ActionListener {
             }
         });
 
-        agendamento.getCalendario().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                preenchertabela();
-            }
-        });
-
+//        agendamento.getCalendario().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
+//            @Override
+//            public void propertyChange(PropertyChangeEvent evt) {
+//                preenchertabela();
+//            }
+//        });
     }
 
     @Override
@@ -295,6 +309,7 @@ public class ControleConsulta implements ActionListener {
         if (e.getSource() == telaPrincipal.getBotaoAgendamento()) {
             agendamento.setVisible(true);
             preenchertabela();
+
             abrirCaixa();
         }
 
@@ -304,7 +319,12 @@ public class ControleConsulta implements ActionListener {
         }
         if (e.getSource() == agendamento.getBotaoAdicionarAgendamento()) {
 
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String busca = formato.format(agendamento.getCalendario().getDate().getTime());
+
+            preencherHorarioDisponivel(cadastroConsultas);
             cadastroConsultas.setVisible(true);
+            cadastroConsultas.getTxtdata().setText(busca);
             agendamento.setVisible(false);
         }
         if (e.getSource() == cadastroConsultas.getBotaoConsultaCancelar()) {
@@ -330,9 +350,11 @@ public class ControleConsulta implements ActionListener {
 
             if (telaPagamento.getComboStatus().getSelectedItem().toString().equals("A Vista")) {
                 telaPagamento.getPanelParcela().setVisible(false);
+                telaPagamento.getTxtQParcela().setEnabled(false);
             }
             if (telaPagamento.getComboStatus().getSelectedItem().toString().equals("A Prazo")) {
                 telaPagamento.getPanelParcela().setVisible(true);
+                telaPagamento.getTxtQParcela().setEnabled(true);
             }
         }
         if (e.getSource() == cadastroPaciente.getBotaoSalvarPaciente()) {
@@ -376,14 +398,16 @@ public class ControleConsulta implements ActionListener {
         if (e.getSource() == telaPagamento.getBotaoOk()) {
 
             ArrayList<Parcela> parcelas = new ArrayList<Parcela>();
-            Pagamento pagamento = fachada1.buscarPagamentoPorId(c.getId());
+            Pagamento pagamento = fachada1.buscarPagamentoPorId(c.getPagamento().getId());
 
             pagamento.setForma_pagamento(telaPagamento.getComboPagamento().getSelectedItem().toString());
 
             if (telaPagamento.getComboStatus().getSelectedItem().toString().equals("A Vista")) {
+
                 pagamento.setStatus(true);
             } else {
                 pagamento.setStatus(false);
+
             }
 
             Double valorpacela = null;
@@ -428,6 +452,14 @@ public class ControleConsulta implements ActionListener {
             pagamento.setParcelas(parcelas);
             fachada1.editarPagamento(pagamento);
 
+            if (telaPagamento.getComboStatus().getSelectedItem().toString().equals("A Vista")) {
+
+                valor = getCaixa().getValor_fechamento() + pagamento.getValor_total();
+                getCaixa().setValor_fechamento(valor);
+                fachada1.editarCaixa(getCaixa());
+
+            }
+
             preenchertabela();
             agendamento.setVisible(true);
             telaPagamento.setVisible(false);
@@ -437,13 +469,17 @@ public class ControleConsulta implements ActionListener {
 
             Pagamento pagamento = new Pagamento();
 
-            pagamento.setCaixa(caixa);
+            pagamento.setCaixa(getCaixa());
 
             pagamento.setParcelas(new ArrayList<Parcela>());
             Consulta consulta = new Consulta();
-            consulta.setData(cadastroConsultas.getTxtdata().getText());
-            consulta.setHora(cadastroConsultas.getTxtHora().getText());
-            consulta.setTipo(cadastroConsultas.getTipoExameOuConsulta().getText());
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String busca = formato.format(agendamento.getCalendario().getDate().getTime());
+            consulta.setData(busca);
+            consulta.setHora(cadastroConsultas.getCombohora().getSelectedItem().toString());
+
+            consulta.setTipo(cadastroConsultas.getCombotipo().getSelectedItem().toString());
             consulta.setMedico(medico);
             consulta.setPaciente(paciente);
             consulta.setPagamento(pagamento);
@@ -452,6 +488,7 @@ public class ControleConsulta implements ActionListener {
 
             if (medico != null && paciente != null) {
                 fachada1.salvarConsulta(consulta);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Precisa-se escolher o Medico e o Paciente !!!");
             }
@@ -459,6 +496,10 @@ public class ControleConsulta implements ActionListener {
             preenchertabela();
             agendamento.setVisible(true);
             cadastroConsultas.setVisible(false);
+            cadastroConsultas.getTxtPaciente().setText("");
+            cadastroConsultas.getTxtconvenio().setText("");
+            cadastroConsultas.getTxtmedico().setText("");
+            cadastroConsultas.getTxtespecializacao().setText("");
         }
 
     }
@@ -472,6 +513,8 @@ public class ControleConsulta implements ActionListener {
         Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
         Icon excluir = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/excluir.png"));
         Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagar.png"));
+
+        horas = new ArrayList<String>();
 
         btn1 = new JButton(editar);
         btn1.setName("m");
@@ -493,6 +536,7 @@ public class ControleConsulta implements ActionListener {
             Object[][] dados = new Object[consultas.size()][7];
             for (int i = 0; i < consultas.size(); i++) {
                 Consulta consulta = consultas.get(i);
+
                 dados[i][0] = consulta.getHora();
                 dados[i][1] = consulta.getTipo();
                 dados[i][2] = consulta.getPaciente().getNome();
@@ -500,6 +544,8 @@ public class ControleConsulta implements ActionListener {
                 dados[i][4] = btn1;
                 dados[i][5] = btn2;
                 dados[i][6] = btn3;
+
+                horasMarcados.add(consulta.getHora());
 
             }
 
@@ -550,9 +596,23 @@ public class ControleConsulta implements ActionListener {
 
         Paciente pa = fachada1.buscarPacientePorId(c.getPaciente().getId());
         Medico me = fachada1.buscarMedicoPorId(c.getMedico().getId());
-        cc.getTxtHora().setText(c.getHora());
+
         cc.getTxtdata().setText(c.getData());
-        cc.getTipoExameOuConsulta().setText(c.getTipo());
+
+        for (int u = 0; u < cc.getCombotipo().getItemCount(); u++) {
+
+            if (cc.getCombotipo().getItemAt(u).equals(c.getTipo())) {
+                cc.getCombotipo().setSelectedItem(cc.getCombotipo().getItemAt(u));
+            }
+        }
+
+        for (int u = 0; u < cc.getCombohora().getItemCount(); u++) {
+
+            if (cc.getCombohora().getItemAt(u).equals(c.getTipo())) {
+                cc.getCombohora().setSelectedItem(cc.getCombohora().getItemAt(u));
+            }
+        }
+
         cc.getBotaoadd().setVisible(false);
         cc.getListPaciente().setVisible(false);
 
@@ -574,45 +634,102 @@ public class ControleConsulta implements ActionListener {
 
                 Consulta consulta = c;
 
-                consulta.setHora(cc.getTxtHora().getText());
-                consulta.setData(cc.getTxtdata().getText());
-                consulta.setTipo(cc.getTipoExameOuConsulta().getText());
+                consulta.setHora(cc.getCombohora().getSelectedItem().toString());
+                consulta.setTipo(cc.getCombotipo().getSelectedItem().toString());
                 consulta.setMedico(medico);
 
-                fachada1.editarConsulta(consulta);
-                agendamento.setVisible(true);
+                if (medico != null) {
+                    fachada1.editarConsulta(consulta);
+                    agendamento.setVisible(true);
+
+                    cc.setVisible(false);
+
+                    c = null;
+                } else {
+                    JOptionPane.showMessageDialog(null, " Escolha um medico");
+                }
                 preenchertabela();
-                cc.setVisible(false);
-
-                c = null;
-
+                preencherHorarioDisponivel(cadastroConsultas); 
+                
             }
         }
 
     }
 
-    public void abrirCaixa() {
+    public static void abrirCaixa() {
 
         java.util.Date d = new Date();
         String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
         caixa = new DaoCaixa().buscarCaixaPorData(dStr);
-        if (caixa != null)caixa.setFuncionario(funcionario);
-        
-        if (caixa == null) {
-
-            caixa = new Caixa();
-
-            caixa.setPagamentos(new ArrayList<Pagamento>());
-            caixa.setData(dStr);
+        Caixa c = new DaoCaixa().buscarUltimoCaixa();
+        if (caixa != null) {
             caixa.setFuncionario(funcionario);
-
-            int id = fachada1.salvarCaixa(caixa);
-
-            caixa.setId(id);
+            caixa.setStatus(true);
+            valor = getCaixa().getValor_abertura();
 
         }
 
-        
+        if (getCaixa() == null) {
+
+            caixa = new Caixa();
+
+            getCaixa().setPagamentos(new ArrayList<Pagamento>());
+            getCaixa().setData(dStr);
+            getCaixa().setFuncionario(funcionario);
+            getCaixa().setStatus(true);
+            if (c != null) {
+                caixa.setValor_abertura(c.getValor_fechamento());
+                caixa.setValor_fechamento(c.getValor_fechamento());
+            }
+
+            id = fachada1.salvarCaixa(getCaixa());
+
+            getCaixa().setId(id);
+            valor = getCaixa().getValor_abertura();
+
+        }
+
+    }
+
+    public void preencherHorarioDisponivel(CadastroConsultas cadastroConsultas) {
+
+        if (horas.isEmpty()) {
+            horas.add("07:00");
+            horas.add("08:00");
+            horas.add("09:00");
+            horas.add("10:00");
+            horas.add("11:00");
+            horas.add("12:00");
+            horas.add("13:00");
+            horas.add("14:00");
+            horas.add("15:00");
+            horas.add("16:00");
+            horas.add("17:00");
+            horas.add("18:00");
+        }
+
+        cadastroConsultas.getCombohora().removeAllItems();
+
+        List<String> hDisponivel = new ArrayList<String>();
+
+        for (int i = 0; i < horas.size(); i++) {
+            boolean disponivel = true;
+            for (int j = 0; j < horasMarcados.size(); j++) {
+                if ((horas.get(i).equals(horasMarcados.get(j)))) {
+                    disponivel = false;
+                }
+            }
+
+            if (disponivel) {
+                hDisponivel.add(horas.get(i));
+            }
+
+        }
+
+        for (int u = 0; u < hDisponivel.size(); u++) {
+            cadastroConsultas.getCombohora().addItem(hDisponivel.get(u));
+
+        }
 
     }
 
@@ -628,6 +745,13 @@ public class ControleConsulta implements ActionListener {
      */
     public static void setFuncionario(Funcionario aFuncionario) {
         funcionario = aFuncionario;
+    }
+
+    /**
+     * @return the caixa
+     */
+    public static Caixa getCaixa() {
+        return caixa;
     }
 
 }

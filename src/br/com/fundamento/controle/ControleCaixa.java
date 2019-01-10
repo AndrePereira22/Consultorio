@@ -5,6 +5,7 @@
  */
 package br.com.fundamento.controle;
 
+import br.com.fundamento.dao.DaoCaixa;
 import br.com.fundamento.dao.DaoPagamento;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
@@ -23,6 +24,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -50,6 +54,7 @@ public class ControleCaixa implements ActionListener {
     private List<Pagamento> pagamentos;
     private Pagamento pagamento;
     private Parcela parcela;
+    private Caixa c;
     double soma = 0.0;
     IFachada fachada1 = Fachada.getInstance();
 
@@ -63,6 +68,7 @@ public class ControleCaixa implements ActionListener {
 
         telaPrincipal.getBotaofluxodeCaixa().addActionListener(this);
         fluxodeCaixa.getBotaoVoltar().addActionListener(this);
+        fluxodeCaixa.getBotaoFecharCaixa().addActionListener(this);
         telaPrincipal.getBotaocontapagar().addActionListener(this);
         buscarContaApagar.getBotaoadicionar().addActionListener(this);
         buscarContaApagar.getBotaofechar().addActionListener(this);
@@ -89,11 +95,15 @@ public class ControleCaixa implements ActionListener {
 
                             if (pagar == 0) {
                                 pagamento = pagamentos.get(ro);
+                                if(pagamento.isStatus()==false){
                                 preenchertabelaPacela(pagamento);
                                 contaReceber.setVisible(true);
                                 buscarContaaReceber.setVisible(false);
                                 calcularValorReceber();
                                 preenchertabelaReceber();
+                                }else{
+                                   JOptionPane.showMessageDialog(null, "Pagamento ja foi concluido"); 
+                                }
 
                             }
                         }
@@ -133,8 +143,8 @@ public class ControleCaixa implements ActionListener {
 
                             if (Pago == 0) {
                                 contaPagar = contaaPagars.get(ro);
-                                fachada1.ativarDesativarContaPagar(contaPagar.getId());
                                 preenchertabelaPagar();
+                                pagarConta();
 
                             }
                         }
@@ -177,9 +187,12 @@ public class ControleCaixa implements ActionListener {
                                 parcela = parcelas.get(ro);
                                 fachada1.editarParcela(parcela);
                                 preenchertabelaPacela(pagamento);
+                                adicionarParcelaCaixa();
                                 if (concluirPagamento()) {
                                     JOptionPane.showConfirmDialog(null, "Pagamento Finalizado");
-                                    fachada1.ativarDesativarPagamento(pagamento.getId());
+                                    pagamento.setStatus(true);
+                                    pagamento.setParcelas(new ArrayList<Parcela>());
+                                    fachada1.editarPagamento(pagamento);
                                     calcularValorReceber();
                                     preenchertabelaReceber();
 
@@ -211,6 +224,9 @@ public class ControleCaixa implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == telaPrincipal.getBotaofluxodeCaixa()) {
             fluxodeCaixa.setVisible(true);
+            fluxodeCaixa.getTxttotal().setEditable(false);
+            ControleConsulta.abrirCaixa();
+            dinhiroNoCaixa();
         }
         if (e.getSource() == fluxodeCaixa.getBotaoVoltar()) {
             fluxodeCaixa.setVisible(false);
@@ -219,10 +235,12 @@ public class ControleCaixa implements ActionListener {
             buscarContaaReceber.setVisible(true);
             preenchertabelaReceber();
             calcularValorReceber();
+            contasRecebidas();
         }
 
         if (e.getSource() == buscarContaaReceber.getBotaofechar()) {
             buscarContaaReceber.setVisible(false);
+            
         }
         if (e.getSource() == contaReceber.getBotaocancelar()) {
             buscarContaaReceber.setVisible(true);
@@ -231,9 +249,8 @@ public class ControleCaixa implements ActionListener {
         }
 
         if (e.getSource() == telaPrincipal.getBotaocontapagar()) {
-            buscarContaApagar.setVisible(true);
             buscarContaApagar.getTxtvalor().setEditable(false);
-            buscarContaApagar.getTxtvalor().setText(soma + "");
+            buscarContaApagar.setVisible(true);
             preenchertabelaPagar();
         }
         if (e.getSource() == buscarContaApagar.getBotaoadicionar()) {
@@ -243,9 +260,14 @@ public class ControleCaixa implements ActionListener {
         if (e.getSource() == buscarContaApagar.getBotaofechar()) {
             buscarContaApagar.setVisible(false);
         }
+        if (e.getSource() == fluxodeCaixa.getBotaoFecharCaixa()) {
+            fecharCaixa();
+            fluxodeCaixa.setVisible(false);
+        }
         if (e.getSource() == contaaPagar.getBotaocancelar()) {
             buscarContaApagar.setVisible(true);
             contaaPagar.setVisible(false);
+
         }
 
         if (e.getSource() == contaaPagar.getBotaosalvar()) {
@@ -277,8 +299,10 @@ public class ControleCaixa implements ActionListener {
     }
 
     public void preenchertabelaReceber() {
+           java.util.Date d = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
 
-        pagamentos = new DaoPagamento().buscarpagamento();
+        pagamentos = new DaoPagamento().buscarpagamento(dStr);
         buscarContaaReceber.getTabelacontaReceber().setDefaultRenderer(Object.class, new Render());
         Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagarR.png"));
 
@@ -286,17 +310,24 @@ public class ControleCaixa implements ActionListener {
         btn1.setName("p");
         btn1.setBorder(null);
         btn1.setContentAreaFilled(false);
+       
 
         try {
-            String[] colunas = new String[]{"Valor Total", "Forma Pagamento", "Quantidade Parcelas", "Pagar"};
-            Object[][] dados = new Object[pagamentos.size()][4];
+            String[] colunas = new String[]{"Valor Total", "Forma Pagamento", "Quantidade Parcelas","Status", "Pagar"};
+            Object[][] dados = new Object[pagamentos.size()][5];
             for (int i = 0; i < pagamentos.size(); i++) {
+                String s="Pendente";
                 Pagamento pagamento = pagamentos.get(i);
+                if(pagamento.isStatus()){
+                    s="Pago";
+                }
                 dados[i][0] = pagamento.getValor_total();
                 dados[i][1] = pagamento.getForma_pagamento();
                 dados[i][2] = pagamento.getQuantidade_parcelas();
-                dados[i][3] = btn1;
-
+                dados[i][3] = s;
+                dados[i][4] = btn1;
+                
+                 
             }
 
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
@@ -334,13 +365,13 @@ public class ControleCaixa implements ActionListener {
                 dados[i][1] = contaPagar.getDescricao();
                 dados[i][2] = contaPagar.getValor();
                 dados[i][3] = btn1;
-               
-                for(ContaPagar p: contaaPagars){
+
+                for (ContaPagar p : contaaPagars) {
                     soma += p.getValor();
                 }
-              
+
                 buscarContaApagar.getTxtvalor().setText(soma + "");
-                soma=0;
+                soma = 0;
             }
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
                 @Override
@@ -360,7 +391,7 @@ public class ControleCaixa implements ActionListener {
     }
 
     public void preenchertabelaPacela(Pagamento pagamento) {
-        System.out.println(pagamento.getId());
+   
         parcelas = fachada1.buscarParcela(pagamento.getId());
         contaReceber.getTabelaContaReceber().setDefaultRenderer(Object.class, new Render());
         Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagarP.png"));
@@ -373,7 +404,7 @@ public class ControleCaixa implements ActionListener {
         String status = "";
         try {
             String[] colunas = new String[]{"Numero", "Data Vencimento", "Valor", "Status", "Pagar"};
-            Object[][] dados = new Object[parcelas.size()][6];
+            Object[][] dados = new Object[parcelas.size()][5];
             for (int i = 0; i < parcelas.size(); i++) {
                 Parcela parcela = parcelas.get(i);
                 if (parcela.isStatus()) {
@@ -434,5 +465,102 @@ public class ControleCaixa implements ActionListener {
         return false;
     }
 
-    
+    public void dinhiroNoCaixa() {
+
+        java.util.Date d = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        c = new DaoCaixa().buscarCaixaPorData(dStr);
+
+        double valor = c.getValor_fechamento();
+        fluxodeCaixa.getTxttotal().setText(valor + "");
+    }
+
+    public void fecharCaixa() {
+
+        double lucro = c.getValor_fechamento() - c.getValor_abertura();
+        c.setValor_receita(lucro);
+        c.setStatus(false);
+
+        new DaoCaixa().fecharCaixa(c);
+
+    }
+    public void contasRecebidas() {
+   
+    }
+
+    public void adicionarParcelaCaixa() {
+
+        java.util.Date d = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        c = new DaoCaixa().buscarCaixaPorData(dStr);
+        
+        double soma = c.getValor_fechamento() + parcela.getValor();
+        c.setValor_fechamento(soma);
+
+        fachada1.editarCaixa(c);
+
+    }
+    public void pagarConta() {
+
+        java.util.Date d = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        c = new DaoCaixa().buscarCaixaPorData(dStr);
+        
+        if( c.getValor_fechamento()> contaPagar.getValor() ){
+        double soma = c.getValor_fechamento()- contaPagar.getValor();
+        c.setValor_fechamento(soma);
+        fachada1.ativarDesativarContaPagar(contaPagar.getId());
+        preenchertabelaPagar();
+        fachada1.editarCaixa(c);
+        }else{
+            JOptionPane.showMessageDialog(null, "Dinheiro indisponivel");
+        }
+
+    }
+
+     public void preenchertabelaReceberTodos() {
+
+        pagamentos = fachada1.getAllPagamento();
+        buscarContaaReceber.getTabelacontaReceber().setDefaultRenderer(Object.class, new Render());
+        Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagarR.png"));
+
+        JButton btn1 = new JButton(pagar);
+        btn1.setName("p");
+        btn1.setBorder(null);
+        btn1.setContentAreaFilled(false);
+       
+
+        try {
+            String[] colunas = new String[]{"Valor Total", "Forma Pagamento", "Quantidade Parcelas","Status", "Pagar"};
+            Object[][] dados = new Object[pagamentos.size()][5];
+            for (int i = 0; i < pagamentos.size(); i++) {
+                String s="Pendente";
+                Pagamento pagamento = pagamentos.get(i);
+                if(pagamento.isStatus()){
+                    s="Pago";
+                }
+                dados[i][0] = pagamento.getValor_total();
+                dados[i][1] = pagamento.getForma_pagamento();
+                dados[i][2] = pagamento.getQuantidade_parcelas();
+                dados[i][3] = s;
+                dados[i][4] = btn1;
+                
+                 
+            }
+
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            TableColumnModel columnModel = buscarContaaReceber.getTabelacontaReceber().getColumnModel();
+            buscarContaaReceber.getTabelacontaReceber().setModel(dataModel);
+            buscarContaaReceber.getTabelacontaReceber().setPreferredScrollableViewportSize(buscarContaaReceber.getTabelacontaReceber().getPreferredSize());
+
+        } catch (Exception ex) {
+
+        }
+    }
+
 }

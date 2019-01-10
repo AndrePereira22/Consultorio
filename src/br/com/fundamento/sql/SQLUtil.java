@@ -393,12 +393,12 @@ public class SQLUtil {
                 + COL_QUANTIDADE_PARCELAS + ","
                 + COL_CAIXA_ID + "" + " ) values (?,?,?,?,?) returning id";
 
-        public static final String buscarpagamento() {
-            return " select  p.id,p.valor_total,p.forma_pagamento,p.quantidade_parcelas,t.nome from pagamento  p,consulta c, paciente t where p.ativo=true and (  c.id_pagamento=p.id and c.id_paciente=t.id and p.status=false)";
+        public static final String buscarpagamento(String data) {
+            return " select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas,t.nome from pagamento  p,consulta c, paciente t where p.ativo=true and (  c.id_pagamento=p.id and c.id_paciente=t.id )";
         }
 
-        public static final String updatePagamento(double valor, String forma, int quantidade, int id) {
-            return "update pagamento SET valor_total =" + valor + ", forma_pagamento ='" + forma + "', quantidade_parcelas =" + quantidade + " WHERE id =" + id;
+        public static final String updatePagamento(double valor,boolean status, String forma, int quantidade, int id) {
+            return "update pagamento SET valor_total =" + valor + ",status="+status+", forma_pagamento ='" + forma + "', quantidade_parcelas =" + quantidade + " WHERE id =" + id;
 
         }
 
@@ -460,6 +460,17 @@ public class SQLUtil {
         
         public static final String caixaPorData(String data) {
             return "select c.id, c.status,c.numero,c.valor_abertura, c.valor_fechamento,c.lucro_diario,c.data,c.id_funcionario from caixa c  where c.data='"+data+"'";
+        }
+        public static final String UltimoCaixa() {
+            return "SELECT * FROM caixa ORDER BY id DESC LIMIT 1";
+        }
+        public static final String updateCaixa(boolean status,double valor_f, double lucro, int id_parametro) {
+            return "update caixa SET status =" + status + ", valor_fechamento=" + valor_f + ", lucro_diario=" + lucro + "   WHERE id =" + id_parametro;
+
+        }
+        public static final String fecharCaixa(boolean status, double lucro, int id_parametro) {
+            return "update caixa SET status =" + status + ", lucro_diario=" + lucro + "   WHERE id =" + id_parametro;
+
         }
     }
 

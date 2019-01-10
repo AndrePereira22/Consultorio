@@ -17,9 +17,11 @@ import br.com.fundamento.controle.ControleProduto;
 import br.com.fundamento.controle.ControleRelatorios;
 import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
+import br.com.fundamento.dao.DaoCaixa;
 import br.com.fundamento.dao.DaoConsulta;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
+import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Funcionario;
@@ -55,12 +57,14 @@ import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.Historico;
 import br.com.fundamento.view.ListaConsulta;
+import br.com.fundamento.view.Receita_Exames;
 import br.com.fundamento.view.TelaProntuario;
 import br.com.fundamento.view.TelaPagamento;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import br.com.fundamento.view.agendamento;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -98,6 +102,7 @@ public class Main {
         TelaProntuario prontuario = new TelaProntuario();
         Historico historico = new Historico();
         AtualizarConsultorio atualizarConsultorio = new AtualizarConsultorio();
+        Receita_Exames exames= new Receita_Exames();
 
         BuscarMedico buscarMedico = new BuscarMedico();
         BuscarFuncionario buscarFuncionario = new BuscarFuncionario();
@@ -118,14 +123,15 @@ public class Main {
         ControleProduto controleProduto = new ControleProduto(telaPrincipal, cp, buscarProduto);
         ControleTarefa controleTarefa = new ControleTarefa(telaPrincipal, cadastroTarefas, buscarTarefa);
         ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento, pagamento);
-        ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal, telaLogin, lconsulta, prontuario, historico, atualizarConsultorio);
+        ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal, telaLogin, lconsulta, prontuario, historico, atualizarConsultorio,exames);
         ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, fluxodeCaixa, buscarContaApagar, buscarContaaReceber, contaReceber, contaaPagar);
         ControleEstoque controleEstoque = new ControleEstoque(telaPrincipal, saida_Estoque, entrada_Estoque, buscarSaidaEstoque, buscarEntradaEstoque);
         ControleRelatorios controleRelatorios =  new ControleRelatorios(telaPrincipal, relatorio, recibo);
        
         
         
-   
+
+
 
 
 

@@ -172,7 +172,8 @@ public class DaoConsulta implements IDaoConsulta {
         List<Consulta> consultas = new ArrayList<>();
         Medico medico = null;
         Paciente paciente = null;
-        int idM = 0, idP = 0,id=0;
+        Pagamento pagamento=null;
+        int idM = 0, idP = 0,id=0,idPa=0;
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.Consulta.selectPorBusca(busca));
@@ -186,10 +187,13 @@ public class DaoConsulta implements IDaoConsulta {
                 consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
                 idM = result.getInt(SQLUtil.Consulta.COL_ID_MEDICO);
                 idP = result.getInt(SQLUtil.Consulta.COL_ID_PACIENTE);
+                idPa = result.getInt(SQLUtil.Consulta.COL_ID_PAGAMENTO);
                 medico = new DaoMedico().buscarMedicoPorId(idM);
                 paciente = new DaoPaciente().buscarPacientePorId(idP);
+                pagamento = new DaoPagamento().buscarPagamentoPorId(idPa);
                 consulta.setMedico(medico);
                 consulta.setPaciente(paciente);
+                consulta.setPagamento(pagamento);
                 
                 
                 id = result.getInt(1);

@@ -39,7 +39,7 @@ public class BusinessCaixa  implements IBusinessCaixa{
 
     @Override
     public void editarCaixa(Caixa caixa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   this.daoCaixa.editarCaixa(caixa);
     }
 
     @Override

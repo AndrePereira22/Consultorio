@@ -135,8 +135,33 @@ public class DaoCaixa implements IDaoCaixa {
         return caixas;   }
 
     @Override
-    public void editarCaixa(Caixa caixa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void editarCaixa(Caixa c) {
+     try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Caixa.updateCaixa(c.isStatus(), c.getValor_fechamento(), c.getValor_receita(), c.getId()));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void fecharCaixa(Caixa c) {
+     try {
+            
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.Caixa.fecharCaixa(c.isStatus(), c.getValor_receita(), c.getId()));
+            
+            
+            statement.execute();
+            statement.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -173,6 +198,24 @@ public class DaoCaixa implements IDaoCaixa {
             
             this.conexao.close();
 
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return caixa;
+    }
+     public Caixa buscarUltimoCaixa() {
+        Caixa caixa = null;
+       
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.UltimoCaixa());
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+                caixa = new Caixa();
+               
+                caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
         }

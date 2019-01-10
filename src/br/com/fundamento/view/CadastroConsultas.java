@@ -11,33 +11,9 @@ package br.com.fundamento.view;
  */
 public class CadastroConsultas extends javax.swing.JFrame {
 
-    /**
-     * @return the txtHora
-     */
-    public javax.swing.JFormattedTextField getTxtHora() {
-        return txtHora;
-    }
+ 
 
-    /**
-     * @param txtHora the txtHora to set
-     */
-    public void setTxtHora(javax.swing.JFormattedTextField txtHora) {
-        this.txtHora = txtHora;
-    }
 
-    /**
-     * @return the txtdata
-     */
-    public javax.swing.JFormattedTextField getTxtdata() {
-        return txtdata;
-    }
-
-    /**
-     * @param txtdata the txtdata to set
-     */
-    public void setTxtdata(javax.swing.JFormattedTextField txtdata) {
-        this.txtdata = txtdata;
-    }
 
     /**
      * Creates new form Consultas
@@ -57,6 +33,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtmedico = new javax.swing.JTextField();
@@ -66,11 +43,11 @@ public class CadastroConsultas extends javax.swing.JFrame {
         listaMedico = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtdata = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtHora = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        TipoExameOuConsulta = new javax.swing.JTextField();
+        Combotipo = new javax.swing.JComboBox<>();
+        combohora = new javax.swing.JComboBox<>();
+        txtdata = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         BotaoConsultaSalvar = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -95,6 +72,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
 
         jLabel5.setText("Especialização :");
 
+        txtespecializacao.setEnabled(false);
         txtespecializacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtespecializacaoActionPerformed(evt);
@@ -118,7 +96,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                         .addComponent(txtmedico, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(586, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,27 +119,13 @@ public class CadastroConsultas extends javax.swing.JFrame {
 
         jLabel6.setText("Data :");
 
-        try {
-            txtdata.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel3.setText("Hora :");
-
-        try {
-            txtHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         jLabel4.setText("Tipo :");
 
-        TipoExameOuConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TipoExameOuConsultaActionPerformed(evt);
-            }
-        });
+        Combotipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consulta", "Exame", "Retorno" }));
+
+        txtdata.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -173,32 +137,28 @@ public class CadastroConsultas extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TipoExameOuConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(663, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Combotipo, 0, 193, Short.MAX_VALUE)
+                    .addComponent(txtdata))
+                .addGap(45, 45, 45)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(combohora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(TipoExameOuConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(combohora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdata, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Combotipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
@@ -228,6 +188,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
 
         jLabel7.setText("Convenio:");
 
+        txtconvenio.setEnabled(false);
         txtconvenio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtconvenioActionPerformed(evt);
@@ -259,7 +220,7 @@ public class CadastroConsultas extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Botaoadd))
                     .addComponent(txtconvenio, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,23 +263,18 @@ public class CadastroConsultas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BotaoConsultaSalvar)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton9)
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelConsulta)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotaoConsultaSalvar)
+                .addGap(31, 31, 31)
+                .addComponent(jButton9)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,16 +284,16 @@ public class CadastroConsultas extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotaoConsultaSalvar)
-                    .addComponent(jButton9))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(jButton9)
+                    .addComponent(BotaoConsultaSalvar))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -358,10 +314,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
     private void txtconvenioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconvenioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtconvenioActionPerformed
-
-    private void TipoExameOuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoExameOuConsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TipoExameOuConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,8 +356,10 @@ public class CadastroConsultas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotaoConsultaSalvar;
     private javax.swing.JButton Botaoadd;
-    private javax.swing.JTextField TipoExameOuConsulta;
+    private javax.swing.JComboBox<String> Combotipo;
+    private javax.swing.JComboBox<String> combohora;
     private javax.swing.JButton jButton9;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -422,10 +376,9 @@ public class CadastroConsultas extends javax.swing.JFrame {
     private javax.swing.JLabel labelConsulta;
     private javax.swing.JList<String> listPaciente;
     private javax.swing.JList<String> listaMedico;
-    private javax.swing.JFormattedTextField txtHora;
     private javax.swing.JTextField txtPaciente;
     private javax.swing.JTextField txtconvenio;
-    private javax.swing.JFormattedTextField txtdata;
+    private javax.swing.JTextField txtdata;
     private javax.swing.JTextField txtespecializacao;
     private javax.swing.JTextField txtmedico;
     // End of variables declaration//GEN-END:variables
@@ -458,22 +411,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
         this.BotaoConsultaSalvar = BotaoConsultaSalvar;
     }
 
-    
-
-   
-    /**
-     * @return the TipoExameOuConsulta
-     */
-    public javax.swing.JTextField getTipoExameOuConsulta() {
-        return TipoExameOuConsulta;
-    }
-
-    /**
-     * @param TipoExameOuConsulta the TipoExameOuConsulta to set
-     */
-    public void setTipoExameOuConsulta(javax.swing.JTextField TipoExameOuConsulta) {
-        this.TipoExameOuConsulta = TipoExameOuConsulta;
-    }
 
     /**
      * @return the jButton9
@@ -489,19 +426,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
         this.jButton9 = jButton9;
     }
 
-    /**
-     * @return the jFormattedTextField1
-     */
-    public javax.swing.JFormattedTextField getjFormattedTextField1() {
-        return getTxtHora();
-    }
-
-    /**
-     * @param jFormattedTextField1 the jFormattedTextField1 to set
-     */
-    public void setjFormattedTextField1(javax.swing.JFormattedTextField jFormattedTextField1) {
-        this.setTxtHora(jFormattedTextField1);
-    }
 
     /**
      * @return the jLabel1
@@ -673,20 +597,6 @@ public class CadastroConsultas extends javax.swing.JFrame {
     }
 
     /**
-     * @return the txtdatahora
-     */
-    public javax.swing.JFormattedTextField getTxtdatahora() {
-        return getTxtdata();
-    }
-
-    /**
-     * @param txtdatahora the txtdatahora to set
-     */
-    public void setTxtdatahora(javax.swing.JFormattedTextField txtdatahora) {
-        this.setTxtdata(txtdatahora);
-    }
-
-    /**
      * @return the txtespecializacao
      */
     public javax.swing.JTextField getTxtespecializacao() {
@@ -755,6 +665,50 @@ public class CadastroConsultas extends javax.swing.JFrame {
     public void setLabelConsulta(javax.swing.JLabel labelConsulta) {
         this.labelConsulta = labelConsulta;
     }
+
+    /**
+     * @return the Combotipo
+     */
+    public javax.swing.JComboBox<String> getCombotipo() {
+        return Combotipo;
+    }
+
+    /**
+     * @param Combotipo the Combotipo to set
+     */
+    public void setCombotipo(javax.swing.JComboBox<String> Combotipo) {
+        this.Combotipo = Combotipo;
+    }
+
+    /**
+     * @return the combohora
+     */
+    public javax.swing.JComboBox<String> getCombohora() {
+        return combohora;
+    }
+
+    /**
+     * @param combohora the combohora to set
+     */
+    public void setCombohora(javax.swing.JComboBox<String> combohora) {
+        this.combohora = combohora;
+    }
+
+    /**
+     * @return the txtdata
+     */
+    public javax.swing.JTextField getTxtdata() {
+        return txtdata;
+    }
+
+    /**
+     * @param txtdata the txtdata to set
+     */
+    public void setTxtdata(javax.swing.JTextField txtdata) {
+        this.txtdata = txtdata;
+    }
+
+
     
     
 

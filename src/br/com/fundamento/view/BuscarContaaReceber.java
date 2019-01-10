@@ -12,6 +12,13 @@ package br.com.fundamento.view;
 public class BuscarContaaReceber extends javax.swing.JFrame {
 
     /**
+     * @return the txtvalorRecebido
+     */
+    public javax.swing.JTextField getTxtvalorRecebido() {
+        return txtvalorRecebido;
+    }
+
+    /**
      * Creates new form BuscarContaaReceber
      */
     public BuscarContaaReceber() {
@@ -38,7 +45,7 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtvalor1 = new javax.swing.JTextField();
+        txtvalorRecebido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
@@ -139,9 +146,9 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         jLabel2.setText("R$");
 
-        txtvalor1.setBackground(new java.awt.Color(153, 255, 153));
-        txtvalor1.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
-        txtvalor1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtvalorRecebido.setBackground(new java.awt.Color(153, 255, 153));
+        txtvalorRecebido.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        txtvalorRecebido.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,7 +158,7 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtvalor1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(txtvalorRecebido, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -159,7 +166,7 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtvalor1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(txtvalorRecebido, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -262,7 +269,7 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
     private javax.swing.JLabel labeltarefa1;
     private javax.swing.JTable tabelacontaReceber;
     private javax.swing.JTextField txtvalor;
-    private javax.swing.JTextField txtvalor1;
+    private javax.swing.JTextField txtvalorRecebido;
     // End of variables declaration//GEN-END:variables
 
 

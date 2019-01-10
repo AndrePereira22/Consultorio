@@ -36,6 +36,8 @@ public class TelaProntuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Txtpaciente = new javax.swing.JTextField();
         Sintomas = new javax.swing.JTextField();
+        botaoexames = new javax.swing.JButton();
+        botaoreceita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
@@ -106,6 +108,28 @@ public class TelaProntuario extends javax.swing.JFrame {
             }
         });
 
+        botaoexames.setBackground(new java.awt.Color(255, 255, 255));
+        botaoexames.setForeground(new java.awt.Color(0, 0, 204));
+        botaoexames.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/stats-2.png"))); // NOI18N
+        botaoexames.setText("Gerar Exames");
+        botaoexames.setToolTipText("");
+        botaoexames.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoexamesActionPerformed(evt);
+            }
+        });
+
+        botaoreceita.setBackground(new java.awt.Color(255, 255, 255));
+        botaoreceita.setForeground(new java.awt.Color(0, 0, 204));
+        botaoreceita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/stats-2.png"))); // NOI18N
+        botaoreceita.setText("Gerar Receita");
+        botaoreceita.setToolTipText("");
+        botaoreceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoreceitaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,6 +143,10 @@ public class TelaProntuario extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botaoreceita, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botaoexames, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(BotaoSalvarProntuario)
                         .addGap(26, 26, 26)
                         .addComponent(BotaoCancelarProntuario)
@@ -158,7 +186,9 @@ public class TelaProntuario extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoCancelarProntuario)
-                    .addComponent(BotaoSalvarProntuario))
+                    .addComponent(BotaoSalvarProntuario)
+                    .addComponent(botaoexames)
+                    .addComponent(botaoreceita))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -184,6 +214,14 @@ public class TelaProntuario extends javax.swing.JFrame {
     private void SintomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SintomasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SintomasActionPerformed
+
+    private void botaoexamesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoexamesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoexamesActionPerformed
+
+    private void botaoreceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoreceitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoreceitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +264,8 @@ public class TelaProntuario extends javax.swing.JFrame {
     private javax.swing.JButton BotaoSalvarProntuario;
     private javax.swing.JTextField Sintomas;
     private javax.swing.JTextField Txtpaciente;
+    private javax.swing.JButton botaoexames;
+    private javax.swing.JButton botaoreceita;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
@@ -315,6 +355,34 @@ public class TelaProntuario extends javax.swing.JFrame {
      */
     public void setSintomas(javax.swing.JTextField Sintomas) {
         this.Sintomas = Sintomas;
+    }
+
+    /**
+     * @return the botaoexames
+     */
+    public javax.swing.JButton getBotaoexames() {
+        return botaoexames;
+    }
+
+    /**
+     * @param botaoexames the botaoexames to set
+     */
+    public void setBotaoexames(javax.swing.JButton botaoexames) {
+        this.botaoexames = botaoexames;
+    }
+
+    /**
+     * @return the botaoreceita
+     */
+    public javax.swing.JButton getBotaoreceita() {
+        return botaoreceita;
+    }
+
+    /**
+     * @param botaoreceita the botaoreceita to set
+     */
+    public void setBotaoreceita(javax.swing.JButton botaoreceita) {
+        this.botaoreceita = botaoreceita;
     }
 
 
