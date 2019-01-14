@@ -89,7 +89,8 @@ public class DaoList {
             statement.setBoolean(2, parcela.isStatus());
             statement.setInt(3, parcela.getNumero());
             statement.setString(4, parcela.getData_vencimento());
-            statement.setInt(5, id_pagamento);
+            statement.setString(5, parcela.getData_pagamento());
+            statement.setInt(6, id_pagamento);
 
             statement.execute();
             statement.close();
@@ -151,7 +152,7 @@ public class DaoList {
             statement = conexao.prepareStatement(SQLUtil.Tarefa.INSERT);
 
             statement.setString(1, tarefa.getDescricao());
-            statement.setInt(2, tarefa.getPrioridade());
+            statement.setString(2, tarefa.getPrioridade());
             statement.setBoolean(3, tarefa.isStatus());
 
             statement.setString(4, tarefa.getData_inicio());

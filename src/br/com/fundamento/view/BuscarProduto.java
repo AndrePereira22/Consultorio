@@ -41,7 +41,6 @@ public class BuscarProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 500));
 
         BotaoAdicionarProduto.setBackground(new java.awt.Color(255, 255, 255));
         BotaoAdicionarProduto.setForeground(new java.awt.Color(0, 0, 204));
@@ -113,7 +112,6 @@ public class BuscarProduto extends javax.swing.JFrame {
 
         jLabel2.setText("Escolher Estoque:");
 
-        ComboEstoque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Todos" }));
         ComboEstoque.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -229,12 +229,10 @@ public class ControleProduto implements ActionListener {
         buscarProduto.getComboEstoque().addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                int indice = buscarProduto.getComboEstoque().getSelectedIndex() - 2;
+                int indice = buscarProduto.getComboEstoque().getSelectedIndex() ;
+                
 
-                if (buscarProduto.getComboEstoque().getSelectedItem().toString().equals("Todos")) {
-                    buscarProduto.getTxtPesquisarProduto().setText("");
-                    PreencherTabela();
-                }
+                
 
                 if (indice >= 0) {
                     System.out.println(indice);
@@ -262,6 +260,7 @@ public class ControleProduto implements ActionListener {
         }
         if (e.getSource() == buscarProduto.getBotaoAdicionarProduto()) {
 
+             
             cadastroProduto.setVisible(true);
             cadastroProduto.getPanelEstoque().setVisible(false);
             PreencherBuscaFornecedor(cadastroProduto);
@@ -356,18 +355,19 @@ public class ControleProduto implements ActionListener {
 
             if (fornecedor != null && estoque != null) {
                 fachada1.salvarProduto(produto);
-
-            } else {
-                JOptionPane.showConfirmDialog(null, "Selecione o Estoque ou o Fornecedor");
-            }
-
-            buscarProduto.getTxtPesquisarProduto().setText("");
+                 buscarProduto.getTxtPesquisarProduto().setText("");
             PreencherTabela();
             buscarProduto.setVisible(true);
             cadastroProduto.setVisible(false);
             telaPrincipal.setEnabled(true);
             preencherPorEstoque(estoque);
             preencherListEstoque();
+
+            } else {
+                JOptionPane.showConfirmDialog(null, "Selecione o Estoque ou o Fornecedor");
+            }
+
+           
         }
 
     }
@@ -433,6 +433,7 @@ public class ControleProduto implements ActionListener {
 
     public void PreencherEstoque(CadastroProduto cp) {
 
+        
         estoques = fachada1.getAllEstoque();
 
         DefaultListModel model = new DefaultListModel();
@@ -504,6 +505,7 @@ public class ControleProduto implements ActionListener {
     public void preencherListEstoque() {
         estoques = fachada1.getAllEstoque();
 
+        
         for (Estoque e : estoques) {
             buscarProduto.getComboEstoque().addItem(e.getDescricao());
 

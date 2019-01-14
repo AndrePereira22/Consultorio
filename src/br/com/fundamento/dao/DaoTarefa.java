@@ -39,7 +39,7 @@ public class DaoTarefa implements IDaoTarefa {
             this.statement = conexao.prepareStatement(SQLUtil.Tarefa.INSERT);
 
             this.statement.setString(1, tarefa.getDescricao());
-            this.statement.setInt(2, tarefa.getPrioridade());
+            this.statement.setString(2, tarefa.getPrioridade());
             this.statement.setBoolean(3, tarefa.isStatus());
             this.statement.setString(4, tarefa.getData_inicio());
             this.statement.setString(5, tarefa.getData_termino());
@@ -65,7 +65,7 @@ public class DaoTarefa implements IDaoTarefa {
                 tarefa = new Tarefa();
 
                 tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
-                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+                tarefa.setPrioridade(result.getString(SQLUtil.Tarefa.COL_PRIORIDADE));
                 tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
                 tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
                 tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
@@ -94,7 +94,7 @@ public class DaoTarefa implements IDaoTarefa {
                 tarefa = new Tarefa();
 
                 tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
-                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+                tarefa.setPrioridade(result.getString(SQLUtil.Tarefa.COL_PRIORIDADE));
                 tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
                 tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
                 tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));
@@ -159,7 +159,7 @@ public class DaoTarefa implements IDaoTarefa {
                 tarefa = new Tarefa();
 
                 tarefa.setDescricao(result.getString(SQLUtil.Tarefa.COL_DESCRICAO));
-                tarefa.setPrioridade(result.getInt(SQLUtil.Tarefa.COL_PRIORIDADE));
+                tarefa.setPrioridade(result.getString(SQLUtil.Tarefa.COL_PRIORIDADE));
                 tarefa.setStatus(result.getBoolean(SQLUtil.Tarefa.COL_STATUS));
                 tarefa.setData_inicio(result.getString(SQLUtil.Tarefa.COL_DATA_INICIO));
                 tarefa.setData_termino(result.getString(SQLUtil.Tarefa.COL_DATA_TERMINO));

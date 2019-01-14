@@ -17,7 +17,7 @@ public class Tarefa {
     private String data_inicio;
     private String data_termino ;
     private String descricao;
-    private int prioridade;
+    private String prioridade;
     private boolean status;
     private int id;
     
@@ -43,20 +43,7 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    /**
-     * @return the prioridade
-     */
-    public int getPrioridade() {
-        return prioridade;
-    }
-
-    /**
-     * @param prioridade the prioridade to set
-     */
-    public void setPrioridade(int prioridade) {
-        this.prioridade = prioridade;
-    }
-
+    
     /**
      * @return the status
      */
@@ -127,6 +114,20 @@ public class Tarefa {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the prioridade
+     */
+    public String getPrioridade() {
+        return prioridade;
+    }
+
+    /**
+     * @param prioridade the prioridade to set
+     */
+    public void setPrioridade(String prioridade) {
+        this.prioridade = prioridade;
     }
 
    

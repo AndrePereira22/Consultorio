@@ -17,6 +17,7 @@ public class Parcela {
     private boolean  status;
     private int numero;
     private int id;
+    private String data_pagamento;
     
     private  Pagamento pagamento;
     
@@ -110,6 +111,20 @@ public class Parcela {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the data_pagamento
+     */
+    public String getData_pagamento() {
+        return data_pagamento;
+    }
+
+    /**
+     * @param data_pagamento the data_pagamento to set
+     */
+    public void setData_pagamento(String data_pagamento) {
+        this.data_pagamento = data_pagamento;
     }
 
    

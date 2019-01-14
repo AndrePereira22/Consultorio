@@ -173,9 +173,8 @@ public class ControleTarefa implements ActionListener {
             tarefa.setData_inicio(cadastroTarefas.getTxtDatainicio().getText());
             tarefa.setData_termino(cadastroTarefas.getTxtdatafinal().getText());
             tarefa.setDescricao(cadastroTarefas.getTxtdescricao().getText());
-            String p = cadastroTarefas.getTxtprioridade().getText();
-            int prioridade = Integer.parseInt(p);
-            tarefa.setPrioridade(prioridade);
+          
+            tarefa.setPrioridade(cadastroTarefas.getComboprioridade().getSelectedItem().toString());
             String s = cadastroTarefas.getTxtstatus().getSelectedItem().toString();
             boolean status = false;
             if (s.equalsIgnoreCase("Pronto")) {
@@ -252,8 +251,12 @@ public class ControleTarefa implements ActionListener {
         ct.getTxtdescricao().setText(t.getDescricao());
         ct.getTxtDatainicio().setText(t.getData_inicio());
         ct.getTxtdatafinal().setText(t.getData_termino());
-        ct.getTxtprioridade().setText(t.getPrioridade() + "");
+        for (int u = 0; u < ct.getComboprioridade().getItemCount(); u++) {
 
+            if (ct.getComboprioridade().getItemAt(u).equals(t.getPrioridade())) {
+                ct.getComboprioridade().setSelectedItem(ct.getComboprioridade().getItemAt(u));
+            }
+        }
         for (int u = 0; u < ct.getTxtstatus().getItemCount(); u++) {
 
             if (ct.getTxtstatus().getItemAt(u).equals(t.isStatus())) {
@@ -272,7 +275,7 @@ public class ControleTarefa implements ActionListener {
 
                 tarefa.setDescricao(ct.getTxtdescricao().getText());
                 tarefa.setData_termino(ct.getTxtdatafinal().getText());
-                tarefa.setPrioridade(Integer.parseInt(ct.getTxtprioridade().getText()));
+                tarefa.setPrioridade(ct.getComboprioridade().getSelectedItem().toString());
 
                 String s = ct.getTxtstatus().getSelectedItem().toString();
 

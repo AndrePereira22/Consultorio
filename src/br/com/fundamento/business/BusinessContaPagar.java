@@ -40,7 +40,7 @@ public class BusinessContaPagar implements IBusinessContaPagar{
 
     @Override
     public void editarContaPagar(ContaPagar contaPagar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    this.daoContaPagar.editarContaPagar(contaPagar);
     }
 
     @Override

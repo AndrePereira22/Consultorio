@@ -6,10 +6,15 @@
 package br.com.fundamento.controle;
 
 import br.com.fundamento.dao.DaoCaixa;
+import br.com.fundamento.dao.DaoConsulta;
+import br.com.fundamento.dao.DaoContaPagar;
 import br.com.fundamento.dao.DaoPagamento;
+import br.com.fundamento.dao.DaoParcela;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
+import br.com.fundamento.modelos.Consulta;
+import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.ContaPagar;
 import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
@@ -22,9 +27,14 @@ import br.com.fundamento.view.FluxodeCaixa;
 import br.com.fundamento.view.TelaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -77,6 +87,31 @@ public class ControleCaixa implements ActionListener {
         telaPrincipal.getBotaocontareceber().addActionListener(this);
         buscarContaaReceber.getBotaofechar().addActionListener(this);
         contaReceber.getBotaocancelar().addActionListener(this);
+
+        fluxodeCaixa.getCalendariofluxo().getDateEditor().getUiComponent().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+
+                java.util.Date d = fluxodeCaixa.getCalendariofluxo().getDate();
+                String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+                preencherfluxo(data);
+                preenchertabelaDespesas(data);
+                preencherfluxoParcelas(data);
+
+            }
+        });
+
+        buscarContaApagar.getCalendarioC().getDateEditor().getUiComponent().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+
+                java.util.Date d = buscarContaApagar.getCalendarioC().getDate();
+                String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+                preenchertabelaPagar(data);
+
+            }
+        });
+
         buscarContaaReceber.getTabelacontaReceber().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -95,14 +130,14 @@ public class ControleCaixa implements ActionListener {
 
                             if (pagar == 0) {
                                 pagamento = pagamentos.get(ro);
-                                if(pagamento.isStatus()==false){
-                                preenchertabelaPacela(pagamento);
-                                contaReceber.setVisible(true);
-                                buscarContaaReceber.setVisible(false);
-                                calcularValorReceber();
-                                preenchertabelaReceber();
-                                }else{
-                                   JOptionPane.showMessageDialog(null, "Pagamento ja foi concluido"); 
+                                if (pagamento.isStatus() == false) {
+                                    preenchertabelaPacela(pagamento);
+                                    contaReceber.setVisible(true);
+                                    buscarContaaReceber.setVisible(false);
+                                    calcularValorReceber();
+                                    preenchertabelaReceber();
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Pagamento ja foi concluido");
                                 }
 
                             }
@@ -143,8 +178,12 @@ public class ControleCaixa implements ActionListener {
 
                             if (Pago == 0) {
                                 contaPagar = contaaPagars.get(ro);
-                                preenchertabelaPagar();
                                 pagarConta();
+                                java.util.Date d = new Date();
+                                String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+                                preenchertabelaPagar(data);
+                                despesas();
+                                
 
                             }
                         }
@@ -185,11 +224,17 @@ public class ControleCaixa implements ActionListener {
 
                             if (pagar == 0) {
                                 parcela = parcelas.get(ro);
+
+                                java.util.Date d = new Date();
+                                String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+                                parcela.setData_pagamento(dStr);
                                 fachada1.editarParcela(parcela);
                                 preenchertabelaPacela(pagamento);
                                 adicionarParcelaCaixa();
+
                                 if (concluirPagamento()) {
-                                    JOptionPane.showConfirmDialog(null, "Pagamento Finalizado");
+
+                                    JOptionPane.showMessageDialog(null, "Pagamento Finalizado");
                                     pagamento.setStatus(true);
                                     pagamento.setParcelas(new ArrayList<Parcela>());
                                     fachada1.editarPagamento(pagamento);
@@ -218,15 +263,23 @@ public class ControleCaixa implements ActionListener {
             }
 
         });
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == telaPrincipal.getBotaofluxodeCaixa()) {
+            java.util.Date d = new Date();
+            String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+            preencherfluxo(data);
+            preenchertabelaDespesas(data);
+            preencherfluxoParcelas(data);
             fluxodeCaixa.setVisible(true);
             fluxodeCaixa.getTxttotal().setEditable(false);
+
             ControleConsulta.abrirCaixa();
             dinhiroNoCaixa();
+            fluxodeCaixa.getTxtlucro().setText(c.getValor_fechamento() - c.getValor_abertura() + "");
         }
         if (e.getSource() == fluxodeCaixa.getBotaoVoltar()) {
             fluxodeCaixa.setVisible(false);
@@ -235,12 +288,12 @@ public class ControleCaixa implements ActionListener {
             buscarContaaReceber.setVisible(true);
             preenchertabelaReceber();
             calcularValorReceber();
-            contasRecebidas();
+          
         }
 
         if (e.getSource() == buscarContaaReceber.getBotaofechar()) {
             buscarContaaReceber.setVisible(false);
-            
+
         }
         if (e.getSource() == contaReceber.getBotaocancelar()) {
             buscarContaaReceber.setVisible(true);
@@ -251,7 +304,10 @@ public class ControleCaixa implements ActionListener {
         if (e.getSource() == telaPrincipal.getBotaocontapagar()) {
             buscarContaApagar.getTxtvalor().setEditable(false);
             buscarContaApagar.setVisible(true);
-            preenchertabelaPagar();
+            java.util.Date d = new Date();
+            String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+            preenchertabelaPagar(data);
+            despesas();
         }
         if (e.getSource() == buscarContaApagar.getBotaoadicionar()) {
             contaaPagar.setVisible(true);
@@ -272,6 +328,7 @@ public class ControleCaixa implements ActionListener {
 
         if (e.getSource() == contaaPagar.getBotaosalvar()) {
             ContaPagar contaPagar = new ContaPagar();
+            Consultorio consultorio = fachada1.buscarConsultorioPorId(1);
 
             String q = contaaPagar.getTxtvalor().getText();
             q = q.replaceAll("[^0-9]", "");
@@ -287,19 +344,24 @@ public class ControleCaixa implements ActionListener {
             contaPagar.setValor(quantidade);
             contaPagar.setData(contaaPagar.getTxtvencimento().getText());
             contaPagar.setDescricao(contaaPagar.getTxtdescricao().getText());
+            contaPagar.setConsultorio(consultorio);
+            contaPagar.setData_pagamento("00/00/0000");
 
             fachada1.salvarContaPagar(contaPagar);
             buscarContaApagar.setVisible(true);
             contaaPagar.setVisible(false);
             buscarContaApagar.setVisible(true);
             contaaPagar.setVisible(false);
-            preenchertabelaPagar();
+            java.util.Date d = new Date();
+            String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+            preenchertabelaPagar(data);
+            despesas();
         }
 
     }
 
     public void preenchertabelaReceber() {
-           java.util.Date d = new Date();
+        java.util.Date d = new Date();
         String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
 
         pagamentos = new DaoPagamento().buscarpagamento(dStr);
@@ -310,24 +372,27 @@ public class ControleCaixa implements ActionListener {
         btn1.setName("p");
         btn1.setBorder(null);
         btn1.setContentAreaFilled(false);
-       
+        Consulta ccc;
 
         try {
-            String[] colunas = new String[]{"Valor Total", "Forma Pagamento", "Quantidade Parcelas","Status", "Pagar"};
-            Object[][] dados = new Object[pagamentos.size()][5];
+            String[] colunas = new String[]{"Paciente", "Valor Total", "Forma Pagamento", "Quantidade Parcelas", "Status", "Pagar"};
+            Object[][] dados = new Object[pagamentos.size()][6];
             for (int i = 0; i < pagamentos.size(); i++) {
-                String s="Pendente";
+                String s = "Pendente";
                 Pagamento pagamento = pagamentos.get(i);
-                if(pagamento.isStatus()){
-                    s="Pago";
+                ccc = new DaoConsulta().buscarConsultaPorPagamento(pagamento.getId());
+
+                if (pagamento.isStatus()) {
+                    s = "Pago";
                 }
-                dados[i][0] = pagamento.getValor_total();
-                dados[i][1] = pagamento.getForma_pagamento();
-                dados[i][2] = pagamento.getQuantidade_parcelas();
-                dados[i][3] = s;
-                dados[i][4] = btn1;
-                
-                 
+
+                dados[i][0] = ccc.getPaciente().getNome();
+                dados[i][1] = pagamento.getValor_total();
+                dados[i][2] = pagamento.getForma_pagamento();
+                dados[i][3] = pagamento.getQuantidade_parcelas();
+                dados[i][4] = s;
+                dados[i][5] = btn1;
+
             }
 
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
@@ -345,9 +410,9 @@ public class ControleCaixa implements ActionListener {
         }
     }
 
-    public void preenchertabelaPagar() {
+    public void preenchertabelaPagar(String data) {
 
-        contaaPagars = fachada1.getAllContaPagar();
+        contaaPagars = new DaoContaPagar().BuscarContaVencimento(data);
         buscarContaApagar.getTabelacontapagar().setDefaultRenderer(Object.class, new Render());
         Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagar.png"));
 
@@ -366,12 +431,7 @@ public class ControleCaixa implements ActionListener {
                 dados[i][2] = contaPagar.getValor();
                 dados[i][3] = btn1;
 
-                for (ContaPagar p : contaaPagars) {
-                    soma += p.getValor();
-                }
-
-                buscarContaApagar.getTxtvalor().setText(soma + "");
-                soma = 0;
+             
             }
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
                 @Override
@@ -391,7 +451,7 @@ public class ControleCaixa implements ActionListener {
     }
 
     public void preenchertabelaPacela(Pagamento pagamento) {
-   
+
         parcelas = fachada1.buscarParcela(pagamento.getId());
         contaReceber.getTabelaContaReceber().setDefaultRenderer(Object.class, new Render());
         Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagarP.png"));
@@ -444,7 +504,9 @@ public class ControleCaixa implements ActionListener {
                 soma += p.getValor();
             }
         }
-        buscarContaaReceber.getTxtvalor().setText(soma + "");
+        DecimalFormat df = new DecimalFormat("0.##");
+        String dx = df.format(soma);
+        buscarContaaReceber.getTxtvalor().setText(dx);
         buscarContaaReceber.getTxtvalor().setEditable(false);
     }
 
@@ -484,8 +546,14 @@ public class ControleCaixa implements ActionListener {
         new DaoCaixa().fecharCaixa(c);
 
     }
-    public void contasRecebidas() {
-   
+
+    public void despesas() {
+   for (ContaPagar p : contaaPagars) {
+                    soma += p.getValor();
+                }
+
+                buscarContaApagar.getTxtvalor().setText(soma + "");
+                soma = 0;
     }
 
     public void adicionarParcelaCaixa() {
@@ -493,32 +561,34 @@ public class ControleCaixa implements ActionListener {
         java.util.Date d = new Date();
         String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
         c = new DaoCaixa().buscarCaixaPorData(dStr);
-        
+
         double soma = c.getValor_fechamento() + parcela.getValor();
         c.setValor_fechamento(soma);
 
         fachada1.editarCaixa(c);
 
     }
+
     public void pagarConta() {
 
-        java.util.Date d = new Date();
-        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        java.util.Date dj = new Date();
+        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(dj);
         c = new DaoCaixa().buscarCaixaPorData(dStr);
-        
-        if( c.getValor_fechamento()> contaPagar.getValor() ){
-        double soma = c.getValor_fechamento()- contaPagar.getValor();
-        c.setValor_fechamento(soma);
-        fachada1.ativarDesativarContaPagar(contaPagar.getId());
-        preenchertabelaPagar();
-        fachada1.editarCaixa(c);
-        }else{
+
+        if (c.getValor_fechamento() > contaPagar.getValor()) {
+            double soma = c.getValor_fechamento() - contaPagar.getValor();
+            c.setValor_fechamento(soma);
+            contaPagar.setData_pagamento(dStr);
+            fachada1.editarContaPagar(contaPagar);
+            fachada1.ativarDesativarContaPagar(contaPagar.getId());
+            fachada1.editarCaixa(c);
+        } else {
             JOptionPane.showMessageDialog(null, "Dinheiro indisponivel");
         }
 
     }
 
-     public void preenchertabelaReceberTodos() {
+    public void preenchertabelaReceberTodos() {
 
         pagamentos = fachada1.getAllPagamento();
         buscarContaaReceber.getTabelacontaReceber().setDefaultRenderer(Object.class, new Render());
@@ -528,24 +598,22 @@ public class ControleCaixa implements ActionListener {
         btn1.setName("p");
         btn1.setBorder(null);
         btn1.setContentAreaFilled(false);
-       
 
         try {
-            String[] colunas = new String[]{"Valor Total", "Forma Pagamento", "Quantidade Parcelas","Status", "Pagar"};
+            String[] colunas = new String[]{"Valor Total", "Forma Pagamento", "Quantidade Parcelas", "Status", "Pagar"};
             Object[][] dados = new Object[pagamentos.size()][5];
             for (int i = 0; i < pagamentos.size(); i++) {
-                String s="Pendente";
+                String s = "Pendente";
                 Pagamento pagamento = pagamentos.get(i);
-                if(pagamento.isStatus()){
-                    s="Pago";
+                if (pagamento.isStatus()) {
+                    s = "Pago";
                 }
                 dados[i][0] = pagamento.getValor_total();
                 dados[i][1] = pagamento.getForma_pagamento();
                 dados[i][2] = pagamento.getQuantidade_parcelas();
                 dados[i][3] = s;
                 dados[i][4] = btn1;
-                
-                 
+
             }
 
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
@@ -557,6 +625,120 @@ public class ControleCaixa implements ActionListener {
             TableColumnModel columnModel = buscarContaaReceber.getTabelacontaReceber().getColumnModel();
             buscarContaaReceber.getTabelacontaReceber().setModel(dataModel);
             buscarContaaReceber.getTabelacontaReceber().setPreferredScrollableViewportSize(buscarContaaReceber.getTabelacontaReceber().getPreferredSize());
+
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public void preencherfluxo(String data) {
+
+        pagamentos = new DaoPagamento().buscarpagamento(data);
+        fluxodeCaixa.getTabelapagamento().setDefaultRenderer(Object.class, new Render());
+
+        Consulta ccc;
+
+        try {
+            String[] colunas = new String[]{"Paciente", "Valor Total", "Forma Pagamento", "Quantidade Parcelas"};
+            Object[][] dados = new Object[pagamentos.size()][4];
+            for (int i = 0; i < pagamentos.size(); i++) {
+
+                Pagamento pagamento = pagamentos.get(i);
+                ccc = new DaoConsulta().buscarConsultaPorPagamento(pagamento.getId());
+
+                if (pagamento.isStatus()) {
+                    dados[i][0] = ccc.getPaciente().getNome();
+                    dados[i][1] = pagamento.getValor_total();
+                    dados[i][2] = pagamento.getForma_pagamento();
+                    dados[i][3] = pagamento.getQuantidade_parcelas();
+
+                }
+
+            }
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            TableColumnModel columnModel = fluxodeCaixa.getTabelapagamento().getColumnModel();
+            fluxodeCaixa.getTabelapagamento().setModel(dataModel);
+            fluxodeCaixa.getTabelapagamento().setPreferredScrollableViewportSize(fluxodeCaixa.getTabelapagamento().getPreferredSize());
+
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public void preenchertabelaDespesas(String data) {
+        contaaPagars = new DaoContaPagar().BuscarContaPagar(data);
+        fluxodeCaixa.getTabeladespesas().setDefaultRenderer(Object.class, new Render());
+
+        try {
+            String[] colunas = new String[]{"Data Vencimento", "Descrição", "Valor"};
+            Object[][] dados = new Object[contaaPagars.size()][3];
+            for (int i = 0; i < contaaPagars.size(); i++) {
+                ContaPagar contaPagar = contaaPagars.get(i);
+                dados[i][0] = contaPagar.getData();
+                dados[i][1] = contaPagar.getDescricao();
+                dados[i][2] = contaPagar.getValor();
+            }
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+
+            };
+            TableColumnModel columnModel = fluxodeCaixa.getTabeladespesas().getColumnModel();
+            fluxodeCaixa.getTabeladespesas().setModel(dataModel);
+            fluxodeCaixa.getTabeladespesas().setPreferredScrollableViewportSize(fluxodeCaixa.getTabeladespesas().getPreferredSize());
+
+        } catch (Exception ex) {
+
+        }
+
+    }
+
+    public void preencherfluxoParcelas(String data) {
+        pagamentos = new DaoPagamento().buscarpagamentoNaopago(data);
+        fluxodeCaixa.getTabelaparcela().setDefaultRenderer(Object.class, new Render());
+
+        Consulta ccc;
+        List<Parcela> list;
+        int x = 0;
+        Object[][] dados = new Object[100][6];
+        try {
+            String[] colunas = new String[]{"Paciente", "Valor Total", "Forma Pagamento", "Quantidade Parcelas", "Numero Parcela", "Valor"};
+
+            for (Pagamento p : pagamentos) {
+                list = new DaoParcela().buscarParcelaPaga(p.getId(), data);
+                ccc = new DaoConsulta().buscarConsultaPorPagamento(p.getId());
+
+                for (int u = 0; u < list.size(); u++) {
+
+                    Parcela par = list.get(u);
+
+                    dados[x][0] = ccc.getPaciente().getNome();
+                    dados[x][1] = p.getValor_total();
+                    dados[x][2] = p.getForma_pagamento();
+                    dados[x][3] = p.getQuantidade_parcelas();
+                    dados[x][4] = par.getNumero();
+                    dados[x][5] = par.getValor();
+                    x++;
+                }
+
+            }
+
+            DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+            TableColumnModel columnModel = fluxodeCaixa.getTabelaparcela().getColumnModel();
+            fluxodeCaixa.getTabelaparcela().setModel(dataModel);
+            fluxodeCaixa.getTabelaparcela().setPreferredScrollableViewportSize(fluxodeCaixa.getTabelaparcela().getPreferredSize());
 
         } catch (Exception ex) {
 

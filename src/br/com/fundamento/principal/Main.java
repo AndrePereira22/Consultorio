@@ -19,10 +19,12 @@ import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
 import br.com.fundamento.dao.DaoCaixa;
 import br.com.fundamento.dao.DaoConsulta;
+import br.com.fundamento.dao.DaoContaPagar;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
+import br.com.fundamento.modelos.ContaPagar;
 import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Funcionario;
 import br.com.fundamento.modelos.Produto;
@@ -129,8 +131,6 @@ public class Main {
         ControleRelatorios controleRelatorios =  new ControleRelatorios(telaPrincipal, relatorio, recibo);
        
         
-        
-
 
 
 

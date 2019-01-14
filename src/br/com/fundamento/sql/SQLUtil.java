@@ -146,6 +146,10 @@ public class SQLUtil {
             return "select *from " + NOME + " where ativo=true and ( " + COL_DATA + " like '%" + busca + "%')";
         }
 
+        public static String selectPorPagamento(int id) {
+            return "select* from  consulta c where c.ativo=true and ( c.id_pagamento=" + id + ")";
+        }
+
         public static final String updateConsulta(String novoTipo, String novaData, String novaHora, int id_parametro, int id_medico) {
             return "update consulta SET tipo ='" + novoTipo + "', data='" + novaData + "', hora='" + novaHora + "',id_medico='" + id_medico + "'   WHERE id =" + id_parametro;
 
@@ -153,6 +157,10 @@ public class SQLUtil {
 
         public static final String selectPorMedico(String nome, String data) {
             return "select c.id,c.tipo, c.data, c.hora, c.id_paciente,c.id_medico from consulta c ,medico m where c.id_medico=m.id and m.nome='" + nome + "' and c.data='" + data + "'";
+        }
+
+        public static final String selectPorconsulta(String nome, String data) {
+            return " select c.id,c.tipo, c.data,c.hora, c.id_paciente,c.id_medico,id_pagamento from consulta c,medico m where c.data='" + data + "' and  m.nome='" + nome + "'";
         }
 
         public static String desativar(int id) {
@@ -225,7 +233,7 @@ public class SQLUtil {
             return "select *from " + NOME + " where ativo=true and  (" + COL_DESCRICAO + " like '%" + busca + "%' or " + COL_DATA_TERMINO + " like '%" + busca + "%')";
         }
 
-        public static final String updateTarefa(String novaDescricao, int novaPrioridade, boolean novoStatus, String novaDataTermino, int id_parametro) {
+        public static final String updateTarefa(String novaDescricao, String novaPrioridade, boolean novoStatus, String novaDataTermino, int id_parametro) {
             return "UPDATE tarefa SET  descricao='" + novaDescricao + "', prioridade='" + novaPrioridade + "', status='" + novoStatus + "', data_termino='" + novaDataTermino + "'  WHERE id =" + id_parametro;
 
         }
@@ -394,12 +402,16 @@ public class SQLUtil {
                 + COL_CAIXA_ID + "" + " ) values (?,?,?,?,?) returning id";
 
         public static final String buscarpagamento(String data) {
-            return " select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas,t.nome from pagamento  p,consulta c, paciente t where p.ativo=true and (  c.id_pagamento=p.id and c.id_paciente=t.id )";
+            return " select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas,t.nome from pagamento  p,consulta c, paciente t where p.ativo=true and (  c.id_pagamento=p.id and c.id_paciente=t.id and c.data='" + data + "' )";
         }
 
-        public static final String updatePagamento(double valor,boolean status, String forma, int quantidade, int id) {
-            return "update pagamento SET valor_total =" + valor + ",status="+status+", forma_pagamento ='" + forma + "', quantidade_parcelas =" + quantidade + " WHERE id =" + id;
+        public static final String updatePagamento(double valor, boolean status, String forma, int quantidade, int id) {
+            return "update pagamento SET valor_total =" + valor + ",status=" + status + ", forma_pagamento ='" + forma + "', quantidade_parcelas =" + quantidade + " WHERE id =" + id;
 
+        }
+
+        public static final String buscarpagamentoNaopago(String data) {
+            return " select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas,t.nome from pagamento  p,consulta c, paciente t where p.ativo=true and (  c.id_pagamento=p.id and c.id_paciente=t.id and p.status=false )";
         }
 
         public static String desativar(int id) {
@@ -429,7 +441,8 @@ public class SQLUtil {
         public static final String prontuarioPaciente(int id) {
             return "select *from prontuario p where p.id_paciente=" + id;
         }
-            public static final String updateProntuario(String novoReceita, String novoSintomas, String novoExames, int id_parametro) {
+
+        public static final String updateProntuario(String novoReceita, String novoSintomas, String novoExames, int id_parametro) {
             return "update prontuario SET receitas ='" + novoReceita + "', sintomas='" + novoSintomas + "', exames='" + novoExames + "'   WHERE id =" + id_parametro;
 
         }
@@ -457,17 +470,20 @@ public class SQLUtil {
                 + COL_LUCRO_DIARIO + ","
                 + COL_DATA + ","
                 + COL_ID_FUNCIONARIO + "" + " ) values (?,?,?,?,?,?,?) returning id";
-        
+
         public static final String caixaPorData(String data) {
-            return "select c.id, c.status,c.numero,c.valor_abertura, c.valor_fechamento,c.lucro_diario,c.data,c.id_funcionario from caixa c  where c.data='"+data+"'";
+            return "select c.id, c.status,c.numero,c.valor_abertura, c.valor_fechamento,c.lucro_diario,c.data,c.id_funcionario from caixa c  where c.data='" + data + "'";
         }
+
         public static final String UltimoCaixa() {
             return "SELECT * FROM caixa ORDER BY id DESC LIMIT 1";
         }
-        public static final String updateCaixa(boolean status,double valor_f, double lucro, int id_parametro) {
+
+        public static final String updateCaixa(boolean status, double valor_f, double lucro, int id_parametro) {
             return "update caixa SET status =" + status + ", valor_fechamento=" + valor_f + ", lucro_diario=" + lucro + "   WHERE id =" + id_parametro;
 
         }
+
         public static final String fecharCaixa(boolean status, double lucro, int id_parametro) {
             return "update caixa SET status =" + status + ", lucro_diario=" + lucro + "   WHERE id =" + id_parametro;
 
@@ -490,7 +506,7 @@ public class SQLUtil {
 
         public static final String NOME_TABELA = "saida_estoque";
         public static final String COL_DATA = "data";
-        public static final String COL_QUANTIDADE_SAIDA = "quantidade_saida";
+        public static final String COL_QUANTIDADE_SAIDA = "quantidade";
         public static final String COL_ID_PRODUTO = "id_produto";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_DATA + ","
@@ -518,10 +534,26 @@ public class SQLUtil {
         public static final String COL_VENCIMENTO = "vencimento";
         public static final String COL_DESCRICAO = "descricao";
         public static final String COL_VALOR = "valor";
+        public static final String COL_DATA_PAGAMENTO = "data_pagamento";
+        public static final String COL_ID_CONSULTORIO = "id_consultorio";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_VENCIMENTO + ","
                 + COL_DESCRICAO + ","
-                + COL_VALOR + "" + " ) values (?,?,?) returning id";
+                + COL_VALOR + ","
+                + COL_DATA_PAGAMENTO + ","
+                + COL_ID_CONSULTORIO + "" + " ) values (?,?,?,?,?) returning id";
+
+        public static final String selectPordia(String data) {
+            return "select * from conta_pagar c where c.data_pagamento='" + data + "'";
+        }
+                public static final String selectvencimento(String data) {
+            return "select * from conta_pagar p where p.ativo=true and ( p.vencimento='" + data + "')";
+        }
+
+        public static final String updateContaPagar(String data, int id) {
+            return "update conta_pagar SET data_pagamento ='" + data + "'  WHERE id =" + id;
+
+        }
 
         public static String desativar(int id) {
             return "UPDATE conta_pagar SET ativo=false  WHERE id =" + id;
@@ -562,20 +594,26 @@ public class SQLUtil {
         public static final String COL_DATA_VENCIMENTO = "data_vencimento";
         public static final String COL_STATUS = "pago";
         public static final String COL_NUMERO = "numero";
+        public static final String COL_DATA_PAGAMENTO = "data_pagamento";
         public static final String COL_ID_PAGAMENTO = "id_pagamento";
 
         public static final String INSERT = "insert into " + NOME_TABELA + "(" + COL_VALOR + ","
                 + COL_STATUS + ","
                 + COL_NUMERO + ","
                 + COL_DATA_VENCIMENTO + ","
-                + COL_ID_PAGAMENTO + "" + " ) values (?,?,?,?,?) returning id";
+                + COL_DATA_PAGAMENTO + ","
+                + COL_ID_PAGAMENTO + "" + " ) values (?,?,?,?,?,?) returning id";
 
-        public static final String busacarParcelas(int id) {
+        public static final String buscarParcelapagas(int id,String data) {
+            return "select * from  parcela pa where pa.pago=true and pa.data_pagamento='" + data +"' and pa.id_pagamento=" + id + ""  ;
+        }
+
+        public static final String buscarParcela(int id) {
             return "select * from  parcela pa where pa.id_pagamento=" + id + "";
         }
 
-        public static final String updateParcela(boolean status, int id) {
-            return "update parcela SET pago ='" + status + "'  WHERE id =" + id;
+        public static final String updateParcela(boolean status,String data, int id) {
+            return "update parcela SET pago ='" + status + "',data_pagamento ='" + data + "'  WHERE id =" + id;
 
         }
     }

@@ -92,6 +92,7 @@ public class DaoConsultorio implements IDaoConsultorio {
                 consultorio.setId_endereco(idE);
                 consultorio.setId_contato(idC);
 
+                consultorio.setId(id);
             }
             this.conexao.close();
 

@@ -139,7 +139,7 @@ public class BuscarEntradaEstoque extends javax.swing.JFrame {
                     .addComponent(botaoadicionar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -276,6 +276,7 @@ public class BuscarEntradaEstoque extends javax.swing.JFrame {
     public void setTabelaEntadaestoque(javax.swing.JTable tabelaEntadaestoque) {
         this.tabelaEntadaestoque = tabelaEntadaestoque;
     }
+
 
 
 

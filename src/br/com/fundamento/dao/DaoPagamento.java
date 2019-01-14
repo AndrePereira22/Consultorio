@@ -184,5 +184,35 @@ public class DaoPagamento implements IDaoPagamento {
         }
         return pagamentos;
     }
+    
+      public List<Pagamento> buscarpagamentoNaopago(String data) {
+        List<Pagamento> pagamentos = new ArrayList<>();
+        int idC = 0, idP = 0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Pagamento.buscarpagamentoNaopago(data));
+            this.result = this.statement.executeQuery();
+            Pagamento pagamento;
+            while (result.next()) {
+                pagamento = new Pagamento();
+
+                pagamento.setValor_total(result.getDouble(SQLUtil.Pagamento.COL_VALOR_TOTAL));
+                pagamento.setForma_pagamento(result.getString(SQLUtil.Pagamento.COL_FORMA_PAGAMENTO));
+                pagamento.setQuantidade_parcelas(result.getInt(SQLUtil.Pagamento.COL_QUANTIDADE_PARCELAS));
+                pagamento.setStatus(result.getBoolean(SQLUtil.Pagamento.COL_STATUS));
+
+                idP = result.getInt(1);
+
+                pagamento.setId(idP);
+
+                pagamentos.add(pagamento);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoPagamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pagamentos;
+    }
 
 }

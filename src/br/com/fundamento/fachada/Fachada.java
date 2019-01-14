@@ -676,7 +676,7 @@ public class Fachada implements IFachada {
 
     @Override
     public void editarContaPagar(ContaPagar contaPagar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     this.businessContaPagar.editarContaPagar(contaPagar);
     }
 
     @Override

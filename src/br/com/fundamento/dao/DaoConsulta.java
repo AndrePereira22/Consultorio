@@ -64,8 +64,39 @@ public class DaoConsulta implements IDaoConsulta {
         return id;
     }
 
-    @Override
-    public Consulta buscarConsultaPorId(int id) {
+   
+    public Consulta buscarConsultaPorPagamento(int id_pagamento) {
+        Consulta consulta = null;
+        Medico medico = null;
+        Paciente paciente = null;
+        int idM = 0, idP = 0;
+
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Consulta.selectPorPagamento(id_pagamento));
+            this.result = this.statement.executeQuery();
+
+            if (result.next()) {
+                consulta = new Consulta();
+
+                consulta.setData(result.getString(SQLUtil.Consulta.COL_DATA));
+                consulta.setHora(result.getString(SQLUtil.Consulta.COL_HORA));
+                consulta.setTipo(result.getString(SQLUtil.Consulta.COL_TIPO));
+                idM = result.getInt(SQLUtil.Consulta.COL_ID_MEDICO);
+                idP = result.getInt(SQLUtil.Consulta.COL_ID_PACIENTE);
+                medico = new DaoMedico().buscarMedicoPorId(idM);
+                paciente = new DaoPaciente().buscarPacientePorId(idP);
+                consulta.setMedico(medico);
+                consulta.setPaciente(paciente);
+               
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return consulta;
+    }public Consulta buscarConsultaPorId(int id) {
         Consulta consulta = null;
         Medico medico = null;
         Paciente paciente = null;
@@ -97,7 +128,6 @@ public class DaoConsulta implements IDaoConsulta {
         }
         return consulta;
     }
-
     @Override
     public List<Consulta> getAllConsulta() {
         List<Consulta> consultas = new ArrayList<>();

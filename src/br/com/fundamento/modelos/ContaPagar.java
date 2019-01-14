@@ -14,7 +14,9 @@ public class ContaPagar {
     private String data;
     private String descricao;
     private double valor;
-    private int id ;
+    private int id;
+    private String data_pagamento;
+    private Consultorio consultorio;
 
     /**
      * @return the data
@@ -22,6 +24,7 @@ public class ContaPagar {
     public String getData() {
         return data;
     }
+    
 
     /**
      * @param data the data to set
@@ -71,5 +74,35 @@ public class ContaPagar {
     public void setId(int id) {
         this.id = id;
     }
+
+    /**
+     * @return the consultorio
+     */
+    public Consultorio getConsultorio() {
+        return consultorio;
+    }
+
+    /**
+     * @param consultorio the consultorio to set
+     */
+    public void setConsultorio(Consultorio consultorio) {
+        this.consultorio = consultorio;
+    }
+
+    /**
+     * @return the data_pagamento
+     */
+    public String getData_pagamento() {
+        return data_pagamento;
+    }
+
+    /**
+     * @param data_pagamento the data_pagamento to set
+     */
+    public void setData_pagamento(String data_pagamento) {
+        this.data_pagamento = data_pagamento;
+    }
+
+   
 
 }

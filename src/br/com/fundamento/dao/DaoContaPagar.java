@@ -8,6 +8,7 @@ package br.com.fundamento.dao;
 import br.com.fundamento.modelos.ContaPagar;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
+import br.com.fundamento.view.FluxodeCaixa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,9 +37,10 @@ public class DaoContaPagar implements IDaoContaPagar {
             this.statement.setString(1, contaPagar.getData());
             this.statement.setString(2, contaPagar.getDescricao());
             this.statement.setDouble(3, contaPagar.getValor());
+             this.statement.setString(4, contaPagar.getData_pagamento());
+            this.statement.setInt(5, contaPagar.getConsultorio().getId());
 
-            statement.execute();
-            this.statement.close();
+               result = statement.executeQuery();
 
             if (result.next()) {
                 id = result.getInt(1);
@@ -52,6 +54,7 @@ public class DaoContaPagar implements IDaoContaPagar {
     @Override
     public ContaPagar buscarContaPagarPorId(int id) {
         ContaPagar contaPagar = null;
+        
         try {
             this.conexao = SQLConections.getInstance();
             this.statement = this.conexao.prepareStatement(SQLUtil.selectById(SQLUtil.ContaPagar.NOME_TABELA, id));
@@ -62,6 +65,7 @@ public class DaoContaPagar implements IDaoContaPagar {
                 contaPagar.setData(result.getString(SQLUtil.ContaPagar.COL_VENCIMENTO));
                 contaPagar.setDescricao(result.getString(SQLUtil.ContaPagar.COL_DESCRICAO));
                 contaPagar.setValor(result.getDouble(SQLUtil.ContaPagar.COL_VALOR));
+                
 
                 id = result.getInt(1);
                 contaPagar.setId(id);
@@ -107,23 +111,93 @@ public class DaoContaPagar implements IDaoContaPagar {
 
     @Override
     public void editarContaPagar(ContaPagar contaPagar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          try {
+
+            conexao = SQLConections.getInstance();
+            statement = conexao.prepareStatement(SQLUtil.ContaPagar.updateContaPagar(contaPagar.getData_pagamento(), contaPagar.getId()));
+
+            statement.execute();
+            statement.close();
+
+   
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void ativarDesativarContaPagar(int id) {
-     try {
-            
+        try {
+
             conexao = SQLConections.getInstance();
             statement = conexao.prepareStatement(SQLUtil.ContaPagar.desativar(id));
-            
-            
+
             statement.execute();
             statement.close();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(DaoContaPagar.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
+    }
+
+    public List<ContaPagar> BuscarContaPagar(String data) {
+        List<ContaPagar> contaPagars = new ArrayList<>();
+
+        int id = 0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.ContaPagar.selectPordia(data));
+            this.result = this.statement.executeQuery();
+            ContaPagar contaPagar;
+            while (result.next()) {
+                contaPagar = new ContaPagar();
+
+                contaPagar.setData(result.getString(SQLUtil.ContaPagar.COL_VENCIMENTO));
+                contaPagar.setDescricao(result.getString(SQLUtil.ContaPagar.COL_DESCRICAO));
+                contaPagar.setValor(result.getDouble(SQLUtil.ContaPagar.COL_VALOR));
+
+                id = result.getInt(1);
+                contaPagar.setId(id);
+
+                contaPagars.add(contaPagar);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSaidaEstoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contaPagars;
+    }
+
+      public List<ContaPagar> BuscarContaVencimento(String data) {
+        List<ContaPagar> contaPagars = new ArrayList<>();
+
+        int id = 0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.ContaPagar.selectvencimento(data));
+            this.result = this.statement.executeQuery();
+            ContaPagar contaPagar;
+            while (result.next()) {
+                contaPagar = new ContaPagar();
+
+                contaPagar.setData(result.getString(SQLUtil.ContaPagar.COL_VENCIMENTO));
+                contaPagar.setDescricao(result.getString(SQLUtil.ContaPagar.COL_DESCRICAO));
+                contaPagar.setValor(result.getDouble(SQLUtil.ContaPagar.COL_VALOR));
+
+                id = result.getInt(1);
+                contaPagar.setId(id);
+
+                contaPagars.add(contaPagar);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSaidaEstoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contaPagars;
     }
 
 }

@@ -34,8 +34,6 @@ public class FluxodeCaixa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelacaixa = new javax.swing.JTable();
         botaoVoltar = new javax.swing.JButton();
         labeltarefa1 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -43,16 +41,89 @@ public class FluxodeCaixa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txttotal = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        calendariofluxo = new com.toedter.calendar.JDateChooser();
         botaoFecharCaixa = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabeladespesas = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabelapagamento = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabelaparcela = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtlucro = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 680));
 
-        tabelacaixa.setBackground(new java.awt.Color(240, 240, 240));
-        tabelacaixa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tabelacaixa.setModel(new javax.swing.table.DefaultTableModel(
+        botaoVoltar.setBackground(new java.awt.Color(255, 255, 255));
+        botaoVoltar.setForeground(new java.awt.Color(0, 0, 204));
+        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/arrow-left-1.png"))); // NOI18N
+        botaoVoltar.setText("Voltar");
+
+        labeltarefa1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        labeltarefa1.setText("transações");
+
+        jPanel7.setBackground(new java.awt.Color(0, 57, 69));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 9, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor em Caixa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        jLabel1.setText("R$");
+
+        txttotal.setBackground(new java.awt.Color(153, 255, 153));
+        txttotal.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        txttotal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/caixa1.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        botaoFecharCaixa.setBackground(new java.awt.Color(255, 255, 255));
+        botaoFecharCaixa.setForeground(new java.awt.Color(0, 0, 204));
+        botaoFecharCaixa.setText("Fechar Caixa");
+
+        tabeladespesas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tabeladespesas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {"", null, null, null},
@@ -82,71 +153,120 @@ public class FluxodeCaixa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelacaixa.setEnabled(false);
-        tabelacaixa.setRowHeight(25);
-        tabelacaixa.setSelectionBackground(new java.awt.Color(153, 204, 255));
-        tabelacaixa.setShowHorizontalLines(false);
-        jScrollPane1.setViewportView(tabelacaixa);
+        tabeladespesas.setEnabled(false);
+        tabeladespesas.setRowHeight(25);
+        tabeladespesas.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tabeladespesas.setShowHorizontalLines(false);
+        jScrollPane2.setViewportView(tabeladespesas);
 
-        botaoVoltar.setBackground(new java.awt.Color(255, 255, 255));
-        botaoVoltar.setForeground(new java.awt.Color(0, 0, 204));
-        botaoVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/arrow-left-1.png"))); // NOI18N
-        botaoVoltar.setText("Voltar");
+        tabelapagamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tabelapagamento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {"", null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Data", "Numero", "Paciente", "Valor Total"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
 
-        labeltarefa1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
-        labeltarefa1.setText("transações");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelapagamento.setEnabled(false);
+        tabelapagamento.setRowHeight(25);
+        tabelapagamento.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tabelapagamento.setShowHorizontalLines(false);
+        jScrollPane3.setViewportView(tabelapagamento);
 
-        jPanel7.setBackground(new java.awt.Color(0, 57, 69));
+        jLabel4.setFont(new java.awt.Font("Felix Titling", 1, 12)); // NOI18N
+        jLabel4.setText("Pagamento Recebido");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 9, Short.MAX_VALUE)
-        );
+        jLabel5.setFont(new java.awt.Font("Felix Titling", 1, 12)); // NOI18N
+        jLabel5.setText("despesas pagas");
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        tabelaparcela.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tabelaparcela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {"", null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Data", "Numero", "Paciente", "Valor Total"
+            }
+        ));
+        tabelaparcela.setRowHeight(25);
+        tabelaparcela.setSelectionBackground(new java.awt.Color(153, 204, 255));
+        tabelaparcela.setShowHorizontalLines(false);
+        jScrollPane4.setViewportView(tabelaparcela);
 
-        jLabel1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
-        jLabel1.setText("R$");
+        jLabel6.setFont(new java.awt.Font("Felix Titling", 1, 12)); // NOI18N
+        jLabel6.setText("parcelas recebidas");
 
-        txttotal.setBackground(new java.awt.Color(153, 255, 153));
-        txttotal.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
-        txttotal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lucro Diario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/caixa1.png"))); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        jLabel8.setText("R$");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        txtlucro.setBackground(new java.awt.Color(153, 255, 153));
+        txtlucro.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
+        txtlucro.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/caixa1.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(txttotal, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                .addComponent(txtlucro, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttotal, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtlucro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        botaoFecharCaixa.setBackground(new java.awt.Color(255, 255, 255));
-        botaoFecharCaixa.setForeground(new java.awt.Color(0, 0, 204));
-        botaoFecharCaixa.setText("Fechar Caixa");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,19 +277,30 @@ public class FluxodeCaixa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botaoFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoVoltar)
-                        .addGap(25, 25, 25))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labeltarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labeltarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addComponent(calendariofluxo, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoFecharCaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botaoVoltar)
+                                .addGap(16, 16, 16)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -181,19 +312,27 @@ public class FluxodeCaixa extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(botaoVoltar)
-                                    .addComponent(botaoFecharCaixa)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(botaoFecharCaixa)
+                                .addComponent(botaoVoltar))))
+                    .addComponent(calendariofluxo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -238,16 +377,40 @@ public class FluxodeCaixa extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoFecharCaixa;
     private javax.swing.JButton botaoVoltar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser calendariofluxo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labeltarefa1;
-    private javax.swing.JTable tabelacaixa;
+    private javax.swing.JTable tabeladespesas;
+    private javax.swing.JTable tabelapagamento;
+    private javax.swing.JTable tabelaparcela;
+    private javax.swing.JTextField txtlucro;
     private javax.swing.JTextField txttotal;
+    private javax.swing.JTextField txtvalorRecebido;
+    private javax.swing.JTextField txtvalorRecebido1;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @param botaoFecharCaixa the botaoFecharCaixa to set
+     */
+    public void setBotaoFecharCaixa(javax.swing.JButton botaoFecharCaixa) {
+        this.botaoFecharCaixa = botaoFecharCaixa;
+    }
 
     /**
      * @return the botaoVoltar
@@ -264,6 +427,20 @@ public class FluxodeCaixa extends javax.swing.JFrame {
     }
 
     /**
+     * @return the jDateChooser1
+     */
+    public com.toedter.calendar.JDateChooser getjDateChooser1() {
+        return getCalendariofluxo();
+    }
+
+    /**
+     * @param jDateChooser1 the jDateChooser1 to set
+     */
+    public void setjDateChooser1(com.toedter.calendar.JDateChooser jDateChooser1) {
+        this.setCalendariofluxo(jDateChooser1);
+    }
+
+    /**
      * @return the jLabel1
      */
     public javax.swing.JLabel getjLabel1() {
@@ -275,6 +452,62 @@ public class FluxodeCaixa extends javax.swing.JFrame {
      */
     public void setjLabel1(javax.swing.JLabel jLabel1) {
         this.jLabel1 = jLabel1;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
+    }
+
+    /**
+     * @return the jLabel4
+     */
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    /**
+     * @param jLabel4 the jLabel4 to set
+     */
+    public void setjLabel4(javax.swing.JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
+    }
+
+    /**
+     * @return the jLabel5
+     */
+    public javax.swing.JLabel getjLabel5() {
+        return jLabel5;
+    }
+
+    /**
+     * @param jLabel5 the jLabel5 to set
+     */
+    public void setjLabel5(javax.swing.JLabel jLabel5) {
+        this.jLabel5 = jLabel5;
+    }
+
+    /**
+     * @return the jLabel6
+     */
+    public javax.swing.JLabel getjLabel6() {
+        return jLabel6;
+    }
+
+    /**
+     * @param jLabel6 the jLabel6 to set
+     */
+    public void setjLabel6(javax.swing.JLabel jLabel6) {
+        this.jLabel6 = jLabel6;
     }
 
     /**
@@ -306,17 +539,45 @@ public class FluxodeCaixa extends javax.swing.JFrame {
     }
 
     /**
-     * @return the jScrollPane1
+     * @return the jScrollPane2
      */
-    public javax.swing.JScrollPane getjScrollPane1() {
-        return jScrollPane1;
+    public javax.swing.JScrollPane getjScrollPane2() {
+        return jScrollPane2;
     }
 
     /**
-     * @param jScrollPane1 the jScrollPane1 to set
+     * @param jScrollPane2 the jScrollPane2 to set
      */
-    public void setjScrollPane1(javax.swing.JScrollPane jScrollPane1) {
-        this.jScrollPane1 = jScrollPane1;
+    public void setjScrollPane2(javax.swing.JScrollPane jScrollPane2) {
+        this.jScrollPane2 = jScrollPane2;
+    }
+
+    /**
+     * @return the jScrollPane3
+     */
+    public javax.swing.JScrollPane getjScrollPane3() {
+        return jScrollPane3;
+    }
+
+    /**
+     * @param jScrollPane3 the jScrollPane3 to set
+     */
+    public void setjScrollPane3(javax.swing.JScrollPane jScrollPane3) {
+        this.jScrollPane3 = jScrollPane3;
+    }
+
+    /**
+     * @return the jScrollPane4
+     */
+    public javax.swing.JScrollPane getjScrollPane4() {
+        return jScrollPane4;
+    }
+
+    /**
+     * @param jScrollPane4 the jScrollPane4 to set
+     */
+    public void setjScrollPane4(javax.swing.JScrollPane jScrollPane4) {
+        this.jScrollPane4 = jScrollPane4;
     }
 
     /**
@@ -334,17 +595,45 @@ public class FluxodeCaixa extends javax.swing.JFrame {
     }
 
     /**
-     * @return the tabelacaixa
+     * @return the tabeladespesas
      */
-    public javax.swing.JTable getTabelacaixa() {
-        return tabelacaixa;
+    public javax.swing.JTable getTabeladespesas() {
+        return tabeladespesas;
     }
 
     /**
-     * @param tabelacaixa the tabelacaixa to set
+     * @param tabeladespesas the tabeladespesas to set
      */
-    public void setTabelacaixa(javax.swing.JTable tabelacaixa) {
-        this.tabelacaixa = tabelacaixa;
+    public void setTabeladespesas(javax.swing.JTable tabeladespesas) {
+        this.tabeladespesas = tabeladespesas;
+    }
+
+    /**
+     * @return the tabelapagamento
+     */
+    public javax.swing.JTable getTabelapagamento() {
+        return tabelapagamento;
+    }
+
+    /**
+     * @param tabelapagamento the tabelapagamento to set
+     */
+    public void setTabelapagamento(javax.swing.JTable tabelapagamento) {
+        this.tabelapagamento = tabelapagamento;
+    }
+
+    /**
+     * @return the tabelaparcela
+     */
+    public javax.swing.JTable getTabelaparcela() {
+        return tabelaparcela;
+    }
+
+    /**
+     * @param tabelaparcela the tabelaparcela to set
+     */
+    public void setTabelaparcela(javax.swing.JTable tabelaparcela) {
+        this.tabelaparcela = tabelaparcela;
     }
 
     /**
@@ -361,6 +650,33 @@ public class FluxodeCaixa extends javax.swing.JFrame {
         this.txttotal = txttotal;
     }
 
+    /**
+     * @return the calendariofluxo
+     */
+    public com.toedter.calendar.JDateChooser getCalendariofluxo() {
+        return calendariofluxo;
+    }
+
+    /**
+     * @param calendariofluxo the calendariofluxo to set
+     */
+    public void setCalendariofluxo(com.toedter.calendar.JDateChooser calendariofluxo) {
+        this.calendariofluxo = calendariofluxo;
+    }
+
+    /**
+     * @return the txtlucro
+     */
+    public javax.swing.JTextField getTxtlucro() {
+        return txtlucro;
+    }
+
+    /**
+     * @param txtlucro the txtlucro to set
+     */
+    public void setTxtlucro(javax.swing.JTextField txtlucro) {
+        this.txtlucro = txtlucro;
+    }
 
 
 }

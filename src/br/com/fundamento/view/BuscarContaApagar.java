@@ -32,15 +32,17 @@ public class BuscarContaApagar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtvalor = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelacontapagar = new javax.swing.JTable();
         botaoadicionar = new javax.swing.JButton();
         botaofechar = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        calendarioC = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 600));
 
         labeltarefa1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labeltarefa1.setText("contas a pagar");
@@ -59,7 +61,7 @@ public class BuscarContaApagar extends javax.swing.JFrame {
         );
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
-        jPanel1.setEnabled(false);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Despesas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         jLabel1.setText("R$");
@@ -68,25 +70,32 @@ public class BuscarContaApagar extends javax.swing.JFrame {
         txtvalor.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         txtvalor.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/caixa1.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtvalor, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtvalor, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtvalor, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         tabelacontapagar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -139,35 +148,35 @@ public class BuscarContaApagar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                .addComponent(calendarioC, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botaoadicionar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaofechar)
-                .addGap(35, 35, 35))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(labeltarefa1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 556, Short.MAX_VALUE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE))
+                            .addGap(0, 568, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 837, Short.MAX_VALUE))
                     .addContainerGap())
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calendarioC, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaofechar)
-                        .addComponent(botaoadicionar)))
-                .addGap(332, 332, 332))
+                        .addComponent(botaoadicionar)
+                        .addComponent(botaofechar)))
+                .addGap(363, 363, 363))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -176,7 +185,7 @@ public class BuscarContaApagar extends javax.swing.JFrame {
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(129, 129, 129)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(48, Short.MAX_VALUE)))
+                    .addContainerGap(78, Short.MAX_VALUE)))
         );
 
         pack();
@@ -224,8 +233,9 @@ public class BuscarContaApagar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoadicionar;
     private javax.swing.JButton botaofechar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser calendarioC;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -263,6 +273,20 @@ public class BuscarContaApagar extends javax.swing.JFrame {
     }
 
     /**
+     * @return the calendarioC
+     */
+    public com.toedter.calendar.JDateChooser getCalendarioC() {
+        return calendarioC;
+    }
+
+    /**
+     * @param calendarioC the calendarioC to set
+     */
+    public void setCalendarioC(com.toedter.calendar.JDateChooser calendarioC) {
+        this.calendarioC = calendarioC;
+    }
+
+    /**
      * @return the jLabel1
      */
     public javax.swing.JLabel getjLabel1() {
@@ -274,6 +298,20 @@ public class BuscarContaApagar extends javax.swing.JFrame {
      */
     public void setjLabel1(javax.swing.JLabel jLabel1) {
         this.jLabel1 = jLabel1;
+    }
+
+    /**
+     * @return the jLabel2
+     */
+    public javax.swing.JLabel getjLabel2() {
+        return jLabel2;
+    }
+
+    /**
+     * @param jLabel2 the jLabel2 to set
+     */
+    public void setjLabel2(javax.swing.JLabel jLabel2) {
+        this.jLabel2 = jLabel2;
     }
 
     /**
@@ -346,7 +384,6 @@ public class BuscarContaApagar extends javax.swing.JFrame {
         this.tabelacontapagar = tabelacontapagar;
     }
 
-   
     /**
      * @return the txtvalor
      */
@@ -360,8 +397,5 @@ public class BuscarContaApagar extends javax.swing.JFrame {
     public void setTxtvalor(javax.swing.JTextField txtvalor) {
         this.txtvalor = txtvalor;
     }
-
-
-
 
 }

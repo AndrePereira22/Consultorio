@@ -7,6 +7,8 @@
 package br.com.fundamento.controle;
 
 import br.com.fundamento.dao.DaoCaixa;
+import br.com.fundamento.dao.DaoConsulta;
+import br.com.fundamento.dao.DaoMedico;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
@@ -73,6 +75,7 @@ public class ControleConsulta implements ActionListener {
     private Consulta c;
     private static Caixa caixa;
     private static Funcionario funcionario;
+    private String busca ="";
     private Date data2 = new Date();
     private static double valor;
     private static int id;
@@ -123,12 +126,14 @@ public class ControleConsulta implements ActionListener {
                                 cc.getLabelConsulta().setText("ATUALIZAR CONSULTA");
                                 cc.setVisible(true);
                                 preencherHorarioDisponivel(cc);
+                                cc.getTxtmedico().setText("");
                                 agendamento.setVisible(false);
 
                                 c = consultas.get(ro);
-
+                                medico=c.getMedico();
                                 preencherCadastro(c, cc);
                                 PreencherBuscaMedico(cc);
+                                carregarListMedico(cc);
                                 try {
                                     cc.getBotaoConsultaSalvar().addActionListener(new Acaoupdate());
                                     cc.getBotaoConsultaCancelar().addActionListener(new ActionListener() {
@@ -231,9 +236,12 @@ public class ControleConsulta implements ActionListener {
                 try {
 
                     medico = medicos.get(indice);
+                    carregarListMedico(cadastroConsultas);
+                    
                     especializacao = fachada1.buscarEspecializacaoPorId(medico.getId_esp());
                     cadastroConsultas.getTxtmedico().setText(medico.getNome());
                     cadastroConsultas.getTxtespecializacao().setText(especializacao.getDescricao());
+                    
 
                 } catch (Exception eu) {
                 }
@@ -249,6 +257,8 @@ public class ControleConsulta implements ActionListener {
                     especializacao = fachada1.buscarEspecializacaoPorId(medico.getId_esp());
                     cc.getTxtmedico().setText(medico.getNome());
                     cc.getTxtespecializacao().setText(especializacao.getDescricao());
+                    carregarListMedico(cc);
+              
 
                 } catch (Exception eu) {
                 }
@@ -296,12 +306,7 @@ public class ControleConsulta implements ActionListener {
             }
         });
 
-//        agendamento.getCalendario().getDayChooser().addPropertyChangeListener("day", new PropertyChangeListener() {
-//            @Override
-//            public void propertyChange(PropertyChangeEvent evt) {
-//                preenchertabela();
-//            }
-//        });
+
     }
 
     @Override
@@ -320,7 +325,7 @@ public class ControleConsulta implements ActionListener {
         if (e.getSource() == agendamento.getBotaoAdicionarAgendamento()) {
 
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String busca = formato.format(agendamento.getCalendario().getDate().getTime());
+            busca = formato.format(agendamento.getCalendario().getDate().getTime());
 
             preencherHorarioDisponivel(cadastroConsultas);
             cadastroConsultas.setVisible(true);
@@ -435,6 +440,7 @@ public class ControleConsulta implements ActionListener {
 
                     parcela.setStatus(false);
                     parcela.setPagamento(pagamento);
+                    parcela.setData_pagamento("00/00/0000");
 
                     ca.setTime(data2);
                     ca.set(Calendar.MONTH, ca.get(Calendar.MONTH) + j);
@@ -507,7 +513,7 @@ public class ControleConsulta implements ActionListener {
     public void preenchertabela() {
 
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String busca = formato.format(agendamento.getCalendario().getDate());
+        busca = formato.format(agendamento.getCalendario().getDate());
         consultas = fachada1.getPorBuscaConsulta(busca);
         agendamento.getTabelaAgendamento().setDefaultRenderer(Object.class, new Render());
         Icon editar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/editar.png"));
@@ -649,7 +655,7 @@ public class ControleConsulta implements ActionListener {
                     JOptionPane.showMessageDialog(null, " Escolha um medico");
                 }
                 preenchertabela();
-                preencherHorarioDisponivel(cadastroConsultas); 
+                preencherHorarioDisponivel(cc); 
                 
             }
         }
@@ -731,6 +737,44 @@ public class ControleConsulta implements ActionListener {
 
         }
 
+    }
+    
+     public void carregarListMedico(CadastroConsultas cadastroConsultas) {
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        String busca = formato.format(agendamento.getCalendario().getDate());
+        consultas = new DaoConsulta().BuscaConsultadoMedico(medico.getNome(),  busca);
+        
+        horasMarcados.clear();
+        
+            for (Consulta c : consultas) { 
+                horasMarcados.add(c.getHora());
+
+            }
+            cadastroConsultas.getCombohora().removeAllItems();
+
+        List<String> hDisponivel = new ArrayList<String>();
+
+        for (int i = 0; i < horas.size(); i++) {
+            boolean disponivel = true;
+            for (int j = 0; j < horasMarcados.size(); j++) {
+                if ((horas.get(i).equals(horasMarcados.get(j)))) {
+                    disponivel = false;
+                }
+            }
+
+            if (disponivel) {
+                hDisponivel.add(horas.get(i));
+            }
+
+        }
+
+        for (int u = 0; u < hDisponivel.size(); u++) {
+            cadastroConsultas.getCombohora().addItem(hDisponivel.get(u));
+
+        }
+
+            
     }
 
     /**

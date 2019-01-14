@@ -40,9 +40,9 @@ public class CadastroTarefas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Txtstatus = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        txtprioridade = new javax.swing.JTextField();
         txtDatainicio = new javax.swing.JFormattedTextField();
         txtdatafinal = new javax.swing.JFormattedTextField();
+        comboprioridade = new javax.swing.JComboBox<>();
         BotaoSalvarTarefa = new javax.swing.JButton();
         BotaoCancelarTarefa = new javax.swing.JButton();
         labeltarefa = new javax.swing.JLabel();
@@ -105,7 +105,6 @@ public class CadastroTarefas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1160, 400));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tarefa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -145,6 +144,8 @@ public class CadastroTarefas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        comboprioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baixa", "Media", "Alta", "Critica" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -159,9 +160,12 @@ public class CadastroTarefas extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDatainicio, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .addComponent(txtprioridade))
-                        .addGap(65, 65, 65)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtDatainicio, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                                .addGap(65, 65, 65))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(comboprioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -191,7 +195,7 @@ public class CadastroTarefas extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(txtprioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboprioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -335,6 +339,7 @@ public class CadastroTarefas extends javax.swing.JFrame {
     private javax.swing.JButton BotaoCancelarTarefa;
     private javax.swing.JButton BotaoSalvarTarefa;
     private javax.swing.JComboBox<String> Txtstatus;
+    private javax.swing.JComboBox<String> comboprioridade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -350,7 +355,6 @@ public class CadastroTarefas extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtcnpj;
     private javax.swing.JFormattedTextField txtdatafinal;
     private javax.swing.JTextField txtdescricao;
-    private javax.swing.JTextField txtprioridade;
     private javax.swing.JTextField txtrazao;
     // End of variables declaration//GEN-END:variables
 
@@ -552,19 +556,7 @@ public class CadastroTarefas extends javax.swing.JFrame {
         this.txtdescricao = txtdescricao;
     }
 
-    /**
-     * @return the txtprioridade
-     */
-    public javax.swing.JTextField getTxtprioridade() {
-        return txtprioridade;
-    }
-
-    /**
-     * @param txtprioridade the txtprioridade to set
-     */
-    public void setTxtprioridade(javax.swing.JTextField txtprioridade) {
-        this.txtprioridade = txtprioridade;
-    }
+    
 
     /**
      * @return the txtrazao
@@ -622,6 +614,13 @@ public class CadastroTarefas extends javax.swing.JFrame {
      */
     public void setLabeltarefa(javax.swing.JLabel labeltarefa) {
         this.labeltarefa = labeltarefa;
+    }
+
+    /**
+     * @return the comboprioridade
+     */
+    public javax.swing.JComboBox<String> getComboprioridade() {
+        return comboprioridade;
     }
 
 
