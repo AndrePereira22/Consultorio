@@ -25,10 +25,9 @@ import br.com.fundamento.view.ContaReceber;
 import br.com.fundamento.view.ContaaPagar;
 import br.com.fundamento.view.FluxodeCaixa;
 import br.com.fundamento.view.TelaPrincipal;
+import br.com.fundamento.view.relatori;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
@@ -64,21 +63,26 @@ public class ControleCaixa implements ActionListener {
     private List<Pagamento> pagamentos;
     private Pagamento pagamento;
     private Parcela parcela;
-    private Caixa c;
+    private static Caixa c;
+    private relatori u;
     double soma = 0.0;
     IFachada fachada1 = Fachada.getInstance();
 
-    public ControleCaixa(TelaPrincipal telaPrincipal, FluxodeCaixa fluxodeCaixa, BuscarContaApagar buscarContaApagar, BuscarContaaReceber buscarContaaReceber, ContaReceber contaReceber, ContaaPagar contaaPagar) {
+    public ControleCaixa(TelaPrincipal telaPrincipal, FluxodeCaixa fluxodeCaixa, BuscarContaApagar buscarContaApagar, BuscarContaaReceber buscarContaaReceber, ContaReceber contaReceber, ContaaPagar contaaPagar, relatori u) {
         this.telaPrincipal = telaPrincipal;
         this.fluxodeCaixa = fluxodeCaixa;
         this.buscarContaApagar = buscarContaApagar;
         this.buscarContaaReceber = buscarContaaReceber;
         this.contaReceber = contaReceber;
         this.contaaPagar = contaaPagar;
+        this.u = u;
 
         telaPrincipal.getBotaofluxodeCaixa().addActionListener(this);
         fluxodeCaixa.getBotaoVoltar().addActionListener(this);
+        u.getSalvar().addActionListener(this);
+        u.getCancelar().addActionListener(this);
         fluxodeCaixa.getBotaoFecharCaixa().addActionListener(this);
+        fluxodeCaixa.getBotaorelatorio().addActionListener(this);
         telaPrincipal.getBotaocontapagar().addActionListener(this);
         buscarContaApagar.getBotaoadicionar().addActionListener(this);
         buscarContaApagar.getBotaofechar().addActionListener(this);
@@ -93,10 +97,22 @@ public class ControleCaixa implements ActionListener {
             public void propertyChange(PropertyChangeEvent evt) {
 
                 java.util.Date d = fluxodeCaixa.getCalendariofluxo().getDate();
+                if(d!=null){
                 String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
                 preencherfluxo(data);
                 preenchertabelaDespesas(data);
                 preencherfluxoParcelas(data);
+                }
+
+            }
+        });
+
+        buscarContaaReceber.getCalendarioReceber().getDateEditor().getUiComponent().addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+
+                preenchertabelaReceber();
+                calcularValorReceber();
 
             }
         });
@@ -108,6 +124,7 @@ public class ControleCaixa implements ActionListener {
                 java.util.Date d = buscarContaApagar.getCalendarioC().getDate();
                 String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
                 preenchertabelaPagar(data);
+                despesas();
 
             }
         });
@@ -183,7 +200,6 @@ public class ControleCaixa implements ActionListener {
                                 String data = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
                                 preenchertabelaPagar(data);
                                 despesas();
-                                
 
                             }
                         }
@@ -279,16 +295,40 @@ public class ControleCaixa implements ActionListener {
 
             ControleConsulta.abrirCaixa();
             dinhiroNoCaixa();
-            fluxodeCaixa.getTxtlucro().setText(c.getValor_fechamento() - c.getValor_abertura() + "");
+            fluxodeCaixa.getTxtlucro().setText(getC().getValor_fechamento() - getC().getValor_abertura() + "");
         }
         if (e.getSource() == fluxodeCaixa.getBotaoVoltar()) {
             fluxodeCaixa.setVisible(false);
         }
+        if (e.getSource() == fluxodeCaixa.getBotaorelatorio()) {
+
+            u.setVisible(true);
+
+        }
+        if (e.getSource() == u.getSalvar()) {
+
+            java.util.Date inicial = u.getCalendarioInicial().getDate();
+            java.util.Date finality = u.getCalendarioFinal().getDate();
+            GerarRelatorioFinanceiro pdf = new GerarRelatorioFinanceiro();
+            if (inicial != null && finality != null && !u.getTxtrelatorio().getText().isEmpty() ) {
+
+                String dataI = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(inicial);
+                String dataF = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(finality);
+
+                pdf.criar(u.getTxtrelatorio().getText(), dataI, dataF);
+                u.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Relatorio  Salvo!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            }
+        }
         if (e.getSource() == telaPrincipal.getBotaocontareceber()) {
-            buscarContaaReceber.setVisible(true);
-            preenchertabelaReceber();
-            calcularValorReceber();
-          
+           calcularValorReceber();
+           preenchertabelaReceber();
+           buscarContaaReceber.setVisible(true);
+            
+           
+
         }
 
         if (e.getSource() == buscarContaaReceber.getBotaofechar()) {
@@ -319,6 +359,9 @@ public class ControleCaixa implements ActionListener {
         if (e.getSource() == fluxodeCaixa.getBotaoFecharCaixa()) {
             fecharCaixa();
             fluxodeCaixa.setVisible(false);
+        }
+        if (e.getSource() == u.getCancelar()) {
+            u.setVisible(false);
         }
         if (e.getSource() == contaaPagar.getBotaocancelar()) {
             buscarContaApagar.setVisible(true);
@@ -361,8 +404,15 @@ public class ControleCaixa implements ActionListener {
     }
 
     public void preenchertabelaReceber() {
-        java.util.Date d = new Date();
-        String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+        java.util.Date dj = buscarContaaReceber.getCalendarioReceber().getDate(); 
+       String dStr="";
+        if(dj==null){
+          java.util.Date dd = new Date();  
+           dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(dd); 
+        }else{
+          dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(dj);  
+        }
+       
 
         pagamentos = new DaoPagamento().buscarpagamento(dStr);
         buscarContaaReceber.getTabelacontaReceber().setDefaultRenderer(Object.class, new Render());
@@ -431,7 +481,6 @@ public class ControleCaixa implements ActionListener {
                 dados[i][2] = contaPagar.getValor();
                 dados[i][3] = btn1;
 
-             
             }
             DefaultTableModel dataModel = new DefaultTableModel(dados, colunas) {
                 @Override
@@ -447,6 +496,7 @@ public class ControleCaixa implements ActionListener {
         } catch (Exception ex) {
 
         }
+        
 
     }
 
@@ -497,7 +547,8 @@ public class ControleCaixa implements ActionListener {
     }
 
     public void calcularValorReceber() {
-        List<Parcela> parcelas = fachada1.getAllParcela();
+       parcelas = fachada1.getAllParcela();
+       buscarContaaReceber.getTxtvalor().setText("");
         double soma = 0;
         for (Parcela p : parcelas) {
             if (!p.isStatus()) {
@@ -533,27 +584,27 @@ public class ControleCaixa implements ActionListener {
         String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
         c = new DaoCaixa().buscarCaixaPorData(dStr);
 
-        double valor = c.getValor_fechamento();
+        double valor = getC().getValor_fechamento();
         fluxodeCaixa.getTxttotal().setText(valor + "");
     }
 
     public void fecharCaixa() {
 
-        double lucro = c.getValor_fechamento() - c.getValor_abertura();
-        c.setValor_receita(lucro);
-        c.setStatus(false);
+        double lucro = getC().getValor_fechamento() - getC().getValor_abertura();
+        getC().setValor_receita(lucro);
+        getC().setStatus(false);
 
-        new DaoCaixa().fecharCaixa(c);
+        new DaoCaixa().fecharCaixa(getC());
 
     }
 
     public void despesas() {
-   for (ContaPagar p : contaaPagars) {
-                    soma += p.getValor();
-                }
+        for (ContaPagar p : contaaPagars) {
+            soma += p.getValor();
+        }
 
-                buscarContaApagar.getTxtvalor().setText(soma + "");
-                soma = 0;
+        buscarContaApagar.getTxtvalor().setText(soma + "");
+        soma = 0;
     }
 
     public void adicionarParcelaCaixa() {
@@ -562,10 +613,10 @@ public class ControleCaixa implements ActionListener {
         String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
         c = new DaoCaixa().buscarCaixaPorData(dStr);
 
-        double soma = c.getValor_fechamento() + parcela.getValor();
-        c.setValor_fechamento(soma);
+        double soma = getC().getValor_fechamento() + parcela.getValor();
+        getC().setValor_fechamento(soma);
 
-        fachada1.editarCaixa(c);
+        fachada1.editarCaixa(getC());
 
     }
 
@@ -575,13 +626,13 @@ public class ControleCaixa implements ActionListener {
         String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(dj);
         c = new DaoCaixa().buscarCaixaPorData(dStr);
 
-        if (c.getValor_fechamento() > contaPagar.getValor()) {
-            double soma = c.getValor_fechamento() - contaPagar.getValor();
-            c.setValor_fechamento(soma);
+        if (getC().getValor_fechamento() > contaPagar.getValor()) {
+            double soma = getC().getValor_fechamento() - contaPagar.getValor();
+            getC().setValor_fechamento(soma);
             contaPagar.setData_pagamento(dStr);
             fachada1.editarContaPagar(contaPagar);
             fachada1.ativarDesativarContaPagar(contaPagar.getId());
-            fachada1.editarCaixa(c);
+            fachada1.editarCaixa(getC());
         } else {
             JOptionPane.showMessageDialog(null, "Dinheiro indisponivel");
         }
@@ -589,7 +640,6 @@ public class ControleCaixa implements ActionListener {
     }
 
     public void preenchertabelaReceberTodos() {
-
         pagamentos = fachada1.getAllPagamento();
         buscarContaaReceber.getTabelacontaReceber().setDefaultRenderer(Object.class, new Render());
         Icon pagar = new ImageIcon(getClass().getResource("/br/com/fundamento/resource/pagarR.png"));
@@ -743,6 +793,13 @@ public class ControleCaixa implements ActionListener {
         } catch (Exception ex) {
 
         }
+    }
+
+    /**
+     * @return the c
+     */
+    public static Caixa getC() {
+        return c;
     }
 
 }

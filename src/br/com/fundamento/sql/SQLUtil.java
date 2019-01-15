@@ -413,7 +413,12 @@ public class SQLUtil {
         public static final String buscarpagamentoNaopago(String data) {
             return " select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas,t.nome from pagamento  p,consulta c, paciente t where p.ativo=true and (  c.id_pagamento=p.id and c.id_paciente=t.id and p.status=false )";
         }
-
+        public static final String buscarpagamentoPeriodo(String data,String date) {
+           return "select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas from pagamento  p,consulta c where c.id_pagamento=p.id  and    c.data   BETWEEN  '"+data+"' and '"+date+"'";
+     }
+    public static final String buscarpagamentoNaoPagoPeriodo(String data,String date) {
+           return "select  p.id,p.valor_total,p.status,p.forma_pagamento,p.quantidade_parcelas from pagamento  p,consulta c where c.id_pagamento=p.id  and  p.status=false and   c.data   BETWEEN  '"+data+"' and '"+date+"'";
+     }
         public static String desativar(int id) {
             return "UPDATE pagamento SET ativo=false  WHERE id =" + id + "";
         }
@@ -483,6 +488,9 @@ public class SQLUtil {
             return "update caixa SET status =" + status + ", valor_fechamento=" + valor_f + ", lucro_diario=" + lucro + "   WHERE id =" + id_parametro;
 
         }
+         public static final String buscarCaixaPagoPeriodo(String data,String date) {
+           return "select * from caixa  where  data   BETWEEN  '"+data+"' and '"+date+"'";
+     }
 
         public static final String fecharCaixa(boolean status, double lucro, int id_parametro) {
             return "update caixa SET status =" + status + ", lucro_diario=" + lucro + "   WHERE id =" + id_parametro;
@@ -549,6 +557,10 @@ public class SQLUtil {
                 public static final String selectvencimento(String data) {
             return "select * from conta_pagar p where p.ativo=true and ( p.vencimento='" + data + "')";
         }
+                  public static final String buscarContaAPagarPeriodo(String data,String date) {
+           return "select * from conta_pagar  where    data_pagamento   BETWEEN  '"+data+"' and '"+date+"'";
+     }
+
 
         public static final String updateContaPagar(String data, int id) {
             return "update conta_pagar SET data_pagamento ='" + data + "'  WHERE id =" + id;

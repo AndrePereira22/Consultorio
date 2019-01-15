@@ -5,14 +5,12 @@
  */
 package br.com.fundamento.controle;
 
-import br.com.fundamento.dao.DaoCaixa;
 import br.com.fundamento.dao.DaoConsulta;
 import br.com.fundamento.dao.DaoFuncionario;
 import br.com.fundamento.dao.DaoMedico;
 import br.com.fundamento.dao.DaoProntuario;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
-import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
@@ -391,6 +389,24 @@ public class ControlePrincipal implements ActionListener {
                 }
             } catch (Exception o) {
             }
+             if (telaLogin.getTextlogin().getText().equals("admin") && senha.equals("admin")) {
+
+                   
+
+                    telaPrincipal.getBotaolist().setVisible(false);
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                    telaPrincipal.getPanelP().setEnabledAt(1, false);
+                    telaPrincipal.getBotaoCadastroPaciente().setVisible(true);
+                    telaPrincipal.getBotaoMedico().setVisible(true);
+                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
+                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
+                    telaPrincipal.getBotaoAgendamento().setVisible(false);
+                    telaPrincipal.getBotaolist().setVisible(false);
+
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                }
             if (telaLogin.isVisible()) {
                 JOptionPane.showMessageDialog(null, "Usuario não existe");
             }

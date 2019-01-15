@@ -199,5 +199,33 @@ public class DaoContaPagar implements IDaoContaPagar {
         }
         return contaPagars;
     }
+       public List<ContaPagar> BuscarContaporPeriodo(String data,String date) {
+        List<ContaPagar> contaPagars = new ArrayList<>();
+
+        int id = 0;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.ContaPagar.buscarContaAPagarPeriodo(data,date));
+            this.result = this.statement.executeQuery();
+            ContaPagar contaPagar;
+            while (result.next()) {
+                contaPagar = new ContaPagar();
+
+                contaPagar.setData(result.getString(SQLUtil.ContaPagar.COL_VENCIMENTO));
+                contaPagar.setDescricao(result.getString(SQLUtil.ContaPagar.COL_DESCRICAO));
+                contaPagar.setValor(result.getDouble(SQLUtil.ContaPagar.COL_VALOR));
+
+                id = result.getInt(1);
+                contaPagar.setId(id);
+
+                contaPagars.add(contaPagar);
+            }
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoSaidaEstoque.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return contaPagars;
+    }
 
 }

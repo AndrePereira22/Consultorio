@@ -70,7 +70,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BotaoRelatorioPessoais = new javax.swing.JButton();
         BotaoRelatorioConsulta = new javax.swing.JButton();
         BotaoRelatorioProduto = new javax.swing.JButton();
-        BotaoRelatorioFluxoCaixa = new javax.swing.JButton();
         BotaoRelatorioTarefa = new javax.swing.JButton();
         PanelDadosConsultorio = new javax.swing.JPanel();
         BotaoAtualizardados = new javax.swing.JButton();
@@ -539,21 +538,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        BotaoRelatorioFluxoCaixa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        BotaoRelatorioFluxoCaixa.setForeground(new java.awt.Color(204, 204, 204));
-        BotaoRelatorioFluxoCaixa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Relatorio.png"))); // NOI18N
-        BotaoRelatorioFluxoCaixa.setText("Relatorio Fluxo Caixa");
-        BotaoRelatorioFluxoCaixa.setBorderPainted(false);
-        BotaoRelatorioFluxoCaixa.setContentAreaFilled(false);
-        BotaoRelatorioFluxoCaixa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BotaoRelatorioFluxoCaixa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        BotaoRelatorioFluxoCaixa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BotaoRelatorioFluxoCaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotaoRelatorioFluxoCaixaActionPerformed(evt);
-            }
-        });
-
         BotaoRelatorioTarefa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BotaoRelatorioTarefa.setForeground(new java.awt.Color(204, 204, 204));
         BotaoRelatorioTarefa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/fundamento/resource/Relatorio.png"))); // NOI18N
@@ -582,9 +566,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(BotaoRelatorioProduto)
                 .addGap(18, 18, 18)
                 .addComponent(BotaoRelatorioTarefa)
-                .addGap(17, 17, 17)
-                .addComponent(BotaoRelatorioFluxoCaixa)
-                .addContainerGap(326, Short.MAX_VALUE))
+                .addContainerGap(504, Short.MAX_VALUE))
         );
         PanelRelatorioLayout.setVerticalGroup(
             PanelRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,7 +576,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(BotaoRelatorioProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BotaoRelatorioPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BotaoRelatorioConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotaoRelatorioFluxoCaixa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BotaoRelatorioTarefa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -726,10 +707,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoRelatorioProdutoActionPerformed
 
-    private void BotaoRelatorioFluxoCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRelatorioFluxoCaixaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotaoRelatorioFluxoCaixaActionPerformed
-
     private void BotaoRelatorioTarefaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoRelatorioTarefaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoRelatorioTarefaActionPerformed
@@ -796,7 +773,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BotaoMedico;
     private javax.swing.JButton BotaoRecibo;
     private javax.swing.JButton BotaoRelatorioConsulta;
-    private javax.swing.JButton BotaoRelatorioFluxoCaixa;
     private javax.swing.JButton BotaoRelatorioPessoais;
     private javax.swing.JButton BotaoRelatorioProduto;
     private javax.swing.JButton BotaoRelatorioTarefa;
@@ -990,19 +966,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.BotaoRelatorioConsulta = BotaoRelatorioConsulta;
     }
 
-    /**
-     * @return the BotaoRelatorioFluxoCaixa
-     */
-    public javax.swing.JButton getBotaoRelatorioFluxoCaixa() {
-        return BotaoRelatorioFluxoCaixa;
-    }
-
-    /**
-     * @param BotaoRelatorioFluxoCaixa the BotaoRelatorioFluxoCaixa to set
-     */
-    public void setBotaoRelatorioFluxoCaixa(javax.swing.JButton BotaoRelatorioFluxoCaixa) {
-        this.BotaoRelatorioFluxoCaixa = BotaoRelatorioFluxoCaixa;
-    }
+    
 
     /**
      * @return the BotaoRelatorioPessoais

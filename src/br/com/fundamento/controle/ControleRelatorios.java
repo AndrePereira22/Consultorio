@@ -50,7 +50,7 @@ import javax.swing.table.DefaultTableModel;
 public class ControleRelatorios implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    private Relatorio relatorio, relatorioP, relatorioT, relatorioF, relatorioC;
+    private Relatorio relatorio, relatorioP, relatorioT, relatorioC;
     private ControleProduto controleProduto;
     Recibo recibo;
     IFachada fachada1 = Fachada.getInstance();
@@ -61,12 +61,10 @@ public class ControleRelatorios implements ActionListener {
         this.recibo = recibo;
 
         relatorioC = new Relatorio();
-        relatorioF = new Relatorio();
         relatorioT = new Relatorio();
         relatorioP = new Relatorio();
 
         telaPrincipal.getBotaoRelatorioConsulta().addActionListener(this);
-        telaPrincipal.getBotaoRelatorioFluxoCaixa().addActionListener(this);
         telaPrincipal.getBotaoRelatorioPessoais().addActionListener(this);
         relatorio.getBotaoVoltarRelatorio().addActionListener(this);
         relatorio.getBotaoRelatorio().addActionListener(this);
@@ -77,8 +75,6 @@ public class ControleRelatorios implements ActionListener {
         relatorioT.getBotaoRelatorio().addActionListener(this);
         relatorioC.getBotaoVoltarRelatorio().addActionListener(this);
         relatorioC.getBotaoRelatorio().addActionListener(this);
-        relatorioF.getBotaoVoltarRelatorio().addActionListener(this);
-        relatorioF.getBotaoRelatorio().addActionListener(this);
         telaPrincipal.getBotaoRelatorioProduto().addActionListener(this);
         telaPrincipal.getBotaoRelatorioTarefa().addActionListener(this);
         telaPrincipal.getBotaoRecibo().addActionListener(this);
@@ -99,9 +95,7 @@ public class ControleRelatorios implements ActionListener {
         if (e.getSource() == relatorioT.getBotaoVoltarRelatorio()) {
             relatorioT.setVisible(false);
         }
-        if (e.getSource() == relatorioF.getBotaoVoltarRelatorio()) {
-            relatorioF.setVisible(false);
-        }
+
         if (e.getSource() == relatorioP.getBotaoVoltarRelatorio()) {
             relatorioP.setVisible(false);
 
@@ -166,13 +160,6 @@ public class ControleRelatorios implements ActionListener {
             preenchertabelaConsulta();
         }
 
-        if (e.getSource() == telaPrincipal.getBotaoRelatorioFluxoCaixa()) {
-            relatorioF.getComboescolha().setVisible(false);
-            relatorioF.getLabelescolha().setVisible(false);
-            relatorioF.getjLabel5().setText("Relatorio de Fluxo de Caixa");
-            relatorioF.setVisible(true);
-
-        }
         if (e.getSource() == telaPrincipal.getBotaoRelatorioProduto()) {
             relatorioP.getComboescolha().setVisible(false);
             relatorioP.getLabelescolha().setVisible(false);
@@ -199,18 +186,7 @@ public class ControleRelatorios implements ActionListener {
             }
 
         }
-        if (e.getSource() == relatorioF.getBotaoRelatorio()) {
-
-            MessageFormat t = new MessageFormat("Relatório Fluxo de Caixa");
-            MessageFormat o = new MessageFormat("");
-
-            try {
-                relatorioF.getTabelarelatorio().print(JTable.PrintMode.FIT_WIDTH, t, o);
-            } catch (Exception pp) {
-                JOptionPane.showInternalMessageDialog(null, "Erro na Tabela");
-            }
-
-        }
+      
 
         if (e.getSource() == relatorioC.getBotaoRelatorio()) {
 

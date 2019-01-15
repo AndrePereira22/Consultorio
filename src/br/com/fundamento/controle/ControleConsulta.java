@@ -8,7 +8,6 @@ package br.com.fundamento.controle;
 
 import br.com.fundamento.dao.DaoCaixa;
 import br.com.fundamento.dao.DaoConsulta;
-import br.com.fundamento.dao.DaoMedico;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
@@ -36,7 +35,6 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

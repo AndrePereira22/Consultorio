@@ -17,18 +17,9 @@ import br.com.fundamento.controle.ControleProduto;
 import br.com.fundamento.controle.ControleRelatorios;
 import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
-import br.com.fundamento.dao.DaoCaixa;
-import br.com.fundamento.dao.DaoConsulta;
-import br.com.fundamento.dao.DaoContaPagar;
+import br.com.fundamento.controle.GerarRelatorioFinanceiro;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
-import br.com.fundamento.modelos.Caixa;
-import br.com.fundamento.modelos.Consulta;
-import br.com.fundamento.modelos.ContaPagar;
-import br.com.fundamento.modelos.Estoque;
-import br.com.fundamento.modelos.Funcionario;
-import br.com.fundamento.modelos.Produto;
-import br.com.fundamento.modelos.SaidaEstoque;
 import br.com.fundamento.view.BuscarContaApagar;
 import br.com.fundamento.view.BuscarContaaReceber;
 import br.com.fundamento.view.BuscarEntradaEstoque;
@@ -53,9 +44,6 @@ import br.com.fundamento.view.FluxodeCaixa;
 import br.com.fundamento.view.Recibo;
 import br.com.fundamento.view.Relatorio;
 import br.com.fundamento.view.Saida_Es;
-import br.com.fundamento.modelos.EntradaEstoque;
-import br.com.fundamento.modelos.Paciente;
-import br.com.fundamento.modelos.Prontuario;
 import br.com.fundamento.view.AtualizarConsultorio;
 import br.com.fundamento.view.Historico;
 import br.com.fundamento.view.ListaConsulta;
@@ -65,11 +53,8 @@ import br.com.fundamento.view.TelaPagamento;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import br.com.fundamento.view.agendamento;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import br.com.fundamento.view.relatori;
+import static com.itextpdf.text.pdf.PdfName.URL;
 
 /**
  *
@@ -105,6 +90,7 @@ public class Main {
         Historico historico = new Historico();
         AtualizarConsultorio atualizarConsultorio = new AtualizarConsultorio();
         Receita_Exames exames= new Receita_Exames();
+        relatori u = new relatori();
 
         BuscarMedico buscarMedico = new BuscarMedico();
         BuscarFuncionario buscarFuncionario = new BuscarFuncionario();
@@ -126,16 +112,13 @@ public class Main {
         ControleTarefa controleTarefa = new ControleTarefa(telaPrincipal, cadastroTarefas, buscarTarefa);
         ControleConsulta controleConsulta = new ControleConsulta(telaPrincipal, cadastroConsultas, agendamento, pagamento);
         ControlePrincipal controleConsultorio = new ControlePrincipal(telaPrincipal, telaLogin, lconsulta, prontuario, historico, atualizarConsultorio,exames);
-        ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, fluxodeCaixa, buscarContaApagar, buscarContaaReceber, contaReceber, contaaPagar);
+        ControleCaixa controleCaixa = new ControleCaixa(telaPrincipal, fluxodeCaixa, buscarContaApagar, buscarContaaReceber, contaReceber, contaaPagar,u);
         ControleEstoque controleEstoque = new ControleEstoque(telaPrincipal, saida_Estoque, entrada_Estoque, buscarSaidaEstoque, buscarEntradaEstoque);
         ControleRelatorios controleRelatorios =  new ControleRelatorios(telaPrincipal, relatorio, recibo);
        
         
 
 
-
-
-
-
     } 
 }
+

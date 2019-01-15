@@ -221,5 +221,41 @@ public class DaoCaixa implements IDaoCaixa {
         }
         return caixa;
     }
+public List<Caixa> buscarCaixaPorPeriodo(String data,String date) {
+        List<Caixa> caixas= new ArrayList<Caixa>();
+        int idF=0,id=0;
+        Funcionario funcionario;
+        try {
+            this.conexao = SQLConections.getInstance();
+            this.statement = this.conexao.prepareStatement(SQLUtil.Caixa.buscarCaixaPagoPeriodo(data,date));
+            this.result = this.statement.executeQuery();
 
+            if (result.next()) {
+               Caixa caixa = new Caixa();
+                
+                caixa.setStatus(result.getBoolean(SQLUtil.Caixa.COL_STATUS));
+                caixa.setNumero(result.getInt(SQLUtil.Caixa.COL_NUMERO));
+                caixa.setValor_abertura(result.getInt(SQLUtil.Caixa.COL_VALOR_ABERTURA));
+                caixa.setValor_fechamento(result.getInt(SQLUtil.Caixa.COL_VALOR_FECHAMENTO));
+                caixa.setValor_receita(result.getInt(SQLUtil.Caixa.COL_LUCRO_DIARIO));
+               caixa.setData(result.getString(SQLUtil.Caixa.COL_DATA));
+               
+               idF= result.getInt(SQLUtil.Caixa.COL_ID_FUNCIONARIO);
+               funcionario = new DaoFuncionario().buscarFuncionarioPorId(idF);
+               caixa.setPagamentos(new ArrayList<Pagamento>());
+               caixa.setFuncionario(funcionario);
+               
+               id = result.getInt(1);
+                caixa.setId(id);
+                
+                caixas.add(caixa);
+            }
+            
+            this.conexao.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DaoCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return caixas;
+    }
 }
