@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -40,7 +39,7 @@ public class ControleTarefa implements ActionListener {
     private Tarefa t;
     private JButton btn1, btn2;
     private List<Tarefa> tarefas;
-    IFachada fachada1 = Fachada.getInstance();
+    private IFachada fachada1 = Fachada.getInstance();
 
     public ControleTarefa(TelaPrincipal telaPrincipal, CadastroTarefas cadastroTarefas, BuscarTarefa buscarTarefa) {
         this.telaPrincipal = telaPrincipal;

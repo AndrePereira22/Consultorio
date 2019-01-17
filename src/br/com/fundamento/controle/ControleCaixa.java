@@ -25,7 +25,7 @@ import br.com.fundamento.view.ContaReceber;
 import br.com.fundamento.view.ContaaPagar;
 import br.com.fundamento.view.FluxodeCaixa;
 import br.com.fundamento.view.TelaPrincipal;
-import br.com.fundamento.view.relatori;
+import br.com.fundamento.view.GerarRelatorioFinancas;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -64,11 +64,11 @@ public class ControleCaixa implements ActionListener {
     private Pagamento pagamento;
     private Parcela parcela;
     private static Caixa c;
-    private relatori u;
+    private GerarRelatorioFinancas u;
     double soma = 0.0;
     IFachada fachada1 = Fachada.getInstance();
 
-    public ControleCaixa(TelaPrincipal telaPrincipal, FluxodeCaixa fluxodeCaixa, BuscarContaApagar buscarContaApagar, BuscarContaaReceber buscarContaaReceber, ContaReceber contaReceber, ContaaPagar contaaPagar, relatori u) {
+    public ControleCaixa(TelaPrincipal telaPrincipal, FluxodeCaixa fluxodeCaixa, BuscarContaApagar buscarContaApagar, BuscarContaaReceber buscarContaaReceber, ContaReceber contaReceber, ContaaPagar contaaPagar, GerarRelatorioFinancas u) {
         this.telaPrincipal = telaPrincipal;
         this.fluxodeCaixa = fluxodeCaixa;
         this.buscarContaApagar = buscarContaApagar;

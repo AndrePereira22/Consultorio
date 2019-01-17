@@ -17,7 +17,6 @@ import br.com.fundamento.controle.ControleProduto;
 import br.com.fundamento.controle.ControleRelatorios;
 import br.com.fundamento.controle.ControleTarefa;
 import br.com.fundamento.controle.ControlerFuncionario;
-import br.com.fundamento.controle.GerarRelatorioFinanceiro;
 import br.com.fundamento.fachada.Fachada;
 import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.view.BuscarContaApagar;
@@ -53,8 +52,7 @@ import br.com.fundamento.view.TelaPagamento;
 import br.com.fundamento.view.TelaLogin;
 import br.com.fundamento.view.TelaPrincipal;
 import br.com.fundamento.view.agendamento;
-import br.com.fundamento.view.relatori;
-import static com.itextpdf.text.pdf.PdfName.URL;
+import br.com.fundamento.view.GerarRelatorioFinancas;
 
 /**
  *
@@ -90,7 +88,7 @@ public class Main {
         Historico historico = new Historico();
         AtualizarConsultorio atualizarConsultorio = new AtualizarConsultorio();
         Receita_Exames exames= new Receita_Exames();
-        relatori u = new relatori();
+        GerarRelatorioFinancas u = new GerarRelatorioFinancas();
 
         BuscarMedico buscarMedico = new BuscarMedico();
         BuscarFuncionario buscarFuncionario = new BuscarFuncionario();

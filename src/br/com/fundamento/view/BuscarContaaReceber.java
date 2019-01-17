@@ -43,6 +43,7 @@ public class BuscarContaaReceber extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 600));
 
         labeltarefa1.setFont(new java.awt.Font("Felix Titling", 0, 24)); // NOI18N
         labeltarefa1.setText("contas a receber");

@@ -44,7 +44,7 @@ public class ControlerFuncionario implements ActionListener {
     private Funcionario f;
     private List<Funcionario> funcionarios;
 
-    IFachada fachada1 = Fachada.getInstance();
+    private IFachada fachada1 = Fachada.getInstance();
 
     public ControlerFuncionario(CadastroFuncionario cadastroFuncionario, TelaPrincipal telaPrincipal, BuscarFuncionario buscarFuncionario) {
 

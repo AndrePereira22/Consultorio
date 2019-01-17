@@ -15,15 +15,11 @@ import br.com.fundamento.modelos.Paciente;
 import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.modelos.Render;
 import br.com.fundamento.modelos.Tarefa;
-import br.com.fundamento.view.Receita_Exames;
 import br.com.fundamento.view.Recibo;
 import br.com.fundamento.view.Relatorio;
 import br.com.fundamento.view.TelaPrincipal;
-import br.com.fundamento.view.TelaProntuario;
-import br.com.fundamento.view.agendamento;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -32,14 +28,9 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
-import java.text.DateFormat;
 import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,8 +43,8 @@ public class ControleRelatorios implements ActionListener {
     private TelaPrincipal telaPrincipal;
     private Relatorio relatorio, relatorioP, relatorioT, relatorioC;
     private ControleProduto controleProduto;
-    Recibo recibo;
-    IFachada fachada1 = Fachada.getInstance();
+    private Recibo recibo;
+    private IFachada fachada1 = Fachada.getInstance();
 
     public ControleRelatorios(TelaPrincipal telaPrincipal, Relatorio relatorio, Recibo recibo) {
         this.telaPrincipal = telaPrincipal;

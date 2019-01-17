@@ -1,6 +1,5 @@
 package br.com.fundamento.controle;
 
-import static br.com.fundamento.controle.ControleCaixa.getC;
 import br.com.fundamento.dao.DaoCaixa;
 import br.com.fundamento.dao.DaoContaPagar;
 import br.com.fundamento.dao.DaoPagamento;
@@ -9,8 +8,6 @@ import br.com.fundamento.fachada.IFachada;
 import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.ContaPagar;
 import br.com.fundamento.modelos.Pagamento;
-import br.com.fundamento.view.ContaReceber;
-import br.com.fundamento.view.FluxodeCaixa;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.FontFactory;
@@ -20,11 +17,7 @@ import java.io.File;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class GerarRelatorioFinanceiro {

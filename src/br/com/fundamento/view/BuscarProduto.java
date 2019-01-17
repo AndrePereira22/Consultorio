@@ -41,6 +41,7 @@ public class BuscarProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(100, 134));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1160, 600));
 
         BotaoAdicionarProduto.setBackground(new java.awt.Color(255, 255, 255));
         BotaoAdicionarProduto.setForeground(new java.awt.Color(0, 0, 204));

@@ -21,7 +21,6 @@ import br.com.fundamento.business.BusinessPagamento;
 import br.com.fundamento.business.BusinessParcela;
 import br.com.fundamento.business.BusinessProduto;
 import br.com.fundamento.business.BusinessProntuario;
-import br.com.fundamento.business.BusinessRelatorio;
 import br.com.fundamento.business.BusinessSaidaEstoque;
 import br.com.fundamento.business.BusinessTarefa;
 import br.com.fundamento.business.IBusinessCaixa;
@@ -41,7 +40,6 @@ import br.com.fundamento.business.IBusinessPagamento;
 import br.com.fundamento.business.IBusinessParcela;
 import br.com.fundamento.business.IBusinessProduto;
 import br.com.fundamento.business.IBusinessProntuario;
-import br.com.fundamento.business.IBusinessRelatorio;
 import br.com.fundamento.business.IBusinessSaidaEstoque;
 import br.com.fundamento.business.IBusinessTarefa;
 import br.com.fundamento.modelos.Caixa;
@@ -61,7 +59,6 @@ import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
 import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.modelos.Prontuario;
-import br.com.fundamento.modelos.Relatorio;
 import br.com.fundamento.modelos.SaidaEstoque;
 import br.com.fundamento.modelos.Tarefa;
 import java.util.List;
@@ -78,7 +75,6 @@ public class Fachada implements IFachada {
     private IBusinessEstoque businessEstoque;
     private IBusinessFornecedor businessFornecedor;
     private IBusinessTarefa businessTarefa;
-    private IBusinessRelatorio businessRelatorio;
     private IBusinessSaidaEstoque businessSaidaEstoque;
     private IBusinessParcela businessParcela;
     private IBusinessEspecializacao businessEspecializacao;
@@ -107,7 +103,6 @@ public class Fachada implements IFachada {
         this.businessEstoque = new BusinessEstoque();
         this.businessFornecedor = new BusinessFornecedor();
         this.businessTarefa = new BusinessTarefa();
-        this.businessRelatorio = new BusinessRelatorio();
         this.businessSaidaEstoque = new BusinessSaidaEstoque();
         this.businessParcela = new BusinessParcela();
         this.businessEspecializacao = new BusinessEspecializacao();
@@ -523,30 +518,7 @@ public class Fachada implements IFachada {
         this.businessTarefa.ativarDesativarTarefa(id);
     }
 
-    @Override
-    public void salvarRelatorio(Relatorio relatorio) {
-        this.businessRelatorio.salvar(relatorio);
-    }
-
-    @Override
-    public Relatorio buscarRlatorioPorId(int id) {
-        return this.businessRelatorio.buscarPorId(id);
-    }
-
-    @Override
-    public List<Relatorio> getAllRelatorio() {
-        return this.businessRelatorio.getAll();
-    }
-
-    @Override
-    public void editarRelatorio(Relatorio relatroio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void ativarDesativarRelatorio(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public void salvarConsultorio(Consultorio consultorio) {

@@ -5,10 +5,8 @@
  */
 package br.com.fundamento.dao;
 
-import br.com.fundamento.modelos.Caixa;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
-import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
 import java.sql.Connection;
@@ -90,7 +88,7 @@ public class CommumDao {
             conexao.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return endereco;
 
@@ -211,7 +209,7 @@ public class CommumDao {
             statement.close();
             
         } catch (SQLException ex) {
-            Logger.getLogger(DaoEspecializacao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommumDao.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
 }

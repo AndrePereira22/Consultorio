@@ -5,11 +5,9 @@
  */
 package br.com.fundamento.dao;
 
-import br.com.fundamento.modelos.Consulta;
 import br.com.fundamento.modelos.Consultorio;
 import br.com.fundamento.modelos.Contato;
 import br.com.fundamento.modelos.Endereco;
-import br.com.fundamento.modelos.Estoque;
 import br.com.fundamento.modelos.Medico;
 import br.com.fundamento.sql.SQLConections;
 import br.com.fundamento.sql.SQLUtil;
@@ -53,10 +51,7 @@ public class DaoConsultorio implements IDaoConsultorio {
                 id = result.getInt(1);
             }
 
-            for (Medico m : consultorio.getMedicos()) {
-
-                DaoList.salvarMedico(m, id, id_contato, id_endereco);
-            }
+            
 
         } catch (SQLException ex) {
             Logger.getLogger(DaoConsultorio.class.getName()).log(Level.SEVERE, null, ex);

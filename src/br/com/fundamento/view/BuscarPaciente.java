@@ -6,11 +6,6 @@
 package br.com.fundamento.view;
 
 import br.com.fundamento.dao.DaoPaciente;
-import br.com.fundamento.modelos.Tpaciente;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 /**
  *

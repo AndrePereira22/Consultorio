@@ -41,13 +41,13 @@ import javax.swing.table.TableColumnModel;
 public class ControleMedico implements ActionListener {
 
     private TelaPrincipal telaPrincipal;
-    CadastroMedico cadastroMedico, cm;
-    BuscarMedico buscarMedico;
-    JButton btn1, btn2;
+     private CadastroMedico cadastroMedico, cm;
+    private BuscarMedico buscarMedico;
+    private JButton btn1, btn2;
     private Medico m;
     private List<Medico> medicos;
     private Especializacao especializacao;
-    IFachada fachada1 = Fachada.getInstance();
+    private IFachada fachada1 = Fachada.getInstance();
 
     public ControleMedico(TelaPrincipal telaPrincipal, CadastroMedico cadastroMedico, BuscarMedico buscarMedico) {
         this.telaPrincipal = telaPrincipal;
@@ -200,7 +200,8 @@ public class ControleMedico implements ActionListener {
             double salario = 0;
             int numer = 0;
             try {
-                salario = Double.parseDouble(sa);
+                if(!sa.isEmpty()){ salario = Double.parseDouble(sa);}
+                
                 numer = Integer.parseInt(numero);
 
             } catch (NumberFormatException erro) {

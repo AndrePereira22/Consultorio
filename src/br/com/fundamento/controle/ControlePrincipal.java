@@ -66,7 +66,7 @@ public class ControlePrincipal implements ActionListener {
     private Historico historico;
     private static Funcionario funcionario;
     private static Medico medico;
-    private AtualizarConsultorio atualizarConsultorio;
+   private AtualizarConsultorio atualizarConsultorio;
     private static String login = "", password = "";
     private List<Consulta> consultas;
     private Paciente paciente;
@@ -301,6 +301,9 @@ public class ControlePrincipal implements ActionListener {
         if (e.getSource() == Liconsulta.getBotaoFechar()) {
             Liconsulta.setVisible(false);
         }
+          if (e.getSource() == atualizarConsultorio.getBotaoCancelarrConsultorio()) {
+            atualizarConsultorio.setVisible(false);
+        }
         if (e.getSource() == atualizarConsultorio.getBotaoSalvarConsultorio()) {
 
             Consultorio consultori = fachada1.buscarConsultorioPorId(1);
@@ -332,84 +335,7 @@ public class ControlePrincipal implements ActionListener {
             }
         }
         if (e.getSource() == telaLogin.getEntrar()) {
-            Login loginF = null, loginM = null;
-
-            String senha = new String(telaLogin.getTextsenha().getPassword());
-            try {
-                loginF = fachada1.buscarLogin(telaLogin.getTextlogin().getText());
-                loginM = fachada1.buscarLoginMedico("l.usuario", telaLogin.getTextlogin().getText());
-                if (loginF.getUsuario().equals(telaLogin.getTextlogin().getText()) && loginF.getSenha().equals(senha)) {
-
-                    password = senha;
-                    login = telaLogin.getTextlogin().getText();
-
-                    telaPrincipal.getBotaolist().setVisible(false);
-                    telaPrincipal.setVisible(true);
-                    telaLogin.setVisible(false);
-                    criarFuncionario(login, password);
-                    telaPrincipal.getPanelP().setEnabledAt(1, true);
-                    telaPrincipal.getPanelP().setEnabledAt(2, true);
-                    telaPrincipal.getPanelP().setEnabledAt(3, true);
-                    telaPrincipal.getPanelP().setEnabledAt(4, true);
-                    telaPrincipal.getBotaoCadastroPaciente().setVisible(true);
-                    telaPrincipal.getBotaoMedico().setVisible(true);
-                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
-                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
-                    telaPrincipal.getBotaoAgendamento().setVisible(true);
-                    telaPrincipal.getBotaolist().setVisible(false);
-
-                }
-            } catch (Exception a) {
-            }
-
-            try {
-                if (loginM.getUsuario().equals(telaLogin.getTextlogin().getText()) && loginM.getSenha().equals(senha)) {
-
-                    password = senha;
-                    login = telaLogin.getTextlogin().getText();
-
-                    telaPrincipal.getBotaolist().setVisible(false);
-                    telaPrincipal.setVisible(true);
-                    telaLogin.setVisible(false);
-                    criarMedico(login, password);
-
-                    telaPrincipal.getPanelP().setEnabledAt(1, false);
-                    telaPrincipal.getPanelP().setEnabledAt(2, false);
-                    telaPrincipal.getPanelP().setEnabledAt(3, false);
-                    telaPrincipal.getPanelP().setEnabledAt(4, false);
-                    telaPrincipal.getBotaoCadastroPaciente().setVisible(false);
-                    telaPrincipal.getBotaoMedico().setVisible(false);
-                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(false);
-                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(false);
-                    telaPrincipal.getBotaoAgendamento().setVisible(false);
-                    telaPrincipal.getBotaolist().setVisible(true);
-
-                    telaPrincipal.setVisible(true);
-                    telaLogin.setVisible(false);
-                }
-            } catch (Exception o) {
-            }
-             if (telaLogin.getTextlogin().getText().equals("admin") && senha.equals("admin")) {
-
-                   
-
-                    telaPrincipal.getBotaolist().setVisible(false);
-                    telaPrincipal.setVisible(true);
-                    telaLogin.setVisible(false);
-                    telaPrincipal.getPanelP().setEnabledAt(1, false);
-                    telaPrincipal.getBotaoCadastroPaciente().setVisible(true);
-                    telaPrincipal.getBotaoMedico().setVisible(true);
-                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
-                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
-                    telaPrincipal.getBotaoAgendamento().setVisible(false);
-                    telaPrincipal.getBotaolist().setVisible(false);
-
-                    telaPrincipal.setVisible(true);
-                    telaLogin.setVisible(false);
-                }
-            if (telaLogin.isVisible()) {
-                JOptionPane.showMessageDialog(null, "Usuario não existe");
-            }
+           validarLogin();
 
         }
 
@@ -665,4 +591,84 @@ public class ControlePrincipal implements ActionListener {
         }
     }
 
+    public void validarLogin(){
+         Login loginF = null, loginM = null;
+
+            String senha = new String(telaLogin.getTextsenha().getPassword());
+            try {
+                loginF = fachada1.buscarLogin(telaLogin.getTextlogin().getText());
+                loginM = fachada1.buscarLoginMedico("l.usuario", telaLogin.getTextlogin().getText());
+                if (loginF.getUsuario().equals(telaLogin.getTextlogin().getText()) && loginF.getSenha().equals(senha)) {
+
+                    password = senha;
+                    login = telaLogin.getTextlogin().getText();
+
+                    telaPrincipal.getBotaolist().setVisible(false);
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                    criarFuncionario(login, password);
+                    telaPrincipal.getPanelP().setEnabledAt(1, true);
+                    telaPrincipal.getPanelP().setEnabledAt(2, true);
+                    telaPrincipal.getPanelP().setEnabledAt(3, true);
+                    telaPrincipal.getPanelP().setEnabledAt(4, true);
+                    telaPrincipal.getBotaoCadastroPaciente().setVisible(true);
+                    telaPrincipal.getBotaoMedico().setVisible(true);
+                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
+                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
+                    telaPrincipal.getBotaoAgendamento().setVisible(true);
+                    telaPrincipal.getBotaolist().setVisible(false);
+
+                }
+            } catch (Exception a) {
+            }
+
+            try {
+                if (loginM.getUsuario().equals(telaLogin.getTextlogin().getText()) && loginM.getSenha().equals(senha)) {
+
+                    password = senha;
+                    login = telaLogin.getTextlogin().getText();
+
+                    telaPrincipal.getBotaolist().setVisible(false);
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                    criarMedico(login, password);
+
+                    telaPrincipal.getPanelP().setEnabledAt(1, false);
+                    telaPrincipal.getPanelP().setEnabledAt(2, false);
+                    telaPrincipal.getPanelP().setEnabledAt(3, false);
+                    telaPrincipal.getPanelP().setEnabledAt(4, false);
+                    telaPrincipal.getBotaoCadastroPaciente().setVisible(false);
+                    telaPrincipal.getBotaoMedico().setVisible(false);
+                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(false);
+                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(false);
+                    telaPrincipal.getBotaoAgendamento().setVisible(false);
+                    telaPrincipal.getBotaolist().setVisible(true);
+
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                }
+            } catch (Exception o) {
+            }
+             if (telaLogin.getTextlogin().getText().equals("admin") && senha.equals("admin")) {
+
+                   
+
+                    telaPrincipal.getBotaolist().setVisible(false);
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                    telaPrincipal.getPanelP().setEnabledAt(1, false);
+                    telaPrincipal.getBotaoCadastroPaciente().setVisible(true);
+                    telaPrincipal.getBotaoMedico().setVisible(true);
+                    telaPrincipal.getBotaoCadastroFuncionario().setVisible(true);
+                    telaPrincipal.getBotaoCadastrarTarefa().setVisible(true);
+                    telaPrincipal.getBotaoAgendamento().setVisible(false);
+                    telaPrincipal.getBotaolist().setVisible(false);
+
+                    telaPrincipal.setVisible(true);
+                    telaLogin.setVisible(false);
+                }
+            if (telaLogin.isVisible()) {
+                JOptionPane.showMessageDialog(null, "Usuario não existe");
+            }
+    }
 }

@@ -9,12 +9,12 @@ package br.com.fundamento.view;
  *
  * @author Glenda Alves de Lima
  */
-public class relatori extends javax.swing.JFrame {
+public class GerarRelatorioFinancas extends javax.swing.JFrame {
 
     /**
      * Creates new form relatori
      */
-    public relatori() {
+    public GerarRelatorioFinancas() {
         initComponents();
     }
 
@@ -35,7 +35,7 @@ public class relatori extends javax.swing.JFrame {
         salvar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(200, 250));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
@@ -143,20 +143,21 @@ public class relatori extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(relatori.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerarRelatorioFinancas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(relatori.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerarRelatorioFinancas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(relatori.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerarRelatorioFinancas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(relatori.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerarRelatorioFinancas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new relatori().setVisible(true);
+                new GerarRelatorioFinancas().setVisible(true);
             }
         });
     }

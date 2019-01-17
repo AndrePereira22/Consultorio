@@ -19,7 +19,6 @@ public class Consultorio {
     private int id;
     private int id_endereco,id_contato;
     private List< Medico> medicos;
-    private List< Relatorio> relatorios;
     private List< Tarefa> tarefas;
     
     private Endereco endereco;
@@ -111,19 +110,6 @@ public class Consultorio {
         this.contato = contato;
     }
 
-    /**
-     * @return the relatorios
-     */
-    public List< Relatorio> getRelatorios() {
-        return relatorios;
-    }
-
-    /**
-     * @param relatorios the relatorios to set
-     */
-    public void setRelatorios(List< Relatorio> relatorios) {
-        this.relatorios = relatorios;
-    }
 
     /**
      * @return the tarefas

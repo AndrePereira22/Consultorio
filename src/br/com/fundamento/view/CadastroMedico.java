@@ -5,9 +5,6 @@
  */
 package br.com.fundamento.view;
 
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

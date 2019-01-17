@@ -51,9 +51,7 @@ public class DaoCaixa implements IDaoCaixa {
             if (result.next()) {
                 id = result.getInt(1);
             }
-            for (Pagamento p : caixa.getPagamentos()) {
-                DaoList.salvarPagamento(p, id);
-            }
+            
            
 
         } catch (SQLException ex) {

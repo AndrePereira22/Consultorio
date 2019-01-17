@@ -24,7 +24,6 @@ import br.com.fundamento.modelos.Pagamento;
 import br.com.fundamento.modelos.Parcela;
 import br.com.fundamento.modelos.Produto;
 import br.com.fundamento.modelos.Prontuario;
-import br.com.fundamento.modelos.Relatorio;
 import br.com.fundamento.modelos.SaidaEstoque;
 import br.com.fundamento.modelos.Tarefa;
 import java.util.List;
@@ -168,14 +167,7 @@ public interface IFachada {
     public void ativarDesativarTarefa(int id);
       public List<Tarefa> getPorBuscaTarefa(String busca);
     
-    
-    public void salvarRelatorio(Relatorio relatorio);
-    public Relatorio  buscarRlatorioPorId(int id);
-    public List<Relatorio> getAllRelatorio();
-    public void editarRelatorio(Relatorio relatroio);
-    public void ativarDesativarRelatorio(int id);
-    
-    
+
     
 
 }
